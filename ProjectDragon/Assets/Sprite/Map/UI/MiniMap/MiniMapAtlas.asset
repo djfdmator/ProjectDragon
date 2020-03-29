@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+  m_Name: MiniMapAtlas
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 717d5516e36d19b40836ac01332f9280, type: 2}
+  mSprites:
+  - name: MiniMap_Close
+    x: 0
+    y: 32
+    width: 69
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 6
+    paddingTop: 4
+    paddingBottom: 6
+  - name: MiniMap_CurrentPos
+    x: 127
+    y: 1
+    width: 52
+    height: 50
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 4
+    paddingTop: 4
+    paddingBottom: 6
+  - name: MiniMap_Hidden
+    x: 70
+    y: 2
+    width: 54
+    height: 45
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 6
+    paddingBottom: 4
+  - name: MiniMap_Npc
+    x: 178
+    y: 54
+    width: 44
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 5
+    paddingTop: 4
+    paddingBottom: 3
+  - name: MiniMap_Panel
+    x: 0
+    y: 103
+    width: 369
+    height: 409
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 41
+    paddingRight: 40
+    paddingTop: 18
+    paddingBottom: 23
+  - name: MiniMap_Room
+    x: 70
+    y: 48
+    width: 56
+    height: 54
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 2
+    paddingTop: 3
+    paddingBottom: 3
+  - name: MiniMap_Stair
+    x: 180
+    y: 8
+    width: 51
+    height: 45
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 2
+    paddingTop: 5
+    paddingBottom: 5
+  - name: MiniMap_Start
+    x: 232
+    y: 53
+    width: 52
+    height: 49
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 1
+    paddingTop: 2
+    paddingBottom: 4
+  - name: MiniMap_Unknown
+    x: 127
+    y: 52
+    width: 50
+    height: 50
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 5
+    paddingBottom: 5
+  mPixelSize: 1
+  mReplacement: {fileID: 0}

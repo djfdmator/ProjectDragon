@@ -1,0 +1,252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+  m_Name: ResultPopup
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 2ec4859c5c4152746a9c293987d3b351, type: 2}
+  mSprites:
+  - name: GoLobbyButton
+    x: 627
+    y: 736
+    width: 182
+    height: 82
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 10
+  - name: GoLobbyButton_Pressed
+    x: 810
+    y: 736
+    width: 182
+    height: 82
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 10
+  - name: HomeButton
+    x: 810
+    y: 573
+    width: 182
+    height: 79
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 10
+    paddingBottom: 11
+  - name: HomeButton_Pressed
+    x: 627
+    y: 653
+    width: 182
+    height: 82
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 10
+  - name: ICON_AcheiveItem
+    x: 0
+    y: 14
+    width: 199
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 26
+    paddingRight: 25
+    paddingTop: 19
+    paddingBottom: 19
+  - name: ICON_AdventureFail
+    x: 627
+    y: 922
+    width: 375
+    height: 102
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 12
+    paddingTop: 19
+    paddingBottom: 29
+  - name: ICON_AdventureSuccess
+    x: 627
+    y: 819
+    width: 375
+    height: 102
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 13
+    paddingTop: 21
+    paddingBottom: 27
+  - name: ICON_ExtinctionItem
+    x: 200
+    y: 14
+    width: 199
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 26
+    paddingRight: 25
+    paddingTop: 19
+    paddingBottom: 19
+  - name: ManaICON_UI
+    x: 582
+    y: 55
+    width: 43
+    height: 55
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 28
+    paddingRight: 29
+    paddingTop: 17
+    paddingBottom: 28
+  - name: NextStageButton
+    x: 810
+    y: 653
+    width: 182
+    height: 82
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 10
+  - name: NextStageButton_Pressed
+    x: 627
+    y: 570
+    width: 182
+    height: 82
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 10
+  - name: Normal1_Panel
+    x: 0
+    y: 304
+    width: 626
+    height: 720
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Normal2_Panel
+    x: 0
+    y: 77
+    width: 532
+    height: 226
+    borderLeft: 30
+    borderRight: 30
+    borderTop: 30
+    borderBottom: 30
+    paddingLeft: 34
+    paddingRight: 34
+    paddingTop: 38
+    paddingBottom: 36
+  - name: ScrollBar_Background
+    x: 533
+    y: 111
+    width: 31
+    height: 192
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 20
+    borderBottom: 20
+    paddingLeft: 9
+    paddingRight: 10
+    paddingTop: 3
+    paddingBottom: 5
+  - name: ScrollBar_Foreground
+    x: 565
+    y: 130
+    width: 24
+    height: 173
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 20
+    borderBottom: 20
+    paddingLeft: 15
+    paddingRight: 11
+    paddingTop: 10
+    paddingBottom: 17
+  - name: TitleICON_AdventureFail
+    x: 533
+    y: 37
+    width: 48
+    height: 73
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 3
+    paddingTop: 14
+    paddingBottom: 13
+  - name: TitleICON_AdventureSuccess
+    x: 627
+    y: 510
+    width: 49
+    height: 59
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 3
+    paddingTop: 21
+    paddingBottom: 20
+  - name: "\uC804\uD22C\uC885\uB8CC UI \uD574\uAE08"
+    x: 400
+    y: 14
+    width: 109
+    height: 62
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 19
+    paddingRight: 22
+    paddingTop: 19
+    paddingBottom: 19
+  mPixelSize: 1
+  mReplacement: {fileID: 0}

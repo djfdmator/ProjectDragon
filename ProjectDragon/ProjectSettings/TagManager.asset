@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - button
+  - SkillButton
+  - axisX
+  - axisY
+  - MiniMapRoom
+  - MiniMap
+  - RoomManager
+  - Wall
+  - Object
+  - Skill
+  - Cliff
+  - Portal
+  - Stone
+  - ScreenTransitions
+  - wall
+  - east
+  - south
+  - west
+  - north
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - NGUI
+  - UnwalkableMask
+  - Enemy
+  - MousePos
+  - Player
+  - Wall
+  - Cliff
+  - 
+  - Object
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Particle
+    uniqueID: 4010669881
+    locked: 0
+  - name: Enemy
+    uniqueID: 1672498235
+    locked: 0
+  - name: Effect
+    uniqueID: 1218017975
+    locked: 0

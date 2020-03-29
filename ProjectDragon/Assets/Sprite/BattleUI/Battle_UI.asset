@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+  m_Name: Battle_UI
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 441ad51a738ae4f41a1d1be52a4f5c7e, type: 2}
+  mSprites:
+  - name: HP_01
+    x: 753
+    y: 522
+    width: 61
+    height: 40
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 4
+    paddingTop: 2
+    paddingBottom: 9
+  - name: HP_02
+    x: 681
+    y: 522
+    width: 71
+    height: 40
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 5
+    paddingTop: 2
+    paddingBottom: 9
+  - name: HP_03
+    x: 815
+    y: 522
+    width: 52
+    height: 40
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 0
+    paddingTop: 2
+    paddingBottom: 9
+  - name: HP_04
+    x: 183
+    y: 576
+    width: 44
+    height: 40
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 2
+    paddingTop: 2
+    paddingBottom: 9
+  - name: ingameui_03
+    x: 0
+    y: 858
+    width: 499
+    height: 166
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 0
+  - name: ingameui_21
+    x: 187
+    y: 740
+    width: 117
+    height: 117
+    borderLeft: 41
+    borderRight: 37
+    borderTop: 38
+    borderBottom: 38
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: ingameui_24
+    x: 895
+    y: 601
+    width: 101
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 2
+    paddingRight: 5
+    paddingTop: 7
+    paddingBottom: 11
+  - name: ingameui_27
+    x: 895
+    y: 702
+    width: 101
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 6
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 8
+  - name: ingameui_30
+    x: 957
+    y: 972
+    width: 53
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 5
+    paddingRight: 0
+    paddingTop: 7
+    paddingBottom: 3
+  - name: ingameui_37
+    x: 708
+    y: 748
+    width: 184
+    height: 184
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 8
+    paddingTop: 8
+    paddingBottom: 5
+  - name: ingameui_40
+    x: 500
+    y: 718
+    width: 207
+    height: 214
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 7
+    paddingTop: 0
+    paddingBottom: 2
+  - name: ingameui_43
+    x: 525
+    y: 553
+    width: 155
+    height: 164
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 3
+    paddingTop: 0
+    paddingBottom: 5
+  - name: ingameui_44
+    x: 0
+    y: 673
+    width: 186
+    height: 184
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 7
+    paddingTop: 2
+    paddingBottom: 4
+  - name: ingameui_48
+    x: 893
+    y: 803
+    width: 129
+    height: 129
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: ingameui_51
+    x: 895
+    y: 499
+    width: 101
+    height: 101
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 4
+    paddingTop: 2
+    paddingBottom: 4
+  - name: ingameui_56
+    x: 708
+    y: 563
+    width: 186
+    height: 184
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 3
+    paddingRight: 7
+    paddingTop: 3
+    paddingBottom: 5
+  - name: ingameui_57
+    x: 0
+    y: 496
+    width: 182
+    height: 176
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 5
+    paddingTop: 0
+    paddingBottom: 5
+  - name: ingameui_60
+    x: 305
+    y: 722
+    width: 187
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 1
+    paddingBottom: 1
+  - name: ingameui_62
+    x: 187
+    y: 617
+    width: 337
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 4
+    paddingBottom: 4
+  - name: ingameui_64
+    x: 305
+    y: 790
+    width: 187
+    height: 67
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 2
+    paddingBottom: 1
+  - name: MPBar
+    x: 500
+    y: 933
+    width: 456
+    height: 91
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 8
+    paddingTop: 4
+    paddingBottom: 14
+  mPixelSize: 1
+  mReplacement: {fileID: 0}

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DeadAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 33371633b80c4eb45994c5fcb277eca6, type: 3}
+    - {fileID: 2800000, guid: e3e56d6652c0a8b43af0209bb62083c0, type: 3}
+    - {fileID: 2800000, guid: e482ebc4940284f459cf731643605320, type: 3}
+    - {fileID: 2800000, guid: be37455f8c43bce44b402d991fa7c975, type: 3}
+    - {fileID: 2800000, guid: 0b0d531f5e93a82438ec38706c6f26a6, type: 3}
+    - {fileID: 2800000, guid: 3e5206395846e9f47ac3596f2cea4087, type: 3}
+    - {fileID: 2800000, guid: a82ff396f872ffc4c8d115d67ce4dcbe, type: 3}
+    - {fileID: 2800000, guid: 9f562f2f69cd0b546acf05c04c96e172, type: 3}
+    - {fileID: 2800000, guid: 6d520575ebd86fb4a9e4da3ba8292b77, type: 3}
+    - {fileID: 2800000, guid: 781f5ca0c4a4e0f44bcc460519db7728, type: 3}
+    totalSpriteSurfaceArea: 576000
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 781f5ca0c4a4e0f44bcc460519db7728, type: 3}
+  - {fileID: 21300000, guid: 33371633b80c4eb45994c5fcb277eca6, type: 3}
+  - {fileID: 21300000, guid: e482ebc4940284f459cf731643605320, type: 3}
+  - {fileID: 21300000, guid: 6d520575ebd86fb4a9e4da3ba8292b77, type: 3}
+  - {fileID: 21300000, guid: e3e56d6652c0a8b43af0209bb62083c0, type: 3}
+  - {fileID: 21300000, guid: a82ff396f872ffc4c8d115d67ce4dcbe, type: 3}
+  - {fileID: 21300000, guid: 3e5206395846e9f47ac3596f2cea4087, type: 3}
+  - {fileID: 21300000, guid: 0b0d531f5e93a82438ec38706c6f26a6, type: 3}
+  - {fileID: 21300000, guid: 9f562f2f69cd0b546acf05c04c96e172, type: 3}
+  - {fileID: 21300000, guid: be37455f8c43bce44b402d991fa7c975, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - DefaultClothDead9
+  - DefaultClothDead0
+  - DefaultClothDead2
+  - DefaultClothDead8
+  - DefaultClothDead1
+  - DefaultClothDead6
+  - DefaultClothDead5
+  - DefaultClothDead4
+  - DefaultClothDead7
+  - DefaultClothDead3
+  m_Tag: DeadAtlas
+  m_IsVariant: 0
