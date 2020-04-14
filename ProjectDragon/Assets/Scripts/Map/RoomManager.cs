@@ -42,6 +42,8 @@ public class RoomManager : MonoBehaviour
     public GameObject player;
 
     public GameObject Mana_Large;
+    public List<Database.Inventory> items = new List<Database.Inventory>();
+    public int mana = 0;
 
     private void Awake()
     {
@@ -49,7 +51,7 @@ public class RoomManager : MonoBehaviour
         player_PosY = 0;
         playerGridPosX = 0;
         playerGridPosY = 0;
-        miniMap = GameObject.FindGameObjectWithTag("MiniMap").GetComponent<MiniMap>();
+        miniMap = GameObject.FindGameObjectWithTag("MiniMap").GetComponentInChildren<MiniMap>();
         miniMap.RoomManager = GetComponent<RoomManager>();
         screenTransitions = GameObject.FindGameObjectWithTag("ScreenTransitions").GetComponent<ScreenTransitions>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -229,18 +231,48 @@ public class RoomManager : MonoBehaviour
         miniMap.button.GetComponent<BoxCollider>().enabled = true;
     }
 
-    public void DropItem(Vector3 _pos)
+    public void DropItem(bool isMana, Vector3 _pos)
     {
-        //아이템 랜덤 확률 같은 판단 들어가야함
-        Vector3 temp = Random.insideUnitCircle * 0.4f;
-        PlayerLocationInMap().items.Add(Instantiate(Mana_Large, _pos + temp, Quaternion.identity, PlayerLocationInMap().transform));
+        if (!isMana)
+        {
+            if (Random.Range(0, 100) <= 10)
+            {
+                int itemCount = Database.Inst.weapons.Count + Database.Inst.armors.Count;
+                int rand = Random.Range(0, itemCount);
+                string imagePath = string.Empty;
+                if (rand < Database.Inst.weapons.Count)
+                {
+                    imagePath = Database.Inst.weapons[rand].imageName;
+                    items.Add(new Database.Inventory(Database.Inst.weapons[rand]));
+                }
+                else
+                {
+                    rand -= Database.Inst.weapons.Count;
+                    imagePath = Database.Inst.armors[rand].imageName;
+                    items.Add(new Database.Inventory(Database.Inst.armors[rand]));
+                }
+                //sprite로 imagePath적용 
+                GameObject gameObject = new GameObject("Item", typeof(Sprite));
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Object/Items");
+                gameObject.transform.SetParent(PlayerLocationInMap().transform);
+                Vector3 temp = Random.insideUnitCircle * 0.4f;
+                gameObject.transform.position = _pos + temp;
+                gameObject.transform.rotation = Quaternion.identity;
+            }
+        }
+        else
+        {
+            mana += 20;
+            Vector3 temp = Random.insideUnitCircle * 0.4f;
+            PlayerLocationInMap().items.Add(Instantiate(Mana_Large, _pos + temp, Quaternion.identity, PlayerLocationInMap().transform));
+        }
     }
 
     public IEnumerator GatheringItems(List<GameObject> gameObjects, float _playTime)
     {
         Vector3 pos = new Vector3();
         float time = 0.0f;
-        while(time <= _playTime)
+        while (time <= _playTime)
         {
             if (gameObjects.Count.Equals(0)) break;
 
@@ -249,7 +281,7 @@ public class RoomManager : MonoBehaviour
             {
                 pos = Vector3.Lerp(gameObjects[i].transform.position, player.transform.position, time * (1.0f / _playTime));
                 gameObjects[i].transform.position = pos;
-                if((player.transform.position - gameObjects[i].transform.position).magnitude <= 0.2f)
+                if ((player.transform.position - gameObjects[i].transform.position).magnitude <= 0.2f)
                 {
                     //GameManager.Inst.EndGame_Get_Item();
                     Destroy(gameObjects[i]);

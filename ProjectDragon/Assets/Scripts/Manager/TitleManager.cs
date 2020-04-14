@@ -196,7 +196,7 @@ public class TitleManager : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         mainScene.SetActive(false);
         StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
-        SceneManager.LoadScene("Lobby");
+        GameManager.Inst.Loading(false);
     }
     #endregion
 

@@ -26,14 +26,15 @@ public class Loading : MonoBehaviour
     //프로그레스 바
     private UILabel loadingLabel;
 
-    //로딩 이미지 총개
+    //로딩 프로그레스바 연출
+    private GameObject loadingObj;
     public int imageCount = 0;
 
     //지역 이동 연출 관련
     private GameObject regionObj;
     private Transform player;
     public int[] regionPointIndex = new int[6];
-    private Transform[] points;
+    public Transform[] points;
     private Transform extraPoint;
 
     //페이드 아웃
@@ -51,25 +52,29 @@ public class Loading : MonoBehaviour
 
     private void Init()
     {
+        loadingObj = transform.Find("Loading").gameObject;
         //setting loading background
         if (imageCount != 0)
         {
             int rand = Random.Range(0, imageCount);
-            GetComponent<UISprite>().spriteName = "bg" + (rand + 1);
+            loadingObj.GetComponent<UISprite>().spriteName = "bg" + (rand + 1);
         }
         //find loading bar obj
-        loadingLabel = transform.Find("ProgressBar").GetComponent<UILabel>();
+        loadingLabel = loadingObj.transform.Find("ProgressBar").GetComponent<UILabel>();
 
         //find uiroot camera
         screenTransitions = GameObject.FindGameObjectWithTag("ScreenTransitions").GetComponent<ScreenTransitions>();
 
         //find region representation
-        regionObj = transform.parent.Find("Region").gameObject;
+        regionObj = transform.Find("Region").gameObject;
 
     }
 
     public void LoadSceneAsync(bool isBattle)
     {
+        UIRoot uIRoot = GameObject.Find("UI Root").GetComponent<UIRoot>();
+        uIRoot.manualHeight = 1080;
+        uIRoot.manualWidth = 1920;
         //init
         if (isBattle)
         {
@@ -77,13 +82,16 @@ public class Loading : MonoBehaviour
             //increase stage
             GameManager.Inst.CurrentStage++;
             BattleRepresentationInit();
+
+            regionObj.GetComponent<UISprite>().enabled = false;
+            loadingObj.SetActive(false);
         }
         else
         {
             sceneName = "Lobby";
 
             regionObj.SetActive(false);
-        }
+        }  
 
         //fade out
         StartCoroutine(screenTransitions.Fade(0.5f, false));
@@ -105,7 +113,7 @@ public class Loading : MonoBehaviour
     //battle 로딩시 나오는 연출 초기화 - 지역 넘어가기
     void BattleRepresentationInit()
     {
-        screenTransitions.GetComponent<Camera>().orthographicSize = 0.7f;
+        screenTransitions.GetComponent<Camera>().orthographicSize = 1.0f;
         float ypos;
         switch(GameManager.Inst.CurrentStage)
         {
@@ -240,7 +248,7 @@ public class Loading : MonoBehaviour
                 if (isOne)
                 {
                     player.GetComponent<SpriteRenderer>().sprite = playerAnim[2];
-                    isOne = false;
+                    isOne = false; 
                 }
                 else
                 {

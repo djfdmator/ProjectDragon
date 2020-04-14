@@ -1042,6 +1042,7 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     public void GotoBattle()
     {
+        GameObject.Find("UI Root").transform.Find("LobbyPanel").gameObject.SetActive(false);
         GameManager.Inst.Loading(true);
     }
     /// <summary>

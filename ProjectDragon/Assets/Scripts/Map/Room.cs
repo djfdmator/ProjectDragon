@@ -145,7 +145,11 @@ public class Room : MonoBehaviour
         List<GameObject> temp_enemies = new List<GameObject>();
         foreach (GameObject obj in monsters)
         {
-            if (obj.GetComponent<Monster>().isDead) continue;
+            if (obj.GetComponent<Monster>().isDead)
+            {
+                roomManager.DropItem(false, obj.transform.position);
+                continue;
+            }
             else
             {
                 temp_monsters.Add(obj);
@@ -241,7 +245,7 @@ public class Room : MonoBehaviour
         roomState = RoomState.Clear;
         OpenAllDoor(); //모든 문 열기
 
-        roomManager.miniMap.gameObject.SetActive(true); //미니맵 켜기
+        roomManager.miniMap.transform.parent.gameObject.SetActive(true); //미니맵 켜기
         miniMapPos.GetComponent<UISprite>().alpha = 1.0f; //
 
         #region 수정 필요 -- 이미지 로드, 포탈 표시 방식 -- 미니맵

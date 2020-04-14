@@ -424,11 +424,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707971591, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -800
+      value: -790
       objectReference: {fileID: 0}
     - target: {fileID: 1707971591, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 200
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 804878521254199921, guid: d9ca20a145676494480da6d75f8116c2,
         type: 3}
@@ -478,11 +478,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707971585, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mClipRange.z
-      value: 255
+      value: 290
       objectReference: {fileID: 0}
     - target: {fileID: 1707971585, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mClipRange.w
-      value: 255
+      value: 248
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707971585, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mClipRange.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707971585, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mClipRange.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707971585, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 722791699478975994, guid: d9ca20a145676494480da6d75f8116c2,
         type: 3}
@@ -540,15 +552,14 @@ PrefabInstance:
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mAtlas
       value: 
-      objectReference: {fileID: 11400000, guid: 3072ecd2e45baf34dbbd4a4ffe252c44,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mSpriteName
-      value: MiniMap_Panel
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mWidth
-      value: 350
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: aspectRatio
@@ -556,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mHeight
-      value: 350
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mGradientTop.a
@@ -565,6 +576,26 @@ PrefabInstance:
     - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mGradientBottom.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mFillDirection
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mApplyGradient
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mGradientBottom.r
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mGradientBottom.g
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165135251, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: mGradientBottom.b
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1337002050, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mWidth
@@ -601,7 +632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1678695389, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mWidth
-      value: 300
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 1678695389, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: aspectRatio
@@ -609,15 +640,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1678695389, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mHeight
-      value: 300
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 1678695388, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: m_Size.x
-      value: 300
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 1678695388, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: m_Size.y
-      value: 300
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 189632033, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
       propertyPath: mAtlas
@@ -964,8 +995,134 @@ PrefabInstance:
       propertyPath: mMat
       value: 
       objectReference: {fileID: 2100000, guid: a00013af81304728b2be1f4309ee2433, type: 2}
+    - target: {fileID: 1707971587, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: m_TagString
+      value: MiniMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165135260, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+--- !u!1 &237628171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1165135260, guid: d9ca20a145676494480da6d75f8116c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 237628170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &237628172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1707971587, guid: d9ca20a145676494480da6d75f8116c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 237628170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &237628173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237628171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  showInPanelTool: 1
+  generateNormals: 0
+  generateUV2: 0
+  shadowMode: 0
+  widgetsAreStatic: 0
+  cullWhileDragging: 1
+  alwaysOnScreen: 0
+  anchorOffset: 0
+  softBorderPadding: 1
+  renderQueue: 0
+  startingRenderQueue: 3006
+  mClipTexture: {fileID: 0}
+  mAlpha: 1
+  mClipping: 3
+  mClipRange: {x: 0, y: -5, z: 250, w: 250}
+  mClipSoftness: {x: 4, y: 4}
+  mDepth: 3
+  mSortingOrder: 0
+  mSortingLayerName: 
+  mClipOffset: {x: 0, y: 0}
+  useSortingOrder: 0
+--- !u!114 &237628174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237628172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 350
+  mHeight: 350
+  mDepth: 0
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11400000, guid: 3072ecd2e45baf34dbbd4a4ffe252c44, type: 2}
+  mSpriteName: MiniMap_Panel
+  mFixedAspect: 0
+  mFillCenter: 1
 --- !u!1 &376345302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1504,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResultPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 5295681885085492842, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5295681885085492843, guid: 4895e6a80606c55459db1ccf86f743dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1405,7 +1567,12 @@ PrefabInstance:
     - target: {fileID: 5295681884921695657, guid: 4895e6a80606c55459db1ccf86f743dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295681884921695657, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4076292098825503317, guid: 4895e6a80606c55459db1ccf86f743dd,
         type: 3}

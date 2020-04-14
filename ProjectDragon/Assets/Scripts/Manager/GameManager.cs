@@ -35,6 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
     //데이터베이스 관련
     private Database database;
     public IDbCommand DEB_dbcmd;
+    public bool loadComplete = false;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         StartCoroutine(DataPhasing());
         database = Database.Inst;
+        while(!loadComplete) { };
         DataBaseConnecting();
         StartCoroutine(LoadAllTableData());
     }
@@ -114,10 +116,15 @@ public class GameManager : MonoSingleton<GameManager>
             conn = Application.persistentDataPath + "/DS_Database.sqlite";
             if (!File.Exists(conn))
             {
-                UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/" + "DS_Database.sqlite"); 
-                unityWebRequest.downloadedBytes.ToString();
-                yield return unityWebRequest.SendWebRequest().isDone;
-                File.WriteAllBytes(conn, unityWebRequest.downloadHandler.data);
+                using (UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/DS_Database.sqlite"))
+                {
+                    yield return unityWebRequest.SendWebRequest();
+                    File.WriteAllBytes(conn, unityWebRequest.downloadHandler.data);
+                }
+                //UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/" + "DS_Database.sqlite"); 
+                //unityWebRequest.downloadedBytes.ToString();
+                //yield return unityWebRequest.SendWebRequest().isDone;
+                //File.WriteAllBytes(conn, unityWebRequest.downloadHandler.data);
 
                 //조금 있으면 사라질 코드 형식입니다.
                 //WWW loadDB = new WWW("jar: file://" + Application.dataPath + "!/assets/" + "DS_Database.sqlite");
@@ -126,6 +133,7 @@ public class GameManager : MonoSingleton<GameManager>
                 //File.WriteAllBytes(conn, loadDB.bytes);
             }
         }
+        loadComplete = true;
         yield return null;
     }
 
@@ -315,12 +323,12 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Database.PlayData playData = database.playData;
         int playState = -1;
-        if(playData.nickName.Equals(string.Empty))
+        if (playData.nickName.Equals(string.Empty))
         {
             //first play
             playState = 0;
         }
-        else if(playData.sex.Equals(SEX.None))
+        else if (playData.sex.Equals(SEX.None))
         {
             //no play data
             playState = 1;
@@ -343,7 +351,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (GameObject.Find("LoadingScene") != null) return;
 
         GameObject loadingScene = Instantiate(Resources.Load("Loading/LoadingScene"), GameObject.Find("UI Root").transform) as GameObject;
-        Loading loading = loadingScene.transform.Find("Loading").GetComponent<Loading>();
+        Loading loading = loadingScene.GetComponent<Loading>();
         loading.LoadSceneAsync(isBattle);
     }
 
@@ -375,10 +383,10 @@ public class GameManager : MonoSingleton<GameManager>
         Instantiate(particle, _pos, Quaternion.identity);
 
         ParticleSystem particleSystem = particle.GetComponent<ParticleSystem>();
-        if(!particleSystem.main.loop)
+        if (!particleSystem.main.loop)
         {
             float time = 0.0f;
-            while(time <= particleSystem.main.startLifetime.constant)
+            while (time <= particleSystem.main.startLifetime.constant)
             {
                 time += Time.deltaTime;
                 yield return null;
@@ -404,7 +412,7 @@ public class GameManager : MonoSingleton<GameManager>
     /// <returns></returns>
     public string LoadSoundQue(int _num, bool isBG)
     {
-        if(_num < 1)
+        if (_num < 1)
         {
 #if UNITY_EDITOR
             Debug.LogError("LoadSoundQue Method :: Out of Range SoundTable Index!");
@@ -646,7 +654,7 @@ public class GameManager : MonoSingleton<GameManager>
                 database.playData.atk_Range = weapon.atk_Range;
                 database.playData.nuckBack_Power = weapon.nuckback_Power;
                 database.playData.nuckBack_Percentage = weapon.nuckback_Percentage;
-                
+
                 if (!value.option_Index.Equals(-1))
                 {
                     //옵션이 붙어 있으면 옵션 적용
@@ -661,7 +669,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         get
         {
-            if(database.playData.equiArmor_InventoryNum.Equals(-1))
+            if (database.playData.equiArmor_InventoryNum.Equals(-1))
             {
 #if UNITY_EDITOR
                 Debug.Log("장착중인 방어구가 없습니다.");
@@ -796,7 +804,7 @@ public class GameManager : MonoSingleton<GameManager>
         playData.currentHp = BaseHp;
         playData.moveSpeed = 1.0f;
         playData.currentStage = 0;
-        playData.mp = 1000; 
+        playData.mp = 1000;
         playData.sex = SEX.None;
 
         playData.skin = 0;
@@ -851,14 +859,14 @@ public class GameManager : MonoSingleton<GameManager>
     //        }
     //    }
     //}
-    
+
     /// <summary>
     /// give Basic weapon and armor - 임시
     /// </summary>
     public void GivePlayerBasicItem(CLASS _class)
     {
         int weapon = 0;
-        if(!_class.Equals(CLASS.검)) weapon = 1;
+        if (!_class.Equals(CLASS.검)) weapon = 1;
         database.playData.inventory.Clear();
         database.playData.inventory.Add(new Database.Inventory(database.weapons[weapon]));
         database.playData.inventory.Add(new Database.Inventory(database.armors[0]));

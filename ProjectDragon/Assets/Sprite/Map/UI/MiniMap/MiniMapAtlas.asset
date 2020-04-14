@@ -16,7 +16,7 @@ MonoBehaviour:
   mSprites:
   - name: MiniMap_Close
     x: 0
-    y: 32
+    y: 26
     width: 69
     height: 70
     borderLeft: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     paddingBottom: 6
   - name: MiniMap_CurrentPos
     x: 127
-    y: 1
+    y: 46
     width: 52
     height: 50
     borderLeft: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 6
   - name: MiniMap_Hidden
-    x: 70
-    y: 2
+    x: 284
+    y: 51
     width: 54
     height: 45
     borderLeft: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 4
   - name: MiniMap_Npc
-    x: 178
-    y: 54
+    x: 284
+    y: 2
     width: 44
     height: 48
     borderLeft: 0
@@ -68,20 +68,20 @@ MonoBehaviour:
     paddingBottom: 3
   - name: MiniMap_Panel
     x: 0
-    y: 103
-    width: 369
-    height: 409
+    y: 97
+    width: 377
+    height: 415
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 41
-    paddingRight: 40
-    paddingTop: 18
-    paddingBottom: 23
+    paddingLeft: 37
+    paddingRight: 36
+    paddingTop: 28
+    paddingBottom: 7
   - name: MiniMap_Room
     x: 70
-    y: 48
+    y: 42
     width: 56
     height: 54
     borderLeft: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     paddingBottom: 3
   - name: MiniMap_Stair
     x: 180
-    y: 8
+    y: 1
     width: 51
     height: 45
     borderLeft: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: MiniMap_Start
-    x: 232
-    y: 53
+    x: 180
+    y: 47
     width: 52
     height: 49
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 4
   - name: MiniMap_Unknown
-    x: 127
-    y: 52
+    x: 233
+    y: 46
     width: 50
     height: 50
     borderLeft: 0

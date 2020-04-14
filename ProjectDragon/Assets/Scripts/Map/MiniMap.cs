@@ -27,7 +27,7 @@ public class MiniMap : MonoBehaviour
     {
         room = GameObject.FindGameObjectsWithTag("MiniMapRoom");
         roomRoot = transform.Find("RoomRoot");
-        panel = GetComponentInParent<UIPanel>();
+        panel = GetComponent<UIPanel>();
 
         button = transform.Find("Button").GetComponent<UIButton>();
     }
@@ -52,7 +52,7 @@ public class MiniMap : MonoBehaviour
         //이동한 방이 클리어되지 않았다면 미니맵을 끈다.
         if (!RoomManager.Map_Data[x + RoomManager.gridSizeX_Cen, y + RoomManager.gridSizeY_Cen].GetComponent<Room>().roomState.Equals(RoomState.Clear))
         {
-            gameObject.SetActive(false);
+            transform.parent.gameObject.SetActive(false);
         }
 
         foreach(Room obj in RoomManager.PlayerLocationAroundRoomInMap())
@@ -130,12 +130,12 @@ public class MiniMap : MonoBehaviour
     public void Maximalize()
     {
         //panel의 위치와 크기 조절
-        panel.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        panel.parent.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         panel.baseClipRegion = new Vector4(0.0f, 0.0f, 725.0f, 725.0f);
         panel.clipOffset = new Vector2(0.0f, 12.0f);
 
         //미니맵 확대
-        GetComponent<UISprite>().SetDimensions(1000, 1000);
+        transform.parent.GetComponent<UISprite>().SetDimensions(1000, 1000);
         button.GetComponent<UISprite>().SetDimensions(800, 800);
         transform.Find("PlayerPos").GetComponent<UISprite>().SetDimensions(120, 120);
         roomRoot.localScale = new Vector3(2.0f, 2.0f, 1.0f);
@@ -149,12 +149,12 @@ public class MiniMap : MonoBehaviour
     public void Minimalize()
     {
         //panel의 위치와 크기 조절
-        panel.transform.localPosition = new Vector3(-800.0f, 200.0f, 0.0f);
+        panel.parent.transform.localPosition = new Vector3(-790.0f, 200.0f, 0.0f);
         panel.baseClipRegion = new Vector4(0.0f, 0.0f, 255.0f, 255.0f);
         panel.clipOffset = new Vector2(0.0f, 4.0f);
 
         //미니맵 축소
-        GetComponent<UISprite>().SetDimensions(350, 350);
+        transform.parent.GetComponent<UISprite>().SetDimensions(350, 350);
         button.GetComponent<UISprite>().SetDimensions(300, 300);
         transform.Find("PlayerPos").GetComponent<UISprite>().SetDimensions(60, 60);
         roomRoot.localScale = new Vector3(1.0f, 1.0f, 1.0f);
