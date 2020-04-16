@@ -252,12 +252,14 @@ public class RoomManager : MonoBehaviour
                     items.Add(new Database.Inventory(Database.Inst.armors[rand]));
                 }
                 //sprite로 imagePath적용 
-                GameObject gameObject = new GameObject("Item", typeof(Sprite));
+                GameObject gameObject = new GameObject("Item", typeof(SpriteRenderer));
                 gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Object/Items");
+                gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
                 gameObject.transform.SetParent(PlayerLocationInMap().transform);
                 Vector3 temp = Random.insideUnitCircle * 0.4f;
                 gameObject.transform.position = _pos + temp;
                 gameObject.transform.rotation = Quaternion.identity;
+                PlayerLocationInMap().items.Add(gameObject);
             }
         }
         else
