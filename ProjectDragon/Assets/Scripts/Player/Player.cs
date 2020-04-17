@@ -180,11 +180,9 @@ public class Player : Character
             else if (!isDead)
             {
                 hp = -1;
-                GameManager.Inst.CurrentHp = maxHp;
+                GameManager.Inst.CurrentHp = 0;
                 isDead = true;
                 CurrentState = State.Dead;
-                Debug.Log("죽었습니다.");
-                Time.timeScale = 0f;
 
             }
         }

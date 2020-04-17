@@ -15,8 +15,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 2ec4859c5c4152746a9c293987d3b351, type: 2}
   mSprites:
   - name: GoLobbyButton
-    x: 627
-    y: 736
+    x: 746
+    y: 15
     width: 182
     height: 82
     borderLeft: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 10
   - name: GoLobbyButton_Pressed
-    x: 810
-    y: 736
+    x: 627
+    y: 942
     width: 182
     height: 82
     borderLeft: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 10
   - name: HomeButton
-    x: 810
-    y: 573
+    x: 627
+    y: 779
     width: 182
     height: 79
     borderLeft: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 11
   - name: HomeButton_Pressed
-    x: 627
-    y: 653
+    x: 810
+    y: 942
     width: 182
     height: 82
     borderLeft: 0
@@ -80,8 +80,8 @@ MonoBehaviour:
     paddingTop: 19
     paddingBottom: 19
   - name: ICON_AdventureFail
-    x: 627
-    y: 922
+    x: 533
+    y: 201
     width: 375
     height: 102
     borderLeft: 0
@@ -93,8 +93,8 @@ MonoBehaviour:
     paddingTop: 19
     paddingBottom: 29
   - name: ICON_AdventureSuccess
-    x: 627
-    y: 819
+    x: 533
+    y: 98
     width: 375
     height: 102
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 19
     paddingBottom: 19
   - name: ManaICON_UI
-    x: 582
-    y: 55
+    x: 961
+    y: 661
     width: 43
     height: 55
     borderLeft: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
     paddingTop: 17
     paddingBottom: 28
   - name: NextStageButton
-    x: 810
-    y: 653
+    x: 627
+    y: 859
     width: 182
     height: 82
     borderLeft: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 10
   - name: NextStageButton_Pressed
-    x: 627
-    y: 570
+    x: 810
+    y: 859
     width: 182
     height: 82
     borderLeft: 0
@@ -183,9 +183,22 @@ MonoBehaviour:
     paddingRight: 34
     paddingTop: 38
     paddingBottom: 36
-  - name: ScrollBar_Background
+  - name: normal3_panel
     x: 533
-    y: 111
+    y: 25
+    width: 212
+    height: 72
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 21
+    paddingRight: 17
+    paddingTop: 13
+    paddingBottom: 15
+  - name: ScrollBar_Background
+    x: 929
+    y: 666
     width: 31
     height: 192
     borderLeft: 0
@@ -197,8 +210,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 5
   - name: ScrollBar_Foreground
-    x: 565
-    y: 130
+    x: 993
+    y: 851
     width: 24
     height: 173
     borderLeft: 0
@@ -210,8 +223,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 17
   - name: TitleICON_AdventureFail
-    x: 533
-    y: 37
+    x: 961
+    y: 777
     width: 48
     height: 73
     borderLeft: 0
@@ -223,8 +236,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 13
   - name: TitleICON_AdventureSuccess
-    x: 627
-    y: 510
+    x: 961
+    y: 717
     width: 49
     height: 59
     borderLeft: 0

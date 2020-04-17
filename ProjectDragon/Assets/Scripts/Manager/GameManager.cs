@@ -778,6 +778,10 @@ public class GameManager : MonoSingleton<GameManager>
     IEnumerator GameEnd()
     {
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
+
+        //결과창 띄우기
+        GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().OpenResultPop(true);
+        Debug.Log("GameEnd");
         yield return null;
     }
     #region 공사중 - 초기화 구조 바꿔야 함

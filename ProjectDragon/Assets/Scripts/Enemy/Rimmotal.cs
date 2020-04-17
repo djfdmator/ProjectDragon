@@ -50,6 +50,8 @@ public class Rimmotal : Enemy
         projectile = new Projectile();
         thornPoint = new TargetPoint();
     }
+
+
     protected override RaycastHit2D[] GetRaycastType()
     {
         //float maxSizeAxis = capsuleCol.size.x < capsuleCol.size.y ? capsuleCol.size.y : capsuleCol.size.x;

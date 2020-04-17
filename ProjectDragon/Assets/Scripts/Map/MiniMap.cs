@@ -131,8 +131,8 @@ public class MiniMap : MonoBehaviour
     {
         //panel의 위치와 크기 조절
         panel.parent.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        panel.baseClipRegion = new Vector4(0.0f, 0.0f, 725.0f, 725.0f);
-        panel.clipOffset = new Vector2(0.0f, 12.0f);
+        panel.baseClipRegion = new Vector4(0.0f, -7.0f, 725.0f, 725.0f);
+        panel.clipOffset = new Vector2(0.0f, 0.0f);
 
         //미니맵 확대
         transform.parent.GetComponent<UISprite>().SetDimensions(1000, 1000);
@@ -150,8 +150,8 @@ public class MiniMap : MonoBehaviour
     {
         //panel의 위치와 크기 조절
         panel.parent.transform.localPosition = new Vector3(-790.0f, 200.0f, 0.0f);
-        panel.baseClipRegion = new Vector4(0.0f, 0.0f, 255.0f, 255.0f);
-        panel.clipOffset = new Vector2(0.0f, 4.0f);
+        panel.baseClipRegion = new Vector4(0.0f, -5.0f, 255.0f, 255.0f);
+        panel.clipOffset = new Vector2(0.0f, 0.0f);
 
         //미니맵 축소
         transform.parent.GetComponent<UISprite>().SetDimensions(350, 350);

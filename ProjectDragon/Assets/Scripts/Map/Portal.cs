@@ -29,6 +29,7 @@ public class Portal : MonoBehaviour
     //private Sprite image_Activate;
     private RoomManager RoomManager;
     private bool isPortalOn = false;
+    private Sprite portalOnImage;
 
     //private void Awake()
     //{
@@ -37,6 +38,7 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         RoomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
+        portalOnImage = Resources.Load<Sprite>("Object/Sprite/Activate");
     }
 
     //포탈에 부딪혔을 경우 미니맵 확대
@@ -61,6 +63,6 @@ public class Portal : MonoBehaviour
 
     private void PortalActivation()
     {
-        GetComponent<Animator>().SetBool("isPortalActivate", true);
+        GetComponent<SpriteRenderer>().sprite = portalOnImage;
     }
 }

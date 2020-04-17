@@ -130,8 +130,14 @@ public class Enemy : Monster
 
     protected virtual IEnumerator EnemyDead()
     {
+        if(objectAnimator.GetBool("objectAnimator"))
+        {
+        objectAnimator.SetBool("IsDead", true);
+        Debug.Log("IsDead is true");
+        }
         //Dead Animation parameters
         objectAnimator.SetTrigger("Dead");
+
 
         col.enabled = false;
 

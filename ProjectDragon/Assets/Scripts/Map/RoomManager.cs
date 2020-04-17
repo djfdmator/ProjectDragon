@@ -45,6 +45,8 @@ public class RoomManager : MonoBehaviour
     public List<Database.Inventory> items = new List<Database.Inventory>();
     public int mana = 0;
 
+    public GameObject resultPop;
+
     private void Awake()
     {
         player_PosX = 0;
@@ -56,6 +58,8 @@ public class RoomManager : MonoBehaviour
         screenTransitions = GameObject.FindGameObjectWithTag("ScreenTransitions").GetComponent<ScreenTransitions>();
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<BoxCollider2D>().enabled = false;
+        resultPop = GameObject.Find("UI Root").transform.Find("ResultPopup").gameObject;
+        resultPop.SetActive(false);
         ResourceLoad();
     }
 
@@ -202,6 +206,7 @@ public class RoomManager : MonoBehaviour
         if (_x != player_PosX || _y != player_PosY)
         {
             PlayerLocationInMap().gameObject.SetActive(false);
+            MiniMapMinimalize();
             SetPlayerPos(_x, _y);
             //player_PosX = (int)_x;
             //player_PosY = (int)_y;
@@ -212,7 +217,6 @@ public class RoomManager : MonoBehaviour
 
             //미니맵 관리
             //miniMap.UpdateMiniMap();
-            MiniMapMinimalize();
             GameObject.FindGameObjectWithTag("Player").transform.position = PlayerLocationInMap().transform.position;
         }
     }
@@ -294,4 +298,11 @@ public class RoomManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void OpenResultPop(bool playerIsDead)
+    {
+        resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
+        resultPop.SetActive(true);
+    }
+
 }

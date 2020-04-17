@@ -22,7 +22,9 @@ public class MPGauge : MonoBehaviour
     private void Update()
     {
         int i;
-        mana_Point = player.mp;
+
+        //추가 수정
+        mana_Point = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().mana;
         string A = mana_Point.ToString();
         LengthSize = A.Length;
         for (i = 0; i < A.Length; i++)

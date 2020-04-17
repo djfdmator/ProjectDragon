@@ -5,7 +5,7 @@ using UnityEngine;
 public class GUIItemScrollView : MonoBehaviour
 {
     ///public int countItem;
-    public List<Database.Inventory> AcheiveItemList;
+    public List<Database.Inventory> ResulttemList;
     UIReuseGrid grid;
     public UIReuseGrid Grid
     {
@@ -18,26 +18,23 @@ public class GUIItemScrollView : MonoBehaviour
     private void Awake()
     {
         grid = GetComponentInChildren<UIReuseGrid>();
-        AcheiveItemList= Database.Inst.playData.inventory;
 
-    }
-    private void Start()
-    {
-        GetResultItem();
     }
     public void GetResultItem()
     {
-        for(int i = 0; i < AcheiveItemList.Count; ++i)
+        ResulttemList = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().items;
+
+        for(int i = 0; i < ResulttemList.Count; ++i)
         {
 
             EuipmentcellData cell = new EuipmentcellData();
-            cell.DB_Num = AcheiveItemList[i].DB_Num;
-            cell.imageName = AcheiveItemList[i].imageName;
-            cell.itemValue = AcheiveItemList[i].itemValue;
-            cell.Class = AcheiveItemList[i].Class;
-            cell.name = AcheiveItemList[i].name;
-            cell.inventoryNum = AcheiveItemList[i].num;
-            cell.rarity = AcheiveItemList[i].rarity;
+            cell.DB_Num = ResulttemList[i].DB_Num;
+            cell.imageName = ResulttemList[i].imageName;
+            cell.itemValue = ResulttemList[i].itemValue;
+            cell.Class = ResulttemList[i].Class;
+            cell.name = ResulttemList[i].name;
+            cell.inventoryNum = ResulttemList[i].num;
+            cell.rarity = ResulttemList[i].rarity;
             //// 임의의 데이터가 생성해서 gird에 추가시켜둔다.
             //// ItemCellData 는 IReuseCellData 상속받아서 구현된 데이터 클래스다.
 

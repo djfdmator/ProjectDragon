@@ -270,6 +270,7 @@
     <Compile Include="Assets\Scripts\ScrollView\UIReuseScrollViewCell.cs" />
     <Compile Include="Assets\Scripts\UI\ResultPop\GUIItemScrollView.cs" />
     <Compile Include="Assets\Scripts\UI\ResultPop\ResultItemCell.cs" />
+    <Compile Include="Assets\Scripts\UI\ResultPop\ResultPop.cs" />
     <Compile Include="Assets\Scripts\Utillity\BossTargetpoint.cs" />
     <Compile Include="Assets\Scripts\Utillity\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Utillity\DamagePopup.cs" />
