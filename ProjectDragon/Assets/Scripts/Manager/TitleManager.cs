@@ -147,6 +147,7 @@ public class TitleManager : MonoBehaviour
     //로그인 버튼 - 게임 데이터를 확인하여 어디부터 시작할지 정함
     public void Button_LogIn()
     {
+        mainScene.GetComponent<BoxCollider>().enabled = false;
 #if UNITY_EDITOR
         Debug.Log("LogIn");
         Debug.Log(GameManager.Inst.CheckingPlayData());
@@ -181,6 +182,7 @@ public class TitleManager : MonoBehaviour
         mainScene.SetActive(false);
         StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
         nickNameScene.SetActive(true);
+        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = true;
     }
     //처음은 아닌데 게임 플레이 데이터가 없을때
     private IEnumerator CharacterSelect()
@@ -253,6 +255,7 @@ public class TitleManager : MonoBehaviour
             }
         }
 
+        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = false;
         StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
         StartCoroutine(NickNameSucceed());
 #if UNITY_EDITOR
@@ -390,6 +393,7 @@ public class TitleManager : MonoBehaviour
     public void Button_Confirm()
     {
         SoundManager.Inst.Ds_EffectPlayerDB(1);
+        nextbutton.GetComponent<BoxCollider>().enabled = false;
         StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
         StartCoroutine(SelectConfirm());
     }
