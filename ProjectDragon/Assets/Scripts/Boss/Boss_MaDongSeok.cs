@@ -82,6 +82,7 @@ public class Boss_MaDongSeok : Monster
     }
     public void PlayRoar()
     {
+        StartCoroutine(Camera.main.GetComponent<CameraFollow>().Shake(1,1));
         roar.Play();
     }
     protected override void Start()
@@ -434,6 +435,7 @@ public class Boss_MaDongSeok : Monster
         if (Physics2D.OverlapBox(hitDownplace[placenum].transform.position, boxcollidersize, 0, playerlayer))
         {
             player.GetComponent<Character>().HPChanged(damage,false,0);
+            StartCoroutine(Camera.main.GetComponent<CameraFollow>().Shake(0.5f, 1));
         }
         SoundManager.Inst.Ds_EffectPlayerDB(15);
         //boxcollidersize.x = boxcollidersize.x * hitDownplace[placenum].transform.localScale.x;
@@ -485,6 +487,7 @@ public class Boss_MaDongSeok : Monster
         Debug.Log(hitDownplace[placenum].transform.localScale.x);
         if (Physics2D.OverlapBox(hitDownplace[placenum].transform.position, boxcollidersize, 0, playerlayer))
         {
+            StartCoroutine(Camera.main.GetComponent<CameraFollow>().Shake(0.5f, 1));
             player.GetComponent<Character>().HPChanged(damage,false,0);
         }
         SoundManager.Inst.Ds_EffectPlayerDB(15);
@@ -632,7 +635,7 @@ public class Boss_MaDongSeok : Monster
         int j=0;
         while(time<1.5f)
         {
-            if(armright.transform.position.x>=hitDownplace[j].transform.position.x)
+            if(armright.transform.position.x>hitDownplace[j].transform.position.x)
             {
                 hitDownplace[j].SetActive(false);
                 j++;
@@ -649,6 +652,7 @@ public class Boss_MaDongSeok : Monster
             time += Time.deltaTime;
             yield return null;
         }
+        hitDownplace[5].SetActive(false);
         yield return null;
         Debug.Log("LeftSweep");
     }
@@ -673,15 +677,18 @@ public class Boss_MaDongSeok : Monster
 
         while (time < 1.5f)
         {
-            if(hitDownplace[j].transform.position.x>=armLeft.transform.position.x)
+            if(hitDownplace[j].transform.position.x>armLeft.transform.position.x)
             {
-                hitDownplace[j].SetActive(false);
-                j--;
+                if (j > 0)
+                {
+                    hitDownplace[j].SetActive(false);
+                    j--;
+                }
             }
             armLeft.transform.position = Vector3.Lerp(hitDownplace[5].transform.position, hitDownplace[1].transform.position,Mathf.Pow(time,6) / Mathf.Pow(1.5f,6));
             time += Time.deltaTime;
             yield return null;
-            hitDownplace[1].SetActive(false);
+            
         }
         Debug.Log("End");
         time = 0;
@@ -691,6 +698,7 @@ public class Boss_MaDongSeok : Monster
             time += Time.deltaTime;
             yield return null;
         }
+        hitDownplace[0].SetActive(false);
         yield return null;
         
     }

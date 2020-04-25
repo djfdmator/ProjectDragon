@@ -557,6 +557,8 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             database.playData.currentStage = value;
+            Debug.Log(database.playData.currentStage);
+            Debug.Log(value);
 
             if (database.playData.currentStage > database.playData.finalStage)
             {

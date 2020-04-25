@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public enum LobbyState { Nomal, Enchant, Lock, Decomposition }
 public enum ItemState { 기본, 무기, 갑옷 }
 public enum ItemRarity { 기본, 노말, 레어, 유니크, 레전드 }
+public enum StageName { 스테이지1번, 스테이지2번, 스테이지3번, 스테이지4번, 보스스테이지 }
 public class LobbyManager : MonoBehaviour
 {
     bool statepanelbutton, equipstatepanelbutton;
@@ -17,6 +18,9 @@ public class LobbyManager : MonoBehaviour
     public GameObject fireobject, playeranimation, playerimg, equipCharactor, playerStat, equipanel, optionPanel,blackBGI;
     public AudioClip fire;
     public GameObject statpanel, equipStatPanel;
+
+    public StageName developerStageSetting;
+
     #region equipobject
     public GameObject inventoryback, currentweapon, currentArmor, currentActive, itemscrollview, skinScrollView, euiptIcons, changeEquip, ItemInfo, equipBGI, DecompositionPanel, DecompositionCountLabel;
     public List<UISprite> Weapon, Armor, weaponicon, armoricon, activeicon;
@@ -1042,8 +1046,12 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     public void GotoBattle()
     {
-        GameObject.Find("UI Root").transform.Find("LobbyPanel").gameObject.SetActive(false);
         GameManager.Inst.Loading(true);
+        #region kks
+        
+        GameManager.Inst.PlayData.currentStage = (int)developerStageSetting;
+        #endregion
+        //GameObject.Find()
     }
     /// <summary>
     /// 스킨 움직임 버튼 재생 왼쪽클릭

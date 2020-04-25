@@ -80,6 +80,7 @@ public class Loading : MonoBehaviour
         {
             sceneName = "Map_Generator";
             //increase stage
+            Debug.Log("Loding : " + GameManager.Inst.CurrentStage);
             GameManager.Inst.CurrentStage++;
             BattleRepresentationInit();
 
