@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/rnryt/OneDrive/바탕 화면/ProjectDragonAPK/200425-3.apk
+C:/Users/rnryt/OneDrive/바탕 화면/ProjectDragonAPK/200425-5apk.apk
 SceneListBegin?
 Assets/Scenes/Title.unity
 Assets/Scenes/Lobby.unity

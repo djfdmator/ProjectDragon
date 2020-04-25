@@ -43,7 +43,6 @@ public class GameManager : MonoSingleton<GameManager>
 
         StartCoroutine(DataPhasing());
         database = Database.Inst;
-        while(!loadComplete) { };
         DataBaseConnecting();
         StartCoroutine(LoadAllTableData());
     }
@@ -118,7 +117,8 @@ public class GameManager : MonoSingleton<GameManager>
             {
                 using (UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/DS_Database.sqlite"))
                 {
-                    yield return unityWebRequest.SendWebRequest();
+                    unityWebRequest.downloadedBytes.ToString();
+                    yield return unityWebRequest.SendWebRequest().isDone;
                     File.WriteAllBytes(conn, unityWebRequest.downloadHandler.data);
                 }
                 //UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/" + "DS_Database.sqlite"); 
