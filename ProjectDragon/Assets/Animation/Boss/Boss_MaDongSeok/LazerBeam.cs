@@ -8,9 +8,12 @@ public class LazerBeam : MonoBehaviour
     private LineRenderer linerenderer;
     public List<string> stoptag;
     public int damage;
+    bool damagecheck;
     // Start is called before the first frame update
     void Start()
     {
+        damagecheck = false;
+        damage = 1;
         linerenderer = GetComponent<LineRenderer>();
         linerenderer.enabled = true;
         linerenderer.useWorldSpace = true;
@@ -30,12 +33,15 @@ public class LazerBeam : MonoBehaviour
                 Debug.Log(hit[i].transform.name);
                 if (hit[i].transform.CompareTag("Player"))
                 {
-                    tag = true;
-                    Debug.DrawLine(transform.position, hit[i].point);
-                    Debug.Log(hit[i].transform.gameObject.name);
-                    linerenderer.SetPosition(0, transform.position);
-                    linerenderer.SetPosition(1, hit[i].point);
-                    hit[i].transform.GetComponent<Character>().HPChanged(damage,false,0);
+                    if (!damagecheck)
+                    {
+                        tag = true;
+                        Debug.DrawLine(transform.position, hit[i].point);
+                        Debug.Log(hit[i].transform.gameObject.name);
+                        linerenderer.SetPosition(0, transform.position);
+                        linerenderer.SetPosition(1, hit[i].point);
+                        hit[i].transform.GetComponent<Character>().HPChanged(damage, false, 0);
+                    }
                 }
                 else if (hit[i].transform.CompareTag(stoptag[j]))
                 {

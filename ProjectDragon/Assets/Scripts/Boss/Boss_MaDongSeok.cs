@@ -91,7 +91,7 @@ public class Boss_MaDongSeok : Monster
         damagePopup = new DamagePopup();
         targetpoint = new BossTargetpoint();
         //애니메이션 작동,플레이어 작동 불가,
-        currentstate = BossState.Phase3;
+        currentstate = BossState.Phase1;
         
         Random.InitState((int)System.DateTime.Now.Ticks);
 
@@ -643,6 +643,7 @@ public class Boss_MaDongSeok : Monster
             armright.transform.position = Vector3.Lerp(hitDownplace[0].transform.position, hitDownplace[4].transform.position, Mathf.Pow(time, 6) / Mathf.Pow(1.5f, 6));
             time += Time.deltaTime;
             yield return null;
+            hitDownplace[4].SetActive(false);
         }
         Debug.Log("End");
         time = 0;
@@ -652,7 +653,7 @@ public class Boss_MaDongSeok : Monster
             time += Time.deltaTime;
             yield return null;
         }
-        hitDownplace[5].SetActive(false);
+        
         yield return null;
         Debug.Log("LeftSweep");
     }
@@ -689,6 +690,7 @@ public class Boss_MaDongSeok : Monster
             time += Time.deltaTime;
             yield return null;
             
+            hitDownplace[1].SetActive(false);
         }
         Debug.Log("End");
         time = 0;
@@ -698,7 +700,7 @@ public class Boss_MaDongSeok : Monster
             time += Time.deltaTime;
             yield return null;
         }
-        hitDownplace[0].SetActive(false);
+        
         yield return null;
         
     }
