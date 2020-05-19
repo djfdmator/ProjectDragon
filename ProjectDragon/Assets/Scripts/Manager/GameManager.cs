@@ -33,7 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Stack<string> Scenestack = new Stack<string>();
 
     //데이터베이스 관련
-    private Database database;
+    public Database database;
     public IDbCommand DEB_dbcmd;
     public bool loadComplete = false;
 
@@ -153,6 +153,11 @@ public class GameManager : MonoSingleton<GameManager>
         dbconn = (IDbConnection)new SqliteConnection(conn);
         dbconn.Open();
         DEB_dbcmd = dbconn.CreateCommand();
+    }
+
+    private void OnApplicationQuit()
+    {
+        DEB_dbcmd.Dispose();
     }
 
     #endregion
@@ -285,7 +290,7 @@ public class GameManager : MonoSingleton<GameManager>
             return null;
         }
 
-        return database.skill[_EquipItem.skill_Index];
+        return Database.Inst.skill[_EquipItem.skill_Index];
     }
 
     /// <summary>
@@ -295,7 +300,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void Insert_Inventory_Item(List<Database.Inventory> _inventories)
     {
         // 아이템 중복되는 것 있으면 amount 컨트롤 해야함
-        database.playData.inventory.AddRange(_inventories);
+        Database.Inst.playData.inventory.AddRange(_inventories);
     }
 
 
@@ -305,13 +310,13 @@ public class GameManager : MonoSingleton<GameManager>
     /// <param name="_item_Inventory_Num"></param>
     public void Delete_Inventory_Item(int _item_Inventory_Num)
     {
-        if (database.GetInventoryCount() <= _item_Inventory_Num) return;
+        if (Database.Inst.GetInventoryCount() <= _item_Inventory_Num) return;
 
-        database.playData.inventory.RemoveAt(_item_Inventory_Num);
+        Database.Inst.playData.inventory.RemoveAt(_item_Inventory_Num);
 
-        for (int i = _item_Inventory_Num; i < database.GetInventoryCount(); i++)
+        for (int i = _item_Inventory_Num; i < Database.Inst.GetInventoryCount(); i++)
         {
-            database.playData.inventory[i].num--;
+            Database.Inst.playData.inventory[i].num--;
         }
     }
 
@@ -321,7 +326,7 @@ public class GameManager : MonoSingleton<GameManager>
     /// <returns></returns>
     public int CheckingPlayData()
     {
-        Database.PlayData playData = database.playData;
+        Database.PlayData playData = Database.Inst.playData;
         int playState = -1;
         if (playData.nickName.Equals(string.Empty))
         {
@@ -494,23 +499,23 @@ public class GameManager : MonoSingleton<GameManager>
 
     public Database.PlayData PlayData
     {
-        get { return database.playData; }
+        get { return Database.Inst.playData; }
     }
 
     public int MaxHp
     {
-        get { return database.playData.maxHp; }
+        get { return Database.Inst.playData.maxHp; }
     }
     public int BaseHp
     {
-        get { return database.playData.baseHp; }
+        get { return Database.Inst.playData.baseHp; }
     }
     public int CurrentHp
     {
-        get { return database.playData.currentHp; }
+        get { return Database.Inst.playData.currentHp; }
         set
         {
-            database.playData.currentHp = value;
+            Database.Inst.playData.currentHp = value;
 
             if (CurrentHp <= 0)
             {
@@ -525,53 +530,51 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public float Atk_Min
     {
-        get { return database.playData.atk_Min; }
+        get { return Database.Inst.playData.atk_Min; }
     }
     public float Atk_Max
     {
-        get { return database.playData.atk_Max; }
+        get { return Database.Inst.playData.atk_Max; }
     }
     public float MoveSpeed
     {
-        get { return database.playData.moveSpeed; }
+        get { return Database.Inst.playData.moveSpeed; }
     }
     public float AttackSpeed
     {
-        get { return database.playData.atk_Speed; }
+        get { return Database.Inst.playData.atk_Speed; }
     }
     public float AttackRange
     {
-        get { return database.playData.atk_Range; }
+        get { return Database.Inst.playData.atk_Range; }
     }
     public float NuckBack_Power
     {
-        get { return database.playData.nuckBack_Power; }
+        get { return Database.Inst.playData.nuckBack_Power; }
     }
     public float NuckBack_Percentage
     {
-        get { return database.playData.nuckBack_Percentage; }
+        get { return Database.Inst.playData.nuckBack_Percentage; }
     }
     public int CurrentStage
     {
-        get { return database.playData.currentStage; }
+        get { return Database.Inst.playData.currentStage; }
         set
         {
-            database.playData.currentStage = value;
-            Debug.Log(database.playData.currentStage);
-            Debug.Log(value);
+            Database.Inst.playData.currentStage = value;
 
-            if (database.playData.currentStage > database.playData.finalStage)
+            if (Database.Inst.playData.currentStage > Database.Inst.playData.finalStage)
             {
-                database.playData.currentStage = database.playData.finalStage;
+                Database.Inst.playData.currentStage = Database.Inst.playData.finalStage;
             }
         }
     }
     public int Mp
     {
-        get { return database.playData.mp; }
+        get { return Database.Inst.playData.mp; }
         set
         {
-            database.playData.mp = value;
+            Database.Inst.playData.mp = value;
 
             if (Mp < 0) Mp = 0;
             else if (9999999 < Mp) Mp = 9999999;
@@ -579,10 +582,10 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public SEX Sex
     {
-        get { return database.playData.sex; }
+        get { return Database.Inst.playData.sex; }
         set
         {
-            database.playData.sex = value;
+            Database.Inst.playData.sex = value;
         }
     }
     //플레이어 현재 스킬
@@ -597,7 +600,7 @@ public class GameManager : MonoSingleton<GameManager>
 #endif
                 return null;
             }
-            return database.skill[PlayerEquipWeapon.skill_Index];
+            return Database.Inst.skill[PlayerEquipWeapon.skill_Index];
         }
     }
     //현재 장착 무기
@@ -612,7 +615,7 @@ public class GameManager : MonoSingleton<GameManager>
 #endif
                 return null;
             }
-            return database.weapons[PlayerEquipWeapon.DB_Num];
+            return Database.Inst.weapons[PlayerEquipWeapon.DB_Num];
         }
     }
     //현재 장착 방어구
@@ -627,7 +630,7 @@ public class GameManager : MonoSingleton<GameManager>
 #endif
                 return null;
             }
-            return database.armors[PlayerEquipArmor.DB_Num];
+            return Database.Inst.armors[PlayerEquipArmor.DB_Num];
         }
     }
     //무기 장착 해제
@@ -635,27 +638,27 @@ public class GameManager : MonoSingleton<GameManager>
     {
         get
         {
-            if (database.playData.equiWeapon_InventoryNum.Equals(-1))
+            if (Database.Inst.playData.equiWeapon_InventoryNum.Equals(-1))
             {
 #if UNITY_EDITOR
                 Debug.Log("장착중인 무기가 없습니다.");
 #endif
                 return null;
             }
-            return database.playData.inventory[database.playData.equiWeapon_InventoryNum];
+            return Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum];
         }
         set
         {
             if (value != null && !value.Class.Equals(CLASS.갑옷))
             {
-                Database.Weapon weapon = database.weapons[value.DB_Num];
-                database.playData.equiWeapon_InventoryNum = value.num;
-                database.playData.atk_Min = weapon.atk_Min;
-                database.playData.atk_Max = weapon.atk_Max;
-                database.playData.atk_Speed = weapon.atk_Speed;
-                database.playData.atk_Range = weapon.atk_Range;
-                database.playData.nuckBack_Power = weapon.nuckback_Power;
-                database.playData.nuckBack_Percentage = weapon.nuckback_Percentage;
+                Database.Weapon weapon = Database.Inst.weapons[value.DB_Num];
+                Database.Inst.playData.equiWeapon_InventoryNum = value.num;
+                Database.Inst.playData.atk_Min = weapon.atk_Min;
+                Database.Inst.playData.atk_Max = weapon.atk_Max;
+                Database.Inst.playData.atk_Speed = weapon.atk_Speed;
+                Database.Inst.playData.atk_Range = weapon.atk_Range;
+                Database.Inst.playData.nuckBack_Power = weapon.nuckback_Power;
+                Database.Inst.playData.nuckBack_Percentage = weapon.nuckback_Percentage;
 
                 if (!value.option_Index.Equals(-1))
                 {
@@ -671,22 +674,22 @@ public class GameManager : MonoSingleton<GameManager>
     {
         get
         {
-            if (database.playData.equiArmor_InventoryNum.Equals(-1))
+            if (Database.Inst.playData.equiArmor_InventoryNum.Equals(-1))
             {
 #if UNITY_EDITOR
                 Debug.Log("장착중인 방어구가 없습니다.");
 #endif
                 return null;
             }
-            return database.playData.inventory[database.playData.equiArmor_InventoryNum];
+            return Database.Inst.playData.inventory[Database.Inst.playData.equiArmor_InventoryNum];
         }
         set
         {
             if (value != null && value.Class.Equals(CLASS.갑옷))
             {
-                Database.Armor armor = database.armors[value.DB_Num];
-                database.playData.equiArmor_InventoryNum = value.num;
-                database.playData.maxHp = armor.hp + BaseHp;
+                Database.Armor armor = Database.Inst.armors[value.DB_Num];
+                Database.Inst.playData.equiArmor_InventoryNum = value.num;
+                Database.Inst.playData.maxHp = armor.hp + BaseHp;
 
                 if (!value.option_Index.Equals(-1))
                 {   //옵션이 붙어 있으면 옵션 적용
@@ -740,12 +743,12 @@ public class GameManager : MonoSingleton<GameManager>
     #region Normal_weapon Method
     private void IncreaseDamage(int param)
     {
-        database.playData.atk_Min += param;
-        database.playData.atk_Max += param;
+        Database.Inst.playData.atk_Min += param;
+        Database.Inst.playData.atk_Max += param;
     }
     private void IncreaseAttackSpeed(int param)
     {
-        database.playData.atk_Speed += param;
+        Database.Inst.playData.atk_Speed += param;
     }
 
     #endregion
@@ -753,16 +756,16 @@ public class GameManager : MonoSingleton<GameManager>
     private void IncreaseHp(int param)
     {
         //최대 체력과 현재 체력 다 올라감
-        database.playData.maxHp += param;
+        Database.Inst.playData.maxHp += param;
         CurrentHp += param;
     }
     private void IncreaseMoveSpeed(int param)
     {
-        database.playData.moveSpeed += database.playData.moveSpeed * ((float)param / 100.0f);
+        Database.Inst.playData.moveSpeed += Database.Inst.playData.moveSpeed * ((float)param / 100.0f);
     }
     private void IncreaseDamageDecrement(int param)
     {
-        database.playData.damage_Reduction += param;
+        Database.Inst.playData.damage_Reduction += param;
     }
 
     #endregion
@@ -795,7 +798,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         //ResetInventory();
         //ResetEmblem();
-        Database.PlayData playData = database.playData;
+        Database.PlayData playData = Database.Inst.playData;
 
         playData.isMachineVibration = true;
         playData.isScreenVibration = true;
@@ -844,7 +847,7 @@ public class GameManager : MonoSingleton<GameManager>
     //죽었을때 인벤토리 초기화
     private void ResetInventory()
     {
-        database.playData.inventory.RemoveRange(0, database.playData.inventory.Count);
+        Database.Inst.playData.inventory.RemoveRange(0, Database.Inst.playData.inventory.Count);
         //database.playData.inventory.Add(new Database.Inventory(database.weapons[0]));
         //database.playData.inventory.Add(new Database.Inventory(database.armors[0]));
     }
@@ -873,9 +876,9 @@ public class GameManager : MonoSingleton<GameManager>
     {
         int weapon = 0;
         if (!_class.Equals(CLASS.검)) weapon = 1;
-        database.playData.inventory.Clear();
-        database.playData.inventory.Add(new Database.Inventory(database.weapons[weapon]));
-        database.playData.inventory.Add(new Database.Inventory(database.armors[0]));
+        Database.Inst.playData.inventory.Clear();
+        Database.Inst.playData.inventory.Add(new Database.Inventory(Database.Inst.weapons[weapon]));
+        Database.Inst.playData.inventory.Add(new Database.Inventory(Database.Inst.armors[0]));
         InitializePlayerStat();
     }
     #endregion
@@ -891,7 +894,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             InitialPlayData();
 
-            Database.PlayData playData = database.playData;
+            Database.PlayData playData = Database.Inst.playData;
             playData.isMachineVibration = PlayerPrefs.GetInt("isMachineVibration") == 1 ? true : false;
             playData.isScreenVibration = PlayerPrefs.GetInt("isScreenVibration") == 1 ? true : false;
             playData.BGM_Volume = PlayerPrefs.GetFloat("BGM_Volume");
@@ -934,7 +937,7 @@ public class GameManager : MonoSingleton<GameManager>
             int skill_Index = reader.GetInt32(count++);
             int option_Index = reader.GetInt32(count++);
 
-            database.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index));
+            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index));
         }
         reader.Close();
         reader = null;
@@ -970,7 +973,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Save_PlayerPrefs_Data()
     {
-        Database.PlayData playData = database.playData;
+        Database.PlayData playData = Database.Inst.playData;
 
         PlayerPrefs.SetInt("save", 1);
         PlayerPrefs.SetInt("isMachineVibration", playData.isMachineVibration ? 1 : 0);
@@ -999,17 +1002,17 @@ public class GameManager : MonoSingleton<GameManager>
         DEB_dbcmd.ExecuteNonQuery();
 
         //Insert Data into Table
-        for (int i = 0; i < database.playData.inventory.Count; i++)
+        for (int i = 0; i < Database.Inst.playData.inventory.Count; i++)
         {
-            int Num = database.playData.inventory[i].num;
-            int DB_Num = database.playData.inventory[i].DB_Num;
-            string Name = database.playData.inventory[i].name;
-            int Rarity = (int)database.playData.inventory[i].rarity;
-            int Class = (int)database.playData.inventory[i].Class;
-            int ItemValue = database.playData.inventory[i].itemValue;
-            string ImageName = database.playData.inventory[i].imageName;
-            int Skill_Index = database.playData.inventory[i].skill_Index;
-            int OptionIndex = database.playData.inventory[i].option_Index;
+            int Num = Database.Inst.playData.inventory[i].num;
+            int DB_Num = Database.Inst.playData.inventory[i].DB_Num;
+            string Name = Database.Inst.playData.inventory[i].name;
+            int Rarity = (int)Database.Inst.playData.inventory[i].rarity;
+            int Class = (int)Database.Inst.playData.inventory[i].Class;
+            int ItemValue = Database.Inst.playData.inventory[i].itemValue;
+            string ImageName = Database.Inst.playData.inventory[i].imageName;
+            int Skill_Index = Database.Inst.playData.inventory[i].skill_Index;
+            int OptionIndex = Database.Inst.playData.inventory[i].option_Index;
 
             sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex) " +
                         "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + ")";
@@ -1104,7 +1107,7 @@ public class GameManager : MonoSingleton<GameManager>
             int Skill_Index = reader.GetInt32(count++);
             string OptionTableName = reader.GetString(count++);
 
-            database.weapons.Add(new Database.Weapon(Num, Name, Rarity, Rarity_Text, Class, Atk_Min, Atk_Max, Attack_Range, Attack_Speed, Nuckback_Power, Nuckback_Percentage, Item_Value, Description, ImageName, Skill_Index, OptionTableName));
+            Database.Inst.weapons.Add(new Database.Weapon(Num, Name, Rarity, Rarity_Text, Class, Atk_Min, Atk_Max, Attack_Range, Attack_Speed, Nuckback_Power, Nuckback_Percentage, Item_Value, Description, ImageName, Skill_Index, OptionTableName));
         }
         reader.Close();
         reader = null;
@@ -1129,7 +1132,7 @@ public class GameManager : MonoSingleton<GameManager>
             string ImageName = reader.GetString(count++);
             string OptionTableName = reader.GetString(count++);
 
-            database.armors.Add(new Database.Armor(Num, Name, Rarity, Rarity_Text, Class, Hp, Item_Value, Description, ImageName, OptionTableName));
+            Database.Inst.armors.Add(new Database.Armor(Num, Name, Rarity, Rarity_Text, Class, Hp, Item_Value, Description, ImageName, OptionTableName));
         }
         reader.Close();
         reader = null;
@@ -1155,7 +1158,7 @@ public class GameManager : MonoSingleton<GameManager>
             string Description = reader.GetString(count++);
             string ImageName = reader.GetString(count++);
 
-            database.skill.Add(new Database.Skill(Num, Name, SkillType, Atk, MpCost, CoolTime, Skill_Range, Skill_Duration, Parameter, Description, ImageName));
+            Database.Inst.skill.Add(new Database.Skill(Num, Name, SkillType, Atk, MpCost, CoolTime, Skill_Range, Skill_Duration, Parameter, Description, ImageName));
         }
         reader.Close();
         reader = null;
@@ -1186,7 +1189,7 @@ public class GameManager : MonoSingleton<GameManager>
             string Description = reader.GetString(count++);
             string ImageName = reader.GetString(count++);
 
-            database.normal_Monsters.Add(new Database.Normal_Monster(Num, Name, monster_Rarity, Hp, Move_Speed, Atk, Atk_Speed, Atk_Range, Ready_Time,
+            Database.Inst.normal_Monsters.Add(new Database.Normal_Monster(Num, Name, monster_Rarity, Hp, Move_Speed, Atk, Atk_Speed, Atk_Range, Ready_Time,
                 Cooltime, Knock_Resist, Atk_Count, Drop_Mana_Min, Drop_Mana_Max, Description, ImageName));
         }
         reader.Close();
@@ -1221,7 +1224,7 @@ public class GameManager : MonoSingleton<GameManager>
             string Description = reader.GetString(count++);
             string ImageName = reader.GetString(count++);
 
-            database.rare_Monsters.Add(new Database.Rare_Monster(Num, Name, monster_Rarity, Hp, Move_Speed, Atk, Atk_Speed, Atk_Range, Ready_Time,
+            Database.Inst.rare_Monsters.Add(new Database.Rare_Monster(Num, Name, monster_Rarity, Hp, Move_Speed, Atk, Atk_Speed, Atk_Range, Ready_Time,
                 Cooltime, Knock_Resist, Atk_Count1, Atk_Count2, Skill_Cooltime, Skill_Damage, Drop_Mana_Min, Drop_Mana_Max, Description, ImageName));
         }
         reader.Close();

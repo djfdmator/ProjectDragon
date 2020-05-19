@@ -1049,7 +1049,7 @@ public class LobbyManager : MonoBehaviour
         GameManager.Inst.Loading(true);
         #region kks
         
-        GameManager.Inst.PlayData.currentStage = (int)developerStageSetting;
+        //GameManager.Inst.PlayData.currentStage = (int)developerStageSetting + 1;
         #endregion
         //GameObject.Find()
     }

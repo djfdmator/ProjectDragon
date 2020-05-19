@@ -28,11 +28,13 @@ public class Stair : MonoBehaviour
         }
     }
 
+    public RoomManager roomManager;
     public bool isOpen = false;
     private Player player;
 
     private void Awake()
     {
+        roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
@@ -45,7 +47,8 @@ public class Stair : MonoBehaviour
             //GameManagerTester.Inst.hp = player.HP;
             //GameManagerTester.Inst.mana = player.MP;
             //다음 스테이지 시작
-            SceneManager.LoadScene("Map_Loading");
+            roomManager.OpenResultPop(false);
+            //SceneManager.LoadScene("Map_Loading");
         }
     }
 

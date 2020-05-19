@@ -416,7 +416,7 @@ public class Database : MonoSingleton<Database>
         //1~3 일반 방
         //4 - 보스방
         //스테이지 관련 변수
-        public int currentStage = 0; 
+        public int currentStage; 
         public int finalStage = 5;
           
         //장비 강화 패시브에 의해 변경되는 값들

@@ -80,8 +80,8 @@ public class Loading : MonoBehaviour
         {
             sceneName = "Map_Generator";
             //increase stage
-            Debug.Log("Loding : " + GameManager.Inst.CurrentStage);
-            GameManager.Inst.CurrentStage++;
+            GameManager.Inst.CurrentStage = GameManager.Inst.CurrentStage + 1;
+            Debug.Log("GameManager.Inst.CurrentStage[Loading] : " + GameManager.Inst.CurrentStage);
             BattleRepresentationInit();
 
             regionObj.GetComponent<UISprite>().enabled = false;

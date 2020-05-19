@@ -546,7 +546,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2596612057667063986}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -568,9 +568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Map_Generator
-  loadingObj: {fileID: 0}
   imageCount: 4
   regionPointIndex: 0000000003000000070000000c0000000f00000012000000
+  points: []
   playerAnim:
   - {fileID: 21300000, guid: 506eec659c6815a4aabd75f9e67e4bcd, type: 3}
   - {fileID: 21300000, guid: 96793293d91a128479a0c28958c326f3, type: 3}
@@ -704,7 +704,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2596612058283236305}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 493, z: 0}
+  m_LocalPosition: {x: 0, y: 493, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2596612057632627109}
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 994960076163939210}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: UIPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1881,7 +1881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9024685063334034169}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}

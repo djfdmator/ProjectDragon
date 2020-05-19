@@ -68,16 +68,18 @@ public class MapCreator : MonoBehaviour
     //수정 필요함
     private void SettingCreateRegion()
     {
-        GameManager.Inst.CurrentStage = 4;
+        //GameManager.Inst.CurrentStage = 3;
+#if UNITY_EDITOR
+        Debug.Log("GameManager.Inst.CurrentStage : " + GameManager.Inst.CurrentStage);
+#endif
         int curStage = GameManager.Inst.CurrentStage;
 
 #if UNITY_EDITOR
-        Debug.Log(GameManager.Inst.CurrentStage);
-        Debug.Log(curStage);
-        Debug.Log(curStage % 4);
-        Debug.Log(curStage / 4);
+        Debug.Log("MapCreate : " + curStage);
+        Debug.Log("MapCreate : " + curStage % 4);
+        Debug.Log("MapCreate : " + curStage / 4);
 #endif
-        if(curStage % 4 == 0)
+        if(curStage % 5 == 0)
         {
             //보스 맵
             isBossMap = true;
@@ -88,12 +90,12 @@ public class MapCreator : MonoBehaviour
             isBossMap = false;
         }
 
-        if(0 < curStage && curStage <= 4)
+        if(0 < curStage && curStage <= 5)
         {
             //숲
             mapType = "Forest";
         }
-        else if(4 < curStage && curStage <= 8)
+        else if(5 < curStage && curStage <= 10)
         {
             //스테이지 추가시 추가
         }

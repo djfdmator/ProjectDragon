@@ -91,7 +91,8 @@ public class Room : MonoBehaviour
             break;
         }
 
-        StartCoroutine(gathering);
+        if(GameManager.Inst.CurrentStage != Database.Inst.playData.finalStage)
+            StartCoroutine(gathering);
     }
     private void OnDisable()
     {
@@ -132,6 +133,10 @@ public class Room : MonoBehaviour
             {
                 //몬스터가 한 마리도 없다면 클리어입니다.
                 IsClear();
+                if(GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
+                {
+                    roomManager.OpenResultPop(false);
+                }
             }
             else if (!roomState.Equals(RoomState.Activate)) CheckPlayerPos();
 

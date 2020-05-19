@@ -490,7 +490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49817549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: 314, z: 0}
+  m_LocalPosition: {x: 11, y: 313, z: 0}
   m_LocalScale: {x: 0.999, y: 0.999, z: 0.999}
   m_Children:
   - {fileID: 486840907}
@@ -531,14 +531,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 1278
+  mWidth: 1279
   mHeight: 104
   mDepth: 1
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 9.211538
+  aspectRatio: 12.298077
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1381,7 +1381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98025065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 265, y: -283, z: 0}
+  m_LocalPosition: {x: 265, y: -284, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1939133218}
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 770
+  mWidth: 771
   mHeight: 152
   mDepth: 1
   mMat: {fileID: 0}
@@ -7680,7 +7680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682978561}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 205, y: -31, z: 0}
+  m_LocalPosition: {x: 205, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 248303951}
@@ -7720,14 +7720,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 890
+  mWidth: 891
   mHeight: 654
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.3608563
+  aspectRatio: 1.3623853
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -10780,7 +10780,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -13934,7 +13934,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 2800000, guid: 11b54d7977e031f4d8a373bfc28c13a8, type: 3}
   mAlpha: 1
   mClipping: 1
-  mClipRange: {x: -118.49985, y: 42.741974, z: 792.3332, w: 824.99994}
+  mClipRange: {x: -119.62575, y: 40.766647, z: 793.078, w: 824.9999}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 1
   mSortingOrder: 0
@@ -15119,7 +15119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513078694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 43, z: 0}
+  m_LocalPosition: {x: -8, y: 41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1425387340}
@@ -15156,14 +15156,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 799
+  mWidth: 800
   mHeight: 827
   mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.9661427
+  aspectRatio: 0.96735185
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -15554,7 +15554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526577720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -605, y: 169, z: 0}
+  m_LocalPosition: {x: -606, y: 168, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2132822391}
@@ -16256,7 +16256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617714387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -1, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1782623143}
@@ -19490,7 +19490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939133217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 221, y: -10, z: 0}
+  m_LocalPosition: {x: 222, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1656643913}
