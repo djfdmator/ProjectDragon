@@ -1001,7 +1001,7 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     public void SetplayerStat()
     {
-        statpanel.transform.Find(string.Format("StatBGI/Nickname")).GetComponent<UILabel>().text = string.Format("{0}", Database.Inst.playData.nickName);
+        //statpanel.transform.Find(string.Format("StatBGI/Nickname")).GetComponent<UILabel>().text = string.Format("{0}", Database.Inst.playData.nickName);
         statpanel.transform.Find(string.Format("StatBGI/Damage")).GetComponent<UILabel>().text = string.Format("공격력 : {0}", Database.Inst.playData.atk_Min);
         statpanel.transform.Find(string.Format("StatBGI/HP")).GetComponent<UILabel>().text = string.Format("체력 :{0}", Database.Inst.playData.currentHp);
         statpanel.transform.Find(string.Format("StatBGI/Defence")).GetComponent<UILabel>().text = string.Format("피해감소량 : {0}", Database.Inst.playData.mp);

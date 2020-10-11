@@ -39,7 +39,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
-        ScreensizeReadjust();
+        //ScreensizeReadjust();
 
         StartCoroutine(DataPhasing());
         database = Database.Inst;
@@ -49,7 +49,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnApplicationPause(bool pause)
     {
-        ScreensizeReadjust();
+        //ScreensizeReadjust();
     }
 
     public void ScreensizeReadjust()
@@ -324,28 +324,28 @@ public class GameManager : MonoSingleton<GameManager>
     /// Check the Play data and return the status.
     /// </summary>
     /// <returns></returns>
-    public int CheckingPlayData()
-    {
-        Database.PlayData playData = Database.Inst.playData;
-        int playState = -1;
-        if (playData.nickName.Equals(string.Empty))
-        {
-            //first play
-            playState = 0;
-        }
-        else if (playData.sex.Equals(SEX.None))
-        {
-            //no play data
-            playState = 1;
-        }
-        else
-        {
-            //has play data
-            playState = 2;
-        }
+    //public int CheckingPlayData()
+    //{
+    //    Database.PlayData playData = Database.Inst.playData;
+    //    int playState = -1;
+    //    if (playData.nickName.Equals(string.Empty))
+    //    {
+    //        //first play
+    //        playState = 0;
+    //    }
+    //    else if (playData.sex.Equals(SEX.None))
+    //    {
+    //        //no play data
+    //        playState = 1;
+    //    }
+    //    else
+    //    {
+    //        //has play data
+    //        playState = 2;
+    //    }
 
-        return playState;
-    }
+    //    return playState;
+    //}
 
     /// <summary>
     /// Load Loading prefab
@@ -805,7 +805,7 @@ public class GameManager : MonoSingleton<GameManager>
         playData.BGM_Volume = 50.0f;
         playData.SFX_Volume = 50.0f;
 
-        playData.nickName = string.Empty;
+        //playData.nickName = string.Empty;
         playData.equiWeapon_InventoryNum = 0;
         playData.equiArmor_InventoryNum = 1;
 
@@ -900,7 +900,7 @@ public class GameManager : MonoSingleton<GameManager>
             playData.BGM_Volume = PlayerPrefs.GetFloat("BGM_Volume");
             playData.SFX_Volume = PlayerPrefs.GetFloat("SFX_Volume");
 
-            playData.nickName = PlayerPrefs.GetString("nickName");
+            //playData.nickName = PlayerPrefs.GetString("nickName");
             playData.currentHp = PlayerPrefs.GetInt("currentHp");
             playData.mp = PlayerPrefs.GetInt("mp");
             playData.sex = (SEX)PlayerPrefs.GetInt("sex");
@@ -981,7 +981,7 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.SetFloat("BGM_Volume", playData.BGM_Volume);
         PlayerPrefs.SetFloat("SFX_Volume", playData.SFX_Volume);
 
-        PlayerPrefs.SetString("nickName", playData.nickName);
+        //PlayerPrefs.SetString("nickName", playData.nickName);
         PlayerPrefs.SetInt("currentHp", playData.currentHp);
         PlayerPrefs.SetInt("mp", playData.mp);
         PlayerPrefs.SetInt("sex", (int)playData.sex);

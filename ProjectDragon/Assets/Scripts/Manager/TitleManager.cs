@@ -27,7 +27,7 @@ public class TitleManager : MonoBehaviour
 
     [Header("[Scenes]")]
     public GameObject mainScene; //메인 화면
-    public GameObject nickNameScene; //닉네임 화면
+    //public GameObject nickNameScene; //닉네임 화면
     public GameObject selectScene;
 
     [Header("[GameLogo]")]
@@ -74,10 +74,10 @@ public class TitleManager : MonoBehaviour
         #endregion
 
         #region NickName
-        nickNameScene = transform.Find("NickNameScene").Find("BGImage").gameObject;
+        //nickNameScene = transform.Find("NickNameScene").Find("BGImage").gameObject;
 
-        nickNameScene.SetActive(false);
-        nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(false);
+        //nickNameScene.SetActive(false);
+        //nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(false);
         #endregion
 
         #region SelectScene
@@ -144,46 +144,49 @@ public class TitleManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         mainScene.GetComponent<BoxCollider>().enabled = true;
     }
+
     //로그인 버튼 - 게임 데이터를 확인하여 어디부터 시작할지 정함
     public void Button_LogIn()
     {
-        mainScene.GetComponent<BoxCollider>().enabled = false;
 #if UNITY_EDITOR
         Debug.Log("LogIn");
-        Debug.Log(GameManager.Inst.CheckingPlayData());
 #endif
+        mainScene.GetComponent<BoxCollider>().enabled = false;
         gameLogo_Label.SetActive(false);
         SoundManager.Inst.Ds_EffectPlayerDB(1);
-        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
+        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, true));
 
-        switch (GameManager.Inst.CheckingPlayData())
-        {
-            case 0: //최초 실행시
-                //구글 로그인
-                StartCoroutine(FirstPlay());
-                break;
-            case 1: //플레이중인 데이터가 없을 시
-                StartCoroutine(CharacterSelect());
-                break;
-            case 2: //플레이중인 데이터가 있을 시
-                StartCoroutine(GotoLobby());
-                break;
-            default:
-#if UNITY_EDITOR
-                Debug.LogError("Play Data is Boom");
-#endif
-                break;
-        }
+        //다음 장면으로 넘어가기
+        StartCoroutine(CharacterSelect());
+//        switch (GameManager.Inst.CheckingPlayData())
+//        {
+//            case 0: //최초 실행시
+//                //구글 로그인
+//                StartCoroutine(FirstPlay());
+//                break;
+//            case 1: //플레이중인 데이터가 없을 시
+//                StartCoroutine(CharacterSelect());
+//                break;
+//            case 2: //플레이중인 데이터가 있을 시
+//                StartCoroutine(GotoLobby());
+//                break;
+//            default:
+//#if UNITY_EDITOR
+//                Debug.LogError("Play Data is Boom");
+//#endif
+//                break;
+//        }
     }
+
     //게임 처음할때
-    private IEnumerator FirstPlay()
-    {
-        yield return new WaitForSeconds(2.0f);
-        mainScene.SetActive(false);
-        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
-        nickNameScene.SetActive(true);
-        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = true;
-    }
+    //private IEnumerator FirstPlay()
+    //{
+    //    yield return new WaitForSeconds(1.5f);
+    //    mainScene.SetActive(false);
+    //    StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
+    //    nickNameScene.SetActive(true);
+    //    nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = true;
+    //}
     //처음은 아닌데 게임 플레이 데이터가 없을때
     private IEnumerator CharacterSelect()
     {
@@ -193,91 +196,91 @@ public class TitleManager : MonoBehaviour
         selectScene.SetActive(true);
     }
     //게임 플레이 데이터가 있을때
-    private IEnumerator GotoLobby()
-    {
-        yield return new WaitForSeconds(2.0f);
-        mainScene.SetActive(false);
-        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
-        GameManager.Inst.Loading(false);
-    }
+    //private IEnumerator GotoLobby()
+    //{
+    //    yield return new WaitForSeconds(2.0f);
+    //    mainScene.SetActive(false);
+    //    StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
+    //    GameManager.Inst.Loading(false);
+    //}
     #endregion
 
-    #region NickName
+//    #region NickName
 
-    //닉네임 설정후 엔터 눌르면 데이터 확정
-    public void NickNameInputSubmit()
-    {
-#if UNITY_EDITOR
-        Debug.Log("NickName Submit");
-#endif
-        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
-        nickName = input.label.text;
-    }
-    public void NickNameInputChange()
-    {
-        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
-        Debug.Log(input.label.text.Length);
-    }
-    //닉네임이 올바른지 확인
-    public void Button_NickNameConfirm()
-    {
-        SoundManager.Inst.Ds_EffectPlayerDB(1);
-        NickNameInputSubmit();
-#if UNITY_EDITOR
-        Debug.Log("NickName Confirm");
-#endif
-        string temp = string.Empty;
+//    //닉네임 설정후 엔터 눌르면 데이터 확정
+//    public void NickNameInputSubmit()
+//    {
+//#if UNITY_EDITOR
+//        Debug.Log("NickName Submit");
+//#endif
+//        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
+//        nickName = input.label.text;
+//    }
+//    public void NickNameInputChange()
+//    {
+//        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
+//        Debug.Log(input.label.text.Length);
+//    }
+//    //닉네임이 올바른지 확인
+//    public void Button_NickNameConfirm()
+//    {
+//        SoundManager.Inst.Ds_EffectPlayerDB(1);
+//        NickNameInputSubmit();
+//#if UNITY_EDITOR
+//        Debug.Log("NickName Confirm");
+//#endif
+//        string temp = string.Empty;
 
-        if (nickName.Length < 2)
-        {
-#if UNITY_EDITOR
-            Debug.Log("NickName Failed");
-#endif
-            nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
-            //효과음 - 경고음 재생
-            return;
-        }
+//        if (nickName.Length < 2)
+//        {
+//#if UNITY_EDITOR
+//            Debug.Log("NickName Failed");
+//#endif
+//            nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
+//            //효과음 - 경고음 재생
+//            return;
+//        }
 
-        foreach (char c in nickName)
-        {
-            if ('a' <= c && c <= 'z') temp += c;
-            else if ('A' <= c && c <= 'Z') temp += c;
-            else if ('0' <= c && c <= '9') temp += c;
-            else if (0xAC00 <= c && c <= 0xD7A3) temp += c;
-            else
-            {
-#if UNITY_EDITOR
-                Debug.Log("NickName Failed");
-#endif
-                nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
-                //효과음 - 경고음 재생
-                return;
-            }
-        }
+//        foreach (char c in nickName)
+//        {
+//            if ('a' <= c && c <= 'z') temp += c;
+//            else if ('A' <= c && c <= 'Z') temp += c;
+//            else if ('0' <= c && c <= '9') temp += c;
+//            else if (0xAC00 <= c && c <= 0xD7A3) temp += c;
+//            else
+//            {
+//#if UNITY_EDITOR
+//                Debug.Log("NickName Failed");
+//#endif
+//                nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
+//                //효과음 - 경고음 재생
+//                return;
+//            }
+//        }
 
-        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = false;
-        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
-        StartCoroutine(NickNameSucceed());
-#if UNITY_EDITOR
-        Debug.Log(temp);
-        Debug.Log("NickName Succeed");
-#endif
-    }
+//        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = false;
+//        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
+//        StartCoroutine(NickNameSucceed());
+//#if UNITY_EDITOR
+//        Debug.Log(temp);
+//        Debug.Log("NickName Succeed");
+//#endif
+//    }
 
-    private IEnumerator NickNameSucceed()
-    {
-        yield return new WaitForSeconds(2.0f);
-        nickNameScene.SetActive(false);
-        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
-        selectScene.SetActive(true);
-    }
-    public void Button_Close(GameObject gameObject)
-    {
-        SoundManager.Inst.Ds_EffectPlayerDB(1);
-        gameObject.SetActive(false);
-    }
+//    private IEnumerator NickNameSucceed()
+//    {
+//        yield return new WaitForSeconds(2.0f);
+//        nickNameScene.SetActive(false);
+//        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
+//        selectScene.SetActive(true);
+//    }
+//    public void Button_Close(GameObject gameObject)
+//    {
+//        SoundManager.Inst.Ds_EffectPlayerDB(1);
+//        gameObject.SetActive(false);
+//    }
 
-    #endregion
+//    #endregion
 
     #region Character & Weapon Select
 
@@ -421,7 +424,7 @@ public class TitleManager : MonoBehaviour
     private void SavePlayerData()
     {
         GameManager.Inst.Sex = sex;
-        GameManager.Inst.PlayData.nickName = nickName;
+        //GameManager.Inst.PlayData.nickName = nickName;
         GameManager.Inst.GivePlayerBasicItem(Item_Class);
     }
 
