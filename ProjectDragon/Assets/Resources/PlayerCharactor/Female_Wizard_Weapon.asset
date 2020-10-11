@@ -14,8 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a46e70151b27c064cba7d1a98f031988, type: 2}
   mSprites:
-  - name: "\uC624\uB798\uB41C \uC9C0\uD321\uC774"
+  - name: "\uB9C8\uBC95\uC0AC \uBB34\uAE30"
     x: 0
+    y: 1235
+    width: 568
+    height: 813
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 4
+    paddingRight: 508
+    paddingTop: 256
+    paddingBottom: 851
+  - name: "\uC624\uB798\uB41C \uC9C0\uD321\uC774"
+    x: 569
     y: 348
     width: 359
     height: 1700
