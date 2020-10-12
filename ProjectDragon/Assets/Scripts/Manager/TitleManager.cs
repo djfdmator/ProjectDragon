@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 public class TitleManager : MonoBehaviour
 {
     [Header("[Database]")]
-    public string nickName;
+    //public string nickName;
     public SEX sex;
     public CLASS Item_Class;
 
@@ -37,18 +37,18 @@ public class TitleManager : MonoBehaviour
 
     [Header("[SelectScene]")]
     string animSex, animWeapon;
-    public GameObject[] selectButton = new GameObject[4]; //0-male, 1-female, 2-sword, 3-wand
-    public GameObject animWindow;
+    //public GameObject[] selectButton = new GameObject[4]; //0-male, 1-female, 2-sword, 3-wand
+    //public GameObject animWindow;
     public GameObject nextbutton;
-    public Animator playerBody;
-    public Animator playerArm;
-    public Animator playerWeapon;
-    public Texture2D button_Activate;
-    public Texture2D button_DeActivate;
-    public Texture2D animWindow_Activate;
-    public Texture2D animWindow_DeActivate;
-    public Texture2D nextButton_Activate;
-    public Texture2D nextButton_DeActivate;
+    //public Animator playerBody;
+    //public Animator playerArm;
+    //public Animator playerWeapon;
+    //public Texture2D button_Activate;
+    //public Texture2D button_DeActivate;
+    //public Texture2D animWindow_Activate;
+    //public Texture2D animWindow_DeActivate;
+    //public Texture2D nextButton_Activate;
+    //public Texture2D nextButton_DeActivate;
 
     private void Awake()
     {
@@ -73,31 +73,33 @@ public class TitleManager : MonoBehaviour
         gameLogo_Label.SetActive(false);
         #endregion
 
-        #region NickName
+        //#region NickName
         //nickNameScene = transform.Find("NickNameScene").Find("BGImage").gameObject;
 
         //nickNameScene.SetActive(false);
         //nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(false);
-        #endregion
+        //#endregion
 
         #region SelectScene
         selectScene = transform.Find("SelectScene").Find("BGImage").gameObject;
-        animWindow = selectScene.transform.Find("CharacterAnim").gameObject;
+        //animWindow = selectScene.transform.Find("CharacterAnim").gameObject;
         nextbutton = selectScene.transform.Find("NextButton").gameObject;
-        playerBody = animWindow.transform.Find("PlayerAnim").GetComponent<Animator>();
-        playerArm = playerBody.transform.Find("Arm").GetComponent<Animator>();
-        playerWeapon = playerBody.transform.Find("Weapon").GetComponent<Animator>();
-        selectButton[0] = selectScene.transform.Find("SelectionSex").Find("Male").gameObject;
-        selectButton[1] = selectScene.transform.Find("SelectionSex").Find("Female").gameObject;
-        selectButton[2] = selectScene.transform.Find("SelectionWeapon").Find("Sword").gameObject;
-        selectButton[3] = selectScene.transform.Find("SelectionWeapon").Find("Wand").gameObject;
+        //playerBody = animWindow.transform.Find("PlayerAnim").GetComponent<Animator>();
+        //playerArm = playerBody.transform.Find("Arm").GetComponent<Animator>();
+        //playerWeapon = playerBody.transform.Find("Weapon").GetComponent<Animator>();
+        //selectButton[0] = selectScene.transform.Find("SelectionSex").Find("Male").gameObject;
+        //selectButton[1] = selectScene.transform.Find("SelectionSex").Find("Female").gameObject;
+        //selectButton[2] = selectScene.transform.Find("SelectionWeapon").Find("Sword").gameObject;
+        //selectButton[3] = selectScene.transform.Find("SelectionWeapon").Find("Wand").gameObject;
 
-        playerBody.gameObject.SetActive(false);
-        playerBody.speed = 0.5f;
-        playerArm.speed = 0.5f;
-        playerWeapon.speed = 0.5f;
+        //playerBody.gameObject.SetActive(false);
+        //playerBody.speed = 0.5f;
+        //playerArm.speed = 0.5f;
+        //playerWeapon.speed = 0.5f;
+
         selectScene.SetActive(false);
         nextbutton.GetComponent<BoxCollider>().enabled = false;
+        nextbutton.GetComponent<UIButton>().SetState(UIButtonColor.State.Disabled, false);
         #endregion
 
     }
@@ -141,7 +143,7 @@ public class TitleManager : MonoBehaviour
         }
 
         gameLogo_Label.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         mainScene.GetComponent<BoxCollider>().enabled = true;
     }
 
@@ -205,178 +207,236 @@ public class TitleManager : MonoBehaviour
     //}
     #endregion
 
-//    #region NickName
+    //    #region NickName
 
-//    //닉네임 설정후 엔터 눌르면 데이터 확정
-//    public void NickNameInputSubmit()
-//    {
-//#if UNITY_EDITOR
-//        Debug.Log("NickName Submit");
-//#endif
-//        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
-//        nickName = input.label.text;
-//    }
-//    public void NickNameInputChange()
-//    {
-//        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
-//        Debug.Log(input.label.text.Length);
-//    }
-//    //닉네임이 올바른지 확인
-//    public void Button_NickNameConfirm()
-//    {
-//        SoundManager.Inst.Ds_EffectPlayerDB(1);
-//        NickNameInputSubmit();
-//#if UNITY_EDITOR
-//        Debug.Log("NickName Confirm");
-//#endif
-//        string temp = string.Empty;
+    //    //닉네임 설정후 엔터 눌르면 데이터 확정
+    //    public void NickNameInputSubmit()
+    //    {
+    //#if UNITY_EDITOR
+    //        Debug.Log("NickName Submit");
+    //#endif
+    //        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
+    //        nickName = input.label.text;
+    //    }
+    //    public void NickNameInputChange()
+    //    {
+    //        UIInput input = nickNameScene.transform.Find("NickNameSettingImage").Find("Input").GetComponent<UIInput>();
+    //        Debug.Log(input.label.text.Length);
+    //    }
+    //    //닉네임이 올바른지 확인
+    //    public void Button_NickNameConfirm()
+    //    {
+    //        SoundManager.Inst.Ds_EffectPlayerDB(1);
+    //        NickNameInputSubmit();
+    //#if UNITY_EDITOR
+    //        Debug.Log("NickName Confirm");
+    //#endif
+    //        string temp = string.Empty;
 
-//        if (nickName.Length < 2)
-//        {
-//#if UNITY_EDITOR
-//            Debug.Log("NickName Failed");
-//#endif
-//            nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
-//            //효과음 - 경고음 재생
-//            return;
-//        }
+    //        if (nickName.Length < 2)
+    //        {
+    //#if UNITY_EDITOR
+    //            Debug.Log("NickName Failed");
+    //#endif
+    //            nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
+    //            //효과음 - 경고음 재생
+    //            return;
+    //        }
 
-//        foreach (char c in nickName)
-//        {
-//            if ('a' <= c && c <= 'z') temp += c;
-//            else if ('A' <= c && c <= 'Z') temp += c;
-//            else if ('0' <= c && c <= '9') temp += c;
-//            else if (0xAC00 <= c && c <= 0xD7A3) temp += c;
-//            else
-//            {
-//#if UNITY_EDITOR
-//                Debug.Log("NickName Failed");
-//#endif
-//                nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
-//                //효과음 - 경고음 재생
-//                return;
-//            }
-//        }
+    //        foreach (char c in nickName)
+    //        {
+    //            if ('a' <= c && c <= 'z') temp += c;
+    //            else if ('A' <= c && c <= 'Z') temp += c;
+    //            else if ('0' <= c && c <= '9') temp += c;
+    //            else if (0xAC00 <= c && c <= 0xD7A3) temp += c;
+    //            else
+    //            {
+    //#if UNITY_EDITOR
+    //                Debug.Log("NickName Failed");
+    //#endif
+    //                nickNameScene.transform.Find("NickNameSettingImage").Find("Failed").gameObject.SetActive(true);
+    //                //효과음 - 경고음 재생
+    //                return;
+    //            }
+    //        }
 
-//        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = false;
-//        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
-//        StartCoroutine(NickNameSucceed());
-//#if UNITY_EDITOR
-//        Debug.Log(temp);
-//        Debug.Log("NickName Succeed");
-//#endif
-//    }
+    //        nickNameScene.transform.Find("NickNameSettingImage").Find("ConfirmButton").GetComponent<BoxCollider>().enabled = false;
+    //        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
+    //        StartCoroutine(NickNameSucceed());
+    //#if UNITY_EDITOR
+    //        Debug.Log(temp);
+    //        Debug.Log("NickName Succeed");
+    //#endif
+    //    }
 
-//    private IEnumerator NickNameSucceed()
-//    {
-//        yield return new WaitForSeconds(2.0f);
-//        nickNameScene.SetActive(false);
-//        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
-//        selectScene.SetActive(true);
-//    }
-//    public void Button_Close(GameObject gameObject)
-//    {
-//        SoundManager.Inst.Ds_EffectPlayerDB(1);
-//        gameObject.SetActive(false);
-//    }
+    //    private IEnumerator NickNameSucceed()
+    //    {
+    //        yield return new WaitForSeconds(2.0f);
+    //        nickNameScene.SetActive(false);
+    //        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, false));
+    //        selectScene.SetActive(true);
+    //    }
+    //    public void Button_Close(GameObject gameObject)
+    //    {
+    //        SoundManager.Inst.Ds_EffectPlayerDB(1);
+    //        gameObject.SetActive(false);
+    //    }
 
-//    #endregion
+    //    #endregion
 
     #region Character & Weapon Select
 
-    public void Button_Select(GameObject gameObject)
+    //public void Button_Select(GameObject gameObject)
+    //{
+    //    //효과음 재생
+    //    SoundManager.Inst.Ds_EffectPlayerDB(1);
+    //    string anim = string.Empty;
+    //    //버튼에 따른 데이터 세팅
+    //    switch (gameObject.name)
+    //    {
+    //        case "Male":
+    //            sex = SEX.Male;
+    //            Item_Class = CLASS.검;
+    //            animSex = "Male";
+    //            animWeapon = "ShortRange";
+    //            break;
+    //        case "Female":
+    //            sex = SEX.Female;
+    //            Item_Class = CLASS.검;
+    //            animSex = "Female";
+    //            animWeapon = "ShortRange";
+    //            break;
+    //        case "Sword":
+    //            Item_Class = CLASS.검;
+    //            animWeapon = "ShortRange";
+    //            break;
+    //        case "Wand":
+    //            Item_Class = CLASS.지팡이;
+    //            animWeapon = "LongRange";
+    //            break;
+    //    }
+    //    anim += animSex + "_DefaultCloth_" + animWeapon + "_Idel_Front";
+
+    //    if (!sex.Equals(SEX.None))
+    //    {
+    //        //애니메이션 업데이트
+    //        animWindow.GetComponent<UITexture>().mainTexture = animWindow_Activate;
+    //        if (sex.Equals(SEX.Female))
+    //        {
+    //            //playerBody.Play(anim);
+    //            //playerArm.Play(anim + "_Arm");
+    //            //playerWeapon.Play(anim + "_Weapon");
+    //            //playerBody.gameObject.SetActive(true);
+
+    //            //다음 버튼 활성화
+    //            nextbutton.GetComponent<UITexture>().mainTexture = nextButton_Activate;
+    //            nextbutton.GetComponent<BoxCollider>().enabled = true;
+    //        }
+    //        else if (sex.Equals(SEX.Male))
+    //        {
+    //            //playerBody.gameObject.SetActive(false);
+
+    //            //다음 버튼 비활성화
+    //            nextbutton.GetComponent<UITexture>().mainTexture = nextButton_DeActivate;
+    //            nextbutton.GetComponent<BoxCollider>().enabled = false;
+    //        }
+    //    }
+    //    //버튼 텍스쳐 초기화
+    //    foreach (GameObject obj in selectButton)
+    //    {
+    //        obj.GetComponent<UITexture>().mainTexture = button_DeActivate;
+    //    }
+
+    //    //성별 버튼 선택
+    //    if (sex.Equals(SEX.Male))
+    //    {
+    //        selectButton[0].GetComponent<UITexture>().mainTexture = button_Activate;
+    //    }
+    //    else if (sex.Equals(SEX.Female))
+    //    {
+    //        selectButton[1].GetComponent<UITexture>().mainTexture = button_Activate;
+    //    }
+    //    //무기 버튼 선택
+    //    if (Item_Class.Equals(CLASS.검))
+    //    {
+    //        selectButton[2].GetComponent<UITexture>().mainTexture = button_Activate;
+    //    }
+    //    else if (Item_Class.Equals(CLASS.지팡이))
+    //    {
+    //        selectButton[3].GetComponent<UITexture>().mainTexture = button_Activate;
+    //    }
+    //}
+    //selectscene 초기화
+
+    public GameObject preSelectionObj = null;
+    public void Button_Select(GameObject obj)
     {
-        //효과음 재생
         SoundManager.Inst.Ds_EffectPlayerDB(1);
-        string anim = string.Empty;
-        //버튼에 따른 데이터 세팅
-        switch (gameObject.name)
+        sex = SEX.Female;
+
+        //선택한 버튼 이미지 변경
+        switch (obj.name)
         {
-            case "Male":
-                sex = SEX.Male;
-                Item_Class = CLASS.검;
-                animSex = "Male";
-                animWeapon = "ShortRange";
-                break;
-            case "Female":
-                sex = SEX.Female;
-                Item_Class = CLASS.검;
-                animSex = "Female";
-                animWeapon = "ShortRange";
-                break;
             case "Sword":
                 Item_Class = CLASS.검;
-                animWeapon = "ShortRange";
+                obj.transform.Find("BackGround").GetComponent<UISprite>().spriteName = "ChoiceWeapon_SwordBackground_Click";
+                obj.transform.Find("Frame").GetComponent<UISprite>().spriteName = "ChoiceWeapon_SwordFrame_Click";
                 break;
             case "Wand":
                 Item_Class = CLASS.지팡이;
-                animWeapon = "LongRange";
+                obj.transform.Find("BackGround").GetComponent<UISprite>().spriteName = "ChoiceWeapon_StaffBackground_Click";
+                obj.transform.Find("Frame").GetComponent<UISprite>().spriteName = "ChoiceWeapon_StaffFrame_Click";
                 break;
         }
-        anim += animSex + "_DefaultCloth_" + animWeapon + "_Idel_Front";
 
-        if (!sex.Equals(SEX.None))
+        //이전 선택됬던 것 제거
+        if(preSelectionObj != null && preSelectionObj != obj)
         {
-            //애니메이션 업데이트
-            animWindow.GetComponent<UITexture>().mainTexture = animWindow_Activate;
-            if (sex.Equals(SEX.Female))
+            switch (preSelectionObj.name)
             {
-                playerBody.Play(anim);
-                playerArm.Play(anim + "_Arm");
-                playerWeapon.Play(anim + "_Weapon");
-                playerBody.gameObject.SetActive(true);
-                
-                //다음 버튼 활성화
-                nextbutton.GetComponent<UITexture>().mainTexture = nextButton_Activate;
-                nextbutton.GetComponent<BoxCollider>().enabled = true;
-            }
-            else if (sex.Equals(SEX.Male))
-            {
-                playerBody.gameObject.SetActive(false);
-
-                //다음 버튼 비활성화
-                nextbutton.GetComponent<UITexture>().mainTexture = nextButton_DeActivate;
-                nextbutton.GetComponent<BoxCollider>().enabled = false;
+                case "Sword":
+                    preSelectionObj.transform.Find("BackGround").GetComponent<UISprite>().spriteName = "ChoiceWeapon_SwordBackground_Normal";
+                    preSelectionObj.transform.Find("Frame").GetComponent<UISprite>().spriteName = "ChoiceWeapon_SwordFrame_Normal";
+                    break;
+                case "Wand":
+                    preSelectionObj.transform.Find("BackGround").GetComponent<UISprite>().spriteName = "ChoiceWeapon_StaffBackground_Normal";
+                    preSelectionObj.transform.Find("Frame").GetComponent<UISprite>().spriteName = "ChoiceWeapon_StaffFrame_Normal";
+                    break;
             }
         }
-        //버튼 텍스쳐 초기화
-        foreach (GameObject obj in selectButton)
-        {
-            obj.GetComponent<UITexture>().mainTexture = button_DeActivate;
-        }
-
-        //성별 버튼 선택
-        if (sex.Equals(SEX.Male))
-        {
-            selectButton[0].GetComponent<UITexture>().mainTexture = button_Activate;
-        }
-        else if (sex.Equals(SEX.Female))
-        {
-            selectButton[1].GetComponent<UITexture>().mainTexture = button_Activate;
-        }
-        //무기 버튼 선택
-        if (Item_Class.Equals(CLASS.검))
-        {
-            selectButton[2].GetComponent<UITexture>().mainTexture = button_Activate;
-        }
-        else if (Item_Class.Equals(CLASS.지팡이))
-        {
-            selectButton[3].GetComponent<UITexture>().mainTexture = button_Activate;
-        }
+        preSelectionObj = obj;
+        nextbutton.GetComponent<BoxCollider>().enabled = true;
+        nextbutton.GetComponent<UIButton>().SetState(UIButtonColor.State.Normal, false);
     }
-    //selectscene 초기화
+
     private void Init_SelectScene()
     {
-        sex = SEX.None;
+        sex = SEX.Female;
         Item_Class = CLASS.갑옷;
-        foreach (GameObject obj in selectButton)
+        //foreach (GameObject obj in selectButton)
+        //{
+        //    obj.GetComponent<UITexture>().mainTexture = button_DeActivate;
+        //}
+        //animWindow.GetComponent<UITexture>().mainTexture = animWindow_DeActivate;
+        //nextbutton.GetComponent<UITexture>().mainTexture = nextButton_DeActivate;
+        if (preSelectionObj != null)
         {
-            obj.GetComponent<UITexture>().mainTexture = button_DeActivate;
+            switch (preSelectionObj.name)
+            {
+                case "Sword":
+                    preSelectionObj.transform.Find("BackGround").GetComponent<UISprite>().spriteName = "ChoiceWeapon_SwordBackground_Normal";
+                    preSelectionObj.transform.Find("Frame").GetComponent<UISprite>().spriteName = "ChoiceWeapon_SwordFrame_Normal";
+                    break;
+                case "Wand":
+                    preSelectionObj.transform.Find("BackGround").GetComponent<UISprite>().spriteName = "ChoiceWeapon_StaffBackground_Normal";
+                    preSelectionObj.transform.Find("Frame").GetComponent<UISprite>().spriteName = "ChoiceWeapon_StaffFrame_Normal";
+                    break;
+            }
         }
-        animWindow.GetComponent<UITexture>().mainTexture = animWindow_DeActivate;
-        nextbutton.GetComponent<UITexture>().mainTexture = nextButton_DeActivate;
-        nextbutton.GetComponent<BoxCollider>().enabled = true;
-        playerBody.gameObject.SetActive(false);
+        preSelectionObj = null;
+        nextbutton.GetComponent<BoxCollider>().enabled = false;
+        nextbutton.GetComponent<UIButton>().SetState(UIButtonColor.State.Disabled, false);
+        //playerBody.gameObject.SetActive(false);
     }
     //select scene의 뒤로가기 버튼
     public void Button_Back()
@@ -397,13 +457,13 @@ public class TitleManager : MonoBehaviour
     {
         SoundManager.Inst.Ds_EffectPlayerDB(1);
         nextbutton.GetComponent<BoxCollider>().enabled = false;
-        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
+        StartCoroutine(_camera.GetComponent<ScreenTransitions>().Fade(1.0f, true));
         StartCoroutine(SelectConfirm());
     }
 
     private IEnumerator SelectConfirm()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         SavePlayerData();
         selectScene.SetActive(false);
 #if UNITY_EDITOR

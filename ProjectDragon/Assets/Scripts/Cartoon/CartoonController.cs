@@ -22,11 +22,12 @@ public class CartoonController : MonoBehaviour
     public float cameraTranslateTime = 1.0f;
     private int cutCount;
 
-    private CartoonData cartoonData;
+    private CartoonData cartoonData = null;
     private Camera uiCamera;
     public GameObject nextButton;
     public GameObject prevButton;
     public GameObject skipButton;
+    public GameObject skipDialog;
     private GameObject[] cuts;
 
     private bool isTranslateCamera = false;
@@ -63,8 +64,11 @@ public class CartoonController : MonoBehaviour
 
     private void OnEnable()
     {
+#if UNITY_EDITOR
+        Debug.Log(gameObject.GetComponentsInChildren<Transform>().Length);
+#endif
         //해당 오브젝트 하위로 3개의 오브젝트만 있다면 만화가 없다는 것으로 판단
-        if (gameObject.GetComponentsInChildren<Transform>().Length - 1 == 3)
+        if (cartoonData == null)
         {
             //만화 로드
             CartoonLoad();
@@ -72,6 +76,7 @@ public class CartoonController : MonoBehaviour
             if (gameObject.activeSelf.Equals(false)) return;
         }
 
+        skipDialog.SetActive(false);
         uiCamera = GameObject.FindGameObjectWithTag("ScreenTransitions").GetComponent<Camera>();
         cuts = cartoonData.cuts;
         cutCount = cartoonData.cutCount;
@@ -125,14 +130,17 @@ public class CartoonController : MonoBehaviour
         if(cutCount <= currentCut)
         {
             currentCut = cutCount - 1;
+            //카툰엔딩
             StartCoroutine(CartoonEnding());
         }
         else
         {
-            if(cutCount - 1 == currentCut)
-            {
-                skipButton.SetActive(false);
-            }
+            //카툰 마지막 장면에서 스킵 없애기
+            //if(cutCount - 1 == currentCut)
+            //{
+            //    skipButton.SetActive(false);
+            //}
+            //카메라 이동
             StartCoroutine(TranslateCamera());
         }
 
@@ -151,14 +159,27 @@ public class CartoonController : MonoBehaviour
     {
         SoundManager.Inst.Ds_EffectPlayerDB(1);
         //바로 엔딩으로 넘어감
+        skipDialog.SetActive(true);
+    }
+
+    public void Button_SkipDialogConfirm()
+    {
+        SoundManager.Inst.Ds_EffectPlayerDB(1);
         StartCoroutine(CartoonEnding());
     }
+
+    public void Button_SkipDialogClose()
+    {
+        SoundManager.Inst.Ds_EffectPlayerDB(1);
+        skipDialog.SetActive(false);
+    }
+
     //카툰 엔딩 연출
     private IEnumerator CartoonEnding()
     {
         //화면 페이드인
-        StartCoroutine(uiCamera.GetComponent<ScreenTransitions>().Fade(2.0f, true));
-        yield return new WaitForSeconds(2.0f);
+        StartCoroutine(uiCamera.GetComponent<ScreenTransitions>().Fade(1.0f, true));
+        yield return new WaitForSeconds(1.0f);
         isCartoonEnd = true;
         gameObject.SetActive(false);
     }
