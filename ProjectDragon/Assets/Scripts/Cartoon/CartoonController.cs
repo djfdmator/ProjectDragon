@@ -58,7 +58,7 @@ public class CartoonController : MonoBehaviour
             return;
         }
         //이름에 맞는 만화 컷 프리팹 로드
-        GameObject cuts = Instantiate(Resources.Load("Cartoon/" + GameManager.Inst.Sex.ToString() + "/" + cartoonName), gameObject.transform) as GameObject;
+        GameObject cuts = Instantiate(Resources.Load("Cartoon/" + GameManager.Inst.Sex.ToString() + "/" + cartoonName), gameObject.transform.Find("Image")) as GameObject;
         cartoonData = cuts.GetComponent<CartoonData>();
     }
 
@@ -142,7 +142,7 @@ public class CartoonController : MonoBehaviour
             //    skipButton.SetActive(false);
             //}
             //카메라 이동
-            StartCoroutine(TranslateCamera());
+            StartCoroutine(TranslateCartoon());
         }
 
         //버튼들의 위치 조정
@@ -210,8 +210,27 @@ public class CartoonController : MonoBehaviour
         //    skipButton.SetActive(true);
         //}
 
-        StartCoroutine(TranslateCamera());
+        StartCoroutine(TranslateCartoon());
         //ResizeButtonPostion();
+    }
+
+    //카툰을 움직여 연출
+    private IEnumerator TranslateCartoon()
+    {
+        isTranslateCamera = true;
+        float time = 0.0f;
+        Vector3 pos;
+        while (time <= cameraTranslateTime)
+        {
+            time += Time.deltaTime;
+
+            pos = Vector3.Lerp(cartoonData.transform.localPosition, -cuts[currentCut].transform.localPosition, time / cameraTranslateTime);
+            //uiCamera.transform.position = pos;
+            cartoonData.transform.localPosition = pos;
+            //ResizeButtonPostion2();
+            yield return null;
+        }
+        isTranslateCamera = false;
     }
 
     //카메라 무빙 연출
