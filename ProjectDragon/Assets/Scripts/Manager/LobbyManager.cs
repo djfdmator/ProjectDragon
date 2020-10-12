@@ -34,7 +34,7 @@ public class LobbyManager : MonoBehaviour
     public static string teststring;
     string classname = "null";
     double distance;
-    public UILabel testlabel, testlabel2;
+    //public UILabel testlabel, testlabel2;
     public UILabel fontchecklabel;
     #endregion
     private void Awake()
@@ -52,8 +52,8 @@ public class LobbyManager : MonoBehaviour
         LobbyObjectSet();
         LobbyStateInit();
         selectData = -1;
-        testlabel = GameObject.Find("test").GetComponent<UILabel>();
-        testlabel2 = GameObject.Find("test2").GetComponent<UILabel>();
+        //testlabel = GameObject.Find("test").GetComponent<UILabel>();
+        //testlabel2 = GameObject.Find("test2").GetComponent<UILabel>();
         SetplayerStat();
 
         //player 체력,마나,스텟 조정
@@ -1144,7 +1144,10 @@ public class LobbyManager : MonoBehaviour
         if (fps < worstFps)  //새로운 최저 fps가 나왔다면 worstFps 바꿔줌.
             worstFps = fps;
         text = msec.ToString("F1") + "ms (" + fps.ToString("F1") + ") //worst : " + worstFps.ToString("F1");
-        testlabel.text = text;
+#if UNITY_EDITOR
+        Debug.Log(text);
+#endif
+        //testlabel.text = text;
     }
 
     //public void PlayClickAnim()

@@ -225,7 +225,7 @@ MonoBehaviour:
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 1, g: 1, b: 1, a: 1}
   disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.2
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -484,7 +484,7 @@ MonoBehaviour:
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 1, g: 1, b: 1, a: 1}
   disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.2
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -507,7 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1509890072539922200}
-  - component: {fileID: 8641088946509895692}
+  - component: {fileID: 8970919362007722483}
   - component: {fileID: 8948529572384766238}
   - component: {fileID: 3841760943724401959}
   m_Layer: 8
@@ -532,7 +532,7 @@ Transform:
   m_Father: {fileID: 5169367792885928524}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8641088946509895692
+--- !u!114 &8970919362007722483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 833860830875934073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
@@ -563,14 +563,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 270
-  mHeight: 108
+  mWidth: 116
+  mHeight: 110
   mDepth: 11
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.5
+  aspectRatio: 1.0545454
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -584,16 +584,10 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: 4b6da3014796a0845b9e4faf61b8e058, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mAtlas: {fileID: 11400000, guid: 9656631b0c123c94e84ed7767fb95241, type: 2}
+  mSpriteName: Cartoon_SkipButton_Normal
   mFixedAspect: 0
+  mFillCenter: 1
 --- !u!114 &8948529572384766238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,13 +601,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 833860830875934073}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: 
+  pressedSprite: Cartoon_SkipButton_Click
   disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
@@ -635,7 +629,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 270, y: 108, z: 0}
+  m_Size: {x: 116, y: 110, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1413787601764651216
 GameObject:
@@ -646,7 +640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9215880137342360205}
-  - component: {fileID: 6045836637972374751}
+  - component: {fileID: 1372613780390392062}
   - component: {fileID: 584101284}
   - component: {fileID: 584101285}
   m_Layer: 8
@@ -670,7 +664,7 @@ Transform:
   m_Father: {fileID: 5169367792885928524}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6045836637972374751
+--- !u!114 &1372613780390392062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -679,25 +673,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1413787601764651216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
     target: {fileID: 0}
-    relative: 1
-    absolute: -160
+    relative: 0
+    absolute: 0
   rightAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: -60
+    absolute: 0
   bottomAnchor:
     target: {fileID: 0}
-    relative: 0.5
-    absolute: -50
+    relative: 0
+    absolute: 0
   topAnchor:
     target: {fileID: 0}
-    relative: 0.5
-    absolute: 50
+    relative: 1
+    absolute: 0
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -722,16 +716,10 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: d92aefafc0a91024e9c7b0fc823d8348, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mAtlas: {fileID: 11400000, guid: 9656631b0c123c94e84ed7767fb95241, type: 2}
+  mSpriteName: Cartoon_NextButton_Normal
   mFixedAspect: 0
+  mFillCenter: 1
 --- !u!65 &584101284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -758,13 +746,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1413787601764651216}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: 
+  pressedSprite: Cartoon_NextButton_Click
   disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
@@ -792,7 +780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5169367792885928524
 Transform:
   m_ObjectHideFlags: 0
@@ -886,7 +874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cartoonName: 
   isCartoonEnd: 0
-  cameraTranslateTime: 1
+  cameraTranslateTime: 0.5
   nextButton: {fileID: 1413787601764651216}
   prevButton: {fileID: 5917962982641221808}
   skipButton: {fileID: 833860830875934073}
@@ -900,7 +888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7468754242011349367}
-  - component: {fileID: 2426581712787251187}
+  - component: {fileID: 8925590304374229321}
   - component: {fileID: 584101282}
   - component: {fileID: 584101283}
   m_Layer: 8
@@ -924,7 +912,7 @@ Transform:
   m_Father: {fileID: 5169367792885928524}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2426581712787251187
+--- !u!114 &8925590304374229321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -933,25 +921,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5917962982641221808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: 60
+    absolute: 0
   rightAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: 160
+    absolute: 0
   bottomAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: -50
+    absolute: 0
   topAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: 50
+    absolute: 0
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -967,7 +955,7 @@ MonoBehaviour:
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0
-  mFlip: 1
+  mFlip: 0
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
@@ -976,16 +964,10 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: d92aefafc0a91024e9c7b0fc823d8348, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mAtlas: {fileID: 11400000, guid: 9656631b0c123c94e84ed7767fb95241, type: 2}
+  mSpriteName: Cartoon_BackButton_Normal
   mFixedAspect: 0
+  mFillCenter: 1
 --- !u!65 &584101282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1012,14 +994,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 5917962982641221808}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
+  pressedSprite: Cartoon_BackButton_Click
+  disabledSprite: Cartoon_BackButton_Unactivate
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}

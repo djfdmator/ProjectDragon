@@ -28,7 +28,7 @@ public class CartoonController : MonoBehaviour
     public GameObject prevButton;
     public GameObject skipButton;
     public GameObject skipDialog;
-    private GameObject[] cuts;
+    public GameObject[] cuts;
 
     private bool isTranslateCamera = false;
     private int currentCut = 0;
@@ -92,7 +92,8 @@ public class CartoonController : MonoBehaviour
         nextButton.transform.localPosition = cuts[currentCut].transform.localPosition + new Vector3(screenX / 2 - 100.0f, 0.0f, 0.0f);
         prevButton.transform.localPosition = cuts[currentCut].transform.localPosition - new Vector3(screenX / 2 - 100.0f, 0.0f, 0.0f);
         skipButton.transform.localPosition = cuts[currentCut].transform.localPosition + new Vector3(screenX / 2 - 150.0f, screenY / 2 - 90.0f, 0.0f);
-        prevButton.SetActive(false);
+        prevButton.GetComponent<Collider>().enabled = false;
+        prevButton.GetComponent<UIButton>().SetState(UIButtonColor.State.Disabled, false);
         uiCamera.transform.position = cuts[currentCut].transform.position;
     }
 
@@ -148,9 +149,10 @@ public class CartoonController : MonoBehaviour
        // ResizeButtonPostion();
 
         //이전 버튼 활성화
-        if (0 != currentCut && prevButton.activeSelf.Equals(false))
+        if (0 != currentCut && prevButton.GetComponent<UIButton>().state.Equals(UIButtonColor.State.Disabled))
         {
-            prevButton.SetActive(true);
+            prevButton.GetComponent<Collider>().enabled = true;
+            prevButton.GetComponent<UIButton>().SetState(UIButtonColor.State.Normal, false);
         }
     }
 
@@ -178,10 +180,11 @@ public class CartoonController : MonoBehaviour
     private IEnumerator CartoonEnding()
     {
         //화면 페이드인
+        cartoonData.gameObject.SetActive(false);
+        uiCamera.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         StartCoroutine(uiCamera.GetComponent<ScreenTransitions>().Fade(1.0f, true));
         yield return new WaitForSeconds(1.0f);
         isCartoonEnd = true;
-        gameObject.SetActive(false);
     }
 
     //이전 버튼
@@ -199,12 +202,13 @@ public class CartoonController : MonoBehaviour
         if (0 >= currentCut)
         {
             currentCut = 0;
-            prevButton.SetActive(false);
+            prevButton.GetComponent<Collider>().enabled = false;
+            prevButton.GetComponent<UIButton>().SetState(UIButtonColor.State.Disabled, false);
         }
-        else if(cutCount > currentCut)
-        {
-            skipButton.SetActive(true);
-        }
+        //else if(cutCount > currentCut)
+        //{
+        //    skipButton.SetActive(true);
+        //}
 
         StartCoroutine(TranslateCamera());
         //ResizeButtonPostion();
