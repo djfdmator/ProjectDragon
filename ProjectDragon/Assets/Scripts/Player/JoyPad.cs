@@ -92,7 +92,7 @@ public class JoyPad : MonoBehaviour
     {
         if (pressed == false&&!player.isSkillActive)
         {
-            player.CurrentState = State.Idel;
+            player.CurrentState = State.Idle;
             StartCoroutine("fadeJoyStick");
         }
         if (pressed.Equals(true))
@@ -244,7 +244,7 @@ public class JoyPad : MonoBehaviour
                 }
                 else if (angle == 0&&!player.isSkillActive)
                 {
-                    player.CurrentState = State.Idel;
+                    player.CurrentState = State.Idle;
                 }
             }
             if (normalize)

@@ -33,6 +33,18 @@ public class Player : Character
         {
             myState = value;
             SetState(myState);
+
+            //Anim
+            GetComponent<PlayerAnimControll>().CurrentState = myState;
+            if (AngleisAttack || isSkillActive)
+            {
+                GetComponent<PlayerAnimControll>().ChangeAngleAnim(enemy_angle);
+            }
+            else if (!AngleisAttack)
+            {
+                GetComponent<PlayerAnimControll>().ChangeAngleAnim(current_angle);
+            }
+
         }
     }
 
@@ -280,7 +292,7 @@ public class Player : Character
                             }
                             if (joyPad.Pressed == false&&!isSkillActive)
                             {
-                                this.CurrentState = State.Idel;
+                                this.CurrentState = State.Idle;
                             }
                         }
                     }
@@ -296,7 +308,7 @@ public class Player : Character
     public void TempNullSet()
     {
         TempEnemy = null;
-        CurrentState = State.Idel;
+        CurrentState = State.Idle;
         AngleisAttack = false;
     }
     void PlayerPrefData(ref int Damage1)
@@ -326,7 +338,7 @@ public class Player : Character
         MoveSpeed = 3.0f;
         ATKChanger(3);
         ATKSpeedChanger(1.0f);
-        CurrentState = State.Idel;
+        CurrentState = State.Idle;
         AtkRangeChanger(3.5f);
         mp= 300;
 

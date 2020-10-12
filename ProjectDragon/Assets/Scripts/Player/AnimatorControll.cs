@@ -127,6 +127,8 @@ public class AnimatorControll : MonoBehaviour
         controller = playeranim.runtimeAnimatorController;
         overrideController = new AnimatorOverrideController(playeranim.runtimeAnimatorController);
         my_state = State.None;
+
+        //Animation 
         for (int i = 1; i <= State.Hit.GetHashCode(); i++)
         {
             my_state++;
@@ -136,7 +138,7 @@ public class AnimatorControll : MonoBehaviour
             Player_AnimationController_CastingCurrentAnim_Arm(animationValueChanger(my_state), my_state);
             Player_AnimationController_CastingCurrentAnim_Weapon(animationValueChanger(my_state), my_state);
         }
-        my_state = State.Idel;
+        my_state = State.Idle;
     }
     void Player_AnimationController_CastingCurrentAnim(AnimationClip[] animationbundle, State state)
     {
@@ -189,7 +191,7 @@ public class AnimatorControll : MonoBehaviour
     {
         switch (state)
         {
-            case State.Idel:
+            case State.Idle:
                 return animIdel = new AnimationClip[4];
             case State.Walk:
                 return animWalk = new AnimationClip[4];

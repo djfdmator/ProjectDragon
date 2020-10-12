@@ -118,7 +118,7 @@ public class PlayerSkill : MonoBehaviour
     public void PlayerStop()
     {
         My_Player.isSkillActive = false;
-        My_Player.CurrentState = State.Idel;
+        My_Player.CurrentState = State.Idle;
         My_Player.StopPlayer= false;
     }
 
