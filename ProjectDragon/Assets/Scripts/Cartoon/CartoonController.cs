@@ -89,9 +89,9 @@ public class CartoonController : MonoBehaviour
 #endif  
         //nextButton.GetComponent<UITexture>().SetAnchor(uiCamera.transform);
         //prevButton.GetComponent<UITexture>().SetAnchor(uiCamera.transform);
-        nextButton.transform.localPosition = cuts[currentCut].transform.localPosition + new Vector3(screenX / 2 - 100.0f, 0.0f, 0.0f);
-        prevButton.transform.localPosition = cuts[currentCut].transform.localPosition - new Vector3(screenX / 2 - 100.0f, 0.0f, 0.0f);
-        skipButton.transform.localPosition = cuts[currentCut].transform.localPosition + new Vector3(screenX / 2 - 150.0f, screenY / 2 - 90.0f, 0.0f);
+        //nextButton.transform.localPosition = cuts[currentCut].transform.localPosition + new Vector3(screenX / 2 - 100.0f, 0.0f, 0.0f);
+        //prevButton.transform.localPosition = cuts[currentCut].transform.localPosition - new Vector3(screenX / 2 - 100.0f, 0.0f, 0.0f);
+        //skipButton.transform.localPosition = cuts[currentCut].transform.localPosition + new Vector3(screenX / 2 - 95.0f, screenY / 2 - 90.0f, 0.0f);
         prevButton.GetComponent<Collider>().enabled = false;
         prevButton.GetComponent<UIButton>().SetState(UIButtonColor.State.Disabled, false);
         uiCamera.transform.position = cuts[currentCut].transform.position;
