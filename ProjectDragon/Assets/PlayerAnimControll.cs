@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerAnimControll : MonoBehaviour
 {
     // 애니메이터 받아오기
-    public Animator PlayerAnimation;
-    public Animator PlayerAnimation_Arm;
+    private Animator anim_Body;
+    private Animator anim_Arm;
+    private Animator anim_Weapon;
 
     public int Weapon_Num;
 
@@ -33,41 +34,63 @@ public class PlayerAnimControll : MonoBehaviour
         get { return myState; }
         set
         {
-            PlayerAnimation_Arm.speed = 0.1f;
+            //anim_Arm.speed = 0.1f;
+            //anim_Weapon.speed = 0.1f;
 
             State m_State = State.Idle;
             for (int i = 1; i <= State.Hit.GetHashCode(); i++)
             {
-                PlayerAnimation.SetBool(ChangeState(m_State), false);
-                PlayerAnimation_Arm.SetBool(ChangeState(m_State), false);
+                anim_Body.SetBool(ChangeState(m_State), false);
+                anim_Arm.SetBool(ChangeState(m_State), false);
+                anim_Weapon.SetBool(ChangeState(m_State), false);
                 m_State++;
             }
             myState = value;
-            PlayerAnimation.SetBool(ChangeState(myState), true);
-            PlayerAnimation_Arm.SetBool(ChangeState(myState), true);
+            anim_Body.SetBool(ChangeState(myState), true);
+            anim_Arm.SetBool(ChangeState(myState), true);
+            anim_Weapon.SetBool(ChangeState(myState), true);
         }
     }
 
     private void Awake()
     {
         Angle = 0;
-        PlayerAnimation = GetComponent<Animator>();
-        PlayerAnimation_Arm = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        PlayerAnimation_Arm.speed = 0.1f;
+        anim_Body = GetComponent<Animator>();
+        anim_Arm = gameObject.transform.Find("Arm").GetComponent<Animator>();
+
+        anim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
+
+
+        anim_Body.speed = 1f;
+        anim_Arm.speed = 1f;
+        anim_Weapon.speed = 1f;
 
         CurrentAttackType = GetComponent<Player>().attackType;
     }
+    private void Start()
+    {
 
+        anim_Body.speed = 1f;
+        anim_Arm.speed = 1f;
+        anim_Weapon.speed = 1f;
+        Debug.Log(anim_Arm.speed);
+    }
     public string ChangeState(State state)
     {
         return "is" + state.ToString();
     }
 
+    public void AnimationStop()
+    {
+        GetComponent<Player>().playerSkill.PlayerStop();
+    }
+
     public void ChangeAngleAnim(float angle)
     {
         Angle = angle;
-        PlayerAnimation.SetFloat("Angle", Angle);
-        PlayerAnimation_Arm.SetFloat("Angle", Angle);
+        anim_Body.SetFloat("Angle", Angle);
+        anim_Arm.SetFloat("Angle", Angle);
+        anim_Weapon.SetFloat("Angle", Angle);
     }
 
     // Update is called once per frame
@@ -104,26 +127,26 @@ public class PlayerAnimControll : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Angle = 180;
-            PlayerAnimation.SetFloat("Angle", Angle);
-            PlayerAnimation_Arm.SetFloat("Angle", Angle);
+            anim_Body.SetFloat("Angle", Angle);
+            anim_Arm.SetFloat("Angle", Angle);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             Angle = 0;
-            PlayerAnimation.SetFloat("Angle", Angle);
-            PlayerAnimation_Arm.SetFloat("Angle", Angle);
+            anim_Body.SetFloat("Angle", Angle);
+            anim_Arm.SetFloat("Angle", Angle);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             Angle = 90;
-            PlayerAnimation.SetFloat("Angle", Angle);
-            PlayerAnimation_Arm.SetFloat("Angle", Angle);
+            anim_Body.SetFloat("Angle", Angle);
+            anim_Arm.SetFloat("Angle", Angle);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             Angle = 270;
-            PlayerAnimation.SetFloat("Angle", Angle);
-            PlayerAnimation_Arm.SetFloat("Angle", Angle);
+            anim_Body.SetFloat("Angle", Angle);
+            anim_Arm.SetFloat("Angle", Angle);
         }
     }
 }

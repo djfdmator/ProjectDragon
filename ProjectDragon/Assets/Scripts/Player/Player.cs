@@ -36,15 +36,15 @@ public class Player : Character
 
             //Anim
             GetComponent<PlayerAnimControll>().CurrentState = myState;
-            if (AngleisAttack || isSkillActive)
+
+            if (isActive && (AngleisAttack || isSkillActive))
             {
                 GetComponent<PlayerAnimControll>().ChangeAngleAnim(enemy_angle);
             }
-            else if (!AngleisAttack)
+            else
             {
                 GetComponent<PlayerAnimControll>().ChangeAngleAnim(current_angle);
             }
-
         }
     }
 
@@ -327,7 +327,7 @@ public class Player : Character
     {
         base.Awake();
         //근거리일때
-        attackType = AttackType.ShortRange;
+        //attackType = AttackType.ShortRange;
         //원거리일때
         //attackType = AttackType.LongRange;
         //TODO: 뒤에 로비 완성되면 무기 합칠것, 스테이터스를 DB에서 받아오기

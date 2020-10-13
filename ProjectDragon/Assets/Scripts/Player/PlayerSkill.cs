@@ -95,8 +95,9 @@ public class PlayerSkill : MonoBehaviour
                  Vector2 offset = new Vector2(0.0f, 0.5f);
                 pointProjectile .Create(My_Player.projectileTargetList,offset,0.7f,17,My_Player.projectileAnimator[1],"TargetPoint", My_Player.TempEnemy.transform.position);
                 //Create Projectile 
-                //projectile.Create(My_Player.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Player.projectileAnimator[1], "ProjectileObj", true, My_Player.transform.position);
+                //projectile.Create(My_Player.projectileTargetList, offset, 0.2f, _swordAttackangle, 3.0f, 10, My_Player.projectileAnimator[1], "ProjectileObj", true, My_Player.transform.position);
             }
+                Debug.Log("skill!! ");
             co = CoolTime(3);
             sk = SkillDamaged();
             StartCoroutine(sk);
