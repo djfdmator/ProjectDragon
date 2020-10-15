@@ -782,8 +782,8 @@ public class GameManager : MonoSingleton<GameManager>
     }
     IEnumerator GameEnd()
     {
-        GameObject.FindGameObjectWithTag("Player").SetActive(false);
-
+        //GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        yield return new WaitForSeconds(3.0f);
         //결과창 띄우기
         GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().OpenResultPop(true);
         Debug.Log("GameEnd");

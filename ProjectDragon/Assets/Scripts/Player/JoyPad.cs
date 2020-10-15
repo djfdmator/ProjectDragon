@@ -90,174 +90,184 @@ public class JoyPad : MonoBehaviour
     }
     public void OnPress(bool pressed)
     {
-        if (pressed == false&&!player.isSkillActive)
+        if (!player.isDead)
         {
-            player.CurrentState = State.Idle;
-            StartCoroutine("fadeJoyStick");
-        }
-        if (pressed.Equals(true))
-        {
-            target.GetComponent<UISprite>().enabled = true;
-            target2.GetComponent<UISprite>().enabled = true;
-            target2.GetComponent<UISprite>().depth = target.GetComponent<UISprite>().depth + 1;
-            target2.GetComponent<UISprite>().spriteName = "ingameui_40";
-            if (Input.touchCount == 1)
+            if (pressed == false && !player.isSkillActive)
             {
-                touch01 = Input.GetTouch(0);
-                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
-                whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
-                Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-                for (int i = 0; i < Input.touchCount; i++)
-                {
-                    RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
-                    foreach (RaycastHit hit in raycastHits)
-                    {
-                        if (hit.collider.tag.Equals("button"))
-                        {
-                            ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-                            if (centerOnPress)
-                            {
-
-                                target.transform.position = fingerPoint01;
-                                break;
-                            }
-                        }
-                        if (!hit.collider.tag.Equals("button"))
-                        {
-                            return;
-                        }
-                    }
-                }
-                if (touch01.phase.Equals(TouchPhase.Ended))
-                {
-                }
+                player.CurrentState = State.Idle;
+                StartCoroutine("fadeJoyStick");
             }
-            if (Input.touchCount > 1)
+            if (pressed.Equals(true))
             {
-                touch01 = Input.GetTouch(0);
-                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
-                whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
-                Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-                for (int i = 0; i < Input.touchCount; i++)
+                target.GetComponent<UISprite>().enabled = true;
+                target2.GetComponent<UISprite>().enabled = true;
+                target2.GetComponent<UISprite>().depth = target.GetComponent<UISprite>().depth + 1;
+                target2.GetComponent<UISprite>().spriteName = "ingameui_40";
+                if (Input.touchCount == 1)
                 {
-                    RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
-                    foreach (RaycastHit hit in raycastHits)
+                    touch01 = Input.GetTouch(0);
+                    fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
+                    whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
+                    Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-                        if (hit.collider.tag.Equals("button"))
+                        RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
+                        foreach (RaycastHit hit in raycastHits)
                         {
-                            ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-                            if (centerOnPress)
+                            if (hit.collider.tag.Equals("button"))
+                            {
+                                ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                                if (centerOnPress)
+                                {
+
+                                    target.transform.position = fingerPoint01;
+                                    break;
+                                }
+                            }
+                            if (!hit.collider.tag.Equals("button"))
                             {
                                 return;
                             }
                         }
-                        if (!hit.collider.tag.Equals("button"))
+                    }
+                    if (touch01.phase.Equals(TouchPhase.Ended))
+                    {
+                    }
+                }
+                if (Input.touchCount > 1)
+                {
+                    touch01 = Input.GetTouch(0);
+                    fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
+                    whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
+                    Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                    for (int i = 0; i < Input.touchCount; i++)
+                    {
+                        RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
+                        foreach (RaycastHit hit in raycastHits)
                         {
-                            touch01 = Input.GetTouch(1);
-                            fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
-                            target.transform.position = fingerPoint01;
-                            Debug.Log("버튼이 아닙니다.");
-                            return;
+                            if (hit.collider.tag.Equals("button"))
+                            {
+                                ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                                if (centerOnPress)
+                                {
+                                    return;
+                                }
+                            }
+                            if (!hit.collider.tag.Equals("button"))
+                            {
+                                touch01 = Input.GetTouch(1);
+                                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
+                                target.transform.position = fingerPoint01;
+                                Debug.Log("버튼이 아닙니다.");
+                                return;
+                            }
                         }
                     }
                 }
+            }
+            else
+            {
+                ResetJoystick();
             }
         }
         else
         {
-            ResetJoystick();
+            player.rigidbody2d.velocity = Vector2.zero;
         }
     }
     public void OnDrag(Vector2 delta)
     {
-        //Debug.Log("delta " +  delta + " delta.magnitude = " + delta.magnitude);
-        //Ray ray = UICamera.currentCamera.ScreenPointToRay(UICamera.lastTouchPosition);
-        if (Input.touchCount > 0)
+        if (!player.isDead)
         {
-            Touch touch01 = Input.GetTouch(0);
-            Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-            RaycastHit[] rayhited = Physics.RaycastAll(ray, 10);
-            float dist = 0f;
-            if (Input.touchCount > 1)
+            //Debug.Log("delta " +  delta + " delta.magnitude = " + delta.magnitude);
+            //Ray ray = UICamera.currentCamera.ScreenPointToRay(UICamera.lastTouchPosition);
+            if (Input.touchCount > 0)
             {
-                Debug.Log("일단 1보단 큼");
-                Touch touch02 = Input.GetTouch(1);
-                for (int i = 0; i < Input.touchCount; i++)
+                Touch touch01 = Input.GetTouch(0);
+                Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                RaycastHit[] rayhited = Physics.RaycastAll(ray, 10);
+                float dist = 0f;
+                if (Input.touchCount > 1)
                 {
-                    foreach (RaycastHit hit in rayhited)
+                    Debug.Log("일단 1보단 큼");
+                    Touch touch02 = Input.GetTouch(1);
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-                        if (hit.collider.tag.Equals("button"))
+                        foreach (RaycastHit hit in rayhited)
                         {
-                            ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-                            break;
+                            if (hit.collider.tag.Equals("button"))
+                            {
+                                ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                                break;
+                            }
+                            else if (!hit.collider.tag.Equals("button"))
+                            {
+                                touch02 = Input.GetTouch(1);
+                                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch02.position);
+                                ray = UICamera.currentCamera.ScreenPointToRay(touch02.position);
+                                break;
+                            }
                         }
-                        else if (!hit.collider.tag.Equals("button"))
-                        {
-                            touch02 = Input.GetTouch(1);
-                            fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch02.position);
-                            ray = UICamera.currentCamera.ScreenPointToRay(touch02.position);
-                            break;
-                        }
+
                     }
-
                 }
-            }
-            Vector3 currentPos = ray.GetPoint(dist);
-            Vector3 offset = currentPos - userInitTouchPos;
+                Vector3 currentPos = ray.GetPoint(dist);
+                Vector3 offset = currentPos - userInitTouchPos;
 
-            if (offset.x != 0f || offset.y != 0f)
-            {
-                offset = target2.InverseTransformDirection(offset);
-                offset.Scale(scale);
-                offset = target2.TransformDirection(offset);
-                offset.z = 0f;
-            }
+                if (offset.x != 0f || offset.y != 0f)
+                {
+                    offset = target2.InverseTransformDirection(offset);
+                    offset.Scale(scale);
+                    offset = target2.TransformDirection(offset);
+                    offset.z = 0f;
+                }
 
-            target2.position = userInitTouchPos + offset;
+                target2.position = userInitTouchPos + offset;
 
-            Vector3 zeroZpos = target2.position;
-            zeroZpos.z = 0f;
-            target2.position = zeroZpos;
-            // Calculate the length. This involves a squareroot operation,
-            // so it's slightly expensive. We re-use this length for multiple
-            // things below to avoid doing the square-root more than one.
+                Vector3 zeroZpos = target2.position;
+                zeroZpos.z = 0f;
+                target2.position = zeroZpos;
+                // Calculate the length. This involves a squareroot operation,
+                // so it's slightly expensive. We re-use this length for multiple
+                // things below to avoid doing the square-root more than one.
 
-            float length = target2.localPosition.magnitude;
+                float length = target2.localPosition.magnitude;
 
-            if (length < deadZone)
-            {
-                // If the length of the vector is smaller than the deadZone radius,
-                // set the position to the origin.
-                position = Vector2.zero;
-                target2.localPosition = position;
-            }
-            else if (length > radius)
-            {
-                target2.localPosition = Vector3.ClampMagnitude(target2.localPosition, radius);
-                position = target2.localPosition;
-            }
-            if (player.CurrentState != State.Attack)
-            {
-                if (angle > 0&&!player.isSkillActive)
+                if (length < deadZone)
+                {
+                    // If the length of the vector is smaller than the deadZone radius,
+                    // set the position to the origin.
+                    position = Vector2.zero;
+                    target2.localPosition = position;
+                }
+                else if (length > radius)
+                {
+                    target2.localPosition = Vector3.ClampMagnitude(target2.localPosition, radius);
+                    position = target2.localPosition;
+                }
+                if (player.CurrentState != State.Attack)
+                {
+                    if (angle > 0 && !player.isSkillActive)
+                    {
+                        player.CurrentState = State.Walk;
+                    }
+                    else if (angle == 0 && !player.isSkillActive)
+                    {
+                        player.CurrentState = State.Idle;
+                    }
+                }
+                if (normalize)
+                {
+                    // Normalize the vector and multiply it with the length adjusted
+                    // to compensate for the deadZone radius.
+                    // This prevents the position from snapping from zero to the deadZone radius.
+                    position = position / radius * Mathf.InverseLerp(radius, deadZone, 1);
+                }
+                if (player.current_angle > 0 && !player.AngleisAttack && !player.isSkillActive)
                 {
                     player.CurrentState = State.Walk;
+                    angle = GetAngle(target2.transform.position, target.transform.position);
                 }
-                else if (angle == 0&&!player.isSkillActive)
-                {
-                    player.CurrentState = State.Idle;
-                }
-            }
-            if (normalize)
-            {
-                // Normalize the vector and multiply it with the length adjusted
-                // to compensate for the deadZone radius.
-                // This prevents the position from snapping from zero to the deadZone radius.
-                position = position / radius * Mathf.InverseLerp(radius, deadZone, 1);
-            }
-            if (player.current_angle > 0 && !player.AngleisAttack &&!player.isSkillActive)
-            {
-                player.CurrentState = State.Walk;
-                angle = GetAngle(target2.transform.position, target.transform.position);
             }
         }
     }

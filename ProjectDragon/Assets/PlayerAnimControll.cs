@@ -65,16 +65,11 @@ public class PlayerAnimControll : MonoBehaviour
         anim_Arm.speed = 1f;
         anim_Weapon.speed = 1f;
 
+        Debug.Log("anim sppe"+ anim_Arm.speed);
+
         CurrentAttackType = GetComponent<Player>().attackType;
     }
-    private void Start()
-    {
 
-        anim_Body.speed = 1f;
-        anim_Arm.speed = 1f;
-        anim_Weapon.speed = 1f;
-        Debug.Log(anim_Arm.speed);
-    }
     public string ChangeState(State state)
     {
         return "is" + state.ToString();

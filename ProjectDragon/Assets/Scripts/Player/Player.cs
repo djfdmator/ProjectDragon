@@ -33,7 +33,7 @@ public class Player : Character
         {
             myState = value;
             SetState(myState);
-
+           
             //Anim
             GetComponent<PlayerAnimControll>().CurrentState = myState;
 
@@ -154,6 +154,7 @@ public class Player : Character
             isInvaid = false;
         }
         Debug.Log((int)currentATK+"내 체력은 :"+HP);
+
         //hpBar.fillAmount = (float)HP-currentATK / (float)maxHp;
         if(original_HP>=HP)
         {
@@ -191,11 +192,11 @@ public class Player : Character
             }
             else if (!isDead)
             {
+                
                 hp = -1;
                 GameManager.Inst.CurrentHp = 0;
-                isDead = true;
                 CurrentState = State.Dead;
-
+                Dead();
             }
         }
     }
@@ -219,7 +220,8 @@ public class Player : Character
     public override void Dead()
     {
         base.Dead();
-
+        GetComponent<BoxCollider2D>().enabled = false;
+        Debug.Log("BoxCollider2D enable false");
     }
 
     public virtual int MPChanged(int Cost)
@@ -236,74 +238,78 @@ public class Player : Character
             //동작
             while (isActive)
             {
-                if (EnemyArray.Count > 0)
+                if (!isDead)
                 {
+                    if (EnemyArray.Count > 0)
+                    {
 
-                    for (int a = 0; a < EnemyArray.Count; a++)
-                    {
-                        TempEnemy = EnemyArray[0];
-                       
-                        EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
-                    }
-                    for (int a = 0; a < EnemyArray.Count; a++)
-                    {
-                        if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
+                        for (int a = 0; a < EnemyArray.Count; a++)
                         {
-                            TempEnemy = EnemyArray[a];
+                            TempEnemy = EnemyArray[0];
+
+                            EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
                         }
-                    }
-                    this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
-                         
-                    if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange&&!isSkillActive)
-                    {
-
-                        if (TempEnemy.GetComponent<Character>().HP > 0)
+                        for (int a = 0; a < EnemyArray.Count; a++)
                         {
-                            if (attackType == AttackType.LongRange && joyPad.Pressed == false&&!isSkillActive)
+                            if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
                             {
-                                moveSpeed = 0;
-                                AngleisAttack = true;
-                                this.CurrentState = State.Attack;
-                            }
-                            else if(attackType == AttackType.LongRange && joyPad.Pressed == true&&!isSkillActive)
-                            {
-
-                                 moveSpeed = temp_Movespeed;
-                                 AngleisAttack = false;
-                            }
-                            if (attackType == AttackType.ShortRange&&!isSkillActive)
-                            {
-                                AngleisAttack = true;
-                                this.CurrentState = State.Attack;
+                                TempEnemy = EnemyArray[a];
                             }
                         }
+                        this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
 
-                    }
-                    if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange&&!isSkillActive)
-                    {
-                        AngleisAttack = false;
-                        if (AngleisAttack == false&&!isSkillActive)
+                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
                         {
-                            if (attackType == AttackType.LongRange)
+
+                            if (TempEnemy.GetComponent<Character>().HP > 0)
                             {
-                                moveSpeed = temp_Movespeed;
+                                if (attackType == AttackType.LongRange && joyPad.Pressed == false && !isSkillActive)
+                                {
+                                    moveSpeed = 0;
+                                    AngleisAttack = true;
+                                    this.CurrentState = State.Attack;
+                                }
+                                else if (attackType == AttackType.LongRange && joyPad.Pressed == true && !isSkillActive)
+                                {
+
+                                    moveSpeed = temp_Movespeed;
+                                    AngleisAttack = false;
+                                }
+                                if (attackType == AttackType.ShortRange && !isSkillActive)
+                                {
+                                    AngleisAttack = true;
+                                    this.CurrentState = State.Attack;
+                                }
                             }
-                            if (enemy_angle != 0 && joyPad.Pressed == true)
+
+                        }
+                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange && !isSkillActive)
+                        {
+                            AngleisAttack = false;
+                            if (AngleisAttack == false && !isSkillActive)
                             {
-                                this.CurrentState = State.Walk;
-                            }
-                            if (joyPad.Pressed == false&&!isSkillActive)
-                            {
-                                this.CurrentState = State.Idle;
+                                if (attackType == AttackType.LongRange)
+                                {
+                                    moveSpeed = temp_Movespeed;
+                                }
+                                if (enemy_angle != 0 && joyPad.Pressed == true)
+                                {
+                                    this.CurrentState = State.Walk;
+                                }
+                                if (joyPad.Pressed == false && !isSkillActive)
+                                {
+                                    this.CurrentState = State.Idle;
+                                }
                             }
                         }
+                        yield return new WaitForSeconds(0.1f);
                     }
-                    yield return new WaitForSeconds(0.1f);
+                    else
+                    {
+                        break;
+                    }
                 }
-                else
-                {
-                    break;
-                }
+                else { break; }
             }
         }
     }
@@ -368,14 +374,15 @@ public class Player : Character
     // Update is called once per frame
     void FixedUpdate()
     {
-          if (isSkillActive)
+        if (isSkillActive)
         {
             float A = current_angle;
             current_angle = A;
             CurrentState = State.Skill;
         }
-        else{
-             current_angle = joyPad.angle;
+        else
+        {
+            current_angle = joyPad.angle;
         }
         //CheckAngleLabel.text = current_angle.ToString();
         myPos = gameObject.transform.position;
@@ -394,15 +401,15 @@ public class Player : Character
         }
         if (StopPlayer.Equals(true))
         {
-            rigidbody2d.velocity = new Vector2(0f,0f);
+            rigidbody2d.velocity = new Vector2(0f, 0f);
             StopTime += Time.deltaTime;
             if (StopTime >= StopMaxTime)
             {
-             //   StopPlayer = false;
+                //   StopPlayer = false;
                 StopTime = 0;
             }
         }
-      
+
     }
     public static float GetAngle(Vector3 Start, Vector3 End)
     {
