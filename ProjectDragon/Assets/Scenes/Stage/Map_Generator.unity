@@ -2568,7 +2568,7 @@ MonoBehaviour:
   angle: 0
   m_bDebugMode: 1
   m_horizontalViewAngle: 120
-  m_viewRadius: 1.3
+  m_viewRadius: 5
   m_viewRotateZ: 70
   m_viewTargetMask:
     serializedVersion: 2
@@ -2659,7 +2659,7 @@ MonoBehaviour:
   nuckBack: 0
   maxHp: 0
   atkSpeed: 0
-  atkRange: 0
+  atkRange: 5
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   AngleisAttack: 0
   sex: 0
   isWear: 0
-  attackType: 1
+  attackType: 3
   weaponSelection: {fileID: 0}
   StopPlayer: 0
   StopTime: 0
@@ -2726,7 +2726,7 @@ Animator:
   m_GameObject: {fileID: 5152676075970907296}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c490cbc52cfcd4498c3a12a2a79b13c, type: 2}
+  m_Controller: {fileID: 22100000, guid: 6da99120f8bda5441bac3f2d12f74add, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2793,7 +2793,7 @@ Animator:
   m_GameObject: {fileID: 5152676076262238046}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3c11d95815778a4db10f311581eb326, type: 2}
+  m_Controller: {fileID: 22100000, guid: a883737b7843d4e459d31d4cb1ce962a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2926,7 +2926,7 @@ Animator:
   m_GameObject: {fileID: 5152676076783310819}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e99b52b970b37304abce4551d3766ffe, type: 2}
+  m_Controller: {fileID: 22100000, guid: 070925abccf0e6343ac6515910761037, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

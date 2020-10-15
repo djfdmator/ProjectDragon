@@ -256,6 +256,7 @@ public class Player : Character
                          
                     if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange&&!isSkillActive)
                     {
+
                         if (TempEnemy.GetComponent<Character>().HP > 0)
                         {
                             if (attackType == AttackType.LongRange && joyPad.Pressed == false&&!isSkillActive)
@@ -276,6 +277,7 @@ public class Player : Character
                                 this.CurrentState = State.Attack;
                             }
                         }
+
                     }
                     if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange&&!isSkillActive)
                     {
@@ -339,8 +341,15 @@ public class Player : Character
         ATKChanger(3);
         ATKSpeedChanger(1.0f);
         CurrentState = State.Idle;
-        AtkRangeChanger(3.5f);
-        mp= 300;
+        if (attackType == AttackType.ShortRange)
+        {
+            AtkRangeChanger(3.5f);
+        }
+        else
+        {
+            AtkRangeChanger(5.0f);
+        }
+        mp = 300;
 
         projectileTargetList.Add("Enemy");
      //  Database.Inst.playData.hp = 100.0f;

@@ -42,7 +42,7 @@ public class ShortRangeAttackArea : MonoBehaviour
     }
     private void Start()
     {
-        m_viewRadius = My_Angle.AtkRange - 2f;
+        m_viewRadius = My_Angle.AtkRange;
         attack_Pref = Resources.Load<GameObject> ("test");
     }
     public void Update()
@@ -74,6 +74,8 @@ public class ShortRangeAttackArea : MonoBehaviour
     {
         if (m_bDebugMode)
         {
+            m_viewRadius = My_Angle.AtkRange;
+
             m_horizontalViewHalfAngle = m_horizontalViewAngle * 0.5f;
 
             Vector3 originPos = transform.position;
