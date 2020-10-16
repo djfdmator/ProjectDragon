@@ -1,4 +1,6 @@
 ﻿//////////////////////////////////////////////////////////MADE BY Koo KyoSeok///2019-12-16/////////////////////////////////////////////
+//////////////////////////////////////////////////////////MODIFY BY Kim DongHa///2020-10-16/////////////////////////////////////////////
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +17,7 @@ public class LobbyManager : MonoBehaviour
     public static LobbyManager inst;
     bool isnight = true;
     GameObject particle;
-    public GameObject fireobject, playeranimation, playerimg, equipCharactor, playerStat, equipanel, optionPanel,blackBGI;
+    public GameObject fireobject, playeranimation, playerimg, equipCharactor, playerStat, equipanel, optionPanel, blackBGI;
     public AudioClip fire;
     public GameObject statpanel, equipStatPanel;
 
@@ -153,8 +155,11 @@ public class LobbyManager : MonoBehaviour
         skinScrollView = equipanel.transform.Find("ItemWindow/SkinScrollview").gameObject;
         DecompositionPanel = equipanel.transform.Find("Decompositionpanel").gameObject;
         DecompositionCountLabel = DecompositionPanel.transform.Find("DecompositionInfo/Descompositiontitle/DecompositionCountBGI/DecompositionCountLabel").gameObject;
+
+        #region OptionPanel
         optionPanel = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/OptionPanel")).gameObject;
-        blackBGI= GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/BlackBGI")).gameObject;
+        blackBGI = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/BlackBGI")).gameObject;
+        #endregion
     }
     public void ButtonSound1()
     {
@@ -213,7 +218,7 @@ public class LobbyManager : MonoBehaviour
         else
         {
         }
-        Debug.Log(Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum].name+","+Database.Inst.playData.equiWeapon_InventoryNum.ToString());
+        Debug.Log(Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum].name + "," + Database.Inst.playData.equiWeapon_InventoryNum.ToString());
         Database.Inventory item = Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum];
         Weapon.Add(euiptIcons.transform.Find("Equip1/WeaponImg").GetComponent<UISprite>());
         //euiptIcons.transform.Find("Equip1/WeaponImg").GetComponent<UISprite>().spriteName = item.imageName;
@@ -288,16 +293,16 @@ public class LobbyManager : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (particle != null)
-            {
-                Destroy(particle);
-            }
-            particle = Instantiate<GameObject>(Resources.Load<GameObject>("UI/Star_A"));
-            particle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            particle.transform.parent = GameObject.Find("UI Root/Panel").transform;
-            Vector3 wp = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1));
-            particle.transform.position = wp;
-            Destroy(particle, 0.5f);
+            //if (particle != null)
+            //{
+            //    Destroy(particle);
+            //}
+            //particle = Instantiate<GameObject>(Resources.Load<GameObject>("UI/Star_A"));
+            //particle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            //particle.transform.parent = GameObject.Find("UI Root/Panel").transform;
+            //Vector3 wp = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1));
+            //particle.transform.position = wp;
+            //Destroy(particle, 0.5f);
         }
         //터치 갯수구분
         if (Input.touchCount > 0)
@@ -305,16 +310,16 @@ public class LobbyManager : MonoBehaviour
             if (Input.touchCount.Equals(1))
             {
                 distance = -1;
-                if (particle != null)
-                {
-                    Destroy(particle);
-                }
-                particle = Instantiate<GameObject>(Resources.Load<GameObject>("UI/Star_A"));
-                particle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                particle.transform.parent = GameObject.Find("UI Root/Panel").transform;
-                Vector3 wp = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, -1));
-                particle.transform.position = wp;
-                Destroy(particle, 0.5f);
+                //if (particle != null)
+                //{
+                //    Destroy(particle);
+                //}
+                //particle = Instantiate<GameObject>(Resources.Load<GameObject>("UI/Star_A"));
+                //particle.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                //particle.transform.parent = GameObject.Find("UI Root/Panel").transform;
+                //Vector3 wp = UICamera.currentCamera.ScreenToWorldPoint(new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, -1));
+                //particle.transform.position = wp;
+                //Destroy(particle, 0.5f);
             }
             //터치가 두개일때 두개 모두 캐릭터를 터치중이라면 캐릭터 확대축소(1.0f~1.5f까지)
             else if (Input.touchCount.Equals(2))
@@ -1048,7 +1053,7 @@ public class LobbyManager : MonoBehaviour
     {
         GameManager.Inst.Loading(true);
         #region kks
-        
+
         //GameManager.Inst.PlayData.currentStage = (int)developerStageSetting + 1;
         #endregion
         //GameObject.Find()
@@ -1392,13 +1397,13 @@ public class LobbyManager : MonoBehaviour
         }
         else
         {
-            if(lobbystate.Equals(LobbyState.Decomposition))
+            if (lobbystate.Equals(LobbyState.Decomposition))
             {
                 DecompositionPanel.GetComponent<Animator>().Play("DecompositionStart");
-                for (int i=0;i<Selecteditem.Count;i++)
+                for (int i = 0; i < Selecteditem.Count; i++)
                 {
                     //GameManager.Inst.Delete_Inventory_Item(LobbyManager.inst.Selecteditem[i]);
-                    
+
                 }
                 Selecteditem.Clear();
                 DecompositionCountLabel.GetComponent<UILabel>().text = "0";
@@ -1410,9 +1415,9 @@ public class LobbyManager : MonoBehaviour
 
         }
         LobbyManager.inst.SetplayerStat();
-            UpdateAllScrollview(0);
-            GameManager.Inst.SavePlayerData();
-        
+        UpdateAllScrollview(0);
+        GameManager.Inst.SavePlayerData();
+
     }
     public void BGMValueChange(float value)
     {
