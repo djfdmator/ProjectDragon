@@ -18,7 +18,10 @@ public class FlashWhite : MonoBehaviour
     {
         render = this.GetComponent<SpriteRenderer>();
         originalMaterial = render.material;
-
+        if(effectMaterial == null)
+        {
+            effectMaterial = Resources.Load<Material>("Effect/Materials/PaintWhite");
+        }
     }
 
     public IEnumerator Flash()

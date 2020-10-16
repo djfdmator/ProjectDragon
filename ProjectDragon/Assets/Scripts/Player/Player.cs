@@ -9,10 +9,8 @@ using UnityEngine;
 public enum IsWear { None, DefaultCloth, AnimalCloth, Suit, DefultName, DefaltName2 }
 public class Player : Character
 {
-    public enum WeaponType { NormalStaff, Nereides, NormalSword = 10, Nyx, Excalibur };
-
-    //평타 및 스킬
-    public RuntimeAnimatorController[] projectileAnimator;
+    public enum WeaponType { NormalStaff, Nereides, Nyx, NormalSword = 10, Excalibur };
+    [Header ("<Player Parameter>")]
 
     [SerializeField]
     protected State myState;
@@ -78,18 +76,16 @@ public class Player : Character
     public AttackType attackType;
     public WeaponType weaponType;
 
-
-    public GameObject weaponSelection;
-    private Animator weaponAnimator;
+    //애니메이터 리소스
+    public RuntimeAnimatorController[] projectileAnimator;              //평타 및 스킬
+    //public GameObject weaponSelection;
 
     //플레이어 정지
-
     public bool StopPlayer;
     public float StopTime;
     public float StopMaxTime;
 
     //플레이어 사운드
-
     public AudioClip walk_Sound;
 
     //대각 속도
@@ -119,7 +115,7 @@ public class Player : Character
     public Transform EnemyPos { get { return m_EnemyPos; } set { m_EnemyPos = value; } }
 
     //죽었을때 패널
-    public GameObject EndPanel;
+    //public GameObject EndPanel;
 
     //적 찾기
     public RoomManager EnemyRoom;
@@ -341,7 +337,7 @@ public class Player : Character
         //원거리일때
         //attackType = AttackType.LongRange;
         //TODO: 뒤에 로비 완성되면 무기 합칠것, 스테이터스를 DB에서 받아오기
-        EndPanel.SetActive(false);
+        //EndPanel.SetActive(false);
         isWear = IsWear.DefaultCloth;
         playerSex = SEX.Female;
         initializePlayerConverter();
@@ -351,7 +347,7 @@ public class Player : Character
         CurrentState = State.Idle;
 
         //근,원거리형 세팅
-        attackType = (int)weaponType <= 10 ? AttackType.ShortRange : AttackType.LongRange;
+        attackType = (int)weaponType >= 10 ? AttackType.ShortRange : AttackType.LongRange;
         if (attackType == AttackType.ShortRange)
         {
             AtkRangeChanger(3.5f);

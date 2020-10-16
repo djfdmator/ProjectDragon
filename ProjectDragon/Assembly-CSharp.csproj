@@ -203,7 +203,6 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
-    <Compile Include="Assets\PlayerAnimControll.cs" />
     <Compile Include="Assets\RotateAround.cs" />
     <Compile Include="Assets\Scripts\A_Star\FrameChecker.cs" />
     <Compile Include="Assets\Scripts\A_Star\Heap.cs" />
@@ -257,6 +256,7 @@
     <Compile Include="Assets\Scripts\Player\JoyPad.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimControll.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSkill.cs" />
     <Compile Include="Assets\Scripts\Player\ShortRangeAttackArea.cs" />
     <Compile Include="Assets\Scripts\Player\Skill.cs" />

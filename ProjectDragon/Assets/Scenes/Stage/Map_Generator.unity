@@ -1011,6 +1011,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 465
       objectReference: {fileID: 0}
+    - target: {fileID: 1099074028, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ca20a145676494480da6d75f8116c2, type: 3}
 --- !u!1 &237628171 stripped
@@ -1064,13 +1068,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
-  mClipping: 3
-  mClipRange: {x: 0, y: -5, z: 250, w: 250}
+  mClipping: 0
+  mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 3
+  mDepth: 0
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -1106,8 +1110,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 350
-  mHeight: 350
+  mWidth: 100
+  mHeight: 100
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
@@ -1127,8 +1131,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 3072ecd2e45baf34dbbd4a4ffe252c44, type: 2}
-  mSpriteName: MiniMap_Panel
+  mAtlas: {fileID: 0}
+  mSpriteName: 
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &376345302
@@ -1182,9 +1186,9 @@ MonoBehaviour:
   map_Hiddens: []
   map_Hiddens_Count: 1
   map_Prefabs: []
-  map_Prefabs_Count: 4
-  numberOfRooms: 10
-  stair_LocalPosition: {x: 7.5, y: 3.5}
+  map_Prefabs_Count: 1
+  numberOfRooms: 15
+  stair_LocalPosition: {x: 0, y: 0}
   worldSize: {x: 6, y: 6}
 --- !u!1 &405359826 stripped
 GameObject:
@@ -1256,7 +1260,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 100
   mHeight: 100
-  mDepth: 7
+  mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1359,7 +1363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5152676075453176910}
-  lerpSpeed: 0.05
+  lerpSpeed: 1
   origin_Pos: {x: 0, y: 0, z: 0}
   isShake: 0
   following: 1
@@ -1500,19 +1504,19 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 120
-  mHeight: 20
-  mDepth: 101
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6
+  aspectRatio: 1
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 0}
-  mText: New Label
-  mFontSize: 100
+  mText: 
+  mFontSize: 16
   mFontStyle: 0
   mAlignment: 0
   mEncoding: 1
@@ -1522,7 +1526,7 @@ MonoBehaviour:
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
   mOverflow: 0
-  mApplyGradient: 1
+  mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   mSpacingX: 0
@@ -2278,8 +2282,8 @@ MonoBehaviour:
   inited: 0
   isplayskill: 0
   damage: 0
-  angle: 300
-  speed: 100
+  angle: 0
+  speed: 0
   lifetime: 0
   generationtime: 0
   targetpointrangex: 0
@@ -2584,7 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b4a8e9a6e59f04f9974af7fdc7582f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: TestSkill
   player: {fileID: 0}
   playerChar: {fileID: 0}
   StopPlayer: 0
@@ -2730,8 +2734,8 @@ MonoBehaviour:
   angle: 0
   m_bDebugMode: 1
   m_horizontalViewAngle: 120
-  m_viewRadius: -1.27
-  m_viewRotateZ: 70
+  m_viewRadius: 1.6700001
+  m_viewRotateZ: 0
   m_viewTargetMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2799,8 +2803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986d2daa64f9d5f479fb7f56b7238655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon_Num: 0
-  myAttackType: 1
+  bodyAnimator: []
+  weaponAnimator: []
+  armAnimator: []
   myState: 0
 --- !u!114 &5152676075970907308
 MonoBehaviour:
@@ -2817,11 +2822,11 @@ MonoBehaviour:
   currentHp: 0
   hp: 0
   moveSpeed: 0
-  atk: 3
+  atk: 0
   nuckBack: 0
   maxHp: 0
   atkSpeed: 0
-  atkRange: 0.73
+  atkRange: 3.67
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
@@ -2835,10 +2840,6 @@ MonoBehaviour:
   enemy_angle: 0
   myAttackType: 0
   myAnim_AnglePos: 0
-  projectileAnimator:
-  - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
-  - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
-  - {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
   myState: 0
   playerSkill: {fileID: 0}
   damaged_flash: {fileID: 0}
@@ -2854,8 +2855,11 @@ MonoBehaviour:
   sex: 0
   isWear: 0
   attackType: 3
-  weaponType: 0
-  weaponSelection: {fileID: 0}
+  weaponType: 10
+  projectileAnimator:
+  - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
+  - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
+  - {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
   StopPlayer: 0
   StopTime: 0
   StopMaxTime: 0
@@ -2872,12 +2876,11 @@ MonoBehaviour:
   v: 0
   isInvaid: 0
   isCriticalHit: 0
-  EndPanel: {fileID: 405359826}
   EnemyRoom: {fileID: 0}
   Enemy: []
   EnemyArray: []
   TempEnemy: {fileID: 0}
-  mp: 0
+  mp: 100
   maxMp: 100
 --- !u!95 &5152676075970907310
 Animator:
@@ -2889,7 +2892,7 @@ Animator:
   m_GameObject: {fileID: 5152676075970907296}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 6da99120f8bda5441bac3f2d12f74add, type: 2}
+  m_Controller: {fileID: 9100000, guid: 996a84d5f4ce59f41bd70bd996455c8c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2956,7 +2959,7 @@ Animator:
   m_GameObject: {fileID: 5152676076262238046}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: a883737b7843d4e459d31d4cb1ce962a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 571df5ce4d9f98a428f0627bdfde7f8a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3089,7 +3092,7 @@ Animator:
   m_GameObject: {fileID: 5152676076783310819}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 070925abccf0e6343ac6515910761037, type: 2}
+  m_Controller: {fileID: 9100000, guid: 08d494b6d0fd8a0478134b679ded4a7b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3135,7 +3138,7 @@ SpriteRenderer:
   m_SortingLayerID: 1672498235
   m_SortingLayer: 2
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: cc6f6bddd263aa142b0e2ddfb79bebcc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 486a8ffd12484c54daa35de84fa22218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3498,9 +3501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b9b80f6ec6a254d850881eaf490d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.2
+  delay: 0.1
   originalMaterial: {fileID: 0}
-  effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
+  effectMaterial: {fileID: 0}
 --- !u!1 &6987401628514747508
 GameObject:
   m_ObjectHideFlags: 0
@@ -3592,9 +3595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b9b80f6ec6a254d850881eaf490d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.2
+  delay: 0.1
   originalMaterial: {fileID: 0}
-  effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
+  effectMaterial: {fileID: 0}
 --- !u!114 &6987401628720431460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,9 +3610,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b9b80f6ec6a254d850881eaf490d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.2
+  delay: 0.1
   originalMaterial: {fileID: 0}
-  effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
+  effectMaterial: {fileID: 0}
 --- !u!114 &7516707619375192124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3623,8 +3626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolItemName: TargetPoint
-  projecTileReady: 1
-  projecTileStart: 1
-  projecTileEnd: 1
+  projecTileReady: 0
+  projecTileStart: 0
+  projecTileEnd: 0
   targetObject: {fileID: 0}
   tagsString: []
