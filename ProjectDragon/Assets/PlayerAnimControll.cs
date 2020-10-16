@@ -9,14 +9,12 @@ public class PlayerAnimControll : MonoBehaviour
     private Animator anim_Arm;
     private Animator anim_Weapon;
 
-    public int Weapon_Num;
-
     // 애니메이터 Angle 제어
     private float Angle;
 
 
     // 해당 공격 타입 관련으로 세팅
-    public AttackType myAttackType;
+    private AttackType myAttackType;
     public AttackType CurrentAttackType
     {
         get { return myAttackType; }
@@ -57,15 +55,19 @@ public class PlayerAnimControll : MonoBehaviour
         Angle = 0;
         anim_Body = GetComponent<Animator>();
         anim_Arm = gameObject.transform.Find("Arm").GetComponent<Animator>();
-
         anim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
 
 
+    }
+
+    private void Start()
+    {
+        CurrentAttackType = GetComponent<Player>().attackType;
+        GetComponent<Player>().weaponType 
         anim_Body.speed = 1f;
         anim_Arm.speed = 1f;
         anim_Weapon.speed = 1f;
-
-        CurrentAttackType = GetComponent<Player>().attackType;
+        
     }
 
     public string ChangeState(State state)

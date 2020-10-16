@@ -71,33 +71,19 @@ public class PlayerSkill : MonoBehaviour
         My_skill_ring.enabled = false;
     }
     public void OnClick()
-    { SoundManager.Inst.Ds_EffectPlayerDB(12);
+    {
+        SoundManager.Inst.Ds_EffectPlayerDB(12);
         if (My_Player.mp / 10 > 0)
         {
             My_Player.isSkillActive = true;
-            float _swordAttackangle = My_Player.enemy_angle;
-            if(My_Player.EnemyArray.Count ==0)
-            {
-               _swordAttackangle =My_Player.current_angle;
-            }
+            
             My_Player.MPChanged(5);
 
-            
-            if(My_Player.attackType==AttackType.ShortRange)
-            {
-                 //Create Projectile 
-                 Vector2 offset = new Vector2(0.0f, 0.0f);
-                  float radius = 0.2f;
-                  projectile.Create(My_Player.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 17, My_Player.projectileAnimator[0], "ProjectileObj", true, My_Player.transform.position);
-            }
-            else if (My_Player.attackType == AttackType.LongRange)
-            {
-                 Vector2 offset = new Vector2(0.0f, 0.5f);
-                pointProjectile .Create(My_Player.projectileTargetList,offset,0.7f,17,My_Player.projectileAnimator[1],"TargetPoint", My_Player.TempEnemy.transform.position);
-                //Create Projectile 
-                //projectile.Create(My_Player.projectileTargetList, offset, 0.2f, _swordAttackangle, 3.0f, 10, My_Player.projectileAnimator[1], "ProjectileObj", true, My_Player.transform.position);
-            }
-                Debug.Log("skill!! ");
+            //Create skill Projectile
+            CreateProjectile(My_Player.weaponType);
+
+
+            Debug.Log("skill!! ");
             co = CoolTime(3);
             sk = SkillDamaged();
             StartCoroutine(sk);
@@ -106,6 +92,42 @@ public class PlayerSkill : MonoBehaviour
         else
         {
             gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
+    private void CreateProjectile(Player.WeaponType type)
+    {
+        //투사체 앵글 변수
+        float attackAngle = (My_Player.EnemyArray.Count == 0) ? My_Player.current_angle : My_Player.enemy_angle;
+
+        switch (type)
+        {
+            case Player.WeaponType.NormalStaff:
+                break;
+            case Player.WeaponType.Nereides:
+                break;
+            case Player.WeaponType.NormalSword:
+                break;
+            case Player.WeaponType.Nyx:
+                break;
+            case Player.WeaponType.Excalibur:
+                break;
+            default:
+                break;
+        }
+        if (My_Player.attackType == AttackType.ShortRange)
+        {
+            //Create Projectile 
+            Vector2 offset = new Vector2(0.0f, 0.0f);
+            float radius = 0.2f;
+            projectile.Create(My_Player.projectileTargetList, offset, radius, attackAngle, 3.0f, 17, My_Player.projectileAnimator[0], "ProjectileObj", true, My_Player.transform.position);
+        }
+        else if (My_Player.attackType == AttackType.LongRange)
+        {
+            Vector2 offset = new Vector2(0.0f, 0.5f);
+            pointProjectile.Create(My_Player.projectileTargetList, offset, 0.7f, 17, My_Player.projectileAnimator[1], "TargetPoint", My_Player.TempEnemy.transform.position);
+            //Create Projectile 
+            //projectile.Create(My_Player.projectileTargetList, offset, 0.2f, _swordAttackangle, 3.0f, 10, My_Player.projectileAnimator[1], "ProjectileObj", true, My_Player.transform.position);
         }
     }
     // 눌렀을때, 유지햇을때 스킬 발싸
@@ -129,6 +151,8 @@ public class PlayerSkill : MonoBehaviour
         StartCoroutine(co);
         yield return new WaitForSeconds(0.2f);
         skill.gameObject.SetActive(false);
+
+        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+skill.gameObject.name);
     }
     void MPControll()
     {

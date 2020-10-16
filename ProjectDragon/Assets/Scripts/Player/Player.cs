@@ -9,8 +9,9 @@ using UnityEngine;
 public enum IsWear { None, DefaultCloth, AnimalCloth, Suit, DefultName, DefaltName2 }
 public class Player : Character
 {
+    public enum WeaponType { NormalStaff, Nereides, NormalSword = 10, Nyx, Excalibur };
+
     //평타 및 스킬
-    
     public RuntimeAnimatorController[] projectileAnimator;
 
     [SerializeField]
@@ -75,6 +76,7 @@ public class Player : Character
     public SEX sex;
     public IsWear isWear;
     public AttackType attackType;
+    public WeaponType weaponType;
 
 
     public GameObject weaponSelection;
@@ -347,6 +349,9 @@ public class Player : Character
         ATKChanger(3);
         ATKSpeedChanger(1.0f);
         CurrentState = State.Idle;
+
+        //근,원거리형 세팅
+        attackType = (int)weaponType <= 10 ? AttackType.ShortRange : AttackType.LongRange;
         if (attackType == AttackType.ShortRange)
         {
             AtkRangeChanger(3.5f);

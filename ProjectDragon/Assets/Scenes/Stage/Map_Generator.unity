@@ -2778,7 +2778,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 1.1}
+    oldSize: {x: 1.1, y: 1.1}
     newSize: {x: 1.2, y: 1.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2853,7 +2853,8 @@ MonoBehaviour:
   AngleisAttack: 0
   sex: 0
   isWear: 0
-  attackType: 1
+  attackType: 3
+  weaponType: 0
   weaponSelection: {fileID: 0}
   StopPlayer: 0
   StopTime: 0
@@ -2888,7 +2889,7 @@ Animator:
   m_GameObject: {fileID: 5152676075970907296}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 699142cd61bd4984191d32caca6cd7c0, type: 2}
+  m_Controller: {fileID: 22100000, guid: 6da99120f8bda5441bac3f2d12f74add, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2934,7 +2935,7 @@ SpriteRenderer:
   m_SortingLayerID: 1672498235
   m_SortingLayer: 2
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 20dcb6043bfc8bf42b1928396817f475, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5bef588ce22850f4eba9f05267139f6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2955,7 +2956,7 @@ Animator:
   m_GameObject: {fileID: 5152676076262238046}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3c11d95815778a4db10f311581eb326, type: 2}
+  m_Controller: {fileID: 22100000, guid: a883737b7843d4e459d31d4cb1ce962a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3088,7 +3089,7 @@ Animator:
   m_GameObject: {fileID: 5152676076783310819}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2671b852a5056df4fa5eb93f2ddd0c10, type: 2}
+  m_Controller: {fileID: 22100000, guid: 070925abccf0e6343ac6515910761037, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
