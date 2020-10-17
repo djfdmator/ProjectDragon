@@ -2,24 +2,26 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerAnimControll : MonoBehaviour
 {
     //애니메이터 리소스
-    public List<RuntimeAnimatorController> bodyAnimator = new List<RuntimeAnimatorController>();       //무기 종류에따라
-    public List<RuntimeAnimatorController> weaponAnimator = new List<RuntimeAnimatorController>();     //무기 종류에따라
-    public List<RuntimeAnimatorController> armAnimator= new List<RuntimeAnimatorController>();         //무기 타입에따라
+    //private List<RuntimeAnimatorController> bodyAnimator = new List<RuntimeAnimatorController>();       //무기 종류에따라
+    //private List<RuntimeAnimatorController> weaponAnimator = new List<RuntimeAnimatorController>();     //무기 종류에따라
+    //private List<RuntimeAnimatorController> armAnimator= new List<RuntimeAnimatorController>();         //무기 타입에따라
 
-    public readonly Dictionary<Player.WeaponType, RuntimeAnimatorController> _bodyAnimator = new Dictionary<Player.WeaponType, RuntimeAnimatorController>();             //무기 종류에따라
-    public readonly Dictionary<Player.WeaponType, RuntimeAnimatorController> _weaponAnimator = new Dictionary<Player.WeaponType, RuntimeAnimatorController>();         //무기 종류에따라
-    public readonly Dictionary<AttackType ,RuntimeAnimatorController> _armAnimator = new Dictionary<AttackType, RuntimeAnimatorController>();                          //무기 타입에따라
+    private Dictionary<Player.WeaponType, RuntimeAnimatorController> _bodyAnimators = new Dictionary<Player.WeaponType, RuntimeAnimatorController>();             //무기 종류에따라
+    private Dictionary<Player.WeaponType, RuntimeAnimatorController> _weaponAnimators = new Dictionary<Player.WeaponType, RuntimeAnimatorController>();         //무기 종류에따라
+    private Dictionary<AttackType ,RuntimeAnimatorController> _armAnimators = new Dictionary<AttackType, RuntimeAnimatorController>();                          //무기 타입에따라
 
 
     // 선택한 애니메이터
-    private Animator anim_Body;
-    private Animator anim_Arm;
-    private Animator anim_Weapon;
+    [SerializeField] private Animator curAnimBody;
+    [SerializeField] private Animator curAnim_Arm;
+    [SerializeField] private Animator curAnim_Weapon;
+
     private Player player;
 
     // 애니메이터 Angle 제어
@@ -45,54 +47,96 @@ public class PlayerAnimControll : MonoBehaviour
         get { return myState; }
         set
         {
-            //anim_Arm.speed = 0.1f;
-            //anim_Weapon.speed = 0.1f;
+            //curAnim_Arm.speed = 0.1f;
+            //curAnim_Weapon.speed = 0.1f;
 
             State m_State = State.Idle;
             for (int i = 1; i <= State.Hit.GetHashCode(); i++)
             {
-                anim_Body.SetBool(ChangeState(m_State), false);
-                anim_Arm.SetBool(ChangeState(m_State), false);
-                anim_Weapon.SetBool(ChangeState(m_State), false);
+                curAnimBody.SetBool(ChangeState(m_State), false);
+                curAnim_Arm.SetBool(ChangeState(m_State), false);
+                curAnim_Weapon.SetBool(ChangeState(m_State), false);
                 m_State++;
             }
             myState = value;
-            anim_Body.SetBool(ChangeState(myState), true);
-            anim_Arm.SetBool(ChangeState(myState), true);
-            anim_Weapon.SetBool(ChangeState(myState), true);
+            curAnimBody.SetBool(ChangeState(myState), true);
+            curAnim_Arm.SetBool(ChangeState(myState), true);
+            curAnim_Weapon.SetBool(ChangeState(myState), true);
         }
     }
 
     private void Awake()
     {
         Angle = 0;
-        anim_Body = GetComponent<Animator>();
-        anim_Arm = gameObject.transform.Find("Arm").GetComponent<Animator>();
-        anim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
+        curAnimBody = GetComponent<Animator>();
+        curAnim_Arm = gameObject.transform.Find("Arm").GetComponent<Animator>();
+        curAnim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
         player = GetComponent<Player>();
 
 
-
-        object[] animator = Resources.LoadAll<RuntimeAnimatorController>("Animation/Player/");
-        foreach(RuntimeAnimatorController anim in animator)
-        {
-            Debug.Log(anim.name);
-        }
+        LoadAnimator();
+       
     }
 
     private void Start()
     {
-        CurrentAttackType = GetComponent<Player>().attackType;
+        //CurrentAttackType = GetComponent<Player>().attackType;
         //GetComponent<Player>().weaponType 
-        anim_Body.speed = 1f;
-        anim_Arm.speed = 1f;
-        anim_Weapon.speed = 1f;
+
+        SettingAnimator(player.weaponType, player.attackType);
+
+        curAnimBody.speed = 1f;
+        curAnim_Arm.speed = 1f;
+        curAnim_Weapon.speed = 1f;
         
     }
     private void OnDestroy()
     {
-        bodyAnimator.Clear();
+        _bodyAnimators.Clear();
+        _weaponAnimators.Clear();
+        _armAnimators.Clear();
     }
+
+    private void LoadAnimator()
+    {
+        object[] animator = Resources.LoadAll<RuntimeAnimatorController>("Animation/Player/");
+        foreach (RuntimeAnimatorController anim in animator)
+        {
+            string t = anim.name.Split('_')[1];
+            if (t.Equals("Weapon"))
+            {
+                Player.WeaponType type = (Player.WeaponType)Enum.Parse(typeof(Player.WeaponType),anim.name.Split('_')[3]);
+                _weaponAnimators.Add(type,anim);
+            }
+            else if(t.Equals("Body"))
+            {
+                Player.WeaponType type = (Player.WeaponType)Enum.Parse(typeof(Player.WeaponType), anim.name.Split('_')[3]);
+                _bodyAnimators.Add(type, anim);
+            }
+            else
+            {
+                AttackType type = (AttackType)Enum.Parse(typeof(AttackType), anim.name.Split('_')[2]);
+                _armAnimators.Add(type, anim);
+            }
+        }
+        foreach(KeyValuePair<Player.WeaponType, RuntimeAnimatorController> pair in _weaponAnimators)
+        {
+            Debug.Log(pair.Key, pair.Value);
+        }
+    }
+
+    /// <summary>
+    /// 현재 캐릭터의 무기와 공격타입에 맞추어 애니메이터 세팅
+    /// </summary>
+    /// <param name="weapon"></param>
+    /// <param name="attack"></param>
+    private void SettingAnimator(Player.WeaponType weapon, AttackType attack)
+    {
+        curAnimBody.runtimeAnimatorController = _bodyAnimators[weapon];
+        curAnim_Weapon.runtimeAnimatorController = _weaponAnimators[weapon];
+        curAnim_Arm.runtimeAnimatorController = _armAnimators[attack];
+    }
+
     public string ChangeState(State state)
     {
         return "is" + state.ToString();
@@ -106,10 +150,11 @@ public class PlayerAnimControll : MonoBehaviour
     public void ChangeAngleAnim(float angle)
     {
         Angle = angle;
-        anim_Body.SetFloat("Angle", Angle);
-        anim_Arm.SetFloat("Angle", Angle);
-        anim_Weapon.SetFloat("Angle", Angle);
+        curAnimBody.SetFloat("Angle", Angle);
+        curAnim_Arm.SetFloat("Angle", Angle);
+        curAnim_Weapon.SetFloat("Angle", Angle);
     }
+
 #if UNITY_EDITOR
     // Update is called once per frame
     // 데모 체커
@@ -145,26 +190,26 @@ public class PlayerAnimControll : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Angle = 180;
-            anim_Body.SetFloat("Angle", Angle);
-            anim_Arm.SetFloat("Angle", Angle);
+            curAnimBody.SetFloat("Angle", Angle);
+            curAnim_Arm.SetFloat("Angle", Angle);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
             Angle = 0;
-            anim_Body.SetFloat("Angle", Angle);
-            anim_Arm.SetFloat("Angle", Angle);
+            curAnimBody.SetFloat("Angle", Angle);
+            curAnim_Arm.SetFloat("Angle", Angle);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             Angle = 90;
-            anim_Body.SetFloat("Angle", Angle);
-            anim_Arm.SetFloat("Angle", Angle);
+            curAnimBody.SetFloat("Angle", Angle);
+            curAnim_Arm.SetFloat("Angle", Angle);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             Angle = 270;
-            anim_Body.SetFloat("Angle", Angle);
-            anim_Arm.SetFloat("Angle", Angle);
+            curAnimBody.SetFloat("Angle", Angle);
+            curAnim_Arm.SetFloat("Angle", Angle);
         }
     }
 #endif

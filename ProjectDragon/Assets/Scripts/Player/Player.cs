@@ -347,7 +347,7 @@ public class Player : Character
         CurrentState = State.Idle;
 
         //근,원거리형 세팅
-        attackType = (int)weaponType >= 10 ? AttackType.ShortRange : AttackType.LongRange;
+        attackType = weaponType.GetHashCode() >= 10 ? AttackType.ShortRange : AttackType.LongRange;
         if (attackType == AttackType.ShortRange)
         {
             AtkRangeChanger(3.5f);

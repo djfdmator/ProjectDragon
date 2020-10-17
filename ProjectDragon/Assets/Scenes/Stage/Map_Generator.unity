@@ -2320,7 +2320,7 @@ Animator:
   m_GameObject: {fileID: 123135849722319581}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: c279af507738f40429e7fff384e8e9c3, type: 2}
+  m_Controller: {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2803,9 +2803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986d2daa64f9d5f479fb7f56b7238655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyAnimator: []
-  weaponAnimator: []
-  armAnimator: []
+  curAnimBody: {fileID: 0}
+  curAnim_Arm: {fileID: 0}
+  curAnim_Weapon: {fileID: 0}
   myState: 0
 --- !u!114 &5152676075970907308
 MonoBehaviour:
@@ -2855,7 +2855,7 @@ MonoBehaviour:
   sex: 0
   isWear: 0
   attackType: 3
-  weaponType: 10
+  weaponType: 2
   projectileAnimator:
   - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
   - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
@@ -2892,7 +2892,7 @@ Animator:
   m_GameObject: {fileID: 5152676075970907296}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 996a84d5f4ce59f41bd70bd996455c8c, type: 2}
+  m_Controller: {fileID: 22100000, guid: dd598bbd61ff57148b3c6d21451f201c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2959,7 +2959,7 @@ Animator:
   m_GameObject: {fileID: 5152676076262238046}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 571df5ce4d9f98a428f0627bdfde7f8a, type: 2}
+  m_Controller: {fileID: 9100000, guid: a3c11d95815778a4db10f311581eb326, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3092,7 +3092,7 @@ Animator:
   m_GameObject: {fileID: 5152676076783310819}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08d494b6d0fd8a0478134b679ded4a7b, type: 2}
+  m_Controller: {fileID: 22100000, guid: e280e0bcf7d32f14c8fdc7bc0c8e5910, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3381,7 +3381,7 @@ Animator:
   m_GameObject: {fileID: 6938547653313842358}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
+  m_Controller: {fileID: 22100000, guid: 9ab39a4ac68d8034f962f1bd7c86574e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3626,8 +3626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolItemName: TargetPoint
-  projecTileReady: 0
-  projecTileStart: 0
-  projecTileEnd: 0
+  projecTileReady: 1
+  projecTileStart: 1
+  projecTileEnd: 1
   targetObject: {fileID: 0}
   tagsString: []

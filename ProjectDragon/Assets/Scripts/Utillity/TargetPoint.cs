@@ -13,7 +13,7 @@ using UnityEngine;
 public class TargetPoint : MonoBehaviour
 {
     public string poolItemName = "TargetPoint";
-    public float projecTileReady, projecTileStart, projecTileEnd;
+    public float projecTileReady =1, projecTileStart=1, projecTileEnd=1;
     TargetPoint thornPoint;
     int attackDamage = 0;
 
