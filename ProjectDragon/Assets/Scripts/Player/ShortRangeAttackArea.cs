@@ -180,16 +180,27 @@ public class ShortRangeAttackArea : MonoBehaviour
     public void RongAttack_normal()
     {
         float _swordAttackangle = My_Angle.enemy_angle;
-            if(My_Angle.EnemyArray.Count ==0)
-            {
-               _swordAttackangle =My_Angle.current_angle;
-            }
+        if (My_Angle.EnemyArray.Count == 0)
+        {
+            _swordAttackangle = My_Angle.current_angle;
+        }
         Vector2 offset = new Vector2(0.0f, 0.0f);
         float radius = 0.5f;
 
         //수정 예정  projectileTargetList를 데이터베이스에서 이넘으로 받아서 실행할것
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10,  My_Angle.projectileAnimator[2], "ProjectileObj", false, My_Angle.transform.position);
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        if (My_Angle.weaponType == Player.WeaponType.NormalStaff)
+        {
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Angle.projectileAnimator[2], "ProjectileObj", true, My_Angle.transform.position);
+        }
+        else if (My_Angle.weaponType == Player.WeaponType.Nyx)
+        {
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Angle.projectileAnimator[4], "ProjectileObj", true, My_Angle.transform.position);
+        }
+        else if (My_Angle.weaponType == Player.WeaponType.Nereides)
+        {
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Angle.projectileAnimator[6], "ProjectileObj", true, My_Angle.transform.position);
+        }
     }
     public void AttackCoolDown()
     {

@@ -2320,7 +2320,7 @@ Animator:
   m_GameObject: {fileID: 123135849722319581}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
+  m_Controller: {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2855,11 +2855,15 @@ MonoBehaviour:
   sex: 0
   isWear: 0
   attackType: 3
-  weaponType: 2
+  weaponType: 1
   projectileAnimator:
   - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
   - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
   - {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
+  - {fileID: 22100000, guid: 9ab39a4ac68d8034f962f1bd7c86574e, type: 2}
+  - {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
+  - {fileID: 22100000, guid: 24d5e56dbb44a8649bf710d44d096a2b, type: 2}
+  - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
   StopPlayer: 0
   StopTime: 0
   StopMaxTime: 0
@@ -2892,7 +2896,7 @@ Animator:
   m_GameObject: {fileID: 5152676075970907296}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: dd598bbd61ff57148b3c6d21451f201c, type: 2}
+  m_Controller: {fileID: 22100000, guid: 699142cd61bd4984191d32caca6cd7c0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

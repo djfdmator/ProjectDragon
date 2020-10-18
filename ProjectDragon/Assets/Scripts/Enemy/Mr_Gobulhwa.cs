@@ -12,11 +12,10 @@ using UnityEngine;
 
 public class Mr_Gobulhwa : FSM_NormalEnemy
 {
-
-    CircleCollider2D circleCol;
+    private CircleCollider2D circleCol;
 
     //object
-    Projectile projectile;
+    private Projectile projectile;
     public RuntimeAnimatorController projectileAnimator;
 
     protected override void Awake()

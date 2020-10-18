@@ -125,15 +125,11 @@ public class Enemy : Monster
     public override void Dead()
     {
         base.Dead();
-        StartCoroutine(EnemyDead());
-    }
 
-    protected virtual IEnumerator EnemyDead()
-    {
-        if(objectAnimator.GetBool("objectAnimator"))
+        if (objectAnimator.GetBool("objectAnimator"))
         {
-        objectAnimator.SetBool("IsDead", true);
-        Debug.Log("IsDead is true");
+            objectAnimator.SetBool("IsDead", true);
+            Debug.Log("IsDead is true");
         }
         //Dead Animation parameters
         objectAnimator.SetTrigger("Dead");
@@ -143,10 +139,31 @@ public class Enemy : Monster
 
         Destroy(gameObject, 5.0f);
 
-        yield return null;
+        //StartCoroutine(EnemyDead());
     }
 
+    #region 이전버전 Dead
+    //protected virtual IEnumerator EnemyDead()
+    //{
+    //    if(objectAnimator.GetBool("objectAnimator"))
+    //    {
+    //        objectAnimator.SetBool("IsDead", true);
+    //        Debug.Log("IsDead is true");
+    //    }
+    //    //Dead Animation parameters
+    //    objectAnimator.SetTrigger("Dead");
+
+
+    //    col.enabled = false;
+
+    //    Destroy(gameObject, 5.0f);
+
+    //    yield return null;
+    //}
+
     //raycast
+    #endregion
+
     protected IEnumerator AttackRangeCheck()
     {
         //살아있을때만 raycast 체크

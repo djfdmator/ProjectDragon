@@ -32,11 +32,11 @@ public class Player : Character
         {
             myState = value;
             SetState(myState);
-           
+
             //Anim
             GetComponent<PlayerAnimControll>().CurrentState = myState;
 
-            if (isActive && (AngleisAttack || isSkillActive))
+            if (isActive && (AngleisAttack || isSkillActive))       //angle
             {
                 GetComponent<PlayerAnimControll>().ChangeAngleAnim(enemy_angle);
             }
@@ -219,6 +219,7 @@ public class Player : Character
     {
         base.Dead();
         GetComponent<BoxCollider2D>().enabled = false;
+        rigidbody2d.velocity = Vector2.zero;
         Debug.Log("BoxCollider2D enable false");
     }
 
@@ -375,39 +376,42 @@ public class Player : Character
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isSkillActive)
+        if (!isDead)
         {
-            float A = current_angle;
-            current_angle = A;
-            CurrentState = State.Skill;
-        }
-        else
-        {
-            current_angle = joyPad.angle;
-        }
-        //CheckAngleLabel.text = current_angle.ToString();
-        myPos = gameObject.transform.position;
-        joystickPos = joypadinput.GetComponent<JoyPad>().position;
-        //joystick
-        h = joystickPos.x;
-        v = joystickPos.y;
-
-        //Make Right direction by Set Animatoion bool setting
-        if (!StopPlayer.Equals(true))
-        {
-            rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
-            ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
-
-            //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
-        }
-        if (StopPlayer.Equals(true))
-        {
-            rigidbody2d.velocity = new Vector2(0f, 0f);
-            StopTime += Time.deltaTime;
-            if (StopTime >= StopMaxTime)
+            if (isSkillActive)
             {
-                //   StopPlayer = false;
-                StopTime = 0;
+                float A = current_angle;
+                current_angle = A;
+                CurrentState = State.Skill;
+            }
+            else
+            {
+                current_angle = joyPad.angle;
+            }
+            //CheckAngleLabel.text = current_angle.ToString();
+            myPos = gameObject.transform.position;
+            joystickPos = joypadinput.GetComponent<JoyPad>().position;
+            //joystick
+            h = joystickPos.x;
+            v = joystickPos.y;
+
+            //Make Right direction by Set Animatoion bool setting
+            if (!StopPlayer.Equals(true))
+            {
+                rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
+                ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
+
+                //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
+            }
+            if (StopPlayer.Equals(true))
+            {
+                rigidbody2d.velocity = new Vector2(0f, 0f);
+                StopTime += Time.deltaTime;
+                if (StopTime >= StopMaxTime)
+                {
+                    //   StopPlayer = false;
+                    StopTime = 0;
+                }
             }
         }
 

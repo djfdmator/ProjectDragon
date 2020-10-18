@@ -14,7 +14,8 @@ public class Doldori : FSM_NormalEnemy
     Vector3 attackDirection;
     IEnumerator AttackEndCor = null;
 
-[SerializeField] float attackSpeed=0.2f;
+    [SerializeField] float attackSpeed=0.2f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,10 +34,6 @@ public class Doldori : FSM_NormalEnemy
     protected override void Start()
     {
         base.Start();
-    }
-    void Update()
-    {
-       
     }
 
     public void Attack_On()
@@ -106,7 +103,7 @@ public class Doldori : FSM_NormalEnemy
                 if(collision.gameObject.GetComponent<MapObject>() !=null)
                 {
                     collision.gameObject.GetComponent<MapObject>().HpChanged(50);
-                    if( collision.gameObject.GetComponent<Box>() != null)
+                    if( collision.gameObject.GetComponent<Box>() != null)       //박스는 뚫고 가기
                     {
                         return;
                     }
@@ -116,6 +113,17 @@ public class Doldori : FSM_NormalEnemy
             }
         }
     }
+
+    public override void Dead()
+    {
+        //돌진하다 죽었을때 예외처리
+        isAttacking = false;
+        invincible = false;
+        rb2d.velocity = Vector2.zero;
+
+        base.Dead();
+    }
+
     //부모함수 부르지않기 위해서 (지우면안됨)
     protected override void OnCollisionExit2D(Collision2D collision)
     {

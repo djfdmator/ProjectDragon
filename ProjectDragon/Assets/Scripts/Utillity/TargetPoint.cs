@@ -71,7 +71,6 @@ public class TargetPoint : MonoBehaviour
 
     public TargetPoint Create(List<string> tagsStringList , Vector2 colOffset, float colRadius, int _damage, RuntimeAnimatorController _Animator, string poolItemName, Vector3 position, Transform parent = null)
     {
-
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, parent);
         thornPoint = projectileObject.transform.GetComponent<TargetPoint>();
         thornPoint.attackDamage = _damage;
