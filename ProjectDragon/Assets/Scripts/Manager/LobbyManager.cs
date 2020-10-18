@@ -17,9 +17,11 @@ public class LobbyManager : MonoBehaviour
     public static LobbyManager inst;
     bool isnight = true;
     GameObject particle;
-    public GameObject fireobject, playeranimation, playerimg, equipCharactor, playerStat, equipanel, optionPanel, blackBGI;
+    public GameObject fireobject, playeranimation, playerimg, equipCharactor, playerStat, equipanel;
     public AudioClip fire;
     public GameObject statpanel, equipStatPanel;
+
+    public OptionWindow optionWindow = null;
 
     public StageName developerStageSetting;
 
@@ -157,10 +159,12 @@ public class LobbyManager : MonoBehaviour
         DecompositionCountLabel = DecompositionPanel.transform.Find("DecompositionInfo/Descompositiontitle/DecompositionCountBGI/DecompositionCountLabel").gameObject;
 
         #region OptionPanel
-        optionPanel = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/OptionPanel")).gameObject;
-        blackBGI = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/BlackBGI")).gameObject;
+        if (optionWindow == null) optionWindow = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("PopupWindow/OptionWindow")).GetComponent<OptionWindow>();
+        //optionPanel = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/OptionPanel")).gameObject;
+        //blackBGI = GameObject.Find(string.Format("UI Root")).transform.Find(string.Format("QuitPanel/BlackBGI")).gameObject;
+        optionWindow.gameObject.SetActive(false);
         #endregion
-    }
+    } 
     public void ButtonSound1()
     {
         SoundManager.Inst.Ds_EffectPlayerDB(1);
@@ -389,12 +393,9 @@ public class LobbyManager : MonoBehaviour
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
     }
 
-    public void OptionPanel()
+    public void OptionButton()
     {
-        blackBGI.SetActive(true);
-        optionPanel.SetActive(true);
-        optionPanel.transform.Find("settingBGI/BGMSetting/SoundSlider").GetComponent<UISlider>().value = SoundManager.Inst.Ds_BGMvolumeRange;
-        optionPanel.transform.Find("settingBGI/SFXSetting/SoundSlider").GetComponent<UISlider>().value = SoundManager.Inst.Ds_SFXvolumeRange;
+        optionWindow.OpenOptionWindow();
     }
     /// <summary>
     /// 초기 스텟판넬의 움직임위치 조정(해상도마다 조정필요)
@@ -603,11 +604,11 @@ public class LobbyManager : MonoBehaviour
     /// <summary>
     /// 현재 종료확인장면임을 푸시 및 초기화
     /// </summary>
-    public void QuitState()
-    {
-        GameManager.Inst.Scenestack.Push("Quit");
-        GameObject.Find("UI Root/QuitPanel").transform.Find("QuitBGI").gameObject.SetActive(true);
-    }
+    //public void QuitState()
+    //{
+    //    GameManager.Inst.Scenestack.Push("Quit");
+    //    GameObject.Find("UI Root/QuitPanel").transform.Find("QuitBGI").gameObject.SetActive(true);
+    //}
     /// <summary>
     /// 분해 화면임을 푸시 및 초기화
     /// </summary>
@@ -646,10 +647,10 @@ public class LobbyManager : MonoBehaviour
     /// <summary>
     /// 어플리케이션 종료
     /// </summary>
-    public void QuitApplication()
-    {
-        ButtonManager.GameQuit();
-    }
+    //public void QuitApplication()
+    //{
+    //    ButtonManager.GameQuit();
+    //}
     //public void EnchantJamCountMinus()
     //{
     //    if (enchantJam > 0)
@@ -1419,12 +1420,12 @@ public class LobbyManager : MonoBehaviour
         GameManager.Inst.SavePlayerData();
 
     }
-    public void BGMValueChange(float value)
-    {
-        SoundManager.Inst.Ds_BGMSoundController(value);
-    }
-    public void SFXValueChange(float value)
-    {
-        SoundManager.Inst.Ds_SFXSoundController(value);
-    }
+    //public void BGMValueChange(float value)
+    //{
+    //    SoundManager.Inst.Ds_BGMSoundController(value);
+    //}
+    //public void SFXValueChange(float value)
+    //{
+    //    SoundManager.Inst.Ds_SFXSoundController(value);
+    //}
 }

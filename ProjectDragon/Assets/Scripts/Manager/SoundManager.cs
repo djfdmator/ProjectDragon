@@ -8,8 +8,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 {
     public AudioSource Ds_efxSource;//효과음
     public AudioSource Ds_musicSource;//배경음악
-    public float Ds_BGMvolumeRange = 0.5f;//현재사운드 크기
-    public float Ds_SFXvolumeRange = 0.5f;//현재사운드 크기
     int bgmnum=-1;
     public List<AudioClip> Clips=new List<AudioClip>();
     /// <summary>
@@ -31,7 +29,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         Ds_musicSource.clip = _clip;
         Ds_musicSource.Play();
-        Ds_musicSource.volume = Ds_BGMvolumeRange;
+        Ds_musicSource.volume = Database.Inst.playData.BGM_Volume;
     }
     public void Ds_BGMPlayerDB(int _index)
     {
@@ -66,7 +64,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         Ds_efxSource.clip = _clip;
         Ds_efxSource.Play();
-        Ds_efxSource.volume = Ds_SFXvolumeRange;
+        Ds_efxSource.volume = Database.Inst.playData.SFX_Volume;
     }
     /// <summary>
     /// 여러개의 효과음중 하나만 재생하고 싶을때 SoundManager.Inst.RandomizeSfx(Audio***,*** ...);
@@ -77,24 +75,20 @@ public class SoundManager : MonoSingleton<SoundManager>
         int randomIndex = Random.Range(0, _clips.Length);
         Ds_efxSource.clip = _clips[randomIndex];
         Ds_efxSource.Play();
-        Ds_efxSource.volume = Ds_SFXvolumeRange;
+        Ds_efxSource.volume = Database.Inst.playData.SFX_Volume;
 
     }
     // Use this for initialization
 
     public void Ds_BGMSoundController(float value)//슬라이더가 움직일 때마다 호출되어 사운드의 조절을 해준다.
     {
-        Debug.Log(value);
-        Ds_BGMvolumeRange = value;
-        Debug.Log(Ds_BGMvolumeRange);
-        Ds_musicSource.volume = Ds_BGMvolumeRange;
+        Database.Inst.playData.BGM_Volume = value;
+        Ds_musicSource.volume = value;
     }
     public void Ds_SFXSoundController(float value)//슬라이더가 움직일 때마다 호출되어 사운드의 조절을 해준다.
     {
-        Debug.Log(value);
-        Ds_SFXvolumeRange = value;
-        Debug.Log(Ds_SFXvolumeRange);
-        Ds_efxSource.volume = Ds_SFXvolumeRange;
+        Database.Inst.playData.SFX_Volume = value;
+        Ds_efxSource.volume = value;
     }
     public void WalkSound(AudioClip _clip,State state)
     {
@@ -102,7 +96,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             Ds_efxSource.clip = _clip;
             Ds_efxSource.Play();
-            Ds_efxSource.volume = Ds_SFXvolumeRange;
+            Ds_efxSource.volume = Database.Inst.playData.SFX_Volume;
         }
         Ds_efxSource.Stop();
     }

@@ -79,7 +79,7 @@ public static class ButtonManager
                     if(SceneManager.GetActiveScene().name.Equals("Lobby"))
                     {
                         //LobbyManager.inst.test = SceneManager.GetActiveScene().name;
-                        LobbyManager.inst.QuitState();
+                        //LobbyManager.inst.QuitState();
                     }
                     Debug.Log(debug);
                     break;
@@ -91,7 +91,7 @@ public static class ButtonManager
             if (SceneManager.GetActiveScene().name.Equals("Lobby"))
             {
                 //LobbyManager.inst.test = SceneManager.GetActiveScene().name;
-                LobbyManager.inst.QuitState();
+                //LobbyManager.inst.QuitState();
             }
             
         }

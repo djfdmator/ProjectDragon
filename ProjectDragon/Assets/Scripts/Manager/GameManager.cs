@@ -802,8 +802,8 @@ public class GameManager : MonoSingleton<GameManager>
 
         playData.isMachineVibration = true;
         playData.isScreenVibration = true;
-        playData.BGM_Volume = 50.0f;
-        playData.SFX_Volume = 50.0f;
+        playData.BGM_Volume = 0.5f;
+        playData.SFX_Volume = 0.5f;
 
         //playData.nickName = string.Empty;
         playData.equiWeapon_InventoryNum = 0;
@@ -971,7 +971,7 @@ public class GameManager : MonoSingleton<GameManager>
     //테스트 완료
     #region Database_Save_Player_Data
 
-    void Save_PlayerPrefs_Data()
+    public void Save_PlayerPrefs_Data()
     {
         Database.PlayData playData = Database.Inst.playData;
 
