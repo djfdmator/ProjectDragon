@@ -62,13 +62,31 @@ public class ShortRangeAttackArea : MonoBehaviour
             }
         }
     }
-    public void AttackOn()
+
+    #region 이전버전 AttackOn
+    //public void AttackOn()
+    //{
+    //   FindViewTargets();
+    //}
+    //public void LongAttackOn()
+    //{
+    //    RongAttack_normal();
+    //}
+    #endregion
+    /// <summary>
+    /// Animation Event Function
+    /// </summary>
+    public void Attack_On()
     {
+        if (My_Angle.attackType == AttackType.ShortRange)
+        {
             FindViewTargets();
-    }
-    public void LongAttackOn()
-    {
-        RongAttack_normal();
+        }
+        else if (My_Angle.attackType == AttackType.LongRange)
+        {
+            RongAttack_normal();
+        }
+
     }
     private void OnDrawGizmos()
     {
@@ -177,13 +195,13 @@ public class ShortRangeAttackArea : MonoBehaviour
         return new Vector3(Mathf.Sin(radian), Mathf.Cos(radian));
     }
 
+    /// <summary>
+    /// 원거리 공격
+    /// </summary>
     public void RongAttack_normal()
     {
-        float _swordAttackangle = My_Angle.enemy_angle;
-        if (My_Angle.EnemyArray.Count == 0)
-        {
-            _swordAttackangle = My_Angle.current_angle;
-        }
+        float _swordAttackangle = (My_Angle.EnemyArray.Count != 0) ? My_Angle.enemy_angle : My_Angle.current_angle;
+
         Vector2 offset = new Vector2(0.0f, 0.0f);
         float radius = 0.5f;
 
@@ -191,15 +209,15 @@ public class ShortRangeAttackArea : MonoBehaviour
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (My_Angle.weaponType == Player.WeaponType.NormalStaff)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Angle.projectileAnimator[2], "ProjectileObj", true, My_Angle.transform.position);
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[2], "ProjectileObj", true, My_Angle.transform.position);
         }
         else if (My_Angle.weaponType == Player.WeaponType.Nyx)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Angle.projectileAnimator[4], "ProjectileObj", true, My_Angle.transform.position);
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[4], "ProjectileObj", true, My_Angle.transform.position);
         }
         else if (My_Angle.weaponType == Player.WeaponType.Nereides)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 3.0f, 10, My_Angle.projectileAnimator[6], "ProjectileObj", true, My_Angle.transform.position);
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[6], "ProjectileObj", true, My_Angle.transform.position);
         }
     }
     public void AttackCoolDown()

@@ -80,7 +80,7 @@ public class PlayerSkill : MonoBehaviour
             My_Player.MPChanged(5);
 
             //Create skill Projectile
-            CreateProjectile(My_Player.weaponType);
+            //CreateProjectile();
 
 
             co = CoolTime(3);
@@ -96,9 +96,10 @@ public class PlayerSkill : MonoBehaviour
 
     /// <summary>
     /// Skill Projectile
+    /// Animation Event Function (애니메이션 이벤트)
     /// </summary>
     /// <param name="type"></param>
-    private void CreateProjectile(Player.WeaponType type)
+    public void CreateProjectile()
     {
         //투사체 앵글 변수
         float attackAngle = (My_Player.EnemyArray.Count == 0) ? My_Player.current_angle : My_Player.enemy_angle;
@@ -106,9 +107,24 @@ public class PlayerSkill : MonoBehaviour
         if (My_Player.weaponType == Player.WeaponType.NormalSword)
         {
             //Create Projectile 
-            Vector2 offset = new Vector2(0.0f, 0.0f);
+            Vector2 offset = Vector2.zero;
             float radius = 0.2f;
             projectile.Create(My_Player.projectileTargetList, offset, radius, attackAngle, 3.0f, 17, My_Player.projectileAnimator[0], "ProjectileObj", true, My_Player.transform.position);
+        }
+        else if (My_Player.weaponType == Player.WeaponType.Nereides)
+        {
+            Vector2 offset = Vector2.zero;
+            float radius = 0.2f;
+            projectile.Create(My_Player.projectileTargetList, offset, radius, attackAngle, 1.5f, 17, My_Player.projectileAnimator[5], "ProjectileObj", true, My_Player.transform.position, true);
+
+        }
+        else if (My_Player.weaponType == Player.WeaponType.Excalibur)
+        {
+            //Create Projectile 
+            Vector2 offset = Vector2.zero;
+            float radius = 0.2f;
+            projectile.Create(My_Player.projectileTargetList, offset, radius, attackAngle, 0, 17, My_Player.projectileAnimator[7], "ProjectileObj", true, My_Player.transform.position);
+
         }
         else if (My_Player.weaponType == Player.WeaponType.NormalStaff)
         {
@@ -117,8 +133,6 @@ public class PlayerSkill : MonoBehaviour
                 Vector2 offset = new Vector2(0.0f, 0.5f);
                 pointProjectile.Create(My_Player.projectileTargetList, offset, 0.7f, 17, My_Player.projectileAnimator[1], "TargetPoint", My_Player.TempEnemy.transform.position);
             }
-            //Create Projectile 
-            //projectile.Create(My_Player.projectileTargetList, offset, 0.2f, _swordAttackangle, 3.0f, 10, My_Player.projectileAnimator[1], "ProjectileObj", true, My_Player.transform.position);
         }
         else if (My_Player.weaponType == Player.WeaponType.Nyx)
         {
@@ -128,6 +142,7 @@ public class PlayerSkill : MonoBehaviour
                 pointProjectile.Create(My_Player.projectileTargetList, offset, 0.7f, 17, My_Player.projectileAnimator[3], "TargetPoint", My_Player.TempEnemy.transform.position);
             }
         }
+        
 
         //if (My_Player.attackType == AttackType.ShortRange)
         //{

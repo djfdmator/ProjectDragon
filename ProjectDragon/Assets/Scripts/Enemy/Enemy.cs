@@ -186,8 +186,8 @@ public class Enemy : Monster
         return Physics2D.RaycastAll(startingPosition, direction, AtkRange - originOffset, m_viewTargetMask);
     }
 
-    bool isRayHit = false;
-    RaycastHit2D HitRay;
+    private bool isRayHit = false;
+    private RaycastHit2D HitRay;
     protected bool CheckRaycast()
     {
         inAtkDetectionRange = false;

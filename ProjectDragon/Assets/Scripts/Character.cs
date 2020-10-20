@@ -193,6 +193,12 @@ public class Character : MonoBehaviour
     {
     }
 
+    //Animation Event Function 
+    public virtual void Attack_On()
+    {
+
+    }
+
 
     //@ 삭제예정 (플레이어로?)
     //공격을 할때 각도에 따라서 모션을 보여주기 위해 만듬 (즉, 적이 있을때만 사용)

@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
             angle = value;
         }
     }
+    private bool isAngleAnim = false;                                                           //각도에 따른 애니메이션이 있는지
     public float angle, speed, lifetime, generationtime, targetpointrangex, targetpointrangey;
 
     public List<string> tagsString;
@@ -77,7 +78,7 @@ public class Projectile : MonoBehaviour
     }
 */
 
-    public Projectile Create(List<string> _tagsString ,Vector2 _offset,float _colRadius,float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, string poolItemName, bool _isplayskill, Vector3 position, Transform parent = null)
+    public Projectile Create(List<string> _tagsString ,Vector2 _offset,float _colRadius,float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, string poolItemName, bool _isplayskill, Vector3 position, bool _isAngleAnim = false ,Transform parent = null )
     {
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, parent);
         projectile = projectileObject.transform.GetComponent<Projectile>();
@@ -86,7 +87,7 @@ public class Projectile : MonoBehaviour
         projectile.GetComponent<CircleCollider2D>().radius = _colRadius;
 
         projectile.tagsString = _tagsString;
-        projectile.ProjectileInit(_angle, _speed, _damage, _projectileAnimator, _isplayskill, position);
+        projectile.ProjectileInit(_angle, _speed, _damage, _projectileAnimator, _isplayskill, position , _isAngleAnim);
         return projectile;
 
     }
@@ -100,7 +101,7 @@ public class Projectile : MonoBehaviour
     /// <param name="_projectilename">투사체의 이름</param>
     /// <param name="_isplayskill">쏘는이 판별여부(if플레이어=true)</param>
     /// <param name="position">쏘아지는 위치</param>
-    public void ProjectileInit(float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position)
+    public void ProjectileInit(float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position , bool _isAngleAnim = false)
     {
         Reset = ResetProjectile();
         inited = true;
@@ -109,6 +110,7 @@ public class Projectile : MonoBehaviour
         m_angle = _angle;
         speed = _speed;
         damage = _damage;
+        isAngleAnim = _isAngleAnim;
         if (anim == null)
         {
             anim = gameObject.GetComponent<Animator>();
@@ -121,7 +123,20 @@ public class Projectile : MonoBehaviour
         anim.Play("ProjecTileTest");
         anim.SetBool("Destory", false);
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
-        gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, m_angle));
+
+        //Back Angle일때 캐릭터보다 낮은 레이어
+        GetComponent<SpriteRenderer>().sortingLayerName = 90 < m_angle && m_angle < 270 ? "Enemy" : "Effect";
+
+        if (isAngleAnim)
+        {
+            anim.SetFloat("Angle", m_angle);
+            gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
+        else
+        {
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, m_angle));
+        }
+    
 
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         rb2d.velocity = new Vector2(Mathf.Cos((m_angle - 90) / 360 * 2 * Mathf.PI) * speed, Mathf.Sin((m_angle - 90) / 360 * 2 * Mathf.PI) * speed);
@@ -147,7 +162,6 @@ public class Projectile : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         foreach (string s in tagsString)
         {
             if (collision.gameObject.CompareTag(s))

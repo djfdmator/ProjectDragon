@@ -35,7 +35,7 @@ public class Mr_Gobunin : FSM_NormalEnemy
     /// <summary>
     /// 탄환 공격 (애니메이션 프레임에 넣기)
     /// </summary>
-    public void Attack_On()
+    public override void Attack_On()
     {
         Vector2 offset = new Vector2(0.0f, 0.0f);
         float radius = 0.06f;

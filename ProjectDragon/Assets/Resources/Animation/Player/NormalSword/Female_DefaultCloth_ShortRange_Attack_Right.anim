@@ -99,14 +99,16 @@ AnimationClip:
   - time: 0.05
     functionName: AttackOn
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 5409751990359364113, guid: 060d0334665bc8745ba6746949c818ba,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.13333334
     functionName: AttackOn
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 5409751990359364113, guid: 060d0334665bc8745ba6746949c818ba,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

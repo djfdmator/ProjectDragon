@@ -36,7 +36,7 @@ public class Doldori : FSM_NormalEnemy
         base.Start();
     }
 
-    public void Attack_On()
+    public override void Attack_On()
     {
         if (!isDead)
         {

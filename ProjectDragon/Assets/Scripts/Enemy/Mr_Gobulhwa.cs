@@ -44,7 +44,7 @@ public class Mr_Gobulhwa : FSM_NormalEnemy
     /// 탄환 생성 (애니메이션 프레임에 넣기)
     /// </summary>
     ///  In this case you choose event based on the clip weight
-    public void Attack_On()
+    public override void Attack_On()
     {
         Vector2 offset = new Vector2(0.0f,0.0f);
         float radius = 0.06f;

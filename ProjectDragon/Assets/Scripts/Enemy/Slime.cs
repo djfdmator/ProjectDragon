@@ -42,7 +42,7 @@ public class Slime : FSM_NormalEnemy
     /// <summary>
     /// 공격 (애니메이션 프레임에 넣기)
     /// </summary>
-    public void Attack_On()
+    public override void Attack_On()
     {
 
         isNuckback = true;
