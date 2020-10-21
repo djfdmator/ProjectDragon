@@ -345,7 +345,6 @@ public class Player : Character
         MoveSpeed = 3.0f;
         ATKChanger(3);
         ATKSpeedChanger(1.0f);
-        CurrentState = State.Idle;
 
         //근,원거리형 세팅
         attackType = weaponType.GetHashCode() >= 10 ? AttackType.ShortRange : AttackType.LongRange;
@@ -365,6 +364,8 @@ public class Player : Character
     }
     protected override void Start()
     {
+        CurrentState = State.Idle;
+
         StartCoroutine(CalculateDistanceWithPlayer());
         //내가 끼고 있는 칼에 대한 정의
         //Database.Inventory myWeapon = Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum];

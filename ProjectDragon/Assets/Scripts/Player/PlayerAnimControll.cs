@@ -7,17 +7,8 @@ using UnityEngine;
 
 public class PlayerAnimControll : MonoBehaviour
 {
-    //애니메이터 리소스
-    //private List<RuntimeAnimatorController> bodyAnimator = new List<RuntimeAnimatorController>();       //무기 종류에따라
-    //private List<RuntimeAnimatorController> weaponAnimator = new List<RuntimeAnimatorController>();     //무기 종류에따라
-    //private List<RuntimeAnimatorController> armAnimator= new List<RuntimeAnimatorController>();         //무기 타입에따라
 
-    private Dictionary<Player.WeaponType, RuntimeAnimatorController> _bodyAnimators = new Dictionary<Player.WeaponType, RuntimeAnimatorController>();             //무기 종류에따라
-    private Dictionary<Player.WeaponType, RuntimeAnimatorController> _weaponAnimators = new Dictionary<Player.WeaponType, RuntimeAnimatorController>();         //무기 종류에따라
-    private Dictionary<AttackType ,RuntimeAnimatorController> _armAnimators = new Dictionary<AttackType, RuntimeAnimatorController>();                          //무기 타입에따라
-
-
-    // 선택한 애니메이터
+    // 무기타입에 맞는 애니메이터
     [SerializeField] private Animator curAnimBody;
     [SerializeField] private Animator curAnim_Arm;
     [SerializeField] private Animator curAnim_Weapon;
@@ -49,19 +40,23 @@ public class PlayerAnimControll : MonoBehaviour
         {
             //curAnim_Arm.speed = 0.1f;
             //curAnim_Weapon.speed = 0.1f;
-
-            State m_State = State.Idle;
-            for (int i = 1; i <= State.Hit.GetHashCode(); i++)
+            if (curAnimBody != null && curAnim_Arm != null && curAnim_Weapon != null)
             {
-                curAnimBody.SetBool(ChangeState(m_State), false);
-                curAnim_Arm.SetBool(ChangeState(m_State), false);
-                curAnim_Weapon.SetBool(ChangeState(m_State), false);
-                m_State++;
+                Debug.Log("dd?");
+                State m_State = State.Idle;
+                for (int i = 1; i <= State.Hit.GetHashCode(); i++)
+                {
+                    curAnimBody.SetBool(ChangeState(m_State), false);
+                    curAnim_Arm.SetBool(ChangeState(m_State), false);
+                    curAnim_Weapon.SetBool(ChangeState(m_State), false);
+                    m_State++;
+                }
+
+                myState = value;
+                curAnimBody.SetBool(ChangeState(myState), true);
+                curAnim_Arm.SetBool(ChangeState(myState), true);
+                curAnim_Weapon.SetBool(ChangeState(myState), true);
             }
-            myState = value;
-            curAnimBody.SetBool(ChangeState(myState), true);
-            curAnim_Arm.SetBool(ChangeState(myState), true);
-            curAnim_Weapon.SetBool(ChangeState(myState), true);
         }
     }
 
@@ -73,69 +68,57 @@ public class PlayerAnimControll : MonoBehaviour
         curAnim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
         player = GetComponent<Player>();
 
+        LoadAnimator(player.weaponType);
 
-        LoadAnimator();
        
     }
 
     private void Start()
     {
-        //CurrentAttackType = GetComponent<Player>().attackType;
-        //GetComponent<Player>().weaponType 
-
-        SettingAnimator(player.weaponType, player.attackType);
 
         curAnimBody.speed = 1f;
         curAnim_Arm.speed = 1f;
         curAnim_Weapon.speed = 1f;
-        
     }
-    private void OnDestroy()
+    
+
+    private void LoadAnimator(Player.WeaponType weaponType)
     {
-        _bodyAnimators.Clear();
-        _weaponAnimators.Clear();
-        _armAnimators.Clear();
+        Debug.Log("Loading");
+        curAnimBody.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Body_{1}", weaponType, weaponType));
+        curAnim_Weapon.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Weapon_{1}", weaponType, weaponType));
+        string normalType = (player.attackType == AttackType.ShortRange) ? "NormalSword" : "NormalStaff";
+        curAnim_Arm.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
+        Debug.Log(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
+       
+
+
+        //object [] animator = Resources.LoadAll<RuntimeAnimatorController>("Animation/Player/");
+        //foreach (RuntimeAnimatorController anim in animator)
+        //{
+        //    string t = anim.name.Split('_')[1];
+        //    if (t.Equals("Weapon"))
+        //    {
+        //        Player.WeaponType type = (Player.WeaponType)Enum.Parse(typeof(Player.WeaponType),anim.name.Split('_')[3]);
+        //        _weaponAnimators.Add(type,anim);
+        //    }
+        //    else if(t.Equals("Body"))
+        //    {
+        //        Player.WeaponType type = (Player.WeaponType)Enum.Parse(typeof(Player.WeaponType), anim.name.Split('_')[3]);
+        //        _bodyAnimators.Add(type, anim);
+        //    }
+        //    else
+        //    {
+        //        AttackType type = (AttackType)Enum.Parse(typeof(AttackType), anim.name.Split('_')[2]);
+        //        _armAnimators.Add(type, anim);
+        //    }
+        //}
+        //foreach(KeyValuePair<Player.WeaponType, RuntimeAnimatorController> pair in _weaponAnimators)
+        //{
+        //    Debug.Log(pair.Key, pair.Value);
+        //}
     }
 
-    private void LoadAnimator()
-    {
-        object[] animator = Resources.LoadAll<RuntimeAnimatorController>("Animation/Player/");
-        foreach (RuntimeAnimatorController anim in animator)
-        {
-            string t = anim.name.Split('_')[1];
-            if (t.Equals("Weapon"))
-            {
-                Player.WeaponType type = (Player.WeaponType)Enum.Parse(typeof(Player.WeaponType),anim.name.Split('_')[3]);
-                _weaponAnimators.Add(type,anim);
-            }
-            else if(t.Equals("Body"))
-            {
-                Player.WeaponType type = (Player.WeaponType)Enum.Parse(typeof(Player.WeaponType), anim.name.Split('_')[3]);
-                _bodyAnimators.Add(type, anim);
-            }
-            else
-            {
-                AttackType type = (AttackType)Enum.Parse(typeof(AttackType), anim.name.Split('_')[2]);
-                _armAnimators.Add(type, anim);
-            }
-        }
-        foreach(KeyValuePair<Player.WeaponType, RuntimeAnimatorController> pair in _weaponAnimators)
-        {
-            Debug.Log(pair.Key, pair.Value);
-        }
-    }
-
-    /// <summary>
-    /// 현재 캐릭터의 무기와 공격타입에 맞추어 애니메이터 세팅
-    /// </summary>
-    /// <param name="weapon"></param>
-    /// <param name="attack"></param>
-    private void SettingAnimator(Player.WeaponType weapon, AttackType attack)
-    {
-        curAnimBody.runtimeAnimatorController = _bodyAnimators[weapon];
-        curAnim_Weapon.runtimeAnimatorController = _weaponAnimators[weapon];
-        curAnim_Arm.runtimeAnimatorController = _armAnimators[attack];
-    }
 
     public string ChangeState(State state)
     {
