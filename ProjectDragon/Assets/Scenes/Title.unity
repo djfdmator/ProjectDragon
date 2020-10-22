@@ -1715,14 +1715,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2523
+  mWidth: 2074
   mHeight: 1080
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.336111
+  aspectRatio: 1.9203703
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1972,6 +1972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cartoon
       objectReference: {fileID: 0}
+    - target: {fileID: 5169367792885928525, guid: aac0d4ca2c41a2a43b7b3ca1719a09ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5169367792885928524, guid: aac0d4ca2c41a2a43b7b3ca1719a09ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2026,6 +2031,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 364080583, guid: aac0d4ca2c41a2a43b7b3ca1719a09ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac0d4ca2c41a2a43b7b3ca1719a09ee, type: 3}

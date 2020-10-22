@@ -15,8 +15,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 34d17a9fcf0c8a84b888fd897281e992, type: 2}
   mSprites:
   - name: ChoiceWeapon_BackButton_Click
-    x: 2260
-    y: 395
+    x: 320
+    y: 91
     width: 119
     height: 95
     borderLeft: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_BackButton_Normal
-    x: 2140
-    y: 395
+    x: 200
+    y: 91
     width: 119
     height: 95
     borderLeft: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_BackButton_Text
-    x: 0
-    y: 45
+    x: 2879
+    y: 1294
     width: 204
     height: 49
     borderLeft: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_NextButton_Activate
-    x: 219
-    y: 95
+    x: 2879
+    y: 1440
     width: 218
     height: 95
     borderLeft: 0
@@ -80,8 +80,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_NextButton_Click
-    x: 0
-    y: 95
+    x: 2879
+    y: 1536
     width: 218
     height: 95
     borderLeft: 0
@@ -93,8 +93,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_NextButton_Unactivate
-    x: 1921
-    y: 395
+    x: 2879
+    y: 1344
     width: 218
     height: 95
     borderLeft: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_StaffBackground_Click
-    x: 0
-    y: 191
+    x: 2415
+    y: 495
     width: 478
     height: 776
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: ChoiceWeapon_StaffBackground_Normal
-    x: 1921
-    y: 491
+    x: 2400
+    y: 1272
     width: 478
     height: 776
     borderLeft: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: ChoiceWeapon_StaffFrame_Click
-    x: 2400
-    y: 487
+    x: 968
+    y: 187
     width: 483
     height: 780
     borderLeft: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_StaffFrame_Normal
-    x: 479
+    x: 484
     y: 187
     width: 483
     height: 780
@@ -158,8 +158,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_SwordBackground_Click
-    x: 963
-    y: 191
+    x: 1936
+    y: 495
     width: 478
     height: 776
     borderLeft: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: ChoiceWeapon_SwordBackground_Normal
-    x: 1442
-    y: 191
+    x: 1921
+    y: 1272
     width: 478
     height: 776
     borderLeft: 0
@@ -184,8 +184,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: ChoiceWeapon_SwordFrame_Click
-    x: 1921
-    y: 1268
+    x: 1452
+    y: 187
     width: 483
     height: 780
     borderLeft: 0
@@ -197,10 +197,49 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChoiceWeapon_SwordFrame_Normal
-    x: 2405
-    y: 1268
+    x: 0
+    y: 187
     width: 483
     height: 780
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Dialog_Background
+    x: 2879
+    y: 1632
+    width: 660
+    height: 416
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Dialog_Button_Click
+    x: 0
+    y: 100
+    width: 199
+    height: 86
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Dialog_Button_Normal
+    x: 0
+    y: 13
+    width: 199
+    height: 86
     borderLeft: 0
     borderRight: 0
     borderTop: 0

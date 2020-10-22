@@ -156,9 +156,13 @@ public static class ButtonManager
     }
     public static void GameQuit()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
-    #endregion
+#endregion
     /// <summary>
     /// 로비씬전환
     /// </summary>
