@@ -166,7 +166,7 @@ public class CartoonController : MonoBehaviour
 
     public void Button_SkipDialogConfirm()
     {
-        SoundManager.Inst.Ds_EffectPlayerDB(1);
+        Button_SkipDialogClose();
         StartCoroutine(CartoonEnding());
     }
 
@@ -180,10 +180,10 @@ public class CartoonController : MonoBehaviour
     private IEnumerator CartoonEnding()
     {
         //화면 페이드인
-        cartoonData.gameObject.SetActive(false);
         uiCamera.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         StartCoroutine(uiCamera.GetComponent<ScreenTransitions>().Fade(1.0f, true));
         yield return new WaitForSeconds(1.0f);
+        cartoonData.gameObject.SetActive(false);
         isCartoonEnd = true;
     }
 

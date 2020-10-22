@@ -62,10 +62,10 @@ MonoBehaviour:
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 20
-    paddingRight: 15
-    paddingTop: 8
-    paddingBottom: 11
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: "\uB85C\uBE44UI \uB3C4\uAC10"
     x: 1367
     y: 517
@@ -104,7 +104,7 @@ MonoBehaviour:
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
-    paddingBottom: 28
+    paddingBottom: 0
   - name: "\uB85C\uBE44UI \uC124\uC815"
     x: 838
     y: 471
@@ -192,10 +192,10 @@ MonoBehaviour:
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 37
-    paddingRight: 28
-    paddingTop: 22
-    paddingBottom: 26
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: "\uB85C\uBE44UI \uC2A4\uD14C\uC774\uD130\uC2A4 \uCC3D \uD654\uC0B4\uD45C
       \uBC18\uC804"
     x: 1856
@@ -349,9 +349,9 @@ MonoBehaviour:
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 17
+    paddingLeft: 0
     paddingRight: 0
-    paddingTop: 9
+    paddingTop: 0
     paddingBottom: 0
   - name: "\uC815\uBE44 UI \uB4A4\uB85C\uBC84\uD2BC"
     x: 1664

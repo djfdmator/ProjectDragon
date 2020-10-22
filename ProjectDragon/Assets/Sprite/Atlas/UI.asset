@@ -400,10 +400,10 @@ MonoBehaviour:
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 20
-    paddingRight: 10
-    paddingTop: 14
-    paddingBottom: 14
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: "\uB85C\uBE44UI \uC815\uBE44"
     x: 1232
     y: 84
