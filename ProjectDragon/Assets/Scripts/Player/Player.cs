@@ -348,6 +348,7 @@ public class Player : Character
 
         //근,원거리형 세팅
         attackType = weaponType.GetHashCode() >= 10 ? AttackType.ShortRange : AttackType.LongRange;
+        Debug.Log("근원거리 세팅" + attackType.ToString());
         if (attackType == AttackType.ShortRange)
         {
             AtkRangeChanger(3.5f);

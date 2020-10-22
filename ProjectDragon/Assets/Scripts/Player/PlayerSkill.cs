@@ -80,7 +80,7 @@ public class PlayerSkill : MonoBehaviour
             My_Player.MPChanged(5);
 
             //Create skill Projectile
-            //CreateProjectile();
+            CreateProjectile();
 
 
             co = CoolTime(3);
@@ -169,9 +169,12 @@ public class PlayerSkill : MonoBehaviour
     // }
     public void PlayerStop()
     {
-        My_Player.isSkillActive = false;
-        My_Player.CurrentState = State.Idle;
-        My_Player.StopPlayer= false;
+        if (!My_Player.isDead)
+        {
+            My_Player.isSkillActive = false;
+            My_Player.CurrentState = State.Idle;
+            My_Player.StopPlayer = false;
+        }
     }
 
     IEnumerator SkillDamaged()

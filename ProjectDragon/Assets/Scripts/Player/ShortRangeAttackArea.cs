@@ -222,7 +222,10 @@ public class ShortRangeAttackArea : MonoBehaviour
     }
     public void AttackCoolDown()
     {
-        My_Angle.CurrentState = State.Idle;
+        if (!My_Angle.isDead)
+        {
+            My_Angle.CurrentState = State.Idle;
+        }
     }
     IEnumerator AttackDamaged()
     {

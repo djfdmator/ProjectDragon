@@ -42,7 +42,6 @@ public class PlayerAnimControll : MonoBehaviour
             //curAnim_Weapon.speed = 0.1f;
             if (curAnimBody != null && curAnim_Arm != null && curAnim_Weapon != null)
             {
-                Debug.Log("dd?");
                 State m_State = State.Idle;
                 for (int i = 1; i <= State.Hit.GetHashCode(); i++)
                 {
@@ -68,13 +67,13 @@ public class PlayerAnimControll : MonoBehaviour
         curAnim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
         player = GetComponent<Player>();
 
-        LoadAnimator(player.weaponType);
 
        
     }
 
     private void Start()
     {
+        LoadAnimator(player.weaponType);
 
         curAnimBody.speed = 1f;
         curAnim_Arm.speed = 1f;
@@ -84,7 +83,7 @@ public class PlayerAnimControll : MonoBehaviour
 
     private void LoadAnimator(Player.WeaponType weaponType)
     {
-        Debug.Log("Loading");
+
         curAnimBody.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Body_{1}", weaponType, weaponType));
         curAnim_Weapon.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Weapon_{1}", weaponType, weaponType));
         string normalType = (player.attackType == AttackType.ShortRange) ? "NormalSword" : "NormalStaff";
@@ -127,7 +126,10 @@ public class PlayerAnimControll : MonoBehaviour
 
     public void AnimationStop()
     {
-        player.playerSkill.PlayerStop();
+        if (!player.isDead)
+        {
+            player.playerSkill.PlayerStop();
+        }
     }
 
     public void ChangeAngleAnim(float angle)

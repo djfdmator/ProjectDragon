@@ -85,9 +85,9 @@ public class Projectile : MonoBehaviour
         projectile.gameObject.SetActive(true);
         projectile.GetComponent<CircleCollider2D>().offset = _offset;
         projectile.GetComponent<CircleCollider2D>().radius = _colRadius;
+        projectile.ProjectileInit(_angle, _speed, _damage, _projectileAnimator, _isplayskill, position , _isAngleAnim);
 
         projectile.tagsString = _tagsString;
-        projectile.ProjectileInit(_angle, _speed, _damage, _projectileAnimator, _isplayskill, position , _isAngleAnim);
         return projectile;
 
     }
@@ -105,7 +105,6 @@ public class Projectile : MonoBehaviour
     {
         Reset = ResetProjectile();
         inited = true;
-        gameObject.transform.position = position;
         isplayskill = _isplayskill;
         m_angle = _angle;
         speed = _speed;
@@ -126,7 +125,6 @@ public class Projectile : MonoBehaviour
 
         //Back Angle일때 캐릭터보다 낮은 레이어
         GetComponent<SpriteRenderer>().sortingLayerName = 90 < m_angle && m_angle < 270 ? "Enemy" : "Effect";
-
         if (isAngleAnim)
         {
             anim.SetFloat("Angle", m_angle);
@@ -139,6 +137,7 @@ public class Projectile : MonoBehaviour
     
 
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        gameObject.transform.position = position;
         rb2d.velocity = new Vector2(Mathf.Cos((m_angle - 90) / 360 * 2 * Mathf.PI) * speed, Mathf.Sin((m_angle - 90) / 360 * 2 * Mathf.PI) * speed);
 
     }

@@ -2318,9 +2318,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123135849722319581}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b6f998f77c11a44cb96302deae21454, type: 2}
+  m_Controller: {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2498,7 +2498,7 @@ PrefabInstance:
     - target: {fileID: 5409751990359364125, guid: 060d0334665bc8745ba6746949c818ba,
         type: 3}
       propertyPath: weaponType
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 060d0334665bc8745ba6746949c818ba, type: 3}
