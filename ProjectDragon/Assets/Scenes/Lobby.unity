@@ -522,7 +522,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mWidth: 294
+  mWidth: 288
   mHeight: 40
   mDepth: 24
   mMat: {fileID: 0}
@@ -620,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58704288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: 314, z: 0}
+  m_LocalPosition: {x: 12, y: -47, z: 0}
   m_LocalScale: {x: 1.0008, y: 1.0008, z: 1.0008}
   m_Children:
   - {fileID: 1001649376}
@@ -658,14 +658,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 1679
+  mWidth: 2
   mHeight: 104
   mDepth: 15
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 12.298077
+  aspectRatio: 0.01923077
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1411,11 +1411,11 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3046
+  startingRenderQueue: 3050
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 12.999985, y: 5, z: 708.00024, w: 375.99997}
+  mClipRange: {x: 13, y: 5, z: 1028, w: 555.99994}
   mClipSoftness: {x: 1, y: 1}
   mDepth: 9
   mSortingOrder: 0
@@ -1506,14 +1506,15 @@ GameObject:
   m_Component:
   - component: {fileID: 114285396}
   - component: {fileID: 114285397}
+  - component: {fileID: 114285399}
   - component: {fileID: 114285398}
   m_Layer: 8
-  m_Name: EquipPanel
+  m_Name: Maintenance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &114285396
 Transform:
   m_ObjectHideFlags: 0
@@ -1574,13 +1575,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3026
+  startingRenderQueue: 3034
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 4
+  mDepth: 6
   mSortingOrder: 0
   mSortingLayerName: EquipMain
   mClipOffset: {x: 0, y: 0}
@@ -1611,6 +1612,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1289.3599, y: 725.63696}
   m_EdgeRadius: 0
+--- !u!114 &114285399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114285395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d23890ba724d494bac943865e18b36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &117757685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,7 +1843,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3014
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2235,7 +2248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147139644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39, y: -45, z: 0}
+  m_LocalPosition: {x: 39, y: 135, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1825596970}
@@ -3159,7 +3172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242597388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -148, y: 109, z: 0}
+  m_LocalPosition: {x: -148, y: 198, z: 0}
   m_LocalScale: {x: 0.9990001, y: 0.9990001, z: 0.9990001}
   m_Children: []
   m_Father: {fileID: 114285396}
@@ -3434,7 +3447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254092023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -142, y: -45, z: 0}
+  m_LocalPosition: {x: -142, y: 135, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 70958788}
@@ -3896,7 +3909,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mWidth: 176
+  mWidth: 174
   mHeight: 40
   mDepth: 24
   mMat: {fileID: 0}
@@ -4374,7 +4387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293610228}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: -19, z: 0}
+  m_LocalPosition: {x: 1, y: -20, z: 0}
   m_LocalScale: {x: 0.9990001, y: 0.9990001, z: 0.9990001}
   m_Children:
   - {fileID: 1156720625}
@@ -5306,7 +5319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415503452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 1, z: 0}
+  m_LocalPosition: {x: -5, y: -0, z: 0}
   m_LocalScale: {x: 0.999, y: 0.999, z: 0.999}
   m_Children:
   - {fileID: 1482599896}
@@ -5345,14 +5358,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1681
-  mHeight: 731
+  mWidth: 2319
+  mHeight: 1091
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.752394
+  aspectRatio: 2.125573
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -6002,7 +6015,7 @@ GameObject:
   - component: {fileID: 486840909}
   - component: {fileID: 486840910}
   m_Layer: 8
-  m_Name: Option
+  m_Name: OptionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6092,12 +6105,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 486840906}
   hover: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: "\uCC44\uC9D1\uBC00\uAE30"
+  pressedSprite: 
   disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
@@ -7509,7 +7522,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mWidth: 202
+  mWidth: 200
   mHeight: 40
   mDepth: 24
   mMat: {fileID: 0}
@@ -7895,7 +7908,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3033
+  startingRenderQueue: 3057
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -8440,7 +8453,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3032
+  startingRenderQueue: 3056
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -8495,16 +8508,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleScenename: 
-  fireobject: {fileID: 0}
-  playeranimation: {fileID: 0}
-  playerimg: {fileID: 0}
-  equipCharactor: {fileID: 0}
-  playerStat: {fileID: 0}
-  equipanel: {fileID: 0}
+  playerimg: {fileID: 1425387339}
+  equipCharactor: {fileID: 1986891595}
+  playerStat: {fileID: 493257195}
+  equipanel: {fileID: 114285395}
   fire: {fileID: 0}
-  statpanel: {fileID: 0}
-  equipStatPanel: {fileID: 0}
-  optionWindow: {fileID: 0}
+  statpanel: {fileID: 1655946524}
+  maintenance: {fileID: 114285399}
+  optionWindow: {fileID: 957475964}
   developerStageSetting: 0
   inventoryback: {fileID: 0}
   currentweapon: {fileID: 0}
@@ -8876,7 +8887,7 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mWidth: 202
+  mWidth: 198
   mHeight: 40
   mDepth: 24
   mMat: {fileID: 0}
@@ -8942,7 +8953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889459046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 238, y: -243, z: 0}
+  m_LocalPosition: {x: 318, y: -333, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 911486669}
@@ -9006,7 +9017,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 216, y: 125}
+  m_Size: {x: 376, y: 217}
   m_EdgeRadius: 0
 --- !u!114 &889459051
 MonoBehaviour:
@@ -9039,8 +9050,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 216
-  mHeight: 125
+  mWidth: 376
+  mHeight: 217
   mDepth: 29
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -9089,7 +9100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911486668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 398, y: -44, z: 0}
+  m_LocalPosition: {x: 557, y: -135, z: 0}
   m_LocalScale: {x: 0.9990001, y: 0.9990001, z: 0.9990001}
   m_Children:
   - {fileID: 1118492651}
@@ -9131,14 +9142,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 798
-  mHeight: 436
+  mWidth: 1118
+  mHeight: 616
   mDepth: 15
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.3738532
+  aspectRatio: 1.8149351
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -9615,7 +9626,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -9807,7 +9818,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3026
+  startingRenderQueue: 3050
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -10297,7 +10308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001649375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -802, y: -3, z: 0}
+  m_LocalPosition: {x: -1121, y: 537, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 58704289}
@@ -10335,6 +10346,10 @@ MonoBehaviour:
     oneShot: 0
   - mTarget: {fileID: 823988750}
     mMethodName: ButtonSound1
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 114285399}
+    mMethodName: CloseMaintenance
     mParameters: []
     oneShot: 0
 --- !u!61 &1001649378
@@ -10447,7 +10462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002866468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 139, z: 0}
+  m_LocalPosition: {x: 1, y: 138, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1460543443}
@@ -11121,13 +11136,13 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
   mWidth: 702
-  mHeight: 300
+  mHeight: 480
   mDepth: 23
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.34
+  aspectRatio: 1.4625
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -12101,7 +12116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156720624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -0, z: 0}
+  m_LocalPosition: {x: -0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 293610229}
@@ -13773,7 +13788,7 @@ GameObject:
   - component: {fileID: 1311149540}
   - component: {fileID: 1311149542}
   m_Layer: 8
-  m_Name: Maintenance
+  m_Name: MaintenanceButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13877,15 +13892,7 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
-    oneShot: 0
-  - mTarget: {fileID: 823988750}
-    mMethodName: NomalState
-    mParameters: []
-    oneShot: 0
-  - mTarget: {fileID: 823988750}
-    mMethodName: ButtonSound1
+    mMethodName: MaintenanceButton
     mParameters: []
     oneShot: 0
 --- !u!61 &1311149541
@@ -14048,7 +14055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1337255538
 Transform:
   m_ObjectHideFlags: 0
@@ -14190,7 +14197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366437377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -527, y: 316, z: 0}
+  m_LocalPosition: {x: -687, y: 496, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 415503453}
@@ -14227,14 +14234,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 501
+  mWidth: 820
   mHeight: 80
   mDepth: 20
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.7625
+  aspectRatio: 10.25
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea0376520431d3d48b3f088673edd51d, type: 3}
   mFont: {fileID: 0}
@@ -14779,7 +14786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381820016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -806, y: -131, z: 0}
+  m_LocalPosition: {x: -1125, y: -222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1046367196}
@@ -14918,7 +14925,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 100}
+  m_Size: {x: 100, y: 280}
   m_EdgeRadius: 0
 --- !u!114 &1381820022
 MonoBehaviour:
@@ -14952,13 +14959,13 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 100
-  mHeight: 100
+  mHeight: 280
   mDepth: 24
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 0.35714287
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -15169,7 +15176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1425387340
 Transform:
   m_ObjectHideFlags: 0
@@ -15229,7 +15236,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 2800000, guid: 11b54d7977e031f4d8a373bfc28c13a8, type: 3}
   mAlpha: 1
   mClipping: 1
-  mClipRange: {x: 0, y: 0, z: 915.5, w: 908}
+  mClipRange: {x: 0, y: 0, z: 862.4, w: 908}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 2
   mSortingOrder: 0
@@ -15993,7 +16000,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3042
+  startingRenderQueue: 3025
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -16221,7 +16228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492873255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -251, y: -243, z: 0}
+  m_LocalPosition: {x: -331, y: -333, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 911486669}
@@ -16300,7 +16307,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 246, y: 118}
+  m_Size: {x: 406, y: 194}
   m_EdgeRadius: 0
 --- !u!114 &1492873260
 MonoBehaviour:
@@ -16333,8 +16340,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 246
-  mHeight: 118
+  mWidth: 406
+  mHeight: 194
   mDepth: 29
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -16902,7 +16909,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3046
+  startingRenderQueue: 3050
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -17223,15 +17230,7 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 823988750}
-    mMethodName: StatpanelSetup
-    mParameters: []
-    oneShot: 0
-  - mTarget: {fileID: 823988750}
     mMethodName: ButtonSound1
-    mParameters: []
-    oneShot: 0
-  - mTarget: {fileID: 2132822394}
-    mMethodName: Play
     mParameters: []
     oneShot: 0
 --- !u!1 &1552833803
@@ -17392,7 +17391,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3037
+  startingRenderQueue: 3061
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -17416,7 +17415,7 @@ GameObject:
   - component: {fileID: 1584682700}
   - component: {fileID: 1584682699}
   m_Layer: 8
-  m_Name: Encyclopedia
+  m_Name: EncyclopediaButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17675,7 +17674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598435234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 162244074}
@@ -17712,14 +17711,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2520
+  mWidth: 2319
   mHeight: 1080
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.3333333
+  aspectRatio: 2.1472223
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -18321,7 +18320,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2530, y: 1090}
+  m_Size: {x: 2329, y: 1090}
   m_EdgeRadius: 0
 --- !u!114 &1651858775
 MonoBehaviour:
@@ -18354,14 +18353,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2530
+  mWidth: 2329
   mHeight: 1090
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.321101
+  aspectRatio: 2.1366973
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -18387,7 +18386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651858771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 957475963}
@@ -18464,7 +18463,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3018
+  startingRenderQueue: 3027
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -20831,7 +20830,7 @@ GameObject:
   - component: {fileID: 1939133221}
   - component: {fileID: 1939133222}
   m_Layer: 8
-  m_Name: Battle
+  m_Name: BattleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21544,7 +21543,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3044
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -21758,11 +21757,11 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3044
+  startingRenderQueue: 3027
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -0.000076293945, y: -28.5, z: 708.00024, w: 375.99997}
+  mClipRange: {x: -0.000061035156, y: -28.5, z: 1028, w: 555.99994}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 4
   mSortingOrder: 0
@@ -22144,7 +22143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053926946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -341.00006, y: 205, z: 0}
+  m_LocalPosition: {x: -500.99994, y: 295, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 86009094}
