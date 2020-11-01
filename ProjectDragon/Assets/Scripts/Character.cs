@@ -47,9 +47,8 @@ public class Character : MonoBehaviour
 
     public bool isAttack=true;
 
-    protected bool isAttacking;
-    [SerializeField]
-    protected bool isWalk;
+    [SerializeField] protected bool isAttacking;
+    [SerializeField] protected bool isWalk;
     public bool isDead;
     protected bool isHit;
     public bool isSkillActive;
@@ -126,7 +125,6 @@ public class Character : MonoBehaviour
             {
                 hp = -1;
                 Dead();
-                Debug.Log("죽었습니다.");
             }
         }
     }

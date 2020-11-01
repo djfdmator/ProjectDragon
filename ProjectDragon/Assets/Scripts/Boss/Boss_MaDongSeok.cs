@@ -530,7 +530,7 @@ public class Boss_MaDongSeok : Monster
             //파란 발사체 크기
             float radius = 0.3f;
             //해당 벡터 위치는 보스 입
-            projectile.Create(projectileTargetList,Vector2.zero,radius,angle, projectilespeed, projectiledamage, projectileanim, "ProjectileObj", true, bossmouth);
+            projectile.Create(projectileTargetList,Vector2.zero,radius,angle, projectilespeed, projectiledamage, projectileanim, true, bossmouth);
             yield return new WaitForSeconds(0.25f);
         }
         Debug.Log("ManaShoot1");
@@ -544,7 +544,7 @@ public class Boss_MaDongSeok : Monster
             float angle = 80 - (j * 20);
             Vector3 bossmouth = gameObject.transform.position;
             //해당 벡터 위치는 보스 입
-            projectile.Create(projectileTargetList,Vector2.zero,0.3f,angle, projectilespeed, projectiledamage, projectileanim, "ProjectileObj", true, bossmouth);
+            projectile.Create(projectileTargetList,Vector2.zero,0.3f,angle, projectilespeed, projectiledamage, projectileanim, true, bossmouth);
 
         }
         yield return new WaitForSeconds(1.0f);
@@ -719,7 +719,7 @@ public class Boss_MaDongSeok : Monster
 
         for (int i = 0; i < 5; i++)
         {
-            projectile.Create(projectileTargetList,Vector2.zero,0.3f,i * 72, projectilespeed, projectiledamage, projectileanim, "ProjectileObj", true, _targetpoint);
+            projectile.Create(projectileTargetList,Vector2.zero,0.3f,i * 72, projectilespeed, projectiledamage, projectileanim, true, _targetpoint);
         }
 
     }

@@ -151,7 +151,7 @@ public class Player : Character
         {
             isInvaid = false;
         }
-        Debug.Log((int)currentATK+"내 체력은 :"+HP);
+        //Debug.Log((int)currentATK+"내 체력은 :"+HP);
 
         //hpBar.fillAmount = (float)HP-currentATK / (float)maxHp;
         if(original_HP>=HP)
@@ -167,12 +167,12 @@ public class Player : Character
             StartCoroutine(B);
             StartCoroutine(damaged_flash_corrutine);
             damagePopup.Create(transform.position + new Vector3(0.0f, 0.5f, 0.0f), (int)currentATK, false, isInvaid, transform);
-            Debug.Log("Damage:   " + currentATK);
+            
             original_HP = HP;
         }
         base.HPChanged((int)currentATK,isCritical,NukBack);
         HPBar.Player_HP_Changed(HP,maxHp);
-        Debug.Log((float)HP / (float)maxHp);
+        //Debug.Log((float)HP / (float)maxHp);
         SoundManager.Inst.Ds_EffectPlayerDB(4);
         return HP;
     }
@@ -207,7 +207,7 @@ public class Player : Character
             {
                 mp = value;
                 //mp = Mathf.Clamp(value, 0, maxMp);
-            }
+            }   
             else
             {
                 Debug.Log("마나가 없습니다.");
@@ -220,7 +220,7 @@ public class Player : Character
         base.Dead();
         GetComponent<BoxCollider2D>().enabled = false;
         rigidbody2d.velocity = Vector2.zero;
-        Debug.Log("BoxCollider2D enable false");
+        //Debug.Log("BoxCollider2D enable false");
     }
 
     public virtual int MPChanged(int Cost)

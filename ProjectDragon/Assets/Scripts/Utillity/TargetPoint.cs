@@ -14,14 +14,25 @@ public class TargetPoint : MonoBehaviour
 {
     public string poolItemName = "TargetPoint";
     public float projecTileReady =1, projecTileStart=1, projecTileEnd=1;
-    TargetPoint thornPoint;
-    int attackDamage = 0;
+    private TargetPoint targetPoint;
+    private HitEffect hitEffect;
+    private int attackDamage = 0;
+    [SerializeField]  private Transform parentPool;
 
-    [SerializeField]
-    GameObject targetObject;
-    public List<string> tagsString;
-    // Start is called before the first frame update
-    void Start()
+    //[SerializeField] private GameObject targetObject;
+    [SerializeField] private List<GameObject> targetObject = new List<GameObject>();
+    public List<string> tagsString = new List<string>();
+    private bool isplayskill;
+    private string attackType;
+
+    private void Awake()
+    {
+        hitEffect = new HitEffect();
+        parentPool = GameObject.FindGameObjectWithTag("ObjectPool").transform;
+    }
+
+
+    private void Start()
     {
         GetComponent<Animator>().SetFloat("ReadyTime", projecTileReady);
         GetComponent<Animator>().SetFloat("StartTime", projecTileStart);
@@ -32,9 +43,19 @@ public class TargetPoint : MonoBehaviour
     /// </summary>
     public void AttackOn()
     {
-        if ((targetObject != null))
+        foreach (GameObject target in targetObject)
         {
-            targetObject.GetComponent<Character>().HPChanged(attackDamage,false,0);
+            if ((target != null))
+            {
+                if (isplayskill)
+                {
+                    Debug.Log(target.gameObject.name);
+                    hitEffect.Create(target.transform.position, attackType);
+                }
+                target.GetComponent<Character>().HPChanged(attackDamage, false, 0);
+
+                if (target.GetComponent<Character>().isDead) targetObject.Remove(target);
+            }
         }
     }
     /// <summary>
@@ -50,9 +71,12 @@ public class TargetPoint : MonoBehaviour
     {
         foreach(string s in tagsString)
         {
-             if (collision.gameObject.CompareTag(s))
+            if (collision.gameObject.CompareTag(s))
             {
-                targetObject = collision.gameObject;
+                targetObject.Add(collision.gameObject);
+                Debug.Log("object " + gameObject.name);
+                Debug.Log("Collision is " + collision.gameObject.name);
+                //targetObject = collision.gameObject;
             }
         }
     }
@@ -60,28 +84,32 @@ public class TargetPoint : MonoBehaviour
     {
          foreach(string s in tagsString)
         {
-             if (collision.gameObject.CompareTag(s))
+            if (collision.gameObject.CompareTag(s))
             {
-                targetObject = null;
+                targetObject.Clear();
+                //targetObject = null;
             }
         }
     }
 
-    
 
-    public TargetPoint Create(List<string> tagsStringList , Vector2 colOffset, float colRadius, int _damage, RuntimeAnimatorController _Animator, string poolItemName, Vector3 position, Transform parent = null)
+
+    public TargetPoint Create(List<string> tagsStringList, Vector2 colOffset, float colRadius, int _damage, RuntimeAnimatorController _Animator, bool _isplayskill, Vector3 position, Transform parent = null)
     {
-        GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, parent);
-        thornPoint = projectileObject.transform.GetComponent<TargetPoint>();
-        thornPoint.attackDamage = _damage;
-        thornPoint.transform.position = position;
-        thornPoint.tagsString=tagsStringList;
-        thornPoint.GetComponent<CircleCollider2D>().offset = colOffset;
-        thornPoint.GetComponent<CircleCollider2D>().radius = colRadius;
-        thornPoint.GetComponent<Animator>().runtimeAnimatorController = _Animator;
-        thornPoint.gameObject.SetActive(true);
-        thornPoint.GetComponent<Animator>().Play("ProjecTileReady");
-        return thornPoint;
+        Transform _parent = parent != null ? parent : parentPool;
+        GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, _parent);
+        targetPoint = projectileObject.transform.GetComponent<TargetPoint>();
+        targetPoint.attackDamage = _damage;
+        targetPoint.tagsString = tagsStringList;
+        targetPoint.GetComponent<CircleCollider2D>().offset = colOffset;
+        targetPoint.GetComponent<CircleCollider2D>().radius = colRadius;
+        targetPoint.GetComponent<Animator>().runtimeAnimatorController = _Animator;
+        targetPoint.isplayskill = _isplayskill;
+        targetPoint.transform.position = _isplayskill ?  position + Vector3.down*0.3f : position;               //몬스터와 플레이어 피벗이 달라서...임시로..
+        targetPoint.attackType = _Animator.name.Split('_')[0];
+        targetPoint.gameObject.SetActive(true);
+        targetPoint.GetComponent<Animator>().Play("ProjecTileReady");
+        return targetPoint;
 
     }
 

@@ -25,6 +25,7 @@ TagManager:
   - west
   - north
   - UIPlayer
+  - ObjectPool
   layers:
   - Default
   - TransparentFX
@@ -65,8 +66,11 @@ TagManager:
   - name: Particle
     uniqueID: 4010669881
     locked: 0
-  - name: Enemy
+  - name: Character
     uniqueID: 1672498235
+    locked: 0
+  - name: Projectile
+    uniqueID: 3540973755
     locked: 0
   - name: Effect
     uniqueID: 1218017975

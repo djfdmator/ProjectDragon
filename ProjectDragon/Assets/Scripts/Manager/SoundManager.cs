@@ -50,11 +50,11 @@ public class SoundManager : MonoSingleton<SoundManager>
     public void Ds_EffectPlayerDB(int _index)
     {
         #if UNITY_EDITOR
-        Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
+        //Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
         #endif
         AudioClip Effect=Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index,false));
         #if UNITY_EDITOR
-        Debug.Log(Effect.name);
+        //Debug.Log(Effect.name);
         #endif
         Ds_PlaySingle(Effect);
     }

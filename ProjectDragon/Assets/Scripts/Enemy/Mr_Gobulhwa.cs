@@ -49,9 +49,9 @@ public class Mr_Gobulhwa : FSM_NormalEnemy
         Vector2 offset = new Vector2(0.0f,0.0f);
         float radius = 0.06f;
 
-        projectile.Create(projectileTargetList,offset, radius, Angle - 30, 3.0f, ATTACKDAMAGE, projectileAnimator, "ProjectileObj", false, transform.position);
-        projectile.Create(projectileTargetList, offset, radius, Angle, 3.0f, ATTACKDAMAGE, projectileAnimator, "ProjectileObj", false, transform.position);
-        projectile.Create(projectileTargetList, offset, radius, Angle + 30, 3.0f, ATTACKDAMAGE, projectileAnimator, "ProjectileObj", false, transform.position);
+        projectile.Create(projectileTargetList,offset, radius, Angle - 30, 3.0f, ATTACKDAMAGE, projectileAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle, 3.0f, ATTACKDAMAGE, projectileAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle + 30, 3.0f, ATTACKDAMAGE, projectileAnimator, false, transform.position);
 
     }
    

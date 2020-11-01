@@ -4708,11 +4708,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6703565479151265158}
   - component: {fileID: 8010285941128489618}
+  - component: {fileID: 6631119791197370349}
   - component: {fileID: 4538078106890886194}
   - component: {fileID: 2074684869840731171}
   - component: {fileID: 3697718247053303643}
   - component: {fileID: 7573522879819982395}
-  - component: {fileID: 8193854952921164152}
   - component: {fileID: 6154134356186116283}
   - component: {fileID: 2770981672019125054}
   m_Layer: 10
@@ -4773,8 +4773,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1672498235
-  m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e6fbaadffdbf187439645750d680370b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4786,6 +4786,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &6631119791197370349
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140570876156358880}
+  m_Enabled: 1
+  m_SortingLayerID: 1672498235
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!50 &4538078106890886194
 Rigidbody2D:
   serializedVersion: 4
@@ -4852,23 +4863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  originalMaterial: {fileID: 0}
   effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
---- !u!114 &8193854952921164152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7140570876156358880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4f1db1b21fae64bb1c9150cdb93fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disappearSpeed: 7
-  disappearTimer: 4
-  isVisible: 1
-  fadecolor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6154134356186116283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4912,10 +4908,12 @@ MonoBehaviour:
   isWalk: 0
   isDead: 0
   isSkillActive: 0
+  projectileTargetList: []
   current_Anim_Frame: 0
   enemy_angle: 0
   myAttackType: 0
   myAnim_AnglePos: 0
+  invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -4924,7 +4922,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   collisionPlayer: 0
-  invincible: 0
   isNuckback: 1
   skillCooltime: 0
   skillDamage: 0

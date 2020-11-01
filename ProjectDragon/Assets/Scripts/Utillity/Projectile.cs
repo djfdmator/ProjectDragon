@@ -78,7 +78,7 @@ public class Projectile : MonoBehaviour
     }
 */
 
-    public Projectile Create(List<string> _tagsString ,Vector2 _offset,float _colRadius,float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, string poolItemName, bool _isplayskill, Vector3 position, bool _isAngleAnim = false ,Transform parent = null )
+    public Projectile Create(List<string> _tagsString ,Vector2 _offset,float _colRadius,float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position, bool _isAngleAnim = false ,Transform parent = null )
     {
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, parent);
         projectile = projectileObject.transform.GetComponent<Projectile>();

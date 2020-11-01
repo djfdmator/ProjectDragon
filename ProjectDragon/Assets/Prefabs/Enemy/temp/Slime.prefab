@@ -4708,9 +4708,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1948673296124083830}
   - component: {fileID: 1948673296124083829}
+  - component: {fileID: 8573199713495060937}
   - component: {fileID: 1948673296124083826}
   - component: {fileID: 1948673296124083825}
-  - component: {fileID: 1948673296124083824}
   - component: {fileID: 3606076364911926114}
   - component: {fileID: 1948673296124083839}
   - component: {fileID: 2779741969946795077}
@@ -4774,9 +4774,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1051021547
+  m_SortingLayerID: 1672498235
   m_SortingLayer: 2
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c4f38539a30ddf147af74cfe6a405d83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4788,6 +4788,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &8573199713495060937
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948673296124083838}
+  m_Enabled: 1
+  m_SortingLayerID: 1672498235
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!50 &1948673296124083826
 Rigidbody2D:
   serializedVersion: 4
@@ -4822,23 +4833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  originalMaterial: {fileID: 0}
   effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
---- !u!114 &1948673296124083824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948673296124083838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4f1db1b21fae64bb1c9150cdb93fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disappearSpeed: 2
-  disappearTimer: 4
-  isVisible: 1
-  fadecolor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3606076364911926114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4868,7 +4864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHp: 0
   hp: 15
-  moveSpeed: 1
+  moveSpeed: 0.5
   atk: 5
   nuckBack: 0
   maxHp: 15
@@ -4878,15 +4874,16 @@ MonoBehaviour:
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttacking: 0
+  isAttack: 1
   isWalk: 0
   isDead: 0
-  isHit: 0
   isSkillActive: 0
+  projectileTargetList: []
   current_Anim_Frame: 0
   enemy_angle: 0
   myAttackType: 0
   myAnim_AnglePos: 0
+  invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -4895,7 +4892,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   collisionPlayer: 0
-  invincible: 0
   isNuckback: 1
   skillCooltime: 0
   skillDamage: 0
@@ -5109,6 +5105,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1948673296124083830}
     m_Modifications:
+    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
+        type: 3}
+      propertyPath: m_Name
+      value: SlimeDead_Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 786176781489709825, guid: f0f05efb2ec55c343903975976a46693,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5162,16 +5168,6 @@ PrefabInstance:
     - target: {fileID: 786176781489709825, guid: f0f05efb2ec55c343903975976a46693,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
-        type: 3}
-      propertyPath: m_Name
-      value: SlimeDead_Particle
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773265781101867591, guid: f0f05efb2ec55c343903975976a46693,

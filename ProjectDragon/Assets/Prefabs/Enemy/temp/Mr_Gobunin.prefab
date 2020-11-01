@@ -89,10 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3736805459333672850}
   - component: {fileID: 3736805459333672851}
-  - component: {fileID: 3736805459333672848}
+  - component: {fileID: 4001087614993885049}
   - component: {fileID: 3736805459333672846}
   - component: {fileID: 3736805459333672847}
-  - component: {fileID: 3736805459333672844}
   - component: {fileID: 3643465430653799852}
   - component: {fileID: 533289553692650461}
   - component: {fileID: 449091351719355559}
@@ -154,9 +153,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1051021547
+  m_SortingLayerID: 1672498235
   m_SortingLayer: 2
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 005575cae1b19ae429440d3bd9d0af5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -168,25 +167,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3736805459333672848
-Animator:
-  serializedVersion: 3
+--- !u!210 &4001087614993885049
+SortingGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3736805459333672842}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 6da3ed66f5787894a933dcaed4ab1499, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_SortingLayerID: 1672498235
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!50 &3736805459333672846
 Rigidbody2D:
   serializedVersion: 4
@@ -221,23 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  originalMaterial: {fileID: 0}
   effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
---- !u!114 &3736805459333672844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3736805459333672842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4f1db1b21fae64bb1c9150cdb93fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disappearSpeed: 2
-  disappearTimer: 4
-  isVisible: 1
-  fadecolor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3643465430653799852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,15 +253,16 @@ MonoBehaviour:
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttacking: 0
+  isAttack: 1
   isWalk: 0
   isDead: 0
-  isHit: 0
   isSkillActive: 0
+  projectileTargetList: []
   current_Anim_Frame: 0
   enemy_angle: 0
   myAttackType: 0
   myAnim_AnglePos: 0
+  invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -294,7 +271,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   collisionPlayer: 0
-  invincible: 0
   isNuckback: 1
   skillCooltime: 0
   skillDamage: 0

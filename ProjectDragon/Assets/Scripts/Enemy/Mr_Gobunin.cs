@@ -40,7 +40,7 @@ public class Mr_Gobunin : FSM_NormalEnemy
         Vector2 offset = new Vector2(0.0f, 0.0f);
         float radius = 0.06f;
 
-        projectile.Create(projectileTargetList, offset, radius, Angle, 3, ATTACKDAMAGE, projectileAnimator, "ProjectileObj", false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle, 3, ATTACKDAMAGE, projectileAnimator, false, transform.position);
     }
     
 }

@@ -25,7 +25,7 @@ public class PooledObject
     {
         GameObject item = Object.Instantiate(prefab) as GameObject;
         item.name = poolItemName;
-        item.transform.SetParent(parent);
+        item.transform.SetParent(parent.transform);
         item.SetActive(false);
 
         return item;

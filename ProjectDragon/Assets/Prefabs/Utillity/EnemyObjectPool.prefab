@@ -47,12 +47,12 @@ MonoBehaviour:
   - poolItemName: DamagePopupObj
     prefab: {fileID: 5567132192213746108, guid: 59913f935ba4ed44bb4dccbcfc4eeffd,
       type: 3}
-    poolCount: 50
+    poolCount: 30
     poolList: []
   - poolItemName: ProjectileObj
     prefab: {fileID: 2767004985795059362, guid: 47e41df5c60f2d4449e77675780a3a8d,
       type: 3}
-    poolCount: 30
+    poolCount: 15
     poolList: []
   - poolItemName: TargetPoint
     prefab: {fileID: 8003796463881998535, guid: 9da14135e6bd65540a10b4a01e636add,
@@ -63,4 +63,9 @@ MonoBehaviour:
     prefab: {fileID: 1796311146230742155, guid: 77018714c8b2a4f42865ab8113161337,
       type: 3}
     poolCount: 20
+    poolList: []
+  - poolItemName: HitEffect
+    prefab: {fileID: 3554040949114493248, guid: 36a931870d6593a44afd05ee0ec6bb65,
+      type: 3}
+    poolCount: 5
     poolList: []

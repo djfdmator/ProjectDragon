@@ -397,7 +397,7 @@ public class GameManager : MonoSingleton<GameManager>
                 yield return null;
             }
 #if UNITY_EDITOR
-            Debug.Log("destroy");
+            //Debug.Log("destroy");
 #endif
             //Destroy(particle);
         }

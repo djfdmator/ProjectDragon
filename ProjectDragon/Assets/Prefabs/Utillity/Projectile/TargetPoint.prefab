@@ -65,9 +65,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1218017975
+  m_SortingLayerID: -753993541
   m_SortingLayer: 3
-  m_SortingOrder: 8
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3368c304e4c557b40ba24b5fa17b5a03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,7 +150,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -284297415
   m_SortingLayer: 1
-  m_SortingOrder: 6
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 41ba3fa76eb1d974b9e78258a8e827f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -213,5 +213,7 @@ MonoBehaviour:
   projecTileReady: 1
   projecTileStart: 1
   projecTileEnd: 1
-  targetObject: {fileID: 0}
+  parentPool: {fileID: 0}
+  targetObject:
+  - {fileID: 0}
   tagsString: []

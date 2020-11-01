@@ -89,9 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6775708866940135145}
   - component: {fileID: 6775708866940135144}
+  - component: {fileID: 7315550595501545997}
   - component: {fileID: 6775708866940135157}
   - component: {fileID: 6775708866940135156}
-  - component: {fileID: 6775708866940135159}
   - component: {fileID: 6806236910962505811}
   - component: {fileID: 6775708866940135158}
   - component: {fileID: 1678028229157493543}
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6775708866940135153}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -152,9 +152,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1051021547
+  m_SortingLayerID: 1672498235
   m_SortingLayer: 2
-  m_SortingOrder: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b731377b396b35c4cbcbf66b7677a6a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,6 +166,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &7315550595501545997
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775708866940135153}
+  m_Enabled: 1
+  m_SortingLayerID: 1672498235
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!50 &6775708866940135157
 Rigidbody2D:
   serializedVersion: 4
@@ -200,23 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  originalMaterial: {fileID: 0}
   effectMaterial: {fileID: 2100000, guid: 30c0325e7b29d544c9ed658bb668053e, type: 2}
---- !u!114 &6775708866940135159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6775708866940135153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4f1db1b21fae64bb1c9150cdb93fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disappearSpeed: 7
-  disappearTimer: 4
-  isVisible: 1
-  fadecolor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6806236910962505811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 0
-  hp: 100
+  hp: 30
   moveSpeed: 1
   atk: 5
   nuckBack: 0
@@ -256,15 +252,16 @@ MonoBehaviour:
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttacking: 0
+  isAttack: 1
   isWalk: 0
   isDead: 0
-  isHit: 0
   isSkillActive: 0
+  projectileTargetList: []
   current_Anim_Frame: 0
   enemy_angle: 0
   myAttackType: 0
   myAnim_AnglePos: 0
+  invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -273,7 +270,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   collisionPlayer: 0
-  invincible: 0
   isNuckback: 1
   skillCooltime: 0
   skillDamage: 0
@@ -284,6 +280,7 @@ MonoBehaviour:
   cooltime: 6
   attackCount: 0
   normalEnemyState: 0
+  attackSpeed: 0.2
 --- !u!70 &1678028229157493543
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

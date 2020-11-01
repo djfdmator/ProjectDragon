@@ -209,15 +209,15 @@ public class ShortRangeAttackArea : MonoBehaviour
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (My_Angle.weaponType == Player.WeaponType.NormalStaff)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[2], "ProjectileObj", true, My_Angle.transform.position);
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[2], true, My_Angle.transform.position);
         }
         else if (My_Angle.weaponType == Player.WeaponType.Nyx)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[4], "ProjectileObj", true, My_Angle.transform.position);
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[4], true, My_Angle.transform.position);
         }
         else if (My_Angle.weaponType == Player.WeaponType.Nereides)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[6], "ProjectileObj", true, My_Angle.transform.position);
+            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[6], true, My_Angle.transform.position);
         }
     }
     public void AttackCoolDown()
