@@ -561,40 +561,6 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!1 &49817549
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 49817550}
-  m_Layer: 8
-  m_Name: IconBackgroundU
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &49817550
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49817549}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 454, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1900942824}
-  - {fileID: 486840907}
-  - {fileID: 574244097}
-  - {fileID: 493257196}
-  m_Father: {fileID: 121071541}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &58704288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,11 +1377,11 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3049
+  startingRenderQueue: 3047
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 13.0000305, y: 5, z: 1128, w: 555.99994}
+  mClipRange: {x: 12.999985, y: 5, z: 828, w: 555.99994}
   mClipSoftness: {x: 1, y: 1}
   mDepth: 9
   mSortingOrder: 0
@@ -1575,7 +1541,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3033
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1799,7 +1765,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 49817550}
+  - {fileID: 1900942824}
+  - {fileID: 486840907}
+  - {fileID: 574244097}
+  - {fileID: 493257196}
   - {fileID: 1655946525}
   m_Father: {fileID: 232710567}
   m_RootOrder: 1
@@ -2147,7 +2116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147139644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39, y: 135, z: 0}
+  m_LocalPosition: {x: 39, y: 128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1825596970}
@@ -2758,7 +2727,6 @@ GameObject:
   - component: {fileID: 207380096}
   - component: {fileID: 207380098}
   - component: {fileID: 207380097}
-  - component: {fileID: 207380099}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -2813,8 +2781,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 112
-  mHeight: 112
+  mWidth: 108
+  mHeight: 108
   mDepth: 4
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -2834,8 +2802,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: f16f21ae28e185a49b2f1464b1fe3ed6, type: 2}
-  mSpriteName: "\uB85C\uBE44UI \uC7A5\uCC29\uC7A5\uBE44 \uC2AC\uB86F"
+  mAtlas: {fileID: 11400000, guid: d0e10a3ce2a6d0043b73b0ac8f0b1409, type: 2}
+  mSpriteName: Lobby_EquipSlot
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!114 &207380097
@@ -2864,9 +2832,11 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
+  - mTarget: {fileID: 266162544}
+    mMethodName: PopupItemInformation
+    mParameters:
+    - obj: {fileID: 207380094}
+      field: 
     oneShot: 0
 --- !u!61 &207380098
 BoxCollider2D:
@@ -2892,24 +2862,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 112, y: 112}
+  m_Size: {x: 108, y: 108}
   m_EdgeRadius: 0
---- !u!114 &207380099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207380094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject:
-  - {fileID: 0}
-  deactiveObject: []
 --- !u!1 &232710566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,7 +2924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242597388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -148, y: 198, z: 0}
+  m_LocalPosition: {x: -149, y: 195, z: 0}
   m_LocalScale: {x: 0.9990001, y: 0.9990001, z: 0.9990001}
   m_Children: []
   m_Father: {fileID: 114285396}
@@ -3260,7 +3214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254092023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -142, y: 135, z: 0}
+  m_LocalPosition: {x: -142, y: 128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 70958788}
@@ -3676,6 +3630,9 @@ MonoBehaviour:
   gUITestScrollViews: []
   maintenance: {fileID: 0}
   optionWindow: {fileID: 0}
+  equipArmor: {fileID: 0}
+  equipWeapon: {fileID: 0}
+  equipSkill: {fileID: 0}
 --- !u!1 &267884131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,8 +4803,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415503452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: -0, z: 0}
-  m_LocalScale: {x: 0.999, y: 0.999, z: 0.999}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1482599896}
   - {fileID: 1366437378}
@@ -4877,22 +4834,22 @@ MonoBehaviour:
   bottomAnchor:
     target: {fileID: 114285396}
     relative: 0
-    absolute: -6
+    absolute: 1
   topAnchor:
     target: {fileID: 114285396}
     relative: 1
-    absolute: 5
+    absolute: -1
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2520
-  mHeight: 1091
+  mWidth: 1920
+  mHeight: 1078
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.3098075
+  aspectRatio: 1.7810761
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -4927,7 +4884,6 @@ GameObject:
   - component: {fileID: 421246426}
   - component: {fileID: 421246427}
   - component: {fileID: 421246430}
-  - component: {fileID: 421246429}
   - component: {fileID: 421246428}
   m_Layer: 8
   m_Name: Skill
@@ -4944,7 +4900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421246425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80, y: 4, z: 0}
+  m_LocalPosition: {x: 90, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1704438098}
@@ -4983,14 +4939,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 150
-  mHeight: 150
+  mWidth: 112
+  mHeight: 124
   mDepth: 4
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 0.9032258
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -5004,8 +4960,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: c0d56b14b3bcf5044be03c4df1adbb0d, type: 2}
-  mSpriteName: "UI \uC2A4\uD0AC \uC2AC\uB86F"
+  mAtlas: {fileID: 11400000, guid: d0e10a3ce2a6d0043b73b0ac8f0b1409, type: 2}
+  mSpriteName: Lobby_SkillSlot
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!114 &421246428
@@ -5021,8 +4977,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 421246425}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
   dragHighlight: 0
@@ -5034,26 +4990,12 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
+  - mTarget: {fileID: 266162544}
+    mMethodName: PopupItemInformation
+    mParameters:
+    - obj: {fileID: 421246425}
+      field: 
     oneShot: 0
---- !u!114 &421246429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421246425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject:
-  - {fileID: 0}
-  deactiveObject: []
 --- !u!61 &421246430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5078,7 +5020,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 150, y: 150}
+  m_Size: {x: 112, y: 124}
   m_EdgeRadius: 0
 --- !u!1 &428057031
 GameObject:
@@ -5474,10 +5416,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486840906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 871, y: 6, z: 0}
+  m_LocalPosition: {x: 871, y: 459.99997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 49817550}
+  m_Father: {fileID: 121071541}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &486840908
@@ -5566,8 +5508,12 @@ MonoBehaviour:
     mMethodName: ButtonSound1
     mParameters: []
     oneShot: 0
-  - mTarget: {fileID: 823988750}
+  - mTarget: {fileID: 266162544}
     mMethodName: OptionButton
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 266162544}
+    mMethodName: CloseCurPopInformation
     mParameters: []
     oneShot: 0
 --- !u!61 &486840910
@@ -5708,12 +5654,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 493257195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -448, y: 5, z: 0}
+  m_LocalPosition: {x: -447.99997, y: 458.99997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1881613297}
   - {fileID: 1611199201}
-  m_Father: {fileID: 49817550}
+  m_Father: {fileID: 121071541}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505689349
@@ -6110,13 +6056,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574244096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 419, y: 0, z: 0}
+  m_LocalPosition: {x: 419, y: 454, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1130063295}
   - {fileID: 207380095}
   - {fileID: 421246426}
-  m_Father: {fileID: 49817550}
+  m_Father: {fileID: 121071541}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579586111
@@ -7088,7 +7034,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3054
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7633,7 +7579,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3053
+  startingRenderQueue: 3030
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -8130,7 +8076,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889459046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 343, y: -333, z: 0}
+  m_LocalPosition: {x: 268, y: -333, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 911486669}
@@ -8194,7 +8140,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 426, y: 246}
+  m_Size: {x: 276, y: 159}
   m_EdgeRadius: 0
 --- !u!114 &889459051
 MonoBehaviour:
@@ -8227,8 +8173,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 426
-  mHeight: 246
+  mWidth: 276
+  mHeight: 159
   mDepth: 29
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -8277,7 +8223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911486668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 608, y: -135, z: 0}
+  m_LocalPosition: {x: 458, y: -135, z: 0}
   m_LocalScale: {x: 0.9990001, y: 0.9990001, z: 0.9990001}
   m_Children:
   - {fileID: 1118492651}
@@ -8318,7 +8264,7 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1218
+  mWidth: 918
   mHeight: 616
   mDepth: 15
   mMat: {fileID: 0}
@@ -9192,7 +9138,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3047
+  startingRenderQueue: 3024
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -9215,7 +9161,6 @@ GameObject:
   - component: {fileID: 966755181}
   - component: {fileID: 966755180}
   - component: {fileID: 966755179}
-  - component: {fileID: 966755178}
   m_Layer: 8
   m_Name: OptionBGI
   m_TagString: Untagged
@@ -9240,22 +9185,6 @@ Transform:
   m_Father: {fileID: 207380095}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &966755178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966755176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject: []
-  deactiveObject:
-  - {fileID: 966755176}
 --- !u!114 &966755179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9281,11 +9210,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!61 &966755180
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9668,14 +9593,13 @@ GameObject:
   - component: {fileID: 987236348}
   - component: {fileID: 987236347}
   - component: {fileID: 987236346}
-  - component: {fileID: 987236345}
   m_Layer: 8
   m_Name: OptionBGI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &987236344
 Transform:
   m_ObjectHideFlags: 0
@@ -9693,22 +9617,6 @@ Transform:
   m_Father: {fileID: 1130063295}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &987236345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987236343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject: []
-  deactiveObject:
-  - {fileID: 987236343}
 --- !u!114 &987236346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9734,11 +9642,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!61 &987236347
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9848,7 +9752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001649375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1221, y: 537, z: 0}
+  m_LocalPosition: {x: -921, y: 537, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 58704289}
@@ -11258,7 +11162,6 @@ GameObject:
   - component: {fileID: 1117678143}
   - component: {fileID: 1117678142}
   - component: {fileID: 1117678141}
-  - component: {fileID: 1117678140}
   m_Layer: 8
   m_Name: OptionBGI
   m_TagString: Untagged
@@ -11283,22 +11186,6 @@ Transform:
   m_Father: {fileID: 421246426}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1117678140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117678138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject: []
-  deactiveObject:
-  - {fileID: 1117678138}
 --- !u!114 &1117678141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11324,11 +11211,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!61 &1117678142
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11657,7 +11540,6 @@ GameObject:
   - component: {fileID: 1130063296}
   - component: {fileID: 1130063299}
   - component: {fileID: 1130063298}
-  - component: {fileID: 1130063297}
   m_Layer: 8
   m_Name: Armor
   m_TagString: Untagged
@@ -11712,8 +11594,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 112
-  mHeight: 112
+  mWidth: 108
+  mHeight: 108
   mDepth: 4
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -11733,26 +11615,10 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: f16f21ae28e185a49b2f1464b1fe3ed6, type: 2}
-  mSpriteName: "\uB85C\uBE44UI \uC7A5\uCC29\uC7A5\uBE44 \uC2AC\uB86F"
+  mAtlas: {fileID: 11400000, guid: d0e10a3ce2a6d0043b73b0ac8f0b1409, type: 2}
+  mSpriteName: Lobby_EquipSlot
   mFixedAspect: 0
   mFillCenter: 1
---- !u!114 &1130063297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130063294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject:
-  - {fileID: 987236343}
-  deactiveObject: []
 --- !u!114 &1130063298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11766,8 +11632,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1130063294}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
   dragHighlight: 0
@@ -11779,9 +11645,11 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
-    mParameters: []
+  - mTarget: {fileID: 266162544}
+    mMethodName: PopupItemInformation
+    mParameters:
+    - obj: {fileID: 1130063294}
+      field: 
     oneShot: 0
 --- !u!61 &1130063299
 BoxCollider2D:
@@ -11807,7 +11675,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 112, y: 112}
+  m_Size: {x: 108, y: 108}
   m_EdgeRadius: 0
 --- !u!1 &1132378459
 GameObject:
@@ -13608,7 +13476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311149537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -175, y: 0, z: 0}
+  m_LocalPosition: {x: -135, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1247014988}
@@ -13646,8 +13514,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 150
-  mHeight: 150
+  mWidth: 200
+  mHeight: 200
   mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -13667,8 +13535,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: f16f21ae28e185a49b2f1464b1fe3ed6, type: 2}
-  mSpriteName: "\uB85C\uBE44UI \uC815\uBE44"
+  mAtlas: {fileID: 11400000, guid: d0e10a3ce2a6d0043b73b0ac8f0b1409, type: 2}
+  mSpriteName: Lobby_MaintenanceButton_Normal
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!114 &1311149540
@@ -13690,15 +13558,19 @@ MonoBehaviour:
   duration: 0
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: 
+  pressedSprite: Lobby_MaintenanceButton_Click
   disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 823988750}
+  - mTarget: {fileID: 266162544}
     mMethodName: MaintenanceButton
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 266162544}
+    mMethodName: CloseCurPopInformation
     mParameters: []
     oneShot: 0
 --- !u!61 &1311149541
@@ -13725,7 +13597,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 150, y: 150}
+  m_Size: {x: 200, y: 200}
   m_EdgeRadius: 0
 --- !u!114 &1311149542
 MonoBehaviour:
@@ -14003,7 +13875,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366437377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -737, y: 496, z: 0}
+  m_LocalPosition: {x: -587, y: 489, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 415503453}
@@ -14040,7 +13912,7 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 920
+  mWidth: 620
   mHeight: 80
   mDepth: 20
   mMat: {fileID: 0}
@@ -14592,7 +14464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381820016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1225, y: -222, z: 0}
+  m_LocalPosition: {x: -925, y: -222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1046367196}
@@ -16550,7 +16422,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3049
+  startingRenderQueue: 3047
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -16870,7 +16742,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 823988750}
+  - mTarget: {fileID: 266162544}
     mMethodName: ButtonSound1
     mParameters: []
     oneShot: 0
@@ -16880,6 +16752,10 @@ MonoBehaviour:
     oneShot: 0
   - mTarget: {fileID: 2132822393}
     mMethodName: Toggle
+    mParameters: []
+    oneShot: 0
+  - mTarget: {fileID: 266162544}
+    mMethodName: CloseCurPopInformation
     mParameters: []
     oneShot: 0
 --- !u!1 &1552833803
@@ -17040,7 +16916,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3058
+  startingRenderQueue: 3035
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -17360,14 +17236,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2520
+  mWidth: 1920
   mHeight: 1080
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.3333333
+  aspectRatio: 1.7777778
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -17969,7 +17845,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2530, y: 1090}
+  m_Size: {x: 1930, y: 1090}
   m_EdgeRadius: 0
 --- !u!114 &1651858775
 MonoBehaviour:
@@ -18002,7 +17878,7 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2530
+  mWidth: 1930
   mHeight: 1090
   mDepth: 0
   mMat: {fileID: 0}
@@ -18072,7 +17948,7 @@ Transform:
   m_Children:
   - {fileID: 2132822391}
   m_Father: {fileID: 121071541}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1655946526
 MonoBehaviour:
@@ -18113,7 +17989,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3026
+  startingRenderQueue: 3023
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -19957,11 +19833,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900942823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -11, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 443, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 49817550}
+  m_Father: {fileID: 121071541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1900942825
@@ -20423,7 +20299,6 @@ GameObject:
   - component: {fileID: 1939133219}
   - component: {fileID: 1939133220}
   - component: {fileID: 1939133221}
-  - component: {fileID: 1939133222}
   m_Layer: 8
   m_Name: BattleButton
   m_TagString: Untagged
@@ -20439,7 +20314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939133217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 360, y: 0, z: 0}
+  m_LocalPosition: {x: 280, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1656643913}
@@ -20477,8 +20352,8 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 150
-  mHeight: 150
+  mWidth: 200
+  mHeight: 200
   mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
@@ -20498,8 +20373,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: f16f21ae28e185a49b2f1464b1fe3ed6, type: 2}
-  mSpriteName: "\uB85C\uBE44UI \uC804\uD22C"
+  mAtlas: {fileID: 11400000, guid: d0e10a3ce2a6d0043b73b0ac8f0b1409, type: 2}
+  mSpriteName: Lobby_BattlButton_Normal
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!114 &1939133220
@@ -20521,23 +20396,19 @@ MonoBehaviour:
   duration: 0
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: 
+  pressedSprite: Lobby_BattlButton_Click
   disabledSprite: 
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 823988750}
-    mMethodName: GotoBattle
+  - mTarget: {fileID: 266162544}
+    mMethodName: BattleButton
     mParameters: []
     oneShot: 0
-  - mTarget: {fileID: 823988750}
-    mMethodName: ButtonSound1
-    mParameters: []
-    oneShot: 0
-  - mTarget: {fileID: 823988750}
-    mMethodName: ObjectControl
+  - mTarget: {fileID: 266162544}
+    mMethodName: CloseCurPopInformation
     mParameters: []
     oneShot: 0
 --- !u!61 &1939133221
@@ -20564,25 +20435,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 150, y: 150}
+  m_Size: {x: 200, y: 200}
   m_EdgeRadius: 0
---- !u!114 &1939133222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939133217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8dd03e812eb624898f6364be562519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectset: 0
-  activeObject: []
-  deactiveObject:
-  - {fileID: 114285395}
-  - {fileID: 232710566}
 --- !u!1 &1945869976
 GameObject:
   m_ObjectHideFlags: 0
@@ -21239,7 +21093,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3031
+  startingRenderQueue: 3029
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -21356,7 +21210,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: -0.000030517578, y: -28.5, z: 1128, w: 555.99994}
+  mClipRange: {x: -0.000076293945, y: -28.5, z: 828, w: 555.99994}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 4
   mSortingOrder: 0
@@ -21738,7 +21592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053926946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -550.99994, y: 295, z: 0}
+  m_LocalPosition: {x: -400.99997, y: 295, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 86009094}
@@ -22040,7 +21894,6 @@ GameObject:
   - component: {fileID: 2132822391}
   - component: {fileID: 2132822392}
   - component: {fileID: 2132822393}
-  - component: {fileID: 2132822394}
   m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
@@ -22173,27 +22026,3 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 0}
   to: {x: -450, y: 0, z: 0}
   worldSpace: 0
---- !u!114 &2132822394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132822390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaee0fa3c7a782f43ac65b3fea68c1d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 2132822390}
-  tweenGroup: 0
-  trigger: 0
-  playDirection: 0
-  resetOnPlay: 0
-  resetIfDisabled: 0
-  ifDisabledOnPlay: 0
-  disableWhenFinished: 0
-  includeChildren: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 

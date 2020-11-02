@@ -14,14 +14,14 @@ public class OptionWindow : MonoBehaviour
 
     private void Awake()
     {
-        if (gameSetting == null) gameSetting = transform.Find("Category/GameSettingButton/Enable/SettingWindow");
-        if (BGM == null) BGM = gameSetting.Find("BGMSetting/Slider").GetComponent<UISlider>();
-        if (SFX == null) SFX = gameSetting.Find("SFXSetting/Slider").GetComponent<UISlider>();
-        if (machineVibration == null) machineVibration = gameSetting.Find("DeviceVibrationSetting/Toggle/Disable").GetComponent<UIToggle>();
-        if (screenVibration == null) screenVibration = gameSetting.Find("ScreenVibrationSetting/Toggle/Disable").GetComponent<UIToggle>();
+        if (gameSetting == null) gameSetting = transform.Find("Category").Find("GameSettingButton").Find("Enable").Find("SettingWindow");
+        if (BGM == null) BGM = gameSetting.Find("BGMSetting").Find("Slider").GetComponent<UISlider>();
+        if (SFX == null) SFX = gameSetting.Find("SFXSetting").Find("Slider").GetComponent<UISlider>();
+        if (machineVibration == null) machineVibration = gameSetting.Find("DeviceVibrationSetting").Find("Toggle").Find("Disable").GetComponent<UIToggle>();
+        if (screenVibration == null) screenVibration = gameSetting.Find("ScreenVibrationSetting").Find("Toggle").Find("Disable").GetComponent<UIToggle>();
 
-        if (resetGameDialogue == null) resetGameDialogue = transform.Find("Category/ResetGameButton/Dialogue").gameObject;
-        if (quitApplicationDialogue == null) quitApplicationDialogue = transform.Find("Category/QuitButton/Dialogue").gameObject;
+        if (resetGameDialogue == null) resetGameDialogue = transform.Find("Category").Find("ResetGameButton").Find("Dialogue").gameObject;
+        if (quitApplicationDialogue == null) quitApplicationDialogue = transform.Find("Category").Find("QuitButton").Find("Dialogue").gameObject;
 
         resetGameDialogue.SetActive(false);
         quitApplicationDialogue.SetActive(false);

@@ -6,49 +6,103 @@ public class LobbyManager_vr2 : MonoBehaviour
 {
     public List<GUITestScrollView> gUITestScrollViews;
 
-
     public Maintenance maintenance = null;
     public OptionWindow optionWindow = null;
 
+    public GameObject equipArmor;
+    public GameObject equipWeapon;
+    public GameObject equipSkill;
+    private GameObject curPopInformation;
+    private const int hashCode_Armor = 22446227;
+    private const int hashCode_Weapon = -224219278;
+    private const int hashCode_Skill = 1312877309;
+
     void Start()
     {
+
         #region Maintenance
-        if (maintenance == null) maintenance = transform.Find(string.Format("Maintenance")).GetComponent<Maintenance>();
+        if (maintenance == null) maintenance = transform.Find("Maintenance").GetComponent<Maintenance>();
         maintenance.gameObject.SetActive(false);
         #endregion
 
         #region OptionPanel
-        if (optionWindow == null) optionWindow = transform.Find(string.Format("PopupWindow/OptionWindow")).GetComponent<OptionWindow>();
+        if (optionWindow == null) optionWindow = transform.Find("PopupWindow").Find("OptionWindow").GetComponent<OptionWindow>();
         optionWindow.gameObject.SetActive(false);
+        #endregion
+
+        #region EquipItem
+        Transform equip = transform.Find("LobbyPanel/TopUI/EquipItem");
+        equipArmor = equip.Find("Armor").gameObject;
+        equipWeapon = equip.Find("Weapon").gameObject;
+        equipSkill = equip.Find("Skill").gameObject;
         #endregion
     }
 
-    void Update()
-    {
-
-    }
-
-    
     public void RefreshCharactorData()
     {
 
     }
 
-
-
-    /// <summary>
-    /// 배틀씬으로 가기
-    /// </summary>
-    public void GotoBattle()
+    #region Button
+    public void PopupItemInformation(GameObject obj)
     {
-        GameManager.Inst.Loading(true);
-        #region kks
+        GameObject optionBGI = obj.transform.Find("OptionBGI").gameObject;
+        ButtonSound1();
 
-        //GameManager.Inst.PlayData.currentStage = (int)developerStageSetting + 1;
-        #endregion
-        //GameObject.Find()
+        if (optionBGI.activeSelf)
+        {
+            optionBGI.SetActive(false);
+            curPopInformation = null;
+        }
+        else
+        {
+            CloseCurPopInformation();
+            curPopInformation = optionBGI;
+            curPopInformation.SetActive(true);
+            switch (obj.name.GetHashCode())
+            {
+                case hashCode_Armor:
+                    break;
+                case hashCode_Weapon:
+                    break;
+                case hashCode_Skill:
+                    break;
+            }
+        }
+
     }
 
+    public void CloseCurPopInformation()
+    {
+        if (curPopInformation != null)
+        {
+            curPopInformation.SetActive(false);
+            curPopInformation = null;
+        }
+    }
+
+    public void OptionButton()
+    {
+        ButtonSound1();
+        optionWindow.OpenOptionWindow();
+    }
+
+    public void MaintenanceButton()
+    {
+        ButtonSound1();
+        maintenance.OpenMaintenance();
+    }
+
+    //배틀로 간다.
+    public void BattleButton()
+    {
+        ButtonSound1();
+        GameManager.Inst.Loading(true);
+    }
+    #endregion
+
+
+    //정비 cs에 넣을 거임
     #region 정비창 정렬 기능
     /// <summary>
     /// 인벤토리를 수집한 순서로 정렬 후 스크롤뷰 갱신
@@ -147,6 +201,13 @@ public class LobbyManager_vr2 : MonoBehaviour
             scrollView.Setposition(num);
         }
 
+    }
+    #endregion
+
+    #region sound
+    public void ButtonSound1()
+    {
+        SoundManager.Inst.Ds_EffectPlayerDB(1);
     }
     #endregion
 }
