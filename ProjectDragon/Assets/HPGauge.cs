@@ -30,8 +30,8 @@ public class HPGauge : MonoBehaviour
 
         Current_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
        // First_Block_HPGauge = GameObject.Find("UI Root/HPBar/HP_01").GetComponent<UISprite>();
-        Second_Block_HPGauge = GameObject.Find("UI Root/HPBar/HP_02").GetComponent<UISprite>();
-        Damaged_HPGauge = GameObject.Find("UI Root/HPBar/HP_Damaged").GetComponent<UISprite>();
+        Second_Block_HPGauge = GameObject.Find("UI Root/Stat/HPBar/HP_02").GetComponent<UISprite>();
+        Damaged_HPGauge = GameObject.Find("UI Root/Stat/HPBar/HP_Damaged").GetComponent<UISprite>();
       //  Third_Block_HPGauge.transform.localPosition = Minimal_Transform_Position;
         record_HPBar = Current_player.HP;
         record_HP.text = record_HPBar.ToString();

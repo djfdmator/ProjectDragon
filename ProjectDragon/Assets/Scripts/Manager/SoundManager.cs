@@ -41,7 +41,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             bgmnum=_index;
         #if UNITY_EDITOR
-        Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
+        //Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
         #endif
         Ds_BgmPlayer(BGM);
         }

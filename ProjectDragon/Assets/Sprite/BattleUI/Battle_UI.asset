@@ -14,61 +14,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 441ad51a738ae4f41a1d1be52a4f5c7e, type: 2}
   mSprites:
-  - name: HP_01
-    x: 753
-    y: 522
-    width: 61
-    height: 40
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 4
-    paddingRight: 4
-    paddingTop: 2
-    paddingBottom: 9
-  - name: HP_02
-    x: 681
-    y: 522
-    width: 71
-    height: 40
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 5
-    paddingRight: 5
-    paddingTop: 2
-    paddingBottom: 9
-  - name: HP_03
-    x: 815
-    y: 522
-    width: 52
-    height: 40
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 6
-    paddingRight: 0
-    paddingTop: 2
-    paddingBottom: 9
-  - name: HP_04
-    x: 183
-    y: 576
-    width: 44
-    height: 40
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 2
-    paddingTop: 2
-    paddingBottom: 9
-  - name: ingameui_03
+  - name: Ingame_HPbar_BackGround
     x: 0
-    y: 858
+    y: 1377
+    width: 376
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_HPbar_HP
+    x: 367
+    y: 1745
+    width: 300
+    height: 44
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MPbar_BackGround
+    x: 715
+    y: 1377
+    width: 277
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_PauseButton_Click
+    x: 867
+    y: 1914
+    width: 134
+    height: 134
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_PauseButton_Normal
+    x: 851
+    y: 1115
+    width: 134
+    height: 134
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: ingameui_03
+    x: 367
+    y: 1882
     width: 499
     height: 166
     borderLeft: 0
@@ -80,8 +93,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_21
-    x: 187
-    y: 740
+    x: 782
+    y: 1259
     width: 117
     height: 117
     borderLeft: 41
@@ -93,8 +106,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_24
-    x: 895
-    y: 601
+    x: 900
+    y: 1276
     width: 101
     height: 100
     borderLeft: 0
@@ -106,8 +119,8 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 11
   - name: ingameui_27
-    x: 895
-    y: 702
+    x: 0
+    y: 964
     width: 101
     height: 100
     borderLeft: 0
@@ -119,8 +132,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 8
   - name: ingameui_30
-    x: 957
-    y: 972
+    x: 668
+    y: 1737
     width: 53
     height: 52
     borderLeft: 0
@@ -132,47 +145,47 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 3
   - name: ingameui_37
-    x: 708
-    y: 748
-    width: 184
-    height: 184
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 4
-    paddingRight: 8
-    paddingTop: 8
-    paddingBottom: 5
-  - name: ingameui_40
-    x: 500
-    y: 718
-    width: 207
-    height: 214
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 7
-    paddingTop: 0
-    paddingBottom: 2
-  - name: ingameui_43
-    x: 525
-    y: 553
-    width: 155
-    height: 164
+    x: 220
+    y: 1489
+    width: 208
+    height: 208
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
-    paddingRight: 3
+    paddingRight: 0
     paddingTop: 0
-    paddingBottom: 5
+    paddingBottom: 0
+  - name: ingameui_40
+    x: 429
+    y: 1490
+    width: 207
+    height: 207
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: ingameui_43
+    x: 637
+    y: 1490
+    width: 207
+    height: 207
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: ingameui_44
     x: 0
-    y: 673
+    y: 1065
     width: 186
     height: 184
     borderLeft: 0
@@ -184,10 +197,10 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 4
   - name: ingameui_48
-    x: 893
-    y: 803
-    width: 129
-    height: 129
+    x: 845
+    y: 1524
+    width: 173
+    height: 173
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -197,34 +210,34 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_51
-    x: 895
-    y: 499
-    width: 101
-    height: 101
+    x: 689
+    y: 1095
+    width: 161
+    height: 154
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 4
-    paddingRight: 4
-    paddingTop: 2
-    paddingBottom: 4
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: ingameui_56
-    x: 708
-    y: 563
-    width: 186
-    height: 184
+    x: 0
+    y: 1478
+    width: 219
+    height: 219
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 7
-    paddingTop: 3
-    paddingBottom: 5
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: ingameui_57
-    x: 0
-    y: 496
+    x: 824
+    y: 1705
     width: 182
     height: 176
     borderLeft: 0
@@ -236,8 +249,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 5
   - name: ingameui_60
-    x: 305
-    y: 722
+    x: 187
+    y: 1073
     width: 187
     height: 67
     borderLeft: 0
@@ -249,8 +262,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: ingameui_62
-    x: 187
-    y: 617
+    x: 377
+    y: 1377
     width: 337
     height: 100
     borderLeft: 0
@@ -262,8 +275,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 4
   - name: ingameui_64
-    x: 305
-    y: 790
+    x: 438
+    y: 1073
     width: 187
     height: 67
     borderLeft: 0
@@ -275,8 +288,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 1
   - name: MPBar
-    x: 500
-    y: 933
+    x: 367
+    y: 1790
     width: 456
     height: 91
     borderLeft: 0
@@ -287,5 +300,83 @@ MonoBehaviour:
     paddingRight: 8
     paddingTop: 4
     paddingBottom: 14
+  - name: Pause_Back_Click
+    x: 531
+    y: 1268
+    width: 250
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pause_Back_Normal
+    x: 187
+    y: 1141
+    width: 250
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pause_Exit_Click
+    x: 438
+    y: 1141
+    width: 250
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pause_Exit_Normal
+    x: 280
+    y: 1268
+    width: 250
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pause_Panel
+    x: 0
+    y: 1698
+    width: 366
+    height: 350
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Pause_Title
+    x: 0
+    y: 1250
+    width: 279
+    height: 126
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}

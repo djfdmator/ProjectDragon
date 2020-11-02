@@ -93,8 +93,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 3
   - name: MiniMap_Stair
-    x: 180
-    y: 1
+    x: 127
+    y: 0
     width: 51
     height: 45
     borderLeft: 0

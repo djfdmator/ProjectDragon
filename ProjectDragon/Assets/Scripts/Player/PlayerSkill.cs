@@ -32,8 +32,8 @@ public class PlayerSkill : MonoBehaviour
         My_button = gameObject.GetComponent<UISprite>();
         My_button.gameObject.GetComponent<UIButton>().tweenTarget = null;
         My_Label = gameObject.transform.GetChild(0).GetComponent<UILabel>();
-        My_skill_icon = gameObject.transform.GetChild(1).GetComponent<UISprite>();
-        My_skill_ring = gameObject.transform.GetChild(2 ).GetComponent<UISprite>();
+        My_skill_icon = gameObject.transform.GetChild(1).GetComponentInChildren<UISprite>();
+        My_skill_ring = gameObject.transform.GetChild(2).GetComponent<UISprite>();
         My_skill_ring.fillAmount = 1;
         My_Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         My_Player.StopMaxTime = 1f;

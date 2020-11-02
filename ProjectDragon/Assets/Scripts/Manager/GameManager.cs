@@ -508,15 +508,15 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public int BaseHp
     {
-        get { return Database.Inst.playData.baseHp; }
+        get { Debug.Log("DB PlayData baseHP = " + Database.Inst.playData.baseHp); return Database.Inst.playData.baseHp; }
     }
     public int CurrentHp
     {
-        get { return Database.Inst.playData.currentHp; }
+        get { Debug.Log("DB PlayData currentHp = " + Database.Inst.playData.currentHp);  return Database.Inst.playData.currentHp; }
         set
         {
             Database.Inst.playData.currentHp = value;
-
+            Debug.Log("DB CurrentHP " + value);
             if (CurrentHp <= 0)
             {
                 //die
@@ -687,10 +687,20 @@ public class GameManager : MonoSingleton<GameManager>
         {
             if (value != null && value.Class.Equals(CLASS.갑옷))
             {
+                int preArmorHP = CurrentEquipArmor.hp;
                 Database.Armor armor = Database.Inst.armors[value.DB_Num];
                 Database.Inst.playData.equiArmor_InventoryNum = value.num;
                 Database.Inst.playData.maxHp = armor.hp + BaseHp;
 
+                int temp = preArmorHP - armor.hp;
+                Debug.Log("preArmorHP" + preArmorHP);
+                Debug.Log("armor.hp" + armor.hp);
+
+                temp = temp >= 0 ?  temp : 0;
+                Database.Inst.playData.currentHp += temp;
+                Debug.Log("EquipArmor 교체1 playerData currentHP = " + Database.Inst.playData.currentHp);
+                Database.Inst.playData.currentHp = Database.Inst.playData.currentHp > Database.Inst.playData.maxHp ? Database.Inst.playData.maxHp : Database.Inst.playData.currentHp;
+                Debug.Log("EquipArmor 교체2 playerData currentHP = " + Database.Inst.playData.currentHp);
                 if (!value.option_Index.Equals(-1))
                 {   //옵션이 붙어 있으면 옵션 적용
                     Database.OptionTable option = LoadOptionData(armor.optionTableName, value.option_Index);
@@ -811,6 +821,8 @@ public class GameManager : MonoSingleton<GameManager>
 
         playData.maxHp = BaseHp;
         playData.currentHp = BaseHp;
+        Debug.Log("BaseHp "+ BaseHp);
+        Debug.Log("currentHp " + playData.currentHp);
         playData.moveSpeed = 1.0f;
         playData.currentStage = 0;
         playData.mp = 1000;

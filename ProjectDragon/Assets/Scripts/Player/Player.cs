@@ -196,6 +196,7 @@ public class Player : Character
                 CurrentState = State.Dead;
                 Dead();
             }
+            Debug.Log("HP" + HP);
         }
     }
     public int MP
@@ -516,6 +517,7 @@ public class Player : Character
     public void initializePlayerConverter()
     {
         PlayerPrefData(ref Database.Inst.playData.atk_Min);
+        Debug.Log("Init HP :" + GameManager.Inst.CurrentHp);
         HP= (int)GameManager.Inst.CurrentHp;
         critical = 50f;
         invaid = 30f;
@@ -529,7 +531,7 @@ public class Player : Character
         rigidbody2d = GetComponent<Rigidbody2D>();
         playerAnimationStateChanger = GetComponent<Animator>();
         Player_camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-        HPBar = GameObject.Find("UI Root/HPBar").GetComponent<HPGauge>();
+        HPBar = GameObject.Find("UI Root/Stat/HPBar").GetComponent<HPGauge>();
         base.Start();
     }
 }
