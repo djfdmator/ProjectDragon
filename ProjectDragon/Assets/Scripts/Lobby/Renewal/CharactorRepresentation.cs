@@ -11,7 +11,7 @@ public class CharactorRepresentation : MonoBehaviour
 
     void Start()
     {
-        playerimg = transform.Find("Charactor").gameObject;
+        playerimg = transform.Find("CharactorView/Charactor").gameObject;
     }
 
     void Update()

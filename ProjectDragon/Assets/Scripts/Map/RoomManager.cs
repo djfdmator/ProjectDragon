@@ -278,6 +278,7 @@ public class RoomManager : MonoBehaviour
     {
         Vector3 pos = new Vector3();
         float time = 0.0f;
+        //GameManager.Inst.EndGame_Get_Item();
         while (time <= _playTime)
         {
             if (gameObjects.Count.Equals(0)) break;
@@ -289,7 +290,6 @@ public class RoomManager : MonoBehaviour
                 gameObjects[i].transform.position = pos;
                 if ((player.transform.position - gameObjects[i].transform.position).magnitude <= 0.2f)
                 {
-                    //GameManager.Inst.EndGame_Get_Item();
                     Destroy(gameObjects[i]);
                     gameObjects.RemoveAt(i);
                 }

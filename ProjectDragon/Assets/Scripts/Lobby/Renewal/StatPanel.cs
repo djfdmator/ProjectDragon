@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class StatPanel : MonoBehaviour
 { 
-    UILabel damage;
-    UILabel hp;
-    UILabel defence;
-    UILabel attackSpeed;
+    public UILabel damage;
+    public UILabel hp;
+    public UILabel defence;
+    public UILabel attackSpeed;
 
-    UISprite button;
+    public UISprite button;
 
     public bool isOpen = false;
 
-    void Start()
+    private void Awake()
     {
         if (damage == null) damage = transform.Find("Background/Damage/Label").GetComponent<UILabel>();
         if (hp == null) hp = transform.Find("Background/HP/Label").GetComponent<UILabel>();
@@ -21,6 +21,9 @@ public class StatPanel : MonoBehaviour
         if (attackSpeed == null) attackSpeed = transform.Find("Background/AttackSpeed/Label").GetComponent<UILabel>();
 
         if (button == null) button = transform.Find("Background/Button").GetComponent<UISprite>();
+    }
+    void Start()
+    {
     }
 
     public void Toggle_ButtonImage()
@@ -39,8 +42,8 @@ public class StatPanel : MonoBehaviour
     public void RefreshStatData()
     {
         damage.text = GameManager.Inst.Atk_Max.ToString();
-        hp.text = GameManager.Inst.CurrentHp.ToString();
-        //defence.text = GameManager.Inst.CurrentEquipArmor.
+        hp.text = GameManager.Inst.MaxHp.ToString();
+        defence.text = GameManager.Inst.CurrentEquipArmor.hp.ToString();
         attackSpeed.text = GameManager.Inst.AttackSpeed.ToString();
     }
 }

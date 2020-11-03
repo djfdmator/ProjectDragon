@@ -55,7 +55,7 @@ public class LobbyManager : MonoBehaviour
         GameManager.Inst.SavePlayerData();
         GameManager.Inst.name.ToString();
         GameManager.Inst.gameObject.ToString();
-        LobbyObjectSet();
+        //LobbyObjectSet();
         LobbyStateInit();
         selectData = -1;
         //SetplayerStat();
