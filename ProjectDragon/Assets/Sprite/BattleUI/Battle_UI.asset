@@ -16,7 +16,7 @@ MonoBehaviour:
   mSprites:
   - name: Ingame_HPbar_BackGround
     x: 0
-    y: 1377
+    y: 924
     width: 376
     height: 100
     borderLeft: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_HPbar_HP
-    x: 367
-    y: 1745
+    x: 377
+    y: 980
     width: 300
     height: 44
     borderLeft: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_MPbar_BackGround
-    x: 715
-    y: 1377
+    x: 678
+    y: 924
     width: 277
     height: 100
     borderLeft: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_PauseButton_Click
-    x: 867
-    y: 1914
+    x: 717
+    y: 361
     width: 134
     height: 134
     borderLeft: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_PauseButton_Normal
-    x: 851
-    y: 1115
+    x: 852
+    y: 361
     width: 134
     height: 134
     borderLeft: 0
@@ -79,74 +79,61 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: ingameui_03
+  - name: Ingame_Skill_Button_Activation
     x: 367
-    y: 1882
-    width: 499
+    y: 704
+    width: 219
+    height: 219
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Skill_Button_Disabled
+    x: 587
+    y: 704
+    width: 219
+    height: 219
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Skill_Time_Activation
+    x: 367
+    y: 329
+    width: 175
     height: 166
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 1
-    paddingTop: 0
-    paddingBottom: 0
-  - name: ingameui_21
-    x: 782
-    y: 1259
-    width: 117
-    height: 117
-    borderLeft: 41
-    borderRight: 37
-    borderTop: 38
-    borderBottom: 38
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: ingameui_24
-    x: 900
-    y: 1276
-    width: 101
-    height: 100
+    paddingLeft: 22
+    paddingRight: 22
+    paddingTop: 31
+    paddingBottom: 22
+  - name: Ingame_Skill_Time_Disabled
+    x: 367
+    y: 162
+    width: 175
+    height: 166
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 5
-    paddingTop: 7
-    paddingBottom: 11
-  - name: ingameui_27
-    x: 0
-    y: 964
-    width: 101
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 6
-    paddingRight: 8
-    paddingTop: 4
-    paddingBottom: 8
-  - name: ingameui_30
-    x: 668
-    y: 1737
-    width: 53
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 5
-    paddingRight: 0
-    paddingTop: 7
-    paddingBottom: 3
+    paddingLeft: 22
+    paddingRight: 22
+    paddingTop: 31
+    paddingBottom: 22
   - name: ingameui_37
-    x: 220
-    y: 1489
+    x: 807
+    y: 715
     width: 208
     height: 208
     borderLeft: 0
@@ -158,8 +145,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_40
-    x: 429
-    y: 1490
+    x: 367
+    y: 496
     width: 207
     height: 207
     borderLeft: 0
@@ -171,8 +158,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_43
-    x: 637
-    y: 1490
+    x: 575
+    y: 496
     width: 207
     height: 207
     borderLeft: 0
@@ -183,22 +170,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: ingameui_44
-    x: 0
-    y: 1065
-    width: 186
-    height: 184
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 7
-    paddingTop: 2
-    paddingBottom: 4
   - name: ingameui_48
-    x: 845
-    y: 1524
+    x: 543
+    y: 322
     width: 173
     height: 173
     borderLeft: 0
@@ -210,8 +184,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_51
-    x: 689
-    y: 1095
+    x: 367
+    y: 7
     width: 161
     height: 154
     borderLeft: 0
@@ -222,22 +196,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: ingameui_56
-    x: 0
-    y: 1478
-    width: 219
-    height: 219
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: ingameui_57
-    x: 824
-    y: 1705
+    x: 783
+    y: 527
     width: 182
     height: 176
     borderLeft: 0
@@ -248,61 +209,9 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 0
     paddingBottom: 5
-  - name: ingameui_60
-    x: 187
-    y: 1073
-    width: 187
-    height: 67
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 1
-    paddingBottom: 1
-  - name: ingameui_62
-    x: 377
-    y: 1377
-    width: 337
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 4
-    paddingBottom: 4
-  - name: ingameui_64
-    x: 438
-    y: 1073
-    width: 187
-    height: 67
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 2
-    paddingBottom: 1
-  - name: MPBar
-    x: 367
-    y: 1790
-    width: 456
-    height: 91
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 12
-    paddingRight: 8
-    paddingTop: 4
-    paddingBottom: 14
   - name: Pause_Back_Click
-    x: 531
-    y: 1268
+    x: 0
+    y: 337
     width: 250
     height: 108
     borderLeft: 0
@@ -314,8 +223,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Back_Normal
-    x: 187
-    y: 1141
+    x: 0
+    y: 228
     width: 250
     height: 108
     borderLeft: 0
@@ -327,8 +236,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Exit_Click
-    x: 438
-    y: 1141
+    x: 0
+    y: 119
     width: 250
     height: 108
     borderLeft: 0
@@ -340,8 +249,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Exit_Normal
-    x: 280
-    y: 1268
+    x: 0
+    y: 10
     width: 250
     height: 108
     borderLeft: 0
@@ -354,7 +263,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Pause_Panel
     x: 0
-    y: 1698
+    y: 573
     width: 366
     height: 350
     borderLeft: 0
@@ -367,7 +276,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Pause_Title
     x: 0
-    y: 1250
+    y: 446
     width: 279
     height: 126
     borderLeft: 0

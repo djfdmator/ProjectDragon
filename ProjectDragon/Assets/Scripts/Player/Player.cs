@@ -1,4 +1,10 @@
-﻿//////////////////////////////////////////////////////////MADE BY Lee Sang Jun///2019-12-13/////////////////////////////////////////////
+﻿// ==============================================================
+// Renewal Player 
+//
+//  AUTHOR: Yang SeEun
+// CREATED:
+// UPDATED: 2020-11-03
+// ==============================================================
 
 
 using System.Collections;
@@ -6,16 +12,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum IsWear { None, DefaultCloth, AnimalCloth, Suit, DefultName, DefaltName2 }
 public class Player : Character
 {
     public enum WeaponType { NormalStaff, Nereides, Nyx, NormalSword = 10, Excalibur };
+
     [Header ("<Player Parameter>")]
 
-    [SerializeField]
-    protected State myState;
-
-    public PlayerSkill playerSkill;
 
     //flash white material damaged of player
     public FlashWhite damaged_flash;
@@ -25,6 +27,26 @@ public class Player : Character
     public HPGauge HPBar;
     public MPGauge MPBar;
 
+
+
+    public CameraFollow Player_camera;
+    public IEnumerator P_Camera_Shake;
+
+    //템프 앵글
+    public float temp_Movespeed;
+
+    //회피율
+    public float invaid;
+
+    public float critical;
+
+    //코루틴 제어 함수
+    public bool isActive;
+
+    // 테스팅용
+    public bool AngleisAttack;
+
+    [SerializeField] protected State myState;
     public State CurrentState
     {
         get { return myState; }
@@ -46,40 +68,19 @@ public class Player : Character
             }
         }
     }
-
-    public CameraFollow Player_camera;
-    public IEnumerator P_Camera_Shake;
-
-    //템프 앵글
-    public float temp_angle;
-    public float temp_Movespeed;
-
-    //회피율
-    public float invaid;
-
-    public float critical;
-
-    //코루틴 제어 함수
-    public bool isActive;
-    // 플레이어 캐릭터 스테이터스
-    // public bool isSkillActive;
-
-    // 테스팅용
-    public bool AngleisAttack;
-
-
-    //  public UILabel CheckAngleLabel;
-
-    //플레이어 세팅
-    public SEX sex;
-    public IsWear isWear;
+    #region 플레이어 세팅
+    [Header("<Setting>")]
     public AttackType attackType;
     public WeaponType weaponType;
+    public float skillCoolTime = 3.0f;
+    public int costSkillMana = 900;
 
     //애니메이터 리소스
     public RuntimeAnimatorController[] projectileAnimator;              //평타 및 스킬
-    //public GameObject weaponSelection;
+    #endregion
 
+
+    [Space(10)]
     //플레이어 정지
     public bool StopPlayer;
     public float StopTime;
@@ -91,42 +92,32 @@ public class Player : Character
     //대각 속도
     public float horizontalSpeed = 5.0f;
     public float verticalSpeed = 5.0f;
-    public GameObject DeadPanel;
-    public SEX playerSex;
 
-    //플레이어 애니메이션 컨트롤
-    public Animator playerAnimationStateChanger;
-    // player controll vector
 
     public Rigidbody2D rigidbody2d;
 
+    //UI
     //JoyStick
+    private GameObject uiRoot;
     protected JoyPad joyPad;
-    public GameObject joypadinput;
-    public Vector3 joystickPos;
-    private Transform m_EnemyPos;
 
+    public Vector3 joystickPos;
     //Check JoyStick
     public float h;
     public float v;
+    private Transform m_EnemyPos;
+
 
     public bool isInvaid =false;
     public bool isCriticalHit = false;
-    public Transform EnemyPos { get { return m_EnemyPos; } set { m_EnemyPos = value; } }
-
-    //죽었을때 패널
-    //public GameObject EndPanel;
-
+    
     //적 찾기
-    public RoomManager EnemyRoom;
-    public GameObject[] Enemy;
     public List<GameObject> EnemyArray;
     public GameObject TempEnemy;
 
     //MP 임시사용용 변수
     public int mp= 100;
     public int maxMp = 100;
-
 
 
     public override int HPChanged(int ATK, bool isCritical, int NukBack)
@@ -151,12 +142,9 @@ public class Player : Character
         {
             isInvaid = false;
         }
-        //Debug.Log((int)currentATK+"내 체력은 :"+HP);
-
-        //hpBar.fillAmount = (float)HP-currentATK / (float)maxHp;
+        
         if(original_HP>=HP)
         {
-            // Debug.Log("Damaged!!!!! and Flash"+"HP : "+ HP+ "original_HP" + original_HP);
             damaged_flash_corrutine = damaged_flash.Flash();
             IEnumerator A=transform.GetChild(0).GetComponent<FlashWhite>().Flash();
             IEnumerator B=transform.GetChild(1).GetComponent<FlashWhite>().Flash();
@@ -207,7 +195,6 @@ public class Player : Character
             if (value > 0)
             {
                 mp = value;
-                //mp = Mathf.Clamp(value, 0, maxMp);
             }   
             else
             {
@@ -221,7 +208,6 @@ public class Player : Character
         base.Dead();
         GetComponent<BoxCollider2D>().enabled = false;
         rigidbody2d.velocity = Vector2.zero;
-        //Debug.Log("BoxCollider2D enable false");
     }
 
     public virtual int MPChanged(int Cost)
@@ -229,6 +215,18 @@ public class Player : Character
         MP = MP - Cost;
         return MP;
     }
+
+
+    public void OnStop()
+    {
+        if (!isDead)
+        {
+            isSkillActive = false;
+            CurrentState = State.Idle;
+            StopPlayer = false;
+        }
+    }
+
     public IEnumerator CalculateDistanceWithPlayer()
     {
         // 적이 하나라도 있으면
@@ -339,9 +337,7 @@ public class Player : Character
         //원거리일때
         //attackType = AttackType.LongRange;
         //TODO: 뒤에 로비 완성되면 무기 합칠것, 스테이터스를 DB에서 받아오기
-        //EndPanel.SetActive(false);
-        isWear = IsWear.DefaultCloth;
-        playerSex = SEX.Female;
+ 
         initializePlayerConverter();
         MoveSpeed = 3.0f;
         ATKChanger(3);
@@ -371,7 +367,7 @@ public class Player : Character
         StartCoroutine(CalculateDistanceWithPlayer());
         //내가 끼고 있는 칼에 대한 정의
         //Database.Inventory myWeapon = Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum];
-        joypadinput = GameObject.Find("UI Root/GameObject");
+
         //CheckAngleLabel = GameObject.Find("UI Root/CurrentAngle").GetComponent<UILabel>();
         initalize_Player_Link();
         temp_Movespeed = moveSpeed;
@@ -392,8 +388,8 @@ public class Player : Character
                 current_angle = joyPad.angle;
             }
             //CheckAngleLabel.text = current_angle.ToString();
-            myPos = gameObject.transform.position;
-            joystickPos = joypadinput.GetComponent<JoyPad>().position;
+
+            joystickPos = joyPad.position;
             //joystick
             h = joystickPos.x;
             v = joystickPos.y;
@@ -417,7 +413,6 @@ public class Player : Character
                 }
             }
         }
-
     }
     public static float GetAngle(Vector3 Start, Vector3 End)
     {
@@ -526,12 +521,13 @@ public class Player : Character
     public void initalize_Player_Link()
     {
         damaged_flash = gameObject.GetComponent<FlashWhite>();
-        playerSkill = GameObject.Find("UI Root/Skillbutton").GetComponent<PlayerSkill>();
-        joyPad = FindObjectOfType<JoyPad>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        playerAnimationStateChanger = GetComponent<Animator>();
+
+        uiRoot = GameObject.Find("UI Root").gameObject;
+        joyPad = uiRoot.transform.Find("JoyPad").GetComponent<JoyPad>();
+
         Player_camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-        HPBar = GameObject.Find("UI Root/Stat/HPBar").GetComponent<HPGauge>();
+        HPBar = uiRoot.transform.Find("Stat/HPBar").GetComponent<HPGauge>();
         base.Start();
     }
 }

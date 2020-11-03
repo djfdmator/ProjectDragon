@@ -402,12 +402,12 @@ GameObject:
   - component: {fileID: 7666002107799611147}
   - component: {fileID: 5409751990359364127}
   - component: {fileID: 5409751990359364117}
-  - component: {fileID: 5409751990359364125}
   - component: {fileID: 5409751990359364114}
   - component: {fileID: 5409751990359364115}
   - component: {fileID: 5409751990359364112}
   - component: {fileID: 7812209954427592661}
   - component: {fileID: 8289909570596763248}
+  - component: {fileID: 3321427363335049377}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -527,86 +527,6 @@ MonoBehaviour:
   curAnim_Arm: {fileID: 0}
   curAnim_Weapon: {fileID: 0}
   myState: 0
---- !u!114 &5409751990359364125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5409751990359364113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98fdcc361557b3f4fabe8a38b59aea9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHp: 0
-  hp: 0
-  moveSpeed: 0
-  atk: 0
-  nuckBack: 0
-  maxHp: 0
-  atkSpeed: 0
-  atkRange: 3.67
-  myPos: {x: 0, y: 0, z: 0}
-  myRotat: {x: 0, y: 0, z: 0}
-  current_angle: 0
-  other: {fileID: 0}
-  isAttack: 1
-  isWalk: 0
-  isDead: 0
-  isSkillActive: 0
-  projectileTargetList: []
-  current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
-  myState: 0
-  playerSkill: {fileID: 0}
-  damaged_flash: {fileID: 0}
-  HPBar: {fileID: 0}
-  MPBar: {fileID: 0}
-  Player_camera: {fileID: 0}
-  temp_angle: 0
-  temp_Movespeed: 0
-  invaid: 0
-  critical: 0
-  isActive: 0
-  AngleisAttack: 0
-  sex: 0
-  isWear: 0
-  attackType: 3
-  weaponType: 1
-  projectileAnimator:
-  - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
-  - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
-  - {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
-  - {fileID: 22100000, guid: 9ab39a4ac68d8034f962f1bd7c86574e, type: 2}
-  - {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
-  - {fileID: 9100000, guid: 3b6f998f77c11a44cb96302deae21454, type: 2}
-  - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
-  - {fileID: 22100000, guid: 8a031b071bac2ef48a6eefaf95140efb, type: 2}
-  StopPlayer: 0
-  StopTime: 0
-  StopMaxTime: 0
-  walk_Sound: {fileID: 0}
-  horizontalSpeed: 5
-  verticalSpeed: 5
-  DeadPanel: {fileID: 0}
-  playerSex: 0
-  playerAnimationStateChanger: {fileID: 0}
-  rigidbody2d: {fileID: 0}
-  joypadinput: {fileID: 0}
-  joystickPos: {x: 0, y: 0, z: 0}
-  h: 0
-  v: 0
-  isInvaid: 0
-  isCriticalHit: 0
-  EnemyRoom: {fileID: 0}
-  Enemy: []
-  EnemyArray: []
-  TempEnemy: {fileID: 0}
-  mp: 100
-  maxMp: 100
 --- !u!61 &5409751990359364114
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -666,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dfb6fcd0dba5d4e9b5dde3d805639b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  My_Angle: {fileID: 5409751990359364125}
+  My_Angle: {fileID: 3321427363335049377}
   angle: 0
   m_bDebugMode: 1
   m_horizontalViewAngle: 120
@@ -707,6 +627,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14074d760cdbf94bad3c7ea786702d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3321427363335049377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409751990359364113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e670ad07d3c082e4aa9c7eeb97f84928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 0
+  hp: 0
+  moveSpeed: 0
+  atk: 0
+  nuckBack: 0
+  maxHp: 0
+  atkSpeed: 0
+  atkRange: 3.67
+  myPos: {x: 0, y: 0, z: 0}
+  myRotat: {x: 0, y: 0, z: 0}
+  current_angle: 0
+  other: {fileID: 0}
+  isAttack: 1
+  isAttacking: 0
+  isWalk: 0
+  isDead: 0
+  isSkillActive: 0
+  projectileTargetList: []
+  current_Anim_Frame: 0
+  enemy_angle: 0
+  myAttackType: 0
+  myAnim_AnglePos: 0
+  myState: 0
+  damaged_flash: {fileID: 0}
+  HPBar: {fileID: 0}
+  MPBar: {fileID: 0}
+  Player_camera: {fileID: 0}
+  temp_angle: 0
+  temp_Movespeed: 0
+  invaid: 0
+  critical: 0
+  isActive: 0
+  AngleisAttack: 0
+  sex: 0
+  attackType: 3
+  weaponType: 0
+  skillCoolTime: 3
+  projectileAnimator:
+  - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
+  - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
+  - {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
+  - {fileID: 22100000, guid: 9ab39a4ac68d8034f962f1bd7c86574e, type: 2}
+  - {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
+  - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
+  - {fileID: 9100000, guid: 3b6f998f77c11a44cb96302deae21454, type: 2}
+  - {fileID: 22100000, guid: 8a031b071bac2ef48a6eefaf95140efb, type: 2}
+  StopPlayer: 0
+  StopTime: 0
+  StopMaxTime: 0
+  walk_Sound: {fileID: 0}
+  horizontalSpeed: 5
+  verticalSpeed: 5
+  rigidbody2d: {fileID: 0}
+  joystickPos: {x: 0, y: 0, z: 0}
+  h: 0
+  v: 0
+  isInvaid: 0
+  isCriticalHit: 0
+  EnemyArray: []
+  TempEnemy: {fileID: 0}
+  mp: 100
+  maxMp: 100
 --- !u!1 &7812209954221775557
 GameObject:
   m_ObjectHideFlags: 0

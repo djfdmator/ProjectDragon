@@ -135,7 +135,7 @@ public class PlayerAnimControll : MonoBehaviour
     {
         if (!player.isDead)
         {
-            player.playerSkill.PlayerStop();
+            player.OnStop();
         }
     }
 
