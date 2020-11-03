@@ -2,7 +2,7 @@
 // Skill Button
 //
 //  AUTHOR: Yang SeEun
-// CREATED:
+// CREATED: 2020-11-03
 // UPDATED: 2020-11-03
 // ==============================================================
 
@@ -18,6 +18,7 @@ public class SkillButton : MonoBehaviour
     private TargetPoint targetProjectile;
     private GameObject normalObj;
     private GameObject activationObj;
+    private GameObject inactivationObj;
 
     private BoxCollider col;
     private UISprite icon_sprite;
@@ -33,15 +34,17 @@ public class SkillButton : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         projectile = new Projectile();
         targetProjectile = new TargetPoint();
-        normalObj = transform.Find("Normal").gameObject;
+        normalObj = transform.Find("Basic").gameObject;
         activationObj = transform.Find("Activation").gameObject;
+        inactivationObj = transform.Find("Inactivation").gameObject;
+
         icon_sprite = transform.Find("Mask").GetComponentInChildren<UISprite>();
-        yellowRing = activationObj.transform.Find("ring").GetComponent<UISprite>();
+        yellowRing = activationObj.transform.Find("YellowRing").GetComponent<UISprite>();
         timeLabel = activationObj.transform.Find("TimeLabel").GetComponent<UILabel>();
         col = GetComponent<BoxCollider>();
 
 
-        OnDisabled();
+        OnBasic();
 
     }
 
@@ -58,6 +61,7 @@ public class SkillButton : MonoBehaviour
     {
         coolTime = player.skillCoolTime;
         costMana = player.costSkillMana;
+        costMana = 400;
 
         //차후 변경
         //str_ICON = string.Format("SkillIcon_{0}_Ingame", GameManager.Inst.CurrentSkill.imageName);
@@ -85,26 +89,39 @@ public class SkillButton : MonoBehaviour
     //스킬사용할때
     private void OnActive()
     {
-        normalObj.SetActive(false);
         activationObj.SetActive(true);
+        normalObj.SetActive(false);
+        //inactivationObj.SetActive(false);
 
         col.enabled = false;
     }
     //기본일때
-    private void OnDisabled()
+    private void OnBasic()
     {
         normalObj.SetActive(true);
         activationObj.SetActive(false);
+        inactivationObj.SetActive(false);
 
         col.enabled = true;
         yellowRing.fillAmount = 1f;
     }
 
+    //뭔가 버벅거림..그래서 코루틴사용
+    //private void OnInactive()
+    //{
+    //    inactivationObj.SetActive(true);
+    //    activationObj.SetActive(false);
+
+    //    col.enabled = false;
+    //}
+
+
+    //쿨타임 계산
     private IEnumerator CalcCoolTime()
     {
-       
+
         float _time = coolTime;
-        while(_time > 0)
+        while (_time > 0)
         {
             yellowRing.fillAmount = _time / coolTime;
             timeLabel.text = Mathf.CeilToInt(_time).ToString();
@@ -114,12 +131,17 @@ public class SkillButton : MonoBehaviour
 
         if (GameManager.Inst.Mp - costMana < 0)
         {
-            StartCoroutine(CheckIsSkill());
+            //OnInactive();
+            inactivationObj.SetActive(true);
+            col.enabled = false;
+            yield return null;
+
+            activationObj.SetActive(false);
+
+            yield return StartCoroutine(CheckIsSkill());
         }
-        else
-        {
-            OnDisabled();
-        }
+
+        OnBasic();
         yield return null;
     }
 
@@ -134,9 +156,8 @@ public class SkillButton : MonoBehaviour
         {
             yield return null;
         }
-
         timeLabel.gameObject.SetActive(true);
-        OnDisabled();
+ 
     }
 
 

@@ -3347,11 +3347,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8770294599369467062}
     m_Modifications:
-    - target: {fileID: 2693284636917947716, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
-        type: 3}
-      propertyPath: m_Name
-      value: ResultPopup_
-      objectReference: {fileID: 0}
     - target: {fileID: 2693284636917947717, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3407,6 +3402,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2693284636917947716, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
+        type: 3}
+      propertyPath: m_Name
+      value: ResultPopup_
+      objectReference: {fileID: 0}
     - target: {fileID: 2693284636917947718, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
         type: 3}
       propertyPath: leftAnchor.target
@@ -3442,6 +3442,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8770294599369467062}
     m_Modifications:
+    - target: {fileID: 5577248988299814816, guid: 4260ededc5a681f48bb89d45eb35ea3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5577248988831907391, guid: 4260ededc5a681f48bb89d45eb35ea3e,
         type: 3}
       propertyPath: m_Name
@@ -3451,11 +3456,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: MiniMap
-      objectReference: {fileID: 0}
-    - target: {fileID: 5577248988299814816, guid: 4260ededc5a681f48bb89d45eb35ea3e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5577248988831907387, guid: 4260ededc5a681f48bb89d45eb35ea3e,
         type: 3}

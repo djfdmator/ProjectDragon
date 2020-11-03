@@ -508,11 +508,11 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public int BaseHp
     {
-        get { Debug.Log("DB PlayData baseHP = " + Database.Inst.playData.baseHp); return Database.Inst.playData.baseHp; }
+        get { return Database.Inst.playData.baseHp; }
     }
     public int CurrentHp
     {
-        get { Debug.Log("DB PlayData currentHp = " + Database.Inst.playData.currentHp);  return Database.Inst.playData.currentHp; }
+        get { return Database.Inst.playData.currentHp; }
         set
         {
             Database.Inst.playData.currentHp = value;
