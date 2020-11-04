@@ -10,6 +10,7 @@ public class Maintenance : MonoBehaviour
         
     }
 
+    #region Button
     public void OpenMaintenance()
     {
         gameObject.SetActive(true);
@@ -18,7 +19,7 @@ public class Maintenance : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
+    #endregion
     //정비 cs에 넣을 거임
     #region 정비창 정렬 기능
     /// <summary>

@@ -299,7 +299,7 @@ public class LobbyManager : MonoBehaviour
     /// <param name="data">오브젝트에 들어가야할 데이터</param>
     public void ChangeItemIcon(GameObject Icon, Database.Inventory data)
     {
-        Icon.transform.Find("EquipIcon").GetComponent<UISprite>().spriteName = data.imageName;
+        //Icon.transform.Find("EquipIcon").GetComponent<UISprite>().spriteName = data.imageName;
 
         //if (data.isLock)
         //{
