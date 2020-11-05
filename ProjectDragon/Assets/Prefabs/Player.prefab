@@ -661,21 +661,20 @@ MonoBehaviour:
   enemy_angle: 0
   myAttackType: 0
   myAnim_AnglePos: 0
-  myState: 0
   damaged_flash: {fileID: 0}
   HPBar: {fileID: 0}
   MPBar: {fileID: 0}
   Player_camera: {fileID: 0}
-  temp_angle: 0
   temp_Movespeed: 0
   invaid: 0
   critical: 0
   isActive: 0
   AngleisAttack: 0
-  sex: 0
+  myState: 0
   attackType: 3
   weaponType: 0
   skillCoolTime: 3
+  costSkillMana: 300
   projectileAnimator:
   - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
   - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}

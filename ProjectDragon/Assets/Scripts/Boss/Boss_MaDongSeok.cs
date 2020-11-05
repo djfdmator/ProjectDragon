@@ -23,7 +23,7 @@ public class Boss_MaDongSeok : Monster
     IEnumerator Bossphasechange, PhaseState;
     public IEnumerator Phase2Timecheck;
     public RuntimeAnimatorController projectileanim;
-    public GameObject EndSprite;
+    //public GameObject EndSprite;
     public GameObject player,razer;
     GameObject Bossroom;
     GameObject[] manastone;
@@ -49,7 +49,7 @@ public class Boss_MaDongSeok : Monster
     }
     private void BossInit()
     {
-        EndSprite=GameObject.Find("UI Root").transform.Find("Panel").gameObject;
+        //EndSprite=GameObject.Find("UI Root").transform.Find("Panel").gameObject;
         objectAnimator= GetComponent<Animator>();
         Bossroom = gameObject.transform.parent.transform.Find("보스방").gameObject;
         manastone = new GameObject[4];
@@ -125,7 +125,7 @@ public class Boss_MaDongSeok : Monster
         StopCoroutine(Bossphasechange);
         Explosion();
         base.Dead();
-        EndSprite.SetActive(true);
+        //EndSprite.SetActive(true);
     }
     /// <summary>
     /// 보스시작시 해야할것

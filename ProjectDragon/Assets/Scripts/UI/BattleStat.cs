@@ -42,6 +42,7 @@ public class BattleStat : MonoBehaviour
     private void Start()
     {
         ChangeHpBar(GameManager.Inst.CurrentHp, GameManager.Inst.CurrentHp + 50);
+        ChangeMpBar(GameManager.Inst.Mp);
     }
 
     //스테이지 넘어갈때 (장비교체 후) 초기화해주기
@@ -85,7 +86,7 @@ public class BattleStat : MonoBehaviour
         {
             StopCoroutine(Co_MpCount);
         }
-        Co_MpCount = MpCount(5526, 3344);
+        Co_MpCount = MpCount(m_curMP, 3344);
         StartCoroutine(Co_MpCount);
     }
 

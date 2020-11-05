@@ -75,7 +75,7 @@ public class MapCreator : MonoBehaviour
         int curStage = GameManager.Inst.CurrentStage;
 
 #if UNITY_EDITOR
-        curStage = 1;
+        //curStage = 1;
         Debug.Log("MapCreate : " + curStage);
         Debug.Log("MapCreate : " + curStage % 4);
         Debug.Log("MapCreate : " + curStage / 4);
