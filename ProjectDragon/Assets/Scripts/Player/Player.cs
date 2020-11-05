@@ -14,37 +14,28 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public enum WeaponType { NormalStaff, Nereides, Nyx, NormalSword = 10, Excalibur };
-
-    [Header ("<Player Parameter>")]
+    public enum WeaponType { NormalSword, NormalStaff, Nereides, Nyx, Excalibur };
 
 
     //flash white material damaged of player
-    public FlashWhite damaged_flash;
-    public IEnumerator damaged_flash_corrutine;
-
-    // HP GAUGE
-    public HPGauge HPBar;
-    public MPGauge MPBar;
+    private FlashWhite damaged_flash;
+    private IEnumerator damaged_flash_corrutine;
 
 
-
-    public CameraFollow Player_camera;
-    public IEnumerator P_Camera_Shake;
+    private CameraFollow camera;
+    private IEnumerator P_Camera_Shake;
 
     //템프 앵글
     public float temp_Movespeed;
-
-    //회피율
-    public float invaid;
-
-    public float critical;
-
-    //코루틴 제어 함수
-    public bool isActive;
-
     // 테스팅용
     public bool AngleisAttack;
+
+
+    
+    public bool isActive;               //코루틴 제어 함수
+    public bool isInvaid =false;
+    public bool isCriticalHit = false;
+
 
     [SerializeField] protected State myState;
     public State CurrentState
@@ -68,56 +59,114 @@ public class Player : Character
             }
         }
     }
-    #region 플레이어 세팅
-    [Header("<Setting>")]
-    public AttackType attackType;
-    public WeaponType weaponType;
-    public float skillCoolTime = 3.0f;
-    public int costSkillMana = 900;
+
 
     //애니메이터 리소스
     public RuntimeAnimatorController[] projectileAnimator;              //평타 및 스킬
+
+
+    #region 플레이어 세팅
+
+    [Header("<Setting>")]
+    [SerializeField] private int mp;
+    public CLASS attackType;
+    public WeaponType weaponType;
+    public float skillDamage;
+    public float skillCoolTime;
+    public int skillMpCost;
+    public string skill_ImageName;
+
+    //회피율
+    public float invaid;
+    //크리티컬
+    public float critical;
+
     #endregion
 
 
     [Space(10)]
     //플레이어 정지
     public bool StopPlayer;
-    public float StopTime;
+    private float StopTime;
     public float StopMaxTime;
 
     //플레이어 사운드
     public AudioClip walk_Sound;
 
     //대각 속도
-    public float horizontalSpeed = 5.0f;
-    public float verticalSpeed = 5.0f;
+    private float horizontalSpeed = 5.0f;
+    private float verticalSpeed = 5.0f;
 
 
-    public Rigidbody2D rigidbody2d;
+    [HideInInspector] public Rigidbody2D rigidbody2d;
 
-    //UI
+    //************UI***********
     //JoyStick
     private GameObject uiRoot;
-    protected JoyPad joyPad;
+    private SkillButton skillButton;
+    private BattleStatus uiStatus;
 
-    public Vector3 joystickPos;
+    private JoyPad joyPad;
+    private Vector3 joystickPos;
     //Check JoyStick
-    public float h;
-    public float v;
-    private Transform m_EnemyPos;
+    private float h;
+    private float v;
 
-
-    public bool isInvaid =false;
-    public bool isCriticalHit = false;
     
     //적 찾기
     public List<GameObject> EnemyArray;
     public GameObject TempEnemy;
+    private Transform m_EnemyPos;
 
-    //MP 임시사용용 변수
-    public int mp= 100;
-    public int maxMp = 100;
+    //MP 임시 사용
+    public override int HP
+    {
+        get { return hp; }
+        set
+        {
+            if (!isDead)
+            {
+                if (uiStatus != null)
+                {
+                    uiStatus.ChangeHpBar(hp, value);
+                }
+                if (value > 0)
+                {
+                    hp = value;
+                    hp = Mathf.Clamp(value, 0, maxHp);
+                }
+                else
+                {
+                    hp = -1;
+                    CurrentState = State.Dead;
+                    Dead();
+                }
+                GameManager.Inst.CurrentHp = hp;
+            }
+        }
+    }
+    public int MP
+    {
+        get { return mp; }
+        set
+        {
+
+            if (uiStatus != null)
+            {
+                uiStatus.ChangeMpBar(mp, value);
+            }
+            if (value > 0)
+            {
+                mp = value;
+            }
+            else
+            {
+                Debug.Log("마나가 없습니다.");
+                mp = -1;
+            }
+            GameManager.Inst.Mp = mp;
+        }
+    }
 
 
     public override int HPChanged(int ATK, bool isCritical, int NukBack)
@@ -159,61 +208,16 @@ public class Player : Character
             original_HP = HP;
         }
         base.HPChanged((int)currentATK,isCritical,NukBack);
-        HPBar.Player_HP_Changed(HP,maxHp);
         //Debug.Log((float)HP / (float)maxHp);
         SoundManager.Inst.Ds_EffectPlayerDB(4);
         return HP;
     }
-    //MP 임시 사용
-    public override int HP
-    {
-        get { return (int)GameManager.Inst.CurrentHp; }
-        set
-        {
-            if (value > 0)
-            {
-                GameManager.Inst.CurrentHp = value;
-                hp = (int)GameManager.Inst.CurrentHp;
-                GameManager.Inst.CurrentHp = Mathf.Clamp(value, 0, maxHp);
-            }
-            else if (!isDead)
-            {
-                
-                hp = -1;
-                GameManager.Inst.CurrentHp = 0;
-                CurrentState = State.Dead;
-                Dead();
-            }
-            Debug.Log("HP" + HP);
-        }
-    }
-    public int MP
-    {
-        get { return mp; }
-        set
-        {
-            if (value > 0)
-            {
-                mp = value;
-            }   
-            else
-            {
-                Debug.Log("마나가 없습니다.");
-                mp = -1;
-            }
-        }
-    }
+
     public override void Dead()
     {
         base.Dead();
         GetComponent<BoxCollider2D>().enabled = false;
         rigidbody2d.velocity = Vector2.zero;
-    }
-
-    public virtual int MPChanged(int Cost)
-    {
-        MP = MP - Cost;
-        return MP;
     }
 
 
@@ -261,19 +265,19 @@ public class Player : Character
 
                             if (TempEnemy.GetComponent<Character>().HP > 0)
                             {
-                                if (attackType == AttackType.LongRange && joyPad.Pressed == false && !isSkillActive)
+                                if (attackType == CLASS.검 && joyPad.Pressed == false && !isSkillActive)
                                 {
                                     moveSpeed = 0;
                                     AngleisAttack = true;
                                     this.CurrentState = State.Attack;
                                 }
-                                else if (attackType == AttackType.LongRange && joyPad.Pressed == true && !isSkillActive)
+                                else if (attackType == CLASS.지팡이 && joyPad.Pressed == true && !isSkillActive)
                                 {
 
                                     moveSpeed = temp_Movespeed;
                                     AngleisAttack = false;
                                 }
-                                if (attackType == AttackType.ShortRange && !isSkillActive)
+                                if (attackType == CLASS.검 && !isSkillActive)
                                 {
                                     AngleisAttack = true;
                                     this.CurrentState = State.Attack;
@@ -286,7 +290,7 @@ public class Player : Character
                             AngleisAttack = false;
                             if (AngleisAttack == false && !isSkillActive)
                             {
-                                if (attackType == AttackType.LongRange)
+                                if (attackType == CLASS.지팡이)
                                 {
                                     moveSpeed = temp_Movespeed;
                                 }
@@ -317,62 +321,34 @@ public class Player : Character
         CurrentState = State.Idle;
         AngleisAttack = false;
     }
-    void PlayerPrefData(ref int Damage1)
-    {
-        ATTACKDAMAGE = Damage1;
-        maxHp = (int)GameManager.Inst.MaxHp;
-        //damage = (int)Damage1;
-        //hp = ref (int)GameManager.Inst.CurrentHp;
-    }
-    void PlayerPrefDataTrascation()
-    {
-        //hp = ref (int)GameManager.Inst.CurrentHp;
-    }
-    // Start is called before the first frame update
+    
+
     protected override void Awake()
     {
         base.Awake();
-        //근거리일때
-        //attackType = AttackType.ShortRange;
-        //원거리일때
-        //attackType = AttackType.LongRange;
-        //TODO: 뒤에 로비 완성되면 무기 합칠것, 스테이터스를 DB에서 받아오기
- 
-        initializePlayerConverter();
-        MoveSpeed = 3.0f;
-        ATKChanger(3);
-        ATKSpeedChanger(1.0f);
 
-        //근,원거리형 세팅
-        attackType = weaponType.GetHashCode() >= 10 ? AttackType.ShortRange : AttackType.LongRange;
-        Debug.Log("근원거리 세팅" + attackType.ToString());
-        if (attackType == AttackType.ShortRange)
-        {
-            AtkRangeChanger(3.5f);
-        }
-        else
-        {
-            AtkRangeChanger(5.0f);
-        }
-        mp = 300;
+        LoadPlayerPrefData();
+        LoadWeaponData();
+
+        Initalize_Player_Link();
+
+        temp_Movespeed = moveSpeed;
+        critical = 50f;
+        invaid = 30f;
 
         projectileTargetList.Add("Enemy");
-     //  Database.Inst.playData.hp = 100.0f;
-     //   GameManager.Inst.SavePlayerData();
+        //GameManager.Inst.SavePlayerData();
     }
     protected override void Start()
     {
+        skillButton.Init(skillCoolTime, skillMpCost, skill_ImageName);
+        uiStatus.Init(HP, maxHp, MP);
+
         CurrentState = State.Idle;
 
         StartCoroutine(CalculateDistanceWithPlayer());
-        //내가 끼고 있는 칼에 대한 정의
-        //Database.Inventory myWeapon = Database.Inst.playData.inventory[Database.Inst.playData.equiWeapon_InventoryNum];
-
-        //CheckAngleLabel = GameObject.Find("UI Root/CurrentAngle").GetComponent<UILabel>();
-        initalize_Player_Link();
-        temp_Movespeed = moveSpeed;
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         if (!isDead)
@@ -414,6 +390,7 @@ public class Player : Character
             }
         }
     }
+
     public static float GetAngle(Vector3 Start, Vector3 End)
     {
         Vector3 v = End - Start;
@@ -504,30 +481,74 @@ public class Player : Character
     
     public void CameraShake()
     {
-        P_Camera_Shake = Player_camera.Shake(1, 1.0f);
+        P_Camera_Shake = camera.Shake(1, 1.0f);
         StartCoroutine(P_Camera_Shake);
     }
-#endregion
+    #endregion
 
-    public void initializePlayerConverter()
+    //무기 정보 세팅
+    public void ChangeWeaponData()
     {
-        PlayerPrefData(ref Database.Inst.playData.atk_Min);
-        Debug.Log("Init HP :" + GameManager.Inst.CurrentHp);
-        HP= (int)GameManager.Inst.CurrentHp;
-        critical = 50f;
-        invaid = 30f;
+        LoadWeaponData();
+
+        skillButton.Init(skillCoolTime, skillMpCost, skill_ImageName);
     }
 
-    public void initalize_Player_Link()
+    //혹시몰라서 만들어둠.
+    //장비 정보 세팅
+    public void ChanageArmorData()
     {
-        damaged_flash = gameObject.GetComponent<FlashWhite>();
+        maxHp = GameManager.Inst.MaxHp;
+        HP = GameManager.Inst.CurrentHp;
+
+        uiStatus.Init(HP, maxHp, MP);
+    }
+
+    public void SavePlayerPrefData()
+    {
+        GameManager.Inst.CurrentHp = HP;
+        GameManager.Inst.Mp = MP;
+    }
+
+
+
+    //던전시작할때 세팅
+    private void LoadPlayerPrefData()
+    {
+        maxHp = GameManager.Inst.MaxHp;
+        HP = GameManager.Inst.CurrentHp;
+        MP = GameManager.Inst.Mp;
+        MoveSpeed = GameManager.Inst.MoveSpeed + 2.0f;          //3
+        ATTACKDAMAGE = GameManager.Inst.Atk_Min;                //3
+        ATTACKSPEED = GameManager.Inst.AttackSpeed;            //1
+        AtkRange = GameManager.Inst.AttackRange;
+
+    }
+    private void LoadWeaponData()
+    {
+        weaponType = (WeaponType)GameManager.Inst.CurrentEquipWeapon.num;
+        attackType = GameManager.Inst.CurrentEquipWeapon.Class;
+
+        skillDamage = GameManager.Inst.CurrentSkill.atk;
+        skillCoolTime = GameManager.Inst.CurrentSkill.coolTime;
+        skillMpCost = GameManager.Inst.CurrentSkill.mpCost;
+        skill_ImageName = GameManager.Inst.CurrentSkill.imageName;
+    }
+
+    private void Initalize_Player_Link()
+    {
+        base.Start();
+        damaged_flash = GetComponent<FlashWhite>();
         rigidbody2d = GetComponent<Rigidbody2D>();
 
         uiRoot = GameObject.Find("UI Root").gameObject;
         joyPad = uiRoot.transform.Find("JoyPad").GetComponent<JoyPad>();
+        skillButton = uiRoot.transform.Find("SkillButton").GetComponent<SkillButton>();
+        uiStatus = uiRoot.transform.Find("Status").GetComponent<BattleStatus>();
 
-        Player_camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-        HPBar = uiRoot.transform.Find("Stat/HPBar").GetComponent<HPGauge>();
-        base.Start();
+        camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
+    
+
+    
 }

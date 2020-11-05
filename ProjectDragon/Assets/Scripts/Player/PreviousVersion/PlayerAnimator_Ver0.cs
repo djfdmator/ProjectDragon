@@ -94,8 +94,6 @@ public class AnimatorControll_Ver0 : MonoBehaviour
         {
             case AttackType.ShortRange:
                 break;
-            case AttackType.MiddleRange:
-                break;
             case AttackType.LongRange:
                 break;
         }
@@ -118,11 +116,7 @@ public class AnimatorControll_Ver0 : MonoBehaviour
                 WalkAniCount = 5;
                 HitAniCount = 5;
                 break;
-            case AttackType.MiddleRange:
-                AttackAniCount = 5;
-                WalkAniCount = 5;
-                HitAniCount = 5;
-                break;
+
             case AttackType.LongRange:
                 AttackAniCount = 5;
                 WalkAniCount = 5;

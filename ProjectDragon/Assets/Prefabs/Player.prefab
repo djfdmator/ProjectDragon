@@ -544,7 +544,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1, y: 1.1}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1.2, y: 1.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -586,9 +586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71dfb6fcd0dba5d4e9b5dde3d805639b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  My_Angle: {fileID: 3321427363335049377}
+  player: {fileID: 3321427363335049377}
   angle: 0
-  m_bDebugMode: 1
+  m_bDebugMode: 0
   m_horizontalViewAngle: 120
   m_viewRadius: 1.6700001
   m_viewRotateZ: 0
@@ -639,14 +639,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e670ad07d3c082e4aa9c7eeb97f84928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  maxHp: 0
   hp: 0
   moveSpeed: 0
   atk: 0
-  nuckBack: 0
-  maxHp: 0
   atkSpeed: 0
   atkRange: 3.67
+  nuckBack: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
@@ -659,23 +658,13 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   enemy_angle: 0
-  myAttackType: 0
   myAnim_AnglePos: 0
-  myState: 0
-  damaged_flash: {fileID: 0}
-  HPBar: {fileID: 0}
-  MPBar: {fileID: 0}
-  Player_camera: {fileID: 0}
-  temp_angle: 0
   temp_Movespeed: 0
-  invaid: 0
-  critical: 0
-  isActive: 0
   AngleisAttack: 0
-  sex: 0
-  attackType: 3
-  weaponType: 0
-  skillCoolTime: 3
+  isActive: 0
+  isInvaid: 0
+  isCriticalHit: 0
+  myState: 0
   projectileAnimator:
   - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
   - {fileID: 22100000, guid: 2e7d2ef2612fa0d41a354a0cac57c314, type: 2}
@@ -685,22 +674,20 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
   - {fileID: 9100000, guid: 3b6f998f77c11a44cb96302deae21454, type: 2}
   - {fileID: 22100000, guid: 8a031b071bac2ef48a6eefaf95140efb, type: 2}
+  mp: 100
+  attackType: 3
+  weaponType: 0
+  skillDamage: 0
+  skillCoolTime: 3
+  skillMpCost: 0
+  invaid: 0
+  critical: 0
   StopPlayer: 0
-  StopTime: 0
   StopMaxTime: 0
   walk_Sound: {fileID: 0}
-  horizontalSpeed: 5
-  verticalSpeed: 5
   rigidbody2d: {fileID: 0}
-  joystickPos: {x: 0, y: 0, z: 0}
-  h: 0
-  v: 0
-  isInvaid: 0
-  isCriticalHit: 0
   EnemyArray: []
   TempEnemy: {fileID: 0}
-  mp: 100
-  maxMp: 100
 --- !u!1 &7812209954221775557
 GameObject:
   m_ObjectHideFlags: 0

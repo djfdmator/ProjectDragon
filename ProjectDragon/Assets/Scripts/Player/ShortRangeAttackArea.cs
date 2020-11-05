@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShortRangeAttackArea : MonoBehaviour
 {
     //public BattleManager battlemanager;
-    public Player My_Angle;
+    public Player player;
     public float angle;
     [SerializeField] private bool m_bDebugMode = false;
 
@@ -36,29 +36,29 @@ public class ShortRangeAttackArea : MonoBehaviour
     {
         projectile = new Projectile();
         m_horizontalViewHalfAngle = m_horizontalViewAngle * 0.5f;
-        My_Angle = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         m_viewObstacleMask = LayerMask.GetMask("Wall");
         //battlemanager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
     private void Start()
     {
-        m_viewRadius = My_Angle.AtkRange - 2f;
+        m_viewRadius = player.AtkRange - 2f;
         attack_Pref = Resources.Load<GameObject> ("test");
     }
     public void Update()
     {
-        //if(My_Angle.attackType==AttackType.ShortRange)
+        //if(player.attackType==AttackType.ShortRange)
         {
-            if (My_Angle.AngleisAttack == true)
+            if (player.AngleisAttack == true)
             {
-                angle = My_Angle.enemy_angle;
-                m_viewRotateZ = My_Angle.enemy_angle;
+                angle = player.enemy_angle;
+                m_viewRotateZ = player.enemy_angle;
             }
             else
             {
-                My_Angle.MoveSpeed = My_Angle.temp_Movespeed;   
-                angle = My_Angle.current_angle;
-                m_viewRotateZ = My_Angle.current_angle;
+                player.MoveSpeed = player.temp_Movespeed;   
+                angle = player.current_angle;
+                m_viewRotateZ = player.current_angle;
             }
         }
     }
@@ -78,11 +78,11 @@ public class ShortRangeAttackArea : MonoBehaviour
     /// </summary>
     public void Attack_On()
     {
-        if (My_Angle.attackType == AttackType.ShortRange)
+        if (player.attackType == CLASS.검)
         {
             FindViewTargets();
         }
-        else if (My_Angle.attackType == AttackType.LongRange)
+        else if (player.attackType == CLASS.지팡이)
         {
             RongAttack_normal();
         }
@@ -92,7 +92,7 @@ public class ShortRangeAttackArea : MonoBehaviour
     {
         if (m_bDebugMode)
         {
-            m_viewRadius = My_Angle.AtkRange - 2f;
+            m_viewRadius = player.AtkRange - 2f;
 
             m_horizontalViewHalfAngle = m_horizontalViewAngle * 0.5f;
 
@@ -112,21 +112,21 @@ public class ShortRangeAttackArea : MonoBehaviour
     }
     public int Take_Current_Damage()
     {
-        int critical_Per = (int)My_Angle.critical;
+        int critical_Per = (int)player.critical;
         float a = Random.Range(0.0f, 100.0f);
         int Damage;
-        Damage = My_Angle.ATTACKDAMAGE;
+        Damage = player.ATTACKDAMAGE;
         if (critical_Per >= a)
         {
-            My_Angle.isCriticalHit =true;
+            player.isCriticalHit =true;
             Damage += (int)(Damage * 0.5f);
             return Damage;
         }
         else
         {
-            My_Angle.isCriticalHit =false;
-            My_Angle.ATTACKDAMAGE = My_Angle.ATTACKDAMAGE;
-            return My_Angle.ATTACKDAMAGE;
+            player.isCriticalHit =false;
+            player.ATTACKDAMAGE = player.ATTACKDAMAGE;
+            return player.ATTACKDAMAGE;
         }
     }
 
@@ -166,15 +166,15 @@ public class ShortRangeAttackArea : MonoBehaviour
                         Debug.DrawLine(originPos, targetPos, Color.red);
                     if (hitedTarget.CompareTag("Enemy") || hitedTarget.isActiveAndEnabled == true)
                     {
-                        if (My_Angle.isAttack)
+                        if (player.isAttack)
                         //Player hit
                         {
-                            hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),My_Angle.isCriticalHit,0);
-                            My_Angle.isAttack = false;
+                            hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),player.isCriticalHit,0);
+                            player.isAttack = false;
                         }
                         else
                         {
-                            My_Angle.isAttack = true;
+                            player.isAttack = true;
                         }
                   //      hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage());
                        // 임시 버젼
@@ -200,31 +200,31 @@ public class ShortRangeAttackArea : MonoBehaviour
     /// </summary>
     public void RongAttack_normal()
     {
-        float _swordAttackangle = (My_Angle.EnemyArray.Count != 0) ? My_Angle.enemy_angle : My_Angle.current_angle;
+        float _swordAttackangle = (player.EnemyArray.Count != 0) ? player.enemy_angle : player.current_angle;
 
         Vector2 offset = new Vector2(0.0f, 0.0f);
         float radius = 0.5f;
 
         //수정 예정  projectileTargetList를 데이터베이스에서 이넘으로 받아서 실행할것
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (My_Angle.weaponType == Player.WeaponType.NormalStaff)
+        if (player.weaponType == Player.WeaponType.NormalStaff)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[2], true, My_Angle.transform.position);
+            projectile.Create(player.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, player.projectileAnimator[2], true, player.transform.position);
         }
-        else if (My_Angle.weaponType == Player.WeaponType.Nyx)
+        else if (player.weaponType == Player.WeaponType.Nyx)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[4], true, My_Angle.transform.position);
+            projectile.Create(player.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, player.projectileAnimator[4], true, player.transform.position);
         }
-        else if (My_Angle.weaponType == Player.WeaponType.Nereides)
+        else if (player.weaponType == Player.WeaponType.Nereides)
         {
-            projectile.Create(My_Angle.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, My_Angle.projectileAnimator[6], true, My_Angle.transform.position);
+            projectile.Create(player.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, player.projectileAnimator[6], true, player.transform.position);
         }
     }
     public void AttackCoolDown()
     {
-        if (!My_Angle.isDead)
+        if (!player.isDead)
         {
-            My_Angle.CurrentState = State.Idle;
+            player.CurrentState = State.Idle;
         }
     }
     IEnumerator AttackDamaged()

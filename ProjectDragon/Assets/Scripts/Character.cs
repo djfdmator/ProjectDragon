@@ -6,17 +6,21 @@ using UnityEngine;
 
 public enum State { None = 0, Idle, Walk, Attack, Dead, Skill, Hit,Get}
 public enum AnglePos { None = 0, Front, Right, Back, Left }
-public enum AttackType { None = 0, LongRange, MiddleRange, ShortRange }
+//현재사용안함.
+public enum AttackType { ShortRange=0, LongRange=2 }
 
 
 public class Character : MonoBehaviour
 {
     [Header("스테이터스")]
-    [SerializeField] protected int currentHp;
+    [SerializeField] public int maxHp;
     [SerializeField] protected int hp;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected int atk;
+    [SerializeField] protected float atkSpeed;
+    [SerializeField] protected float atkRange;
     [SerializeField] protected float nuckBack;
+
 
     [Header("속성 저항값")]
     protected int resist_Fire;
@@ -32,30 +36,25 @@ public class Character : MonoBehaviour
 
 
 
-//personal Specification
-    [SerializeField] public int maxHp;
-    [SerializeField] protected float atkSpeed;
-    [SerializeField] protected float atkRange;
+    //personal Specification
     public Vector3 myPos;
     public Vector3 myRotat;
     public float current_angle;
 
     public Transform other;
 
-    // public bool flag_invincibility;
-    // public float 
+
 
     public bool isAttack=true;
-
     [SerializeField] protected bool isAttacking;
     [SerializeField] protected bool isWalk;
     public bool isDead;
     protected bool isHit;
     public bool isSkillActive;
 
-/// <summary>
-/// 데미지 팝업 변수
-/// </summary>
+    /// <summary>
+    /// 데미지 팝업 변수
+    /// </summary>
     protected DamagePopup damagePopup;
 
     public List<string> projectileTargetList;
@@ -70,7 +69,7 @@ public class Character : MonoBehaviour
 
     }
 
-    #region ATKSPEED
+    #region AtkSpeed
     public float ATTACKSPEED
     {
         get { return atkSpeed; }
@@ -87,7 +86,7 @@ public class Character : MonoBehaviour
     }
     #endregion
 
-    #region ATK
+    #region Atk
     public int ATTACKDAMAGE
     {
         get { return atk; }
@@ -176,12 +175,6 @@ public class Character : MonoBehaviour
             atkRange = value;
         }
     }
-
-    public float AtkRangeChanger(float _atkRange)
-    {
-        AtkRange = _atkRange;
-        return AtkRange;
-    }
     #endregion
 
 
@@ -205,8 +198,6 @@ public class Character : MonoBehaviour
     public int current_Anim_Frame;
     [HideInInspector]
     public float enemy_angle;
-    [HideInInspector]
-    public AttackType myAttackType;
     [HideInInspector]
     public AnglePos myAnim_AnglePos;
 }

@@ -3196,6 +3196,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5295681884921695657, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295681884921695657, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295681884272072949, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 167
+      objectReference: {fileID: 0}
+    - target: {fileID: 5295681885085492756, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: startingRenderQueue
+      value: 3006
+      objectReference: {fileID: 0}
     - target: {fileID: 3166028983337095039, guid: 4895e6a80606c55459db1ccf86f743dd,
         type: 3}
       propertyPath: m_IsActive
@@ -3271,6 +3291,11 @@ PrefabInstance:
       propertyPath: topAnchor.absolute
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 5295681884005437583, guid: 4895e6a80606c55459db1ccf86f743dd,
+        type: 3}
+      propertyPath: startingRenderQueue
+      value: 3009
+      objectReference: {fileID: 0}
     - target: {fileID: 5295681884834427859, guid: 4895e6a80606c55459db1ccf86f743dd,
         type: 3}
       propertyPath: mFontSize
@@ -3301,31 +3326,6 @@ PrefabInstance:
       propertyPath: mColor.b
       value: 0.27450982
       objectReference: {fileID: 0}
-    - target: {fileID: 5295681884921695657, guid: 4895e6a80606c55459db1ccf86f743dd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5295681884921695657, guid: 4895e6a80606c55459db1ccf86f743dd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5295681885085492756, guid: 4895e6a80606c55459db1ccf86f743dd,
-        type: 3}
-      propertyPath: startingRenderQueue
-      value: 3006
-      objectReference: {fileID: 0}
-    - target: {fileID: 5295681884005437583, guid: 4895e6a80606c55459db1ccf86f743dd,
-        type: 3}
-      propertyPath: startingRenderQueue
-      value: 3009
-      objectReference: {fileID: 0}
-    - target: {fileID: 5295681884272072949, guid: 4895e6a80606c55459db1ccf86f743dd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 167
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4895e6a80606c55459db1ccf86f743dd, type: 3}
 --- !u!4 &5295681884268753263 stripped
@@ -3347,6 +3347,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8770294599369467062}
     m_Modifications:
+    - target: {fileID: 2693284636917947716, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
+        type: 3}
+      propertyPath: m_Name
+      value: ResultPopup_
+      objectReference: {fileID: 0}
     - target: {fileID: 2693284636917947717, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3402,11 +3407,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2693284636917947716, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
-        type: 3}
-      propertyPath: m_Name
-      value: ResultPopup_
-      objectReference: {fileID: 0}
     - target: {fileID: 2693284636917947718, guid: 72b59c0b4ef755f4c967f3ebe71e6f45,
         type: 3}
       propertyPath: leftAnchor.target
@@ -3442,11 +3442,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8770294599369467062}
     m_Modifications:
-    - target: {fileID: 5577248988299814816, guid: 4260ededc5a681f48bb89d45eb35ea3e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 5577248988831907391, guid: 4260ededc5a681f48bb89d45eb35ea3e,
         type: 3}
       propertyPath: m_Name
@@ -3456,6 +3451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: MiniMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577248988299814816, guid: 4260ededc5a681f48bb89d45eb35ea3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5577248988831907387, guid: 4260ededc5a681f48bb89d45eb35ea3e,
         type: 3}

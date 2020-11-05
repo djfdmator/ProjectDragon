@@ -38,7 +38,7 @@ public class ResultPop : MonoBehaviour
     {
         acheiveMP = _mp;
         isSuccess = _isSuccess;
-        mpLabel.text = string.Format("#,###",acheiveMP);
+        mpLabel.text = string.Format("{0:#,###}", acheiveMP);
 
         if (isSuccess)
         {

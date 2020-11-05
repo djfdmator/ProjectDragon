@@ -516,7 +516,6 @@ public class GameManager : MonoSingleton<GameManager>
         set
         {
             Database.Inst.playData.currentHp = value;
-            Debug.Log("DB CurrentHP " + value);
             if (CurrentHp <= 0)
             {
                 //die
@@ -528,11 +527,11 @@ public class GameManager : MonoSingleton<GameManager>
 
         }
     }
-    public float Atk_Min
+    public int Atk_Min
     {
         get { return Database.Inst.playData.atk_Min; }
     }
-    public float Atk_Max
+    public int Atk_Max
     {
         get { return Database.Inst.playData.atk_Max; }
     }

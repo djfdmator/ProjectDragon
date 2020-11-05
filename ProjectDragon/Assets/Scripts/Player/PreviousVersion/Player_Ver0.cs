@@ -362,11 +362,11 @@ public class Player_Ver0 : Character
         Debug.Log("근원거리 세팅" + attackType.ToString());
         if (attackType == AttackType.ShortRange)
         {
-            AtkRangeChanger(3.5f);
+            AtkRange=3.5f;
         }
         else
         {
-            AtkRangeChanger(5.0f);
+            AtkRange=5.0f;
         }
         mp = 300;
 

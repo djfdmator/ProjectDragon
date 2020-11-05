@@ -3,7 +3,7 @@
 //
 //  AUTHOR: Yang SeEun
 // CREATED: 2020-11-03
-// UPDATED: 2020-11-03
+// UPDATED: 2020-11-05
 // ==============================================================
 
 
@@ -26,8 +26,7 @@ public class SkillButton : MonoBehaviour
     private UILabel timeLabel;
 
     private float coolTime;
-    private string str_ICON = string.Empty;
-    private int costMana;
+    private int mpCost;
 
     private void Awake()
     {
@@ -42,29 +41,25 @@ public class SkillButton : MonoBehaviour
         yellowRing = activationObj.transform.Find("YellowRing").GetComponent<UISprite>();
         timeLabel = activationObj.transform.Find("TimeLabel").GetComponent<UILabel>();
         col = GetComponent<BoxCollider>();
-
-
-        OnBasic();
-
     }
 
     private void Start()
     {
-        ChangeWeapon();
+        OnBasic();
     }
 
 
     /// <summary>
-    /// 무기교체 할때마다 이미지,쿨타임 변경
+    /// 스킬이미지,쿨타임,마나소모량 초기화
     /// </summary>
-    public void ChangeWeapon()
+    public void Init(float _coolTime, int _mpCost , string _imageName)
     {
-        coolTime = player.skillCoolTime;
-        costMana = player.costSkillMana;
-        costMana = 400;
+        coolTime = _coolTime;
+        mpCost = _mpCost;
+
 
         //차후 변경
-        //str_ICON = string.Format("SkillIcon_{0}_Ingame", GameManager.Inst.CurrentSkill.imageName);
+        string str_ICON = string.Format("SkillIcon_{0}_Ingame", _imageName);
         str_ICON = string.Format("SkillIcon_Thunderbolt_Ingame");
 
         icon_sprite.spriteName = str_ICON;
@@ -75,9 +70,10 @@ public class SkillButton : MonoBehaviour
 
     private void OnClick()
     {
-        if (GameManager.Inst.Mp - costMana >= 0)
+        player.HP += 102;
+        if (player.MP - mpCost >= 0)
         {
-            GameManager.Inst.Mp -= costMana;
+            player.MP -= mpCost;
             StartCoroutine(CalcCoolTime());
             OnActive();
             SoundManager.Inst.Ds_EffectPlayerDB(12);
@@ -119,7 +115,6 @@ public class SkillButton : MonoBehaviour
     //쿨타임 계산
     private IEnumerator CalcCoolTime()
     {
-
         float _time = coolTime;
         while (_time > 0)
         {
@@ -129,7 +124,7 @@ public class SkillButton : MonoBehaviour
             yield return null;
         }
 
-        if (GameManager.Inst.Mp - costMana < 0)
+        if (player.MP - mpCost < 0)
         {
             //OnInactive();
             inactivationObj.SetActive(true);
@@ -152,7 +147,7 @@ public class SkillButton : MonoBehaviour
     private IEnumerator CheckIsSkill()
     {
         timeLabel.gameObject.SetActive(false);
-        while (GameManager.Inst.Mp - costMana < 0)
+        while (player.MP - mpCost < 0)
         {
             yield return null;
         }

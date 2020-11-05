@@ -71,11 +71,11 @@ public class PlayerSkill : MonoBehaviour
     public void OnClick()
     {
         SoundManager.Inst.Ds_EffectPlayerDB(12);
-        if (My_Player.mp / 10 > 0)
+        if (My_Player.MP / 10 > 0)
         {
             My_Player.isSkillActive = true;
             
-            My_Player.MPChanged(5);
+            My_Player.MP-=5;
 
             //Create skill Projectile
             CreateProjectile();
@@ -177,11 +177,5 @@ public class PlayerSkill : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         skill.gameObject.SetActive(false);
     }
-    void MPControll()
-    {
-        float maxMp = My_Player.maxMp;
-        float myMp = My_Player.mp;
-        float Per = myMp / maxMp;
-        Debug.Log(myMp+">>>"+maxMp+":"+Per);
-    }
+   
 }

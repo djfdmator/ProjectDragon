@@ -7,6 +7,14 @@ using UnityEngine;
 
 public class PlayerAnimControll : MonoBehaviour
 {
+    //차후 변경
+    private readonly int idleStateHash = Animator.StringToHash("isIdle");
+    private readonly int walkStateHash = Animator.StringToHash("isWalk");
+    private readonly int attackStateHash = Animator.StringToHash("isAttack");
+    private readonly int skillStateHash = Animator.StringToHash("isSkill");
+    private readonly int deadStateHash = Animator.StringToHash("isDead");
+    private readonly int getStateHash = Animator.StringToHash("isGet");
+    private readonly int hitStateHash = Animator.StringToHash("isHit");
 
     // 무기타입에 맞는 애니메이터
     [SerializeField] private Animator curAnimBody;
@@ -20,8 +28,8 @@ public class PlayerAnimControll : MonoBehaviour
 
 
     // 해당 공격 타입 관련으로 세팅
-    private AttackType myAttackType;
-    public AttackType CurrentAttackType
+    private CLASS myAttackType;
+    public CLASS CurrentAttackType
     {
         get { return myAttackType; }
         set
@@ -52,7 +60,7 @@ public class PlayerAnimControll : MonoBehaviour
                 }
 
                 myState = value;
-                if (myState.GetHashCode().Equals(State.Dead.GetHashCode()))
+                if (myState.Equals(State.Dead))
                 {
                     curAnimBody.SetTrigger(ChangeState(myState));
                     curAnim_Arm.SetTrigger(ChangeState(myState));
@@ -95,19 +103,13 @@ public class PlayerAnimControll : MonoBehaviour
 
         curAnimBody.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Body_{1}", weaponType, weaponType));
         curAnim_Weapon.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Weapon_{1}", weaponType, weaponType));
-        string normalType = (player.attackType == AttackType.ShortRange) ? "NormalSword" : "NormalStaff";
+        string normalType = (player.attackType == CLASS.검) ? "NormalSword" : "NormalStaff";
+
         curAnim_Arm.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
         //Debug.Log(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
     }
 
-    private readonly int idleStateHash = Animator.StringToHash("isIdle");
-    private readonly int walkStateHash = Animator.StringToHash("isWalk");
-    private readonly int attackStateHash = Animator.StringToHash("isAttack");
-    private readonly int skillStateHash = Animator.StringToHash("isSkill");
-    private readonly int deadStateHash = Animator.StringToHash("isDead");
-    private readonly int getStateHash = Animator.StringToHash("isGet");
-    private readonly int hitStateHash = Animator.StringToHash("isHit");
-
+    
     public int ChangeState(State state)
     {
         switch(state)
