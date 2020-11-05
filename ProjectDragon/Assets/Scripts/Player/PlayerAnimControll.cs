@@ -133,6 +133,8 @@ public class PlayerAnimControll : MonoBehaviour
         //return "is" + state.ToString();
     }
 
+    //Animation Event Function
+    //스킬 애니메이션이 끝났을때 호출하기
     public void AnimationStop()
     {
         if (!player.isDead)

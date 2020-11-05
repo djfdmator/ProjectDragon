@@ -88,25 +88,30 @@ public class BattleStatus : MonoBehaviour
     {
         //Label
         float offest = (target - m_curMP) / duration;
+
+        float tempTarget = target;
+        tempTarget = Mathf.Clamp(tempTarget, 0, 999999999);
+
         if (target - m_curMP > 0)                              //증가
         {
-            while (m_curMP < target)
+            while (m_curMP < tempTarget)
             {
-                mpLabel.text = string.Format("{0:#,###}", Mathf.Floor(m_curMP));
+                mpLabel.text = string.Format("{0:#,##0}", Mathf.Floor(m_curMP));
                 m_curMP += offest * Time.deltaTime;
                 yield return null;
             }
         }
         else                                                   //감소
         {
-            while (m_curMP > target)
+            while (m_curMP > tempTarget)
             {
-                mpLabel.text = string.Format("{0:#,###}", Mathf.Floor(m_curMP));
+                mpLabel.text = string.Format("{0:#,##0}", Mathf.Floor(m_curMP));
                 m_curMP += offest * Time.deltaTime;
                 yield return null;
             }
         }
-        mpLabel.text = string.Format("{0:#,###}", Mathf.Floor(target));
+        Debug.Log("Temp" + tempTarget);
+        mpLabel.text = string.Format("{0:#,##0}", Mathf.Floor(tempTarget));
 
         Co_MpCount = null;
         yield return null;
@@ -118,7 +123,6 @@ public class BattleStatus : MonoBehaviour
 
         float tempTarget = target;
         tempTarget = Mathf.Clamp(tempTarget, 0, m_maxHP);
-        //float temp = target < 0 ? 0 : target;
 
         if (target - m_curHP > 0)                            //증가
         {

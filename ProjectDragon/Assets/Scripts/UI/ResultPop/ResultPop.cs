@@ -38,7 +38,7 @@ public class ResultPop : MonoBehaviour
     {
         acheiveMP = _mp;
         isSuccess = _isSuccess;
-        mpLabel.text = string.Format("{0:#,###}", acheiveMP);
+        mpLabel.text = string.Format("{0:#,##0}", acheiveMP);
 
         if (isSuccess)
         {
@@ -51,17 +51,20 @@ public class ResultPop : MonoBehaviour
 
         //itemList Setting
         itemListView.GetResultItem();
+        Time.timeScale = 0.0f;
 
     }
 
     #region Button
     public void LobbyButton()
     {
+        Time.timeScale = 1.0f;
         ButtonManager.GotoLobby();
     }
    
     public void NextStageButton()
     {
+        Time.timeScale = 1.0f;
         GameManager.Inst.Loading(true);
     }
     #endregion

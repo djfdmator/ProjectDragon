@@ -19,6 +19,8 @@ public class MiniMap : MonoBehaviour
     public UIPanel panel;
 
     public UIButton button;
+    public UISprite background;
+    public UISprite playerPosSprite;
     public EventDelegate mini = new EventDelegate();
     public EventDelegate maxi = new EventDelegate();
     //public EventDelegate teleport = new EventDelegate();
@@ -29,7 +31,9 @@ public class MiniMap : MonoBehaviour
         roomRoot = transform.Find("RoomRoot");
         panel = GetComponent<UIPanel>();
 
-        button = transform.Find("Button").GetComponent<UIButton>();
+        button = transform.parent.GetComponent<UIButton>();
+        background = transform.parent.GetComponent<UISprite>();
+        playerPosSprite = transform.Find("PlayerPos").GetComponent<UISprite>();
     }
 
     private void Start()
@@ -64,7 +68,7 @@ public class MiniMap : MonoBehaviour
             {
                 obj.MiniMapPos.SetActive(true);
                 obj.MiniMapPos.GetComponent<UISprite>().alpha = 0.5f;
-
+ 
                 //히든방은 숨깁니다.
                 if (obj.roomType.Equals(RoomType.Hidden)) obj.MiniMapPos.GetComponent<UISprite>().alpha = 0.0f;
             }
@@ -130,14 +134,21 @@ public class MiniMap : MonoBehaviour
     public void Maximalize()
     {
         //panel의 위치와 크기 조절
-        panel.parent.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        panel.parent.transform.localPosition = Vector3.zero;
         panel.baseClipRegion = new Vector4(0.0f, -7.0f, 725.0f, 725.0f);
-        panel.clipOffset = new Vector2(0.0f, 0.0f);
+        panel.clipOffset = Vector2.zero;
 
-        //미니맵 확대
-        transform.parent.GetComponent<UISprite>().SetDimensions(1000, 1000);
-        button.GetComponent<UISprite>().SetDimensions(800, 800);
-        transform.Find("PlayerPos").GetComponent<UISprite>().SetDimensions(120, 120);
+        //***미니맵 확대****
+        //이미지교체
+        background.spriteName = button.normalSprite = "Ingame_Map_Panel";
+        playerPosSprite.spriteName = "Ingame_Map_NowIcon";
+        //사이즈조절
+        background.MakePixelPerfect();
+        playerPosSprite.MakePixelPerfect();
+
+        //transform.parent.GetComponent<UISprite>().SetDimensions(1000, 1000);
+        //button.GetComponent<UISprite>().SetDimensions(800, 800);
+        //transform.Find("PlayerPos").GetComponent<UISprite>().SetDimensions(120, 120);
         roomRoot.localScale = new Vector3(2.0f, 2.0f, 1.0f);
         roomRoot.localPosition *= 2.0f;
 
@@ -153,10 +164,17 @@ public class MiniMap : MonoBehaviour
         panel.baseClipRegion = new Vector4(0.0f, -5.0f, 255.0f, 255.0f);
         panel.clipOffset = new Vector2(0.0f, 0.0f);
 
-        //미니맵 축소
-        transform.parent.GetComponent<UISprite>().SetDimensions(350, 350);
-        button.GetComponent<UISprite>().SetDimensions(300, 300);
-        transform.Find("PlayerPos").GetComponent<UISprite>().SetDimensions(60, 60);
+        //***미니맵 축소***
+        //이미지교체
+        background.spriteName = button.normalSprite = "Ingame_MiniMap_Panel";
+        playerPosSprite.spriteName = "Ingame_MiniMap_NowIcon";
+        //사이즈조절
+        background.MakePixelPerfect();
+        playerPosSprite.MakePixelPerfect();
+
+        //transform.parent.GetComponent<UISprite>().SetDimensions(350, 350);
+        //button.GetComponent<UISprite>().SetDimensions(300, 300);
+        //transform.Find("PlayerPos").GetComponent<UISprite>().SetDimensions(60, 60);
         roomRoot.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         roomRoot.localPosition /= 2.0f;
 

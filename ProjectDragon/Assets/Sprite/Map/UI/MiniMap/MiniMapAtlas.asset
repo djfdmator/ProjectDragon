@@ -14,122 +14,213 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 717d5516e36d19b40836ac01332f9280, type: 2}
   mSprites:
-  - name: MiniMap_Close
-    x: 0
-    y: 26
-    width: 69
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 5
-    paddingRight: 6
-    paddingTop: 4
-    paddingBottom: 6
-  - name: MiniMap_CurrentPos
-    x: 127
-    y: 46
-    width: 52
-    height: 50
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 4
-    paddingRight: 4
-    paddingTop: 4
-    paddingBottom: 6
-  - name: MiniMap_Hidden
-    x: 284
-    y: 51
-    width: 54
-    height: 45
+  - name: Ingame_Map_CheckedIcon
+    x: 920
+    y: 782
+    width: 80
+    height: 80
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
-    paddingRight: 1
-    paddingTop: 6
-    paddingBottom: 4
-  - name: MiniMap_Npc
-    x: 284
-    y: 2
-    width: 44
-    height: 48
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_NowIcon
+    x: 839
+    y: 701
+    width: 80
+    height: 80
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 6
-    paddingRight: 5
-    paddingTop: 4
-    paddingBottom: 3
-  - name: MiniMap_Panel
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_Panel
     x: 0
-    y: 97
-    width: 377
-    height: 415
+    y: 316
+    width: 838
+    height: 708
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 37
-    paddingRight: 36
-    paddingTop: 28
-    paddingBottom: 7
-  - name: MiniMap_Room
-    x: 70
-    y: 42
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_PortalIcon
+    x: 839
+    y: 863
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_SecretIcon
+    x: 920
+    y: 863
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_StairsIcon
+    x: 839
+    y: 782
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_UnCheckedIcon
+    x: 839
+    y: 944
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_Map_UnPortalIcon
+    x: 920
+    y: 944
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_CheckedIcon
+    x: 0
+    y: 8
     width: 56
-    height: 54
+    height: 56
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 2
-    paddingTop: 3
-    paddingBottom: 3
-  - name: MiniMap_Stair
-    x: 127
-    y: 0
-    width: 51
-    height: 45
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_NowIcon
+    x: 57
+    y: 8
+    width: 56
+    height: 56
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 2
-    paddingTop: 5
-    paddingBottom: 5
-  - name: MiniMap_Start
-    x: 180
-    y: 47
-    width: 52
-    height: 49
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_Panel
+    x: 0
+    y: 65
+    width: 346
+    height: 250
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 2
-    paddingRight: 1
-    paddingTop: 2
-    paddingBottom: 4
-  - name: MiniMap_Unknown
-    x: 233
-    y: 46
-    width: 50
-    height: 50
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_PortalIcon
+    x: 114
+    y: 8
+    width: 56
+    height: 56
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 5
-    paddingRight: 5
-    paddingTop: 5
-    paddingBottom: 5
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_SecretIcon
+    x: 171
+    y: 8
+    width: 56
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_StairsIcon
+    x: 228
+    y: 8
+    width: 56
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_UnCheckedIcon
+    x: 285
+    y: 8
+    width: 56
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Ingame_MiniMap_UnPortalIcon
+    x: 342
+    y: 8
+    width: 56
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}

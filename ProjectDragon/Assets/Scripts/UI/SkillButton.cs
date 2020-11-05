@@ -70,10 +70,11 @@ public class SkillButton : MonoBehaviour
 
     private void OnClick()
     {
-        player.HP += 102;
         if (player.MP - mpCost >= 0)
         {
+            player.OnSkillActive();
             player.MP -= mpCost;
+            player.HP -= 1000;
             StartCoroutine(CalcCoolTime());
             OnActive();
             SoundManager.Inst.Ds_EffectPlayerDB(12);

@@ -46,6 +46,7 @@ public class Player : Character
             myState = value;
             SetState(myState);
 
+            Debug.Log(myState);
             //Anim
             GetComponent<PlayerAnimControll>().CurrentState = myState;
 
@@ -225,8 +226,8 @@ public class Player : Character
     {
         if (!isDead)
         {
-            isSkillActive = false;
             CurrentState = State.Idle;
+            isSkillActive = false;
             StopPlayer = false;
         }
     }
@@ -349,21 +350,21 @@ public class Player : Character
         StartCoroutine(CalculateDistanceWithPlayer());
     }
 
-    void FixedUpdate()
+    public void OnSkillActive()
+    {
+        CurrentState = State.Skill;
+        isSkillActive = true;
+        StopPlayer = true;
+    }
+
+    private void FixedUpdate()
     {
         if (!isDead)
         {
-            if (isSkillActive)
-            {
-                float A = current_angle;
-                current_angle = A;
-                CurrentState = State.Skill;
-            }
-            else
+            if(!isSkillActive)
             {
                 current_angle = joyPad.angle;
             }
-            //CheckAngleLabel.text = current_angle.ToString();
 
             joystickPos = joyPad.position;
             //joystick
@@ -375,12 +376,11 @@ public class Player : Character
             {
                 rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
                 ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
-
                 //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
             }
-            if (StopPlayer.Equals(true))
-            {
-                rigidbody2d.velocity = new Vector2(0f, 0f);
+            else
+            { 
+                rigidbody2d.velocity = Vector2.zero;
                 StopTime += Time.deltaTime;
                 if (StopTime >= StopMaxTime)
                 {
