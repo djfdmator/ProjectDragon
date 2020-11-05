@@ -135,7 +135,6 @@ public class Room : MonoBehaviour
                 IsClear();
                 if(GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
                 {
-                    Debug.Log("????");
                     roomManager.OpenResultPop(false);
                 }
             }

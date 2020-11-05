@@ -59,6 +59,7 @@ public class RoomManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<BoxCollider2D>().enabled = false;
         resultPop = GameObject.Find("UI Root").transform.Find("ResultPopup").gameObject;
+        resultPop.SetActive(false);
         ResourceLoad();
     }
 
@@ -69,7 +70,6 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        resultPop.gameObject.SetActive(false);
         SoundManager.Inst.Ds_BGMPlayerDB(4);
         StartCoroutine(PlayStart());
     }
@@ -301,7 +301,6 @@ public class RoomManager : MonoBehaviour
 
     public void OpenResultPop(bool playerIsDead)
     {
-        Debug.Log("ㅠㅠ");
         resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
         resultPop.SetActive(true);
     }
