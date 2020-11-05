@@ -18,6 +18,9 @@ public class Inventory : MonoBehaviour
     private UILabel skillLabel;
     private Transform equip;
 
+    List<GameObject> itemObjs = new List<GameObject>();
+    private int curChoiceItme = -1;
+
     void Start()
     {
         if (grid == null) grid = transform.Find("ItemWindow/Scroll View/Grid").GetComponent<UIGrid>();
@@ -59,7 +62,57 @@ public class Inventory : MonoBehaviour
             skillImage.spriteName = "SkillIcon_" + skill.imageName;
             skillLabel.text = skill.name;
 
-            Instantiate(itemCell, grid.transform);
+            EventDelegate itemEvent = new EventDelegate(this, "Event_PopupItem");
+            itemEvent.parameters[0] = new EventDelegate.Parameter(i);
+
+            EventDelegate skillEvent = new EventDelegate(this, "Event_PopupSkill");
+            skillEvent.parameters[0] = new EventDelegate.Parameter(weapon.skill_Index);
+
+            EventDelegate itemChoiceBtn = new EventDelegate(this, "Event_ChoiceEquipItem");
+            itemChoiceBtn.parameters[0] = new EventDelegate.Parameter(i);
+
+            //itemImage.parent.GetComponent<UIButton>().onClick.Add(itemEvent);
+            //skillImage.parent.parent.GetComponent<UIButton>().onClick.Add(skillEvent);
+            //itemCell.GetComponent<UIButton>().onClick.Add(itemChoiceBtn);
+
+            GameObject obj = Instantiate(itemCell, grid.transform);
+
+            itemObjs.Add(obj);
+        }
+    }
+
+    public void Event_PopupItem(int inventoryNum)
+    {
+        Debug.Log(inventoryNum);
+    }
+
+    public void Event_PopupSkill(int skill_Index)
+    {
+        Debug.Log(skill_Index);
+    }
+
+    public void Event_ChoiceEquipItem(int inventoryNum)
+    {
+        Debug.Log(inventoryNum);
+        curChoiceItme = inventoryNum;
+    }
+
+    public void RefreshEquip()
+    {
+        List<Database.Inventory> inventories = GameManager.Inst.PlayData.inventory;
+
+        for (int i = 0; i < inventories.Count; i++)
+        {
+            if (inventories[i].Class == CLASS.갑옷) continue;
+
+            if (Database.Inst.playData.equiWeapon_InventoryNum == i)
+            {
+                equip.gameObject.SetActive(true);
+            }
+            else
+            {
+
+            }
         }
     }
 }

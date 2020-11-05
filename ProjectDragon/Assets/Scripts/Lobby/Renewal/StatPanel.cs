@@ -13,7 +13,17 @@ public class StatPanel : MonoBehaviour
 
     public bool isOpen = false;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    if (damage == null) damage = transform.Find("Background/Damage/Label").GetComponent<UILabel>();
+    //    if (hp == null) hp = transform.Find("Background/HP/Label").GetComponent<UILabel>();
+    //    if (defence == null) defence = transform.Find("Background/Defence/Label").GetComponent<UILabel>();
+    //    if (attackSpeed == null) attackSpeed = transform.Find("Background/AttackSpeed/Label").GetComponent<UILabel>();
+
+    //    if (button == null) button = transform.Find("Background/Button").GetComponent<UISprite>();
+    //}
+
+    private void Start()
     {
         if (damage == null) damage = transform.Find("Background/Damage/Label").GetComponent<UILabel>();
         if (hp == null) hp = transform.Find("Background/HP/Label").GetComponent<UILabel>();
@@ -22,15 +32,13 @@ public class StatPanel : MonoBehaviour
 
         if (button == null) button = transform.Find("Background/Button").GetComponent<UISprite>();
     }
-    void Start()
-    {
-    }
 
     public void Toggle_ButtonImage()
     {
         isOpen = !isOpen;
         if(isOpen)
         {
+            RefreshStatData();
             button.spriteName = "Lobby_Stats_L";
         }
         else
@@ -41,6 +49,7 @@ public class StatPanel : MonoBehaviour
 
     public void RefreshStatData()
     {
+        Debug.Log(damage);
         damage.text = GameManager.Inst.Atk_Max.ToString();
         hp.text = GameManager.Inst.MaxHp.ToString();
         defence.text = GameManager.Inst.CurrentEquipArmor.hp.ToString();

@@ -57,7 +57,6 @@ public class LobbyManager_vr2 : MonoBehaviour
         equipSkillImage.spriteName = "SkillIcon_" + GameManager.Inst.CurrentSkill.imageName;
 
         //캐릭터 창 이미지 변경하기
-        statPanel.RefreshStatData();
     }
 
     #region Button

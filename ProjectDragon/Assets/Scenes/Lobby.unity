@@ -430,7 +430,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3022
   mClipTexture: {fileID: 2800000, guid: 812cf9f34f470ee4882df3b1c06d278d, type: 3}
   mAlpha: 1
   mClipping: 1
@@ -1315,7 +1315,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3023
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1364,6 +1364,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23890ba724d494bac943865e18b36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  manaCount: {fileID: 0}
+  popupWeapon: {fileID: 0}
+  weaponName: {fileID: 0}
+  weaponRank: {fileID: 0}
+  weaponDescription: {fileID: 0}
+  weaponAtkMin: {fileID: 0}
+  weaponAtkMax: {fileID: 0}
+  weaponAtkSpeed: {fileID: 0}
+  weaponNuckback: {fileID: 0}
+  popupSkill: {fileID: 0}
+  skillName: {fileID: 0}
+  skillRank: {fileID: 0}
+  skillDescription: {fileID: 0}
+  skillAtk: {fileID: 0}
+  skillMpCost: {fileID: 0}
+  skillCoolTime: {fileID: 0}
 --- !u!1 &121071540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,7 +1911,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114285399}
+    mMethodName: CurSkillPopup
+    mParameters: []
+    oneShot: 0
 --- !u!61 &163429104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2089,7 +2110,7 @@ GameObject:
   - component: {fileID: 188617115}
   - component: {fileID: 188617116}
   m_Layer: 8
-  m_Name: ManaCountLabel
+  m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2670,7 +2691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &232710567
 Transform:
   m_ObjectHideFlags: 0
@@ -3528,7 +3549,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -4430,7 +4451,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3037
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -7626,7 +7647,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700087983}
-  m_Layer: 0
+  - component: {fileID: 700087984}
+  m_Layer: 8
   m_Name: Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7649,6 +7671,56 @@ Transform:
   m_Father: {fileID: 114285396}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700087984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700087982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  showInPanelTool: 1
+  generateNormals: 0
+  generateUV2: 0
+  shadowMode: 0
+  widgetsAreStatic: 0
+  cullWhileDragging: 1
+  alwaysOnScreen: 0
+  anchorOffset: 0
+  softBorderPadding: 1
+  renderQueue: 0
+  startingRenderQueue: 3039
+  mClipTexture: {fileID: 0}
+  mAlpha: 1
+  mClipping: 0
+  mClipRange: {x: 0, y: 0, z: 300, w: 200}
+  mClipSoftness: {x: 4, y: 4}
+  mDepth: 9
+  mSortingOrder: 0
+  mSortingLayerName: 
+  mClipOffset: {x: 0, y: 0}
+  useSortingOrder: 0
 --- !u!1 &705680627
 GameObject:
   m_ObjectHideFlags: 0
@@ -8532,8 +8604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 851829199}
-  hover: {r: 0, g: 0, b: 0, a: 1}
-  pressed: {r: 0, g: 0, b: 0, a: 1}
+  hover: {r: 0, g: 0, b: 0, a: 0.5019608}
+  pressed: {r: 0, g: 0, b: 0, a: 0.5019608}
   disabledColor: {r: 0, g: 0, b: 0, a: 1}
   duration: 0
   dragHighlight: 0
@@ -8544,7 +8616,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114285399}
+    mMethodName: CloseSkillPopup
+    mParameters: []
+    oneShot: 0
 --- !u!61 &851829202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11291,8 +11367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1104683871}
-  hover: {r: 0, g: 0, b: 0, a: 1}
-  pressed: {r: 0, g: 0, b: 0, a: 1}
+  hover: {r: 0, g: 0, b: 0, a: 0.5019608}
+  pressed: {r: 0, g: 0, b: 0, a: 0.5019608}
   disabledColor: {r: 0, g: 0, b: 0, a: 1}
   duration: 0
   dragHighlight: 0
@@ -11303,7 +11379,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114285399}
+    mMethodName: CurWeaponPopup
+    mParameters: []
+    oneShot: 0
 --- !u!61 &1104683874
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14489,7 +14569,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16, y: 235, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1443338152}
   m_Father: {fileID: 307796139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14701,6 +14782,81 @@ MonoBehaviour:
   mSpriteName: Credit_Background
   mFixedAspect: 0
   mFillCenter: 1
+--- !u!1001 &1443338151
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1423172086}
+    m_Modifications:
+    - target: {fileID: 9197579364569066104, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemCell
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 156f7b01c6679ae409d4a772c0b776e4, type: 3}
+--- !u!4 &1443338152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9197579364569066107, guid: 156f7b01c6679ae409d4a772c0b776e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1443338151}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1457275091
 GameObject:
   m_ObjectHideFlags: 0
@@ -20293,7 +20449,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114285399}
+    mMethodName: CurWeaponPopup
+    mParameters: []
+    oneShot: 0
 --- !u!61 &1971017648
 BoxCollider2D:
   m_ObjectHideFlags: 0
