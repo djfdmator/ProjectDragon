@@ -23,7 +23,7 @@ public class Rimmotal : Enemy
     TargetPoint thornPoint;
     public RuntimeAnimatorController LeafAnimator;
     public RuntimeAnimatorController ThornAnimator;
-    bool _thorn_attacking = true;
+    [SerializeField] bool _thorn_attacking = true;
 
 
     public RimmotalEnemyState REState
@@ -153,6 +153,7 @@ public class Rimmotal : Enemy
                 //move
                 if (!collisionPlayer)
                 {
+                    //_thorn_attacking = false;
                     isWalk = true;
                     //AStar
                     GetComponent<Tracking>().FindPathManager(rb2d, MoveSpeed);

@@ -165,6 +165,11 @@ public class Projectile : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(s))
             {
+                //if (isplayskill)
+                //{
+                //    Debug.Log(targetObject.gameObject.name);
+                //    hitEffect.Create(targetObject.transform.position, attackType);
+                //}
                 collision.GetComponent<Character>().HPChanged(damage, false, 0);
                 if (Reset != null)
                 {

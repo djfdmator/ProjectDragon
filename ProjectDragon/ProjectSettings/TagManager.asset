@@ -75,3 +75,6 @@ TagManager:
   - name: Effect
     uniqueID: 1218017975
     locked: 0
+  - name: DamagePopup
+    uniqueID: 2884236115
+    locked: 0

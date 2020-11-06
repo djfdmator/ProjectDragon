@@ -15,19 +15,18 @@ public class TargetPoint : MonoBehaviour
     public string poolItemName = "TargetPoint";
     public float projecTileReady =1, projecTileStart=1, projecTileEnd=1;
     private TargetPoint targetPoint;
-    private HitEffect hitEffect;
+    private HitEffect hitEffect = new HitEffect();
     private int attackDamage = 0;
     [SerializeField]  private Transform parentPool;
 
-    //[SerializeField] private GameObject targetObject;
-    [SerializeField] private List<GameObject> targetObject = new List<GameObject>();
+    [SerializeField] private GameObject targetObject;
+    //[SerializeField] private List<GameObject> targetObject = new List<GameObject>();
     public List<string> tagsString = new List<string>();
     private bool isplayskill;
     private string attackType;
 
     private void Awake()
     {
-        hitEffect = new HitEffect();
         parentPool = GameObject.FindGameObjectWithTag("ObjectPool").transform;
     }
 
@@ -43,20 +42,20 @@ public class TargetPoint : MonoBehaviour
     /// </summary>
     public void AttackOn()
     {
-        foreach (GameObject target in targetObject)
-        {
-            if ((target != null))
+        //foreach (GameObject target in targetObject)
+        //{
+            if ((targetObject != null))
             {
                 if (isplayskill)
                 {
-                    Debug.Log(target.gameObject.name);
-                    hitEffect.Create(target.transform.position, attackType);
+                    Debug.Log(targetObject.gameObject.name);
+                    hitEffect.Create(targetObject.transform.position, attackType);
                 }
-                target.GetComponent<Character>().HPChanged(attackDamage, false, 0);
+             targetObject.GetComponent<Character>().HPChanged(attackDamage, false, 0);
 
-                if (target.GetComponent<Character>().isDead) targetObject.Remove(target);
+                //if (targetObject.GetComponent<Character>().isDead) targetObject.Remove(targetObject);
             }
-        }
+        //}
     }
     /// <summary>
     /// 애니메이션 이벤트 함수 넣기 (EndAnimation 마지막 프레임에)
@@ -73,10 +72,10 @@ public class TargetPoint : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(s))
             {
-                targetObject.Add(collision.gameObject);
-                Debug.Log("object " + gameObject.name);
-                Debug.Log("Collision is " + collision.gameObject.name);
-                //targetObject = collision.gameObject;
+                //targetObject.Add(collision.gameObject);
+                //Debug.Log("object " + gameObject.name);
+                //Debug.Log("Collision is " + collision.gameObject.name);
+                targetObject = collision.gameObject;
             }
         }
     }
@@ -86,8 +85,8 @@ public class TargetPoint : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(s))
             {
-                targetObject.Clear();
-                //targetObject = null;
+                //targetObject.Clear();
+                targetObject = null;
             }
         }
     }

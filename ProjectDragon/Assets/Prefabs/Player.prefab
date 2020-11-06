@@ -502,7 +502,7 @@ Animator:
   m_GameObject: {fileID: 5409751990359364113}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 699142cd61bd4984191d32caca6cd7c0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 996a84d5f4ce59f41bd70bd996455c8c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -544,7 +544,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.1, y: 1.1}
     newSize: {x: 1.2, y: 1.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -588,9 +588,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 3321427363335049377}
   angle: 0
-  m_bDebugMode: 0
+  m_bDebugMode: 1
   m_horizontalViewAngle: 120
-  m_viewRadius: 1.6700001
+  m_viewRadius: 1
   m_viewRotateZ: 0
   m_viewTargetMask:
     serializedVersion: 2
@@ -644,7 +644,7 @@ MonoBehaviour:
   moveSpeed: 0
   atk: 0
   atkSpeed: 0
-  atkRange: 3.67
+  atkRange: 1
   nuckBack: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
@@ -671,21 +671,28 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 64b00b22e5a5a1a4bb27d620b5d8a681, type: 2}
   - {fileID: 22100000, guid: 9ab39a4ac68d8034f962f1bd7c86574e, type: 2}
   - {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
-  - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
   - {fileID: 9100000, guid: 3b6f998f77c11a44cb96302deae21454, type: 2}
+  - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
   - {fileID: 22100000, guid: 8a031b071bac2ef48a6eefaf95140efb, type: 2}
+  proj_attackAnimator: {fileID: 0}
+  proj_skillAnimator: {fileID: 0}
   mp: 100
   attackType: 3
   weaponType: 0
   skillDamage: 0
+  skillRange: 0
   skillCoolTime: 3
   skillMpCost: 0
+  skill_ImageName: 
   invaid: 0
   critical: 0
   StopPlayer: 0
   StopMaxTime: 0
   walk_Sound: {fileID: 0}
   rigidbody2d: {fileID: 0}
+  joystickPos: {x: 0, y: 0, z: 0}
+  h: 0
+  v: 0
   EnemyArray: []
   TempEnemy: {fileID: 0}
 --- !u!1 &7812209954221775557

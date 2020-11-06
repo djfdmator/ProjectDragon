@@ -42,7 +42,8 @@ public class ShortRangeAttackArea : MonoBehaviour
     }
     private void Start()
     {
-        m_viewRadius = player.AtkRange - 2f;
+        //m_viewRadius = player.AtkRange - 2f;
+        m_viewRadius = player.AtkRange;
         attack_Pref = Resources.Load<GameObject> ("test");
     }
     public void Update()
@@ -88,24 +89,26 @@ public class ShortRangeAttackArea : MonoBehaviour
         }
 
     }
+    private float tempRange = 0;
     private void OnDrawGizmos()
     {
         if (m_bDebugMode)
         {
-            m_viewRadius = player.AtkRange - 2f;
+            //m_viewRadius = player.AtkRange - 2f;
+            tempRange = player.AtkRange - 2f;
 
             m_horizontalViewHalfAngle = m_horizontalViewAngle * 0.5f;
 
             Vector3 originPos = transform.position;
 
-            Gizmos.DrawWireSphere(originPos, m_viewRadius);
+            Gizmos.DrawWireSphere(originPos, tempRange);
 
             Vector3 horizontalRightDir = AngleToDirZ(m_horizontalViewHalfAngle + m_viewRotateZ);
             Vector3 horizontalLeftDir = AngleToDirZ(-m_horizontalViewHalfAngle + m_viewRotateZ);
             Vector3 lookDir = AngleToDirZ(m_viewRotateZ);
-            Debug.DrawRay(originPos, horizontalLeftDir * m_viewRadius, Color.cyan);
-            Debug.DrawRay(originPos, lookDir * m_viewRadius, Color.green);
-            Debug.DrawRay(originPos, horizontalRightDir * m_viewRadius, Color.cyan);
+            Debug.DrawRay(originPos, horizontalLeftDir * tempRange, Color.cyan);
+            Debug.DrawRay(originPos, lookDir * tempRange, Color.green);
+            Debug.DrawRay(originPos, horizontalRightDir * tempRange, Color.cyan);
 
            // FindViewTargets();
         }
@@ -155,7 +158,7 @@ public class ShortRangeAttackArea : MonoBehaviour
                 RaycastHit2D rayHitedTarget = Physics2D.Raycast(originPos, dir, m_viewRadius, m_viewObstacleMask);
                 if (rayHitedTarget)
                 {
-                    Debug.Log(rayHitedTarget.transform.gameObject.name);
+                    //Debug.Log(rayHitedTarget.transform.gameObject.name);
                     if (m_bDebugMode)
                         Debug.DrawLine(originPos, rayHitedTarget.point, Color.yellow);
                 }
@@ -200,6 +203,7 @@ public class ShortRangeAttackArea : MonoBehaviour
     /// </summary>
     public void RongAttack_normal()
     {
+        Debug.Log("Rong");
         float _swordAttackangle = (player.EnemyArray.Count != 0) ? player.enemy_angle : player.current_angle;
 
         Vector2 offset = new Vector2(0.0f, 0.0f);

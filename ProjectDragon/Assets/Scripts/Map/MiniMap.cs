@@ -160,7 +160,7 @@ public class MiniMap : MonoBehaviour
     public void Minimalize()
     {
         //panel의 위치와 크기 조절
-        panel.parent.transform.localPosition = new Vector3(-790.0f, 200.0f, 0.0f);
+        panel.parent.transform.localPosition = new Vector3(-773.0f, 170.0f, 0.0f);
         panel.baseClipRegion = new Vector4(0.0f, -5.0f, 255.0f, 255.0f);
         panel.clipOffset = new Vector2(0.0f, 0.0f);
 

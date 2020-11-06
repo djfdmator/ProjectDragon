@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Stage/Map_Generator.unity
-  isLoaded: 1
-  isActive: 1

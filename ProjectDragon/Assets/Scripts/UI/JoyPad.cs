@@ -189,7 +189,6 @@ public class JoyPad : MonoBehaviour
                 float dist = 0f;
                 if (Input.touchCount > 1)
                 {
-                    Debug.Log("일단 1보단 큼");
                     Touch touch02 = Input.GetTouch(1);
                     for (int i = 0; i < Input.touchCount; i++)
                     {

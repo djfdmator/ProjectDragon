@@ -110,7 +110,6 @@ public class BattleStatus : MonoBehaviour
                 yield return null;
             }
         }
-        Debug.Log("Temp" + tempTarget);
         mpLabel.text = string.Format("{0:#,##0}", Mathf.Floor(tempTarget));
 
         Co_MpCount = null;

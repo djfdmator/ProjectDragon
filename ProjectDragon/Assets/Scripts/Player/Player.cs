@@ -14,22 +14,23 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public enum WeaponType { NormalSword, NormalStaff, Nereides, Nyx, Excalibur };
+    public enum WeaponType { NormalSword, NormalStaff, Excalibur, 혈도, Nereides, Nyx,  };
 
 
     //flash white material damaged of player
     private FlashWhite damaged_flash;
     private IEnumerator damaged_flash_corrutine;
 
+    private Projectile projectile = new Projectile();
+    private TargetPoint targetProjectile = new TargetPoint();
 
     private CameraFollow camera;
     private IEnumerator P_Camera_Shake;
 
-    //템프 앵글
     public float temp_Movespeed;
     // 테스팅용
     public bool AngleisAttack;
-
+    public bool inAttackTarget = false;
 
     
     public bool isActive;               //코루틴 제어 함수
@@ -46,7 +47,6 @@ public class Player : Character
             myState = value;
             SetState(myState);
 
-            Debug.Log(myState);
             //Anim
             GetComponent<PlayerAnimControll>().CurrentState = myState;
 
@@ -63,7 +63,9 @@ public class Player : Character
 
 
     //애니메이터 리소스
-    public RuntimeAnimatorController[] projectileAnimator;              //평타 및 스킬
+    public RuntimeAnimatorController[] projectileAnimator;              
+    public RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
+    public RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
 
 
     #region 플레이어 세팅
@@ -72,10 +74,11 @@ public class Player : Character
     [SerializeField] private int mp;
     public CLASS attackType;
     public WeaponType weaponType;
-    public float skillDamage;
-    public float skillCoolTime;
-    public int skillMpCost;
-    public string skill_ImageName;
+    [SerializeField] private int skillDamage;
+    [SerializeField] private float skillRange;
+    [SerializeField] private float skillCoolTime;
+    [SerializeField] private int skillMpCost;
+    [SerializeField] private string skill_ImageName;
 
     //회피율
     public float invaid;
@@ -108,10 +111,10 @@ public class Player : Character
     private BattleStatus uiStatus;
 
     private JoyPad joyPad;
-    private Vector3 joystickPos;
+    public Vector3 joystickPos;
     //Check JoyStick
-    private float h;
-    private float v;
+    public float h;
+    public float v;
 
     
     //적 찾기
@@ -266,7 +269,8 @@ public class Player : Character
 
                             if (TempEnemy.GetComponent<Character>().HP > 0)
                             {
-                                if (attackType == CLASS.검 && joyPad.Pressed == false && !isSkillActive)
+                                inAttackTarget = true;
+                                if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
                                 {
                                     moveSpeed = 0;
                                     AngleisAttack = true;
@@ -280,14 +284,18 @@ public class Player : Character
                                 }
                                 if (attackType == CLASS.검 && !isSkillActive)
                                 {
+                                    //moveSpeed = temp_Movespeed;
                                     AngleisAttack = true;
                                     this.CurrentState = State.Attack;
                                 }
                             }
 
                         }
+                        Debug.Log("Distance = "+DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()));
                         if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange && !isSkillActive)
                         {
+                            inAttackTarget = false;
+
                             AngleisAttack = false;
                             if (AngleisAttack == false && !isSkillActive)
                             {
@@ -331,6 +339,9 @@ public class Player : Character
         LoadPlayerPrefData();
         LoadWeaponData();
 
+        //proj_attackAnimator = Resources.Load<RuntimeAnimatorController>(string.Format(""));
+        //proj_skillAnimator = Resources.Load<RuntimeAnimatorController>(string.Format(""));
+
         Initalize_Player_Link();
 
         temp_Movespeed = moveSpeed;
@@ -353,8 +364,56 @@ public class Player : Character
     public void OnSkillActive()
     {
         CurrentState = State.Skill;
+        //각 SkillAnim에 이벤트함수로 넣음...
+        //CreateProjectile();
+  
         isSkillActive = true;
         StopPlayer = true;
+    }
+
+
+    /// <summary>
+    /// Skill Projectile
+    /// Animation Event Function (애니메이션 이벤트)
+    /// </summary>
+    /// <param name="type"></param>
+    public void CreateProjectile()
+    {
+        //투사체 앵글 변수
+        float attackAngle = (EnemyArray.Count == 0) ? current_angle : enemy_angle;
+
+        Vector2 offset = Vector2.zero;
+        float radius = 0.2f;
+        if (weaponType == Player.WeaponType.NormalSword)
+        {
+            projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position);
+        }
+        else if (weaponType == Player.WeaponType.NormalStaff)
+        {
+            if (TempEnemy != null)
+            {
+                Time.timeScale = 0.5f;
+                offset = new Vector2(0.0f, 0.3f);
+                targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
+            }
+        }
+        else if (weaponType == Player.WeaponType.Excalibur)
+        {
+            projectile.Create(projectileTargetList, offset, radius, attackAngle, 0, skillDamage, projectileAnimator[7], true, transform.position);
+        }
+        else if (weaponType == Player.WeaponType.Nereides)
+        {
+            projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, true);
+
+        }
+        else if (weaponType == Player.WeaponType.Nyx)
+        {
+            if (TempEnemy != null)
+            {
+                offset = new Vector2(0.0f, 0.3f);
+                targetProjectile.Create(projectileTargetList, offset, 0.7f, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -366,10 +425,13 @@ public class Player : Character
                 current_angle = joyPad.angle;
             }
 
-            joystickPos = joyPad.position;
-            //joystick
-            h = joystickPos.x;
-            v = joystickPos.y;
+            if (joyPad.Pressed)
+            {
+                joystickPos = joyPad.position;
+                //joystick
+                h = joystickPos.x;
+                v = joystickPos.y;
+            }
 
             //Make Right direction by Set Animatoion bool setting
             if (!StopPlayer.Equals(true))
@@ -378,8 +440,8 @@ public class Player : Character
                 ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
                 //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
             }
-            else
-            { 
+            if (StopPlayer.Equals(true))
+            {
                 rigidbody2d.velocity = Vector2.zero;
                 StopTime += Time.deltaTime;
                 if (StopTime >= StopMaxTime)
@@ -530,6 +592,7 @@ public class Player : Character
         attackType = GameManager.Inst.CurrentEquipWeapon.Class;
 
         skillDamage = GameManager.Inst.CurrentSkill.atk;
+        skillRange = GameManager.Inst.CurrentSkill.skill_Range;
         skillCoolTime = GameManager.Inst.CurrentSkill.coolTime;
         skillMpCost = GameManager.Inst.CurrentSkill.mpCost;
         skill_ImageName = GameManager.Inst.CurrentSkill.imageName;

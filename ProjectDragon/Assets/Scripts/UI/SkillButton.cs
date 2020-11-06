@@ -14,8 +14,6 @@ using UnityEngine;
 public class SkillButton : MonoBehaviour
 {
     private Player player;
-    private Projectile projectile;
-    private TargetPoint targetProjectile;
     private GameObject normalObj;
     private GameObject activationObj;
     private GameObject inactivationObj;
@@ -31,8 +29,6 @@ public class SkillButton : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        projectile = new Projectile();
-        targetProjectile = new TargetPoint();
         normalObj = transform.Find("Basic").gameObject;
         activationObj = transform.Find("Activation").gameObject;
         inactivationObj = transform.Find("Inactivation").gameObject;
@@ -57,10 +53,8 @@ public class SkillButton : MonoBehaviour
         coolTime = _coolTime;
         mpCost = _mpCost;
 
-
-        //차후 변경
         string str_ICON = string.Format("SkillIcon_{0}_Ingame", _imageName);
-        str_ICON = string.Format("SkillIcon_Thunderbolt_Ingame");
+        //str_ICON = string.Format("SkillIcon_Thunderbolt_Ingame");
 
         icon_sprite.spriteName = str_ICON;
         timeLabel.text = Mathf.FloorToInt(coolTime).ToString();
@@ -70,14 +64,22 @@ public class SkillButton : MonoBehaviour
 
     private void OnClick()
     {
-        if (player.MP - mpCost >= 0)
+        if(player.inAttackTarget)
         {
-            player.OnSkillActive();
-            player.MP -= mpCost;
-            player.HP -= 1000;
-            StartCoroutine(CalcCoolTime());
-            OnActive();
-            SoundManager.Inst.Ds_EffectPlayerDB(12);
+            if (player.MP - mpCost >= 0)
+            {
+                player.OnSkillActive();
+
+                player.MP -= mpCost;
+                StartCoroutine(CalcCoolTime());
+                OnActive();
+                SoundManager.Inst.Ds_EffectPlayerDB(12);
+            }
+        }
+        else
+        {
+            Debug.Log("공격범위에 대상이 없음");
+            //띠릭 Sound
         }
     }
 
@@ -157,64 +159,64 @@ public class SkillButton : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Skill Projectile
-    /// Animation Event Function (애니메이션 이벤트)
-    /// </summary>
-    /// <param name="type"></param>
-    public void CreateProjectile()
-    {
-        //투사체 앵글 변수
-        float attackAngle = (player.EnemyArray.Count == 0) ? player.current_angle : player.enemy_angle;
+    ///// <summary>
+    ///// Skill Projectile
+    ///// Animation Event Function (애니메이션 이벤트)
+    ///// </summary>
+    ///// <param name="type"></param>
+    //public void CreateProjectile()
+    //{
+    //    //투사체 앵글 변수
+    //    float attackAngle = (player.EnemyArray.Count == 0) ? player.current_angle : player.enemy_angle;
 
-        Vector2 offset = Vector2.zero;
-        float radius = 0.2f;
-        if (player.weaponType == Player.WeaponType.NormalSword)
-        {
-            projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 3.0f, 17, player.projectileAnimator[0], true, player.transform.position);
-        }
-        else if (player.weaponType == Player.WeaponType.Nereides)
-        {
-            projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 1.5f, 17, player.projectileAnimator[5], true, player.transform.position, true);
+    //    Vector2 offset = Vector2.zero;
+    //    float radius = 0.2f;
+    //    if (player.weaponType == Player.WeaponType.NormalSword)
+    //    {
+    //        projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 3.0f, 17, player.projectileAnimator[0], true, player.transform.position);
+    //    }
+    //    else if (player.weaponType == Player.WeaponType.Excalibur)
+    //    {
+    //        projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 0, 17, player.projectileAnimator[7], true, player.transform.position);
+    //    }
+    //    else if (player.weaponType == Player.WeaponType.Nereides)
+    //    {
+    //        projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 1.5f, 17, player.projectileAnimator[5], true, player.transform.position, true);
 
-        }
-        else if (player.weaponType == Player.WeaponType.Excalibur)
-        {
-            projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 0, 17, player.projectileAnimator[7], true, player.transform.position);
-        }
-        else if (player.weaponType == Player.WeaponType.NormalStaff)
-        {
-            if (player.TempEnemy != null)
-            {
-                Time.timeScale = 0.5f;
-                offset = new Vector2(0.0f, 0.3f);
-                targetProjectile.Create(player.projectileTargetList, offset, 0.4f, 17, player.projectileAnimator[1], true, player.TempEnemy.transform.position);
-            }
-        }
-        else if (player.weaponType == Player.WeaponType.Nyx)
-        {
-            if (player.TempEnemy != null)
-            {
-                offset = new Vector2(0.0f, 0.3f);
-                targetProjectile.Create(player.projectileTargetList, offset, 0.7f, 17, player.projectileAnimator[3], true, player.TempEnemy.transform.position);
-            }
-        }
+    //    }
+    //    else if (player.weaponType == Player.WeaponType.NormalStaff)
+    //    {
+    //        if (player.TempEnemy != null)
+    //        {
+    //            Time.timeScale = 0.5f;
+    //            offset = new Vector2(0.0f, 0.3f);
+    //            targetProjectile.Create(player.projectileTargetList, offset, 0.4f, 17, player.projectileAnimator[1], true, player.TempEnemy.transform.position);
+    //        }
+    //    }
+    //    else if (player.weaponType == Player.WeaponType.Nyx)
+    //    {
+    //        if (player.TempEnemy != null)
+    //        {
+    //            offset = new Vector2(0.0f, 0.3f);
+    //            targetProjectile.Create(player.projectileTargetList, offset, 0.7f, 17, player.projectileAnimator[3], true, player.TempEnemy.transform.position);
+    //        }
+    //    }
 
 
-        //if (player.attackType == AttackType.ShortRange)
-        //{
-        //    //Create Projectile 
-        //    Vector2 offset = new Vector2(0.0f, 0.0f);
-        //    float radius = 0.2f;
-        //    projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 3.0f, 17, player.projectileAnimator[0], "ProjectileObj", true, player.transform.position);
-        //}
-        //else if (player.attackType == AttackType.LongRange)
-        //{
-        //    Vector2 offset = new Vector2(0.0f, 0.5f);
-        //    pointProjectile.Create(player.projectileTargetList, offset, 0.7f, 17, player.projectileAnimator[1], "TargetPoint", player.TempEnemy.transform.position);
-        //    //Create Projectile 
-        //    //projectile.Create(player.projectileTargetList, offset, 0.2f, _swordAttackangle, 3.0f, 10, player.projectileAnimator[1], "ProjectileObj", true, player.transform.position);
-        //}
-    }
+    //    //if (player.attackType == AttackType.ShortRange)
+    //    //{
+    //    //    //Create Projectile 
+    //    //    Vector2 offset = new Vector2(0.0f, 0.0f);
+    //    //    float radius = 0.2f;
+    //    //    projectile.Create(player.projectileTargetList, offset, radius, attackAngle, 3.0f, 17, player.projectileAnimator[0], "ProjectileObj", true, player.transform.position);
+    //    //}
+    //    //else if (player.attackType == AttackType.LongRange)
+    //    //{
+    //    //    Vector2 offset = new Vector2(0.0f, 0.5f);
+    //    //    pointProjectile.Create(player.projectileTargetList, offset, 0.7f, 17, player.projectileAnimator[1], "TargetPoint", player.TempEnemy.transform.position);
+    //    //    //Create Projectile 
+    //    //    //projectile.Create(player.projectileTargetList, offset, 0.2f, _swordAttackangle, 3.0f, 10, player.projectileAnimator[1], "ProjectileObj", true, player.transform.position);
+    //    //}
+    //}
 
 }

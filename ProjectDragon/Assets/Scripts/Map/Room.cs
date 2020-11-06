@@ -264,7 +264,7 @@ public class Room : MonoBehaviour
         switch (roomType)
         {
             case RoomType.Begin:
-                miniMapPos.GetComponent<UISprite>().color = Color.cyan;
+                miniMapPos.GetComponent<UISprite>().color = Color.white;
                 break;
             case RoomType.NPC:
                 miniMapPos.GetComponent<UISprite>().color = Color.yellow;

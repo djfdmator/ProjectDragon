@@ -85,8 +85,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: b4a840f948b54a547b5822602b1819ad, type: 2}
-  mSpriteName: Portal
+  mAtlas: {fileID: 11400000, guid: 3072ecd2e45baf34dbbd4a4ffe252c44, type: 2}
+  mSpriteName: Ingame_Map_PortalIcon
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!65 &7388122207837087534
