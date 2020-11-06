@@ -36,10 +36,20 @@ public class Inventory : MonoBehaviour
     public UILabel skillMpCost;
     public UILabel skillCoolTime;
 
-    //List<GameObject> itemObjs = new List<GameObject>();
+    List<GameObject> itemObjs = new List<GameObject>();
 
     public UIButton equipButton;
     private int curChoiceItme = -1;
+
+    public struct ItemBtnData
+    {
+        public GameObject obj;
+        public int inventory_index;
+        public int skill_index;
+        public int weapon_index;
+    }
+
+    public List<ItemBtnData> itemBtnDatas = new List<ItemBtnData>();
 
     void Start()
     {
@@ -126,6 +136,15 @@ public class Inventory : MonoBehaviour
             EventDelegate.Set(skillImageBtn.onClick, skillEvent);
             EventDelegate.Set(itemCellBtn.onClick, itemChoiceBtn);
 
+            ItemBtnData btnData = new ItemBtnData();
+            btnData.inventory_index = i;
+            btnData.weapon_index = weapon.num;
+            btnData.skill_index = weapon.skill_Index;
+            btnData.obj = obj;
+
+            itemBtnDatas.Add(btnData);
+
+            itemObjs.Add(obj);
         }
 
         grid.Reposition();
@@ -151,7 +170,26 @@ public class Inventory : MonoBehaviour
 
     public void EquipButton()
     {
+        GameManager.Inst.PlayerEquipWeapon = GameManager.Inst.PlayData.inventory[curChoiceItme];
+        RefreshEquipItem();
+        curChoiceItme = -1;
+        equipButton.isEnabled = false;
+    }
 
+    private void RefreshEquipItem()
+    {
+        for(int i = 0; i < itemBtnDatas.Count; i++)
+        {
+            if (curChoiceItme == itemBtnDatas[i].inventory_index)
+            {
+                itemBtnDatas[i].obj.transform.Find("Equip").gameObject.SetActive(true);
+                itemBtnDatas[i].obj.transform.Find("SelectionImage").GetComponent<UISprite>().alpha = 0.0f;
+            }
+            else
+            {
+                itemBtnDatas[i].obj.transform.Find("Equip").gameObject.SetActive(false);
+            }
+        }
     }
 
     public void WeaponPopup(Database.Weapon weapon)
