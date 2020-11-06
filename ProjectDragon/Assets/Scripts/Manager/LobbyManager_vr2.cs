@@ -38,10 +38,11 @@ public class LobbyManager_vr2 : MonoBehaviour
         Transform equip = transform.Find("LobbyPanel/TopUI/EquipItem");
         if (equipArmorImage == null) equipArmorImage = equip.Find("Armor/Image").GetComponent<UISprite>();
         if (equipWeaponImage == null) equipWeaponImage = equip.Find("Weapon/Image").GetComponent<UISprite>();
-        if (equipSkillImage == null) equipSkillImage = equip.Find("Skill/Panel/Image").GetComponent<UISprite>();
+        if (equipSkillImage == null) equipSkillImage = equip.Find("Skill/Image").GetComponent<UISprite>();
         #endregion
 
         RefreshCharactorData();
+        SoundManager.Inst.Ds_BGMPlayerDB(2);
     }
 
     public void RefreshCharactorData()
@@ -130,108 +131,6 @@ public class LobbyManager_vr2 : MonoBehaviour
     }
     #endregion
 
-
-    //정비 cs에 넣을 거임
-    #region 정비창 정렬 기능
-    /// <summary>
-    /// 인벤토리를 수집한 순서로 정렬 후 스크롤뷰 갱신
-    /// </summary>
-    public void inventoryAcquisitionorder()
-    {
-        Database.Inst.playData.inventory.Sort(delegate (Database.Inventory a, Database.Inventory b)
-        {
-
-            if (a.num > b.num)
-            {
-                return 1;
-            }
-            else
-            {
-                return -1;
-            }
-        });
-        UpdateAllScrollview(0);
-    }
-    /// <summary>
-    /// 인베노리를 희귀도순으로 정렬 후 스크롤뷰갱신
-    /// </summary>
-    public void inventoryClassorder()
-    {
-        Database.Inst.playData.inventory.Sort(delegate (Database.Inventory a, Database.Inventory b)
-        {
-            if (a.rarity > b.rarity)
-            {
-                return 1;
-            }
-            else if (a.rarity.Equals(b.rarity))
-            {
-                if (a.Class > b.Class)
-                {
-                    return 1;
-                }
-                else if (a.Class.Equals(b.Class))
-                {
-                    return a.num.CompareTo(b.num);
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-            else
-            {
-                return -1;
-            }
-        });
-        UpdateAllScrollview(0);
-    }
-    /// <summary>
-    /// 인벤토리를 클래스별로 정렬후 갱신
-    /// </summary>
-    public void inventorytypeorder()
-    {
-        Database.Inst.playData.inventory.Sort(delegate (Database.Inventory a, Database.Inventory b)
-        {
-            if (a.Class < b.Class)
-            {
-                return 1;
-            }
-            else if (a.Class.Equals(b.Class))
-            {
-                if (a.rarity > b.rarity)
-                {
-                    return 1;
-                }
-                else if (a.rarity.Equals(b.rarity))
-                {
-                    return a.num.CompareTo(b.num);
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-            else
-            {
-                return -1;
-            }
-        });
-        UpdateAllScrollview(0);
-    }
-
-    /// <summary>
-    /// 여러개의 스크롤뷰가 모두갱신되어야 할때 사용
-    /// </summary>
-    public void UpdateAllScrollview(int num)
-    {
-        foreach (GUITestScrollView scrollView in gUITestScrollViews)
-        {
-            scrollView.EV_UpdateAll();
-            scrollView.Setposition(num);
-        }
-
-    }
-    #endregion
 
     #region sound
     public void ButtonSound1()
