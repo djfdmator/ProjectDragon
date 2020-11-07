@@ -240,26 +240,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22afc2d9841208a4a8a0a532635ad9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
-  hp: 30
+  maxHp: 50
+  hp: 50
   moveSpeed: 1
   atk: 5
-  nuckBack: 0
-  maxHp: 100
   atkSpeed: 2
   atkRange: 4
+  nuckBack: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttack: 0
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
   enemy_angle: 0
-  myAttackType: 0
   myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
@@ -276,8 +275,8 @@ MonoBehaviour:
   m_bDebugMode: 1
   inAtkDetectionRange: 0
   originOffset: 0
-  readyTime: 3
-  cooltime: 6
+  readyTime: 1.5
+  cooltime: 3.5
   attackCount: 0
   normalEnemyState: 0
   attackSpeed: 0.2

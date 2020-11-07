@@ -79,7 +79,7 @@ public class JoyPad : MonoBehaviour
     IEnumerator fadeJoyStick()
     {
         yield return new WaitForSeconds(0.3f);
-        if(Pressed==false)
+        if (Pressed == false)
         {
             target2.GetComponent<UISprite>().spriteName = "ingameui_43";
             yield return new WaitForSeconds(0.2f);
@@ -124,7 +124,7 @@ public class JoyPad : MonoBehaviour
                                     break;
                                 }
                             }
-                            if (!hit.collider.tag.Equals("button"))
+                            else
                             {
                                 return;
                             }
@@ -153,7 +153,7 @@ public class JoyPad : MonoBehaviour
                                     return;
                                 }
                             }
-                            if (!hit.collider.tag.Equals("button"))
+                            else
                             {
                                 touch01 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
@@ -199,7 +199,7 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 break;
                             }
-                            else if (!hit.collider.tag.Equals("button"))
+                            else
                             {
                                 touch02 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch02.position);
@@ -244,13 +244,13 @@ public class JoyPad : MonoBehaviour
                     target2.localPosition = Vector3.ClampMagnitude(target2.localPosition, radius);
                     position = target2.localPosition;
                 }
-                if (player.CurrentState != State.Attack)
+                if (player.CurrentState != State.Attack && !player.isSkillActive)
                 {
-                    if (angle > 0 && !player.isSkillActive)
+                    if (angle > 0)
                     {
                         player.CurrentState = State.Walk;
                     }
-                    else if (angle == 0 && !player.isSkillActive)
+                    else if (angle == 0)
                     {
                         player.CurrentState = State.Idle;
                     }

@@ -78,7 +78,9 @@ public class SkillButton : MonoBehaviour
         }
         else
         {
+#if UNITY_EDITOR
             Debug.Log("공격범위에 대상이 없음");
+#endif
             //띠릭 Sound
         }
     }

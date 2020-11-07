@@ -95,7 +95,7 @@ public class FSM_NormalEnemy : Enemy
                     }
                 }
             }
-            else                                                 //cooltime 후
+            else                                                      //cooltime 후
             {
                 if (NEState == NormalEnemyState.Idle)    
                 {

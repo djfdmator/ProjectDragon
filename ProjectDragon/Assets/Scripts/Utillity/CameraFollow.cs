@@ -64,10 +64,10 @@ public class CameraFollow : MonoBehaviour
                 else transform.localPosition = new Vector3(posX, posY, transform.localPosition.z);
 
             }
-            if (isShake == true)
-            {
-                Debug.Log("됐서");
-            }
+            //if (isShake == true)
+            //{
+            //    Debug.Log("됐서");
+            //}
             origin_Pos = this.transform.position;
         }
     }

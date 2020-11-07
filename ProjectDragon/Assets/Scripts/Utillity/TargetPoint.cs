@@ -48,7 +48,6 @@ public class TargetPoint : MonoBehaviour
             {
                 if (isplayskill)
                 {
-                    Debug.Log(targetObject.gameObject.name);
                     hitEffect.Create(targetObject.transform.position, attackType);
                 }
              targetObject.GetComponent<Character>().HPChanged(attackDamage, false, 0);

@@ -165,7 +165,9 @@ public class Player : Character
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.Log("마나가 없습니다.");
+#endif
                 mp = -1;
             }
             GameManager.Inst.Mp = mp;
@@ -242,57 +244,55 @@ public class Player : Character
         {
             isActive = true;
             //동작
-            while (isActive)
+            while (isActive && !isDead)
             {
-                if (!isDead)
+                if (EnemyArray.Count > 0)
                 {
-                    if (EnemyArray.Count > 0)
+                    for (int a = 0; a < EnemyArray.Count; a++)
                     {
+                        TempEnemy = EnemyArray[0];
 
-                        for (int a = 0; a < EnemyArray.Count; a++)
+                        EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
+                    }
+                    for (int a = 0; a < EnemyArray.Count; a++)
+                    {
+                        if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
                         {
-                            TempEnemy = EnemyArray[0];
-
-                            EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
+                            TempEnemy = EnemyArray[a];
                         }
-                        for (int a = 0; a < EnemyArray.Count; a++)
-                        {
-                            if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
-                            {
-                                TempEnemy = EnemyArray[a];
-                            }
-                        }
-                        this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
+                    }
+                    this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
 
-                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
+                    if (!isSkillActive)
+                    {
+                        if (DistanceCheck(this.transform, TempEnemy.transform) <= this.AtkRange)
                         {
-
                             if (TempEnemy.GetComponent<Character>().HP > 0)
                             {
                                 inAttackTarget = true;
-                                if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
-                                {
-                                    moveSpeed = 0;
-                                    AngleisAttack = true;
-                                    this.CurrentState = State.Attack;
-                                }
-                                else if (attackType == CLASS.지팡이 && joyPad.Pressed == true && !isSkillActive)
-                                {
-
-                                    moveSpeed = temp_Movespeed;
-                                    AngleisAttack = false;
-                                }
-                                if (attackType == CLASS.검 && !isSkillActive)
+                                if (attackType == CLASS.검)
                                 {
                                     //moveSpeed = temp_Movespeed;
                                     AngleisAttack = true;
                                     this.CurrentState = State.Attack;
                                 }
+                                else if(attackType == CLASS.지팡이)
+                                {
+                                    if(joyPad.Pressed == false)
+                                    {
+                                        moveSpeed = 0;
+                                        AngleisAttack = true;
+                                        this.CurrentState = State.Attack;
+                                    }
+                                    else
+                                    {
+                                    moveSpeed = temp_Movespeed;
+                                    AngleisAttack = false;
+                                    }
+                                }
                             }
-
                         }
-                        Debug.Log("Distance = "+DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()));
-                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange && !isSkillActive)
+                        else
                         {
                             inAttackTarget = false;
 
@@ -313,15 +313,15 @@ public class Player : Character
                                 }
                             }
                         }
-                        yield return new WaitForSeconds(0.1f);
                     }
-                    else
-                    {
-                        break;
-                    }
+                    yield return new WaitForSeconds(0.1f);
                 }
-                else { break; }
+                else
+                {
+                    break;
+                }
             }
+            inAttackTarget = false;
         }
     }
     public void TempNullSet()
@@ -392,7 +392,6 @@ public class Player : Character
         {
             if (TempEnemy != null)
             {
-                Time.timeScale = 0.5f;
                 offset = new Vector2(0.0f, 0.3f);
                 targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
             }
@@ -461,7 +460,7 @@ public class Player : Character
     public float DistanceCheck(Transform Player, Transform Enemy)
     {
         Vector3 offset = Player.position - Enemy.position;
-        float sqrLen = offset.sqrMagnitude;
+        float sqrLen = offset.magnitude;
         return sqrLen;
     }
 

@@ -89,30 +89,32 @@ public class ShortRangeAttackArea : MonoBehaviour
         }
 
     }
-    private float tempRange = 0;
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (m_bDebugMode)
         {
             //m_viewRadius = player.AtkRange - 2f;
-            tempRange = player.AtkRange - 2f;
+            m_viewRadius = player.AtkRange;
 
             m_horizontalViewHalfAngle = m_horizontalViewAngle * 0.5f;
 
             Vector3 originPos = transform.position;
 
-            Gizmos.DrawWireSphere(originPos, tempRange);
+            Gizmos.DrawWireSphere(originPos, m_viewRadius);
 
             Vector3 horizontalRightDir = AngleToDirZ(m_horizontalViewHalfAngle + m_viewRotateZ);
             Vector3 horizontalLeftDir = AngleToDirZ(-m_horizontalViewHalfAngle + m_viewRotateZ);
             Vector3 lookDir = AngleToDirZ(m_viewRotateZ);
-            Debug.DrawRay(originPos, horizontalLeftDir * tempRange, Color.cyan);
-            Debug.DrawRay(originPos, lookDir * tempRange, Color.green);
-            Debug.DrawRay(originPos, horizontalRightDir * tempRange, Color.cyan);
+            Debug.DrawRay(originPos, horizontalLeftDir * m_viewRadius, Color.cyan);
+            Debug.DrawRay(originPos, lookDir * m_viewRadius, Color.green);
+            Debug.DrawRay(originPos, horizontalRightDir * m_viewRadius, Color.cyan);
 
            // FindViewTargets();
         }
     }
+#endif
     public int Take_Current_Damage()
     {
         int critical_Per = (int)player.critical;
@@ -203,7 +205,6 @@ public class ShortRangeAttackArea : MonoBehaviour
     /// </summary>
     public void RongAttack_normal()
     {
-        Debug.Log("Rong");
         float _swordAttackangle = (player.EnemyArray.Count != 0) ? player.enemy_angle : player.current_angle;
 
         Vector2 offset = new Vector2(0.0f, 0.0f);

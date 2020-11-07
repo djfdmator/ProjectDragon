@@ -49,7 +49,7 @@ public class Doldori : FSM_NormalEnemy
     {
         AttackStart();
         invincible = true;                             //무적
-        yield return new WaitForSeconds(1.5f);         //대기
+        yield return new WaitForSeconds(0.5f);         //대기
 
         //Attacking
         isAttacking = true;
@@ -78,10 +78,12 @@ public class Doldori : FSM_NormalEnemy
         objectAnimator.SetBool("Attack", isAttacking);
         NEState = NormalEnemyState.Idle;
 
-
         yield return null;
 
         AttackEndCor = null;
+#if UNITY_EDITOR
+        Debug.Log("AttackEndCor is nullll");
+#endif
     }
 
 
@@ -92,25 +94,35 @@ public class Doldori : FSM_NormalEnemy
         //연속으로 될경우 방지 (한번만 돌리게)
         if (NEState == NormalEnemyState.Attack && AttackEndCor == null)
         {
-            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
-                || collision.gameObject.CompareTag("Cliff")|| collision.gameObject.CompareTag("Object"))
-            {
-                if (collision.gameObject.CompareTag("Player"))
-                {
-                    Attack_On();
-                }
-  
+            //if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
+            //    || collision.gameObject.CompareTag("Cliff")|| collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
+            //{
+#if UNITY_EDITOR
+                Debug.Log("AttackEndCor!");
+#endif
+                AttackEndCor = AttackEnd();
                 if(collision.gameObject.GetComponent<MapObject>() !=null)
                 {
                     collision.gameObject.GetComponent<MapObject>().HpChanged(50);
                     if( collision.gameObject.GetComponent<Box>() != null)       //박스는 뚫고 가기
                     {
+#if UNITY_EDITOR
+                        Debug.Log("AttackEndCor is null");
+#endif
+                        AttackEndCor = null;
                         return;
                     }
                 }
-                AttackEndCor = AttackEnd();
                 StartCoroutine(AttackEnd());
-            }
+#if UNITY_EDITOR
+                        Debug.Log("AttackEndCor Start!");
+#endif
+                if (collision.gameObject.CompareTag("Player"))
+                {
+                    Attack_On();
+                }
+  
+           // }
         }
     }
 
