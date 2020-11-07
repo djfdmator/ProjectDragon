@@ -184,6 +184,7 @@ public class CartoonController : MonoBehaviour
         StartCoroutine(uiCamera.GetComponent<ScreenTransitions>().Fade(1.0f, true));
         yield return new WaitForSeconds(1.0f);
         cartoonData.gameObject.SetActive(false);
+        transform.Find("Button").gameObject.SetActive(false);
         isCartoonEnd = true;
     }
 

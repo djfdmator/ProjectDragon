@@ -72,27 +72,30 @@ public class Loading : MonoBehaviour
 
     public void LoadSceneAsync(bool isBattle)
     {
-        UIRoot uIRoot = GameObject.Find("UI Root").GetComponent<UIRoot>();
-        uIRoot.manualHeight = 1080;
-        uIRoot.manualWidth = 1920;
+        //UIRoot uIRoot = GameObject.Find("UI Root").GetComponent<UIRoot>();
+        //uIRoot.manualHeight = 1080;
+        //uIRoot.manualWidth = 1920;
+
         //init
         if (isBattle)
         {
             sceneName = "Map_Generator";
             //increase stage
             GameManager.Inst.CurrentStage = GameManager.Inst.CurrentStage + 1;
+#if UNITY_EDITOR
             Debug.Log("GameManager.Inst.CurrentStage[Loading] : " + GameManager.Inst.CurrentStage);
-            BattleRepresentationInit();
+#endif
+            //BattleRepresentationInit();
 
-            regionObj.GetComponent<UISprite>().enabled = false;
-            loadingObj.SetActive(false);
+            //regionObj.GetComponent<UISprite>().enabled = false;
+            //loadingObj.SetActive(false);
         }
         else
         {
             sceneName = "Lobby";
 
-            regionObj.SetActive(false);
-        }  
+        }
+        regionObj.SetActive(false);
 
         //fade out
         StartCoroutine(screenTransitions.Fade(0.5f, false));
@@ -101,14 +104,15 @@ public class Loading : MonoBehaviour
         asyncOperation.allowSceneActivation = false;
 
         //representation
-        if (isBattle)
-        {
-            StartCoroutine(RegionRepresentation());
-        }
-        else
-        {
-            StartCoroutine(ProgressBarRepresentation());
-        }
+        //if (isBattle)
+        //{
+        //    StartCoroutine(RegionRepresentation());
+        //}
+        //else
+        //{
+        //    StartCoroutine(ProgressBarRepresentation());
+        //}
+        StartCoroutine(ProgressBarRepresentation());
     }
 
     //battle 로딩시 나오는 연출 초기화 - 지역 넘어가기
@@ -116,7 +120,7 @@ public class Loading : MonoBehaviour
     {
         screenTransitions.GetComponent<Camera>().orthographicSize = 1.0f;
         float ypos;
-        switch(GameManager.Inst.CurrentStage)
+        switch (GameManager.Inst.CurrentStage)
         {
             case 1:
                 ypos = 650.0f;
@@ -158,7 +162,7 @@ public class Loading : MonoBehaviour
             backGround.Find("Node").Find(regionPointIndex[i].ToString()).GetComponent<UISprite>().spriteName = "Node_Clear";
         }
 
-        if(GameManager.Inst.CurrentStage >= 4)
+        if (GameManager.Inst.CurrentStage >= 4)
         {
             backGround.Find("Node").Find("9").localPosition = extraPoint.localPosition;
         }
@@ -244,12 +248,12 @@ public class Loading : MonoBehaviour
 
             //player animation
             animCount++;
-            if(animCount == 30)
+            if (animCount == 30)
             {
                 if (isOne)
                 {
                     player.GetComponent<SpriteRenderer>().sprite = playerAnim[2];
-                    isOne = false; 
+                    isOne = false;
                 }
                 else
                 {

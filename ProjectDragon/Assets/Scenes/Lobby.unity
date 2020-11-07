@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: 275}
+  m_AnchoredPosition: {x: -140, y: -185}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &14367203
@@ -346,7 +346,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -461.347}
+  m_Offset: {x: 0, y: 100}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -357,7 +357,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 481.0925, y: 786.27637}
+  m_Size: {x: 700, y: 800}
   m_EdgeRadius: 0
 --- !u!1 &44577458
 GameObject:
@@ -645,7 +645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &77931033
 Transform:
   m_ObjectHideFlags: 0
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3024
+  startingRenderQueue: 3020
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1155,7 +1155,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -5.3201294, y: -1.818512}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1166,7 +1166,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1289.3599, y: 725.63696}
+  m_Size: {x: 3000, y: 2000}
   m_EdgeRadius: 0
 --- !u!114 &114285399
 MonoBehaviour:
@@ -1187,6 +1187,7 @@ MonoBehaviour:
   curSkillImage: {fileID: 0}
   lobbyManager: {fileID: 0}
   statPanel: {fileID: 0}
+  charactorRepresentation: {fileID: 0}
 --- !u!1 &121071540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1263,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3013
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2639,7 +2640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: 275}
+  m_AnchoredPosition: {x: -160, y: -120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &247149461
@@ -2655,7 +2656,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -461.347}
+  m_Offset: {x: 0, y: 100}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2666,7 +2667,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 481.0925, y: 786.27637}
+  m_Size: {x: 800, y: 900}
   m_EdgeRadius: 0
 --- !u!1 &248303950
 GameObject:
@@ -2963,6 +2964,7 @@ MonoBehaviour:
   maintenance: {fileID: 0}
   optionWindow: {fileID: 0}
   statPanel: {fileID: 0}
+  charactorRepresentation: {fileID: 0}
   hpProgress: {fileID: 1280200915}
   hpLabel: {fileID: 1301372879}
   mpLabel: {fileID: 393069206}
@@ -2985,7 +2987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &272783048
 Transform:
   m_ObjectHideFlags: 0
@@ -3252,7 +3254,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3038
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -4053,7 +4055,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3038
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -5333,7 +5335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &505689350
 Transform:
   m_ObjectHideFlags: 0
@@ -6116,7 +6118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &611499171
 Transform:
   m_ObjectHideFlags: 0
@@ -6849,13 +6851,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3046
+  startingRenderQueue: 3031
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 10004
+  mDepth: 104
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -7230,7 +7232,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3039
+  startingRenderQueue: 3032
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7338,6 +7340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724733136}
+  - component: {fileID: 724733137}
   m_Layer: 8
   m_Name: Charactorpanel
   m_TagString: Untagged
@@ -7360,6 +7363,22 @@ Transform:
   m_Father: {fileID: 114285396}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &724733137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724733135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3f9d8a553cc6a4b953411494b01a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerimg: {fileID: 0}
+  charactorIllustrate: {fileID: 0}
+  weaponIllustrate: {fileID: 0}
+  sizeoption: 2
 --- !u!1 &726788450
 GameObject:
   m_ObjectHideFlags: 0
@@ -7512,6 +7531,7 @@ MonoBehaviour:
   skillMpCost: {fileID: 0}
   skillCoolTime: {fileID: 0}
   equipButton: {fileID: 0}
+  itemBtnDatas: []
 --- !u!1 &782260144
 GameObject:
   m_ObjectHideFlags: 0
@@ -7614,13 +7634,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3045
+  startingRenderQueue: 3030
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
   mClipRange: {x: 0, y: 0, z: 710, w: 320}
   mClipSoftness: {x: 0, y: 0}
-  mDepth: 10003
+  mDepth: 103
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -9165,7 +9185,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3009
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -9270,13 +9290,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3039
+  startingRenderQueue: 3024
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 10002
+  mDepth: 102
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -9874,7 +9894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1010512086
 Transform:
   m_ObjectHideFlags: 0
@@ -12014,8 +12034,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245849596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.9990001, y: 0.9990001, z: 0.9990001}
+  m_LocalPosition: {x: 8.3, y: 336.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1986891596}
   m_RootOrder: 0
@@ -12051,14 +12071,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 1
-  mWidth: 721
-  mHeight: 1281
-  mDepth: 16
+  mWidth: 556
+  mHeight: 776
+  mDepth: 3
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 2
-  aspectRatio: 0.5625
+  keepAspectRatio: 0
+  aspectRatio: 0.71649486
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -12072,8 +12092,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 9128852880599c1408aacfe031870c24, type: 2}
-  mSpriteName: Rusty_Sword_01
+  mAtlas: {fileID: 11400000, guid: a3c28b95366859c4897a51468e83581e, type: 2}
+  mSpriteName: Lobbyillustration_NormalSword
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &1247014987
@@ -13149,7 +13169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1374330808
 Transform:
   m_ObjectHideFlags: 0
@@ -13663,7 +13683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrangement: 1
-  sorting: 0
+  sorting: 3
   pivot: 1
   maxPerLine: 0
   cellWidth: 0
@@ -13769,6 +13789,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerimg: {fileID: 0}
+  charactorIllustrate: {fileID: 0}
+  weaponIllustrate: {fileID: 0}
   sizeoption: 2
 --- !u!1 &1427174241
 GameObject:
@@ -14527,7 +14549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513078694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1425387340}
@@ -15130,13 +15152,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3052
+  startingRenderQueue: 3037
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 10004
+  mDepth: 104
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -15345,14 +15367,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 2520
+  mWidth: 1920
   mHeight: 1080
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.3333333
+  aspectRatio: 1.7777778
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -15434,7 +15456,7 @@ Transform:
   m_GameObject: {fileID: 1617714387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1782623143}
   - {fileID: 505689350}
@@ -15452,36 +15474,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1617714387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: -729
+    absolute: 0
   rightAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: -7
+    absolute: 0
   bottomAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: -1076
+    absolute: 0
   topAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: 204
-  updateAnchors: 0
+    absolute: 0
+  updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 1
-  mWidth: 722
-  mHeight: 1280
-  mDepth: 10
+  mPivot: 4
+  mWidth: 1080
+  mHeight: 1920
+  mDepth: 1
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.5640625
+  aspectRatio: 0.5625
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -15495,16 +15517,10 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: a5a711f58a98da440ae53e9bdc773e4c, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mAtlas: {fileID: 11400000, guid: 3c9fb84ace30ffb4894e6e5de3907ccb, type: 2}
+  mSpriteName: Lobbyillustration_Female_Worrior
   mFixedAspect: 0
+  mFillCenter: 1
 --- !u!95 &1617714390
 Animator:
   serializedVersion: 3
@@ -16170,7 +16186,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3023
+  startingRenderQueue: 3019
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -17141,7 +17157,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782623142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 7.3, y: 382.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1617714388}
@@ -17178,14 +17194,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 1
-  mWidth: 721
-  mHeight: 1281
-  mDepth: 11
+  mWidth: 616
+  mHeight: 860
+  mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 2
-  aspectRatio: 0.5625
+  keepAspectRatio: 0
+  aspectRatio: 0.7162791
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -17199,8 +17215,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 9128852880599c1408aacfe031870c24, type: 2}
-  mSpriteName: Rusty_Sword_01
+  mAtlas: {fileID: 11400000, guid: a3c28b95366859c4897a51468e83581e, type: 2}
+  mSpriteName: Lobbyillustration_Excalibur
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &1786804657
@@ -18917,7 +18933,7 @@ Transform:
   m_GameObject: {fileID: 1986891595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1245849597}
   - {fileID: 611499171}
@@ -18954,36 +18970,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1986891595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: -89
+    absolute: 0
   rightAnchor:
     target: {fileID: 0}
-    relative: 0
-    absolute: 633
+    relative: 1
+    absolute: 0
   bottomAnchor:
     target: {fileID: 0}
     relative: 0
-    absolute: -716
+    absolute: 0
   topAnchor:
     target: {fileID: 0}
     relative: 1
-    absolute: -156
-  updateAnchors: 0
+    absolute: 0
+  updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 1
-  mWidth: 722
-  mHeight: 1279
-  mDepth: 15
+  mPivot: 4
+  mWidth: 1080
+  mHeight: 1920
+  mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 1
-  aspectRatio: 0.5645035
+  keepAspectRatio: 0
+  aspectRatio: 0.5625
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -18997,16 +19013,10 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: a5a711f58a98da440ae53e9bdc773e4c, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mAtlas: {fileID: 11400000, guid: 3c9fb84ace30ffb4894e6e5de3907ccb, type: 2}
+  mSpriteName: Lobbyillustration_Female_Worrior
   mFixedAspect: 0
+  mFillCenter: 1
 --- !u!1 &1999963760
 GameObject:
   m_ObjectHideFlags: 0

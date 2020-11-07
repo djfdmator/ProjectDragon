@@ -291,7 +291,7 @@ public class Player : Character
                             }
 
                         }
-                        Debug.Log("Distance = "+DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()));
+                        //Debug.Log("Distance = "+DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()));
                         if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange && !isSkillActive)
                         {
                             inAttackTarget = false;
@@ -392,7 +392,7 @@ public class Player : Character
         {
             if (TempEnemy != null)
             {
-                Time.timeScale = 0.5f;
+                //Time.timeScale = 0.5f;
                 offset = new Vector2(0.0f, 0.3f);
                 targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
             }

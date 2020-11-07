@@ -36,11 +36,10 @@ public class Inventory : MonoBehaviour
     public UILabel skillMpCost;
     public UILabel skillCoolTime;
 
-    List<GameObject> itemObjs = new List<GameObject>();
-
     public UIButton equipButton;
     private int curChoiceItme = -1;
 
+    [System.Serializable]
     public struct ItemBtnData
     {
         public GameObject obj;
@@ -98,7 +97,11 @@ public class Inventory : MonoBehaviour
         {
             if (inventories[i].Class == CLASS.갑옷) continue;
 
-            if (Database.Inst.playData.equiWeapon_InventoryNum != i)
+            if (Database.Inst.playData.equiWeapon_InventoryNum == i)
+            {
+                equip.gameObject.SetActive(true);
+            }
+            else
             {
                 equip.gameObject.SetActive(false);
             }
@@ -143,11 +146,9 @@ public class Inventory : MonoBehaviour
             btnData.obj = obj;
 
             itemBtnDatas.Add(btnData);
-
-            itemObjs.Add(obj);
         }
 
-        grid.Reposition();
+        SortByInventoryNum();
     }
 
     public void Event_PopupItem(int weaponNum)
@@ -174,16 +175,17 @@ public class Inventory : MonoBehaviour
         RefreshEquipItem();
         curChoiceItme = -1;
         equipButton.isEnabled = false;
+        SortByInventoryNum();
     }
 
     private void RefreshEquipItem()
     {
         for(int i = 0; i < itemBtnDatas.Count; i++)
         {
-            if (curChoiceItme == itemBtnDatas[i].inventory_index)
+            if (GameManager.Inst.PlayData.equiWeapon_InventoryNum == itemBtnDatas[i].inventory_index)
             {
                 itemBtnDatas[i].obj.transform.Find("Equip").gameObject.SetActive(true);
-                itemBtnDatas[i].obj.transform.Find("SelectionImage").GetComponent<UISprite>().alpha = 0.0f;
+                //itemBtnDatas[i].obj.transform.Find("SelectionImage").GetComponent<UISprite>().alpha = 0.0f;
             }
             else
             {
@@ -203,6 +205,22 @@ public class Inventory : MonoBehaviour
         weaponNuckback.text = weapon.nuckback_Percentage.ToString();
 
         popupWeapon.SetActive(true);
+    }
+
+    public void SortByInventoryNum()
+    {
+        for(int i = 0; i < itemBtnDatas.Count; i++)
+        {
+            if (itemBtnDatas[i].inventory_index == GameManager.Inst.PlayData.equiWeapon_InventoryNum)
+            {
+                itemBtnDatas[i].obj.transform.localPosition = new Vector3(0.0f, 10.0f, 0.0f);
+            }
+            else
+            {
+                itemBtnDatas[i].obj.transform.localPosition = new Vector3(0.0f, -5.0f * (itemBtnDatas[i].inventory_index + 1), 0.0f);
+            }
+        }
+        grid.Reposition();
     }
 
     public void SkillPopup(Database.Skill skill)

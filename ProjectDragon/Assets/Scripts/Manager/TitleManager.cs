@@ -106,7 +106,6 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.Inst.Ds_BGMPlayerDB(1);
         StartCoroutine(Presentation_Logo());
     }
 
@@ -125,8 +124,10 @@ public class TitleManager : MonoBehaviour
     {
         //start delay
         yield return new WaitForSeconds(2.0f);
+        while(!GameManager.Inst.loadComplete) { yield return null; }
         //GameLogo On
         gameLogo.SetActive(true);
+        SoundManager.Inst.Ds_BGMPlayerDB(1);
         SoundManager.Inst.Ds_EffectPlayerDB(7);
         yield return new WaitForSeconds(0.3f);
 
