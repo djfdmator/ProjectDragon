@@ -24,10 +24,10 @@ public class HitEffect : MonoBehaviour
     {
         GameObject effectObj = ObjectPool.Instance.PopFromPool(poolItemName, parent);
         hitEffect = effectObj.transform.GetComponent<HitEffect>();
-        hitEffect.transform.position = position;
         hitEffect.gameObject.SetActive(true);
+        hitEffect.transform.position = position;
         hitEffect.ResetInit();
-        hitEffect.GetComponent<Animator>().SetBool(animString, true);
+        hitEffect.animator.SetBool(animString, true);
 
         return hitEffect;
     }

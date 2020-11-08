@@ -31,8 +31,9 @@ public class Player : Character
     // 테스팅용
     public bool AngleisAttack;
     public bool inAttackTarget = false;
+    public bool inSkillRange = false;
 
-    
+
     public bool isActive;               //코루틴 제어 함수
     public bool isInvaid =false;
     public bool isCriticalHit = false;
@@ -45,7 +46,6 @@ public class Player : Character
         set
         {
             myState = value;
-            SetState(myState);
 
             //Anim
             GetComponent<PlayerAnimControll>().CurrentState = myState;
@@ -64,8 +64,8 @@ public class Player : Character
 
     //애니메이터 리소스
     public RuntimeAnimatorController[] projectileAnimator;              
-    public RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
-    public RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
+    private RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
+    private RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
 
 
     #region 플레이어 세팅
@@ -175,7 +175,7 @@ public class Player : Character
     }
 
 
-    public override int HPChanged(int ATK, bool isCritical, int NukBack)
+    public override int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         int original_HP = HP;
         // GameManager.Inst.CurrentHp = HP;
@@ -276,9 +276,9 @@ public class Player : Character
                                     AngleisAttack = true;
                                     this.CurrentState = State.Attack;
                                 }
-                                else if(attackType == CLASS.지팡이)
+                                else if (attackType == CLASS.지팡이)
                                 {
-                                    if(joyPad.Pressed == false)
+                                    if (joyPad.Pressed == false)
                                     {
                                         moveSpeed = 0;
                                         AngleisAttack = true;
@@ -286,8 +286,8 @@ public class Player : Character
                                     }
                                     else
                                     {
-                                    moveSpeed = temp_Movespeed;
-                                    AngleisAttack = false;
+                                        moveSpeed = temp_Movespeed;
+                                        AngleisAttack = false;
                                     }
                                 }
                             }
@@ -313,6 +313,15 @@ public class Player : Character
                                 }
                             }
                         }
+
+                        if (DistanceCheck(this.transform, TempEnemy.transform) <= this.skillRange)
+                        {
+                            inSkillRange = true;
+                        }
+                        else
+                        {
+                            inSkillRange = false;
+                        }
                     }
                     yield return new WaitForSeconds(0.1f);
                 }
@@ -322,6 +331,7 @@ public class Player : Character
                 }
             }
             inAttackTarget = false;
+            inSkillRange = false;
         }
     }
     public void TempNullSet()
@@ -363,54 +373,57 @@ public class Player : Character
 
     public void OnSkillActive()
     {
+        isSkillActive = true;
+        StopPlayer = true;
         CurrentState = State.Skill;
         //각 SkillAnim에 이벤트함수로 넣음...
         //CreateProjectile();
   
-        isSkillActive = true;
-        StopPlayer = true;
     }
 
 
+    /// Animation Event Function (애니메이션 이벤트)
     /// <summary>
     /// Skill Projectile
-    /// Animation Event Function (애니메이션 이벤트)
     /// </summary>
     /// <param name="type"></param>
-    public void CreateProjectile()
+    public void CreateProjectile(AnimationEvent evt)
     {
-        //투사체 앵글 변수
-        float attackAngle = (EnemyArray.Count == 0) ? current_angle : enemy_angle;
+        if (evt.animatorClipInfo.weight > 0.5f && GetComponent<Player>() != null)
+        {
+            //투사체 앵글 변수
+            float attackAngle = (EnemyArray.Count == 0) ? current_angle : enemy_angle;
 
-        Vector2 offset = Vector2.zero;
-        float radius = 0.2f;
-        if (weaponType == Player.WeaponType.NormalSword)
-        {
-            projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position);
-        }
-        else if (weaponType == Player.WeaponType.NormalStaff)
-        {
-            if (TempEnemy != null)
+            Vector2 offset = Vector2.zero;
+            float radius = 0.2f;
+            if (weaponType == Player.WeaponType.NormalSword)
             {
-                offset = new Vector2(0.0f, 0.3f);
-                targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
+                projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position, nuckBackPower);
             }
-        }
-        else if (weaponType == Player.WeaponType.Excalibur)
-        {
-            projectile.Create(projectileTargetList, offset, radius, attackAngle, 0, skillDamage, projectileAnimator[7], true, transform.position);
-        }
-        else if (weaponType == Player.WeaponType.Nereides)
-        {
-            projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, true);
-
-        }
-        else if (weaponType == Player.WeaponType.Nyx)
-        {
-            if (TempEnemy != null)
+            else if (weaponType == Player.WeaponType.NormalStaff)
             {
-                offset = new Vector2(0.0f, 0.3f);
-                targetProjectile.Create(projectileTargetList, offset, 0.7f, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
+                if (TempEnemy != null)
+                {
+                    offset = new Vector2(0.0f, 0.3f);
+                    targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
+                }
+            }
+            else if (weaponType == Player.WeaponType.Excalibur)
+            {
+                projectile.Create(projectileTargetList, offset, radius, attackAngle, 0, skillDamage, projectileAnimator[7], true, transform.position, nuckBackPower);
+            }
+            else if (weaponType == Player.WeaponType.Nereides)
+            {
+                projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
+
+            }
+            else if (weaponType == Player.WeaponType.Nyx)
+            {
+                if (TempEnemy != null)
+                {
+                    offset = new Vector2(0.0f, 0.3f);
+                    targetProjectile.Create(projectileTargetList, offset, 0.7f, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
+                }
             }
         }
     }
@@ -548,10 +561,11 @@ public class Player : Character
     #endregion
 
     //무기 정보 세팅
-    public void ChangeWeaponData()
+    public void ChangeWeapon()
     {
         LoadWeaponData();
 
+        GetComponent<PlayerAnimControll>().LoadAnimator(weaponType,attackType,ATTACKSPEED);
         skillButton.Init(skillCoolTime, skillMpCost, skill_ImageName);
     }
 
@@ -582,8 +596,8 @@ public class Player : Character
         MoveSpeed = GameManager.Inst.MoveSpeed + 2.0f;          //3
         ATTACKDAMAGE = GameManager.Inst.Atk_Min;                //3
         ATTACKSPEED = GameManager.Inst.AttackSpeed;            //1
+        nuckBackPower = GameManager.Inst.NuckBack_Power;
         AtkRange = GameManager.Inst.AttackRange;
-
     }
     private void LoadWeaponData()
     {

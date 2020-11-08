@@ -83,30 +83,31 @@ public class PlayerAnimControll : MonoBehaviour
         curAnim_Arm = gameObject.transform.Find("Arm").GetComponent<Animator>();
         curAnim_Weapon = transform.Find("Weapon").GetComponent<Animator>();
         player = GetComponent<Player>();
-
-
-       
     }
 
     private void Start()
     {
-        LoadAnimator(player.weaponType);
+        LoadAnimator(player.weaponType, player.attackType, player.ATTACKSPEED);
+    }
+
+
+    public void LoadAnimator(Player.WeaponType weaponType , CLASS attackType , float attackSpeed)
+    {
+        //무기 애니메이션 교체
+        curAnimBody.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Body_{1}", weaponType, weaponType));
+        curAnim_Weapon.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Weapon_{1}", weaponType, weaponType));
+        string normalType = (attackType == CLASS.검) ? "NormalSword" : "NormalStaff";
+
+        curAnim_Arm.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
+
+        //애니메이션 속도 조정
+        curAnimBody.SetFloat("AttackSpeed", attackSpeed);
+        curAnim_Arm.SetFloat("AttackSpeed", attackSpeed);
+        curAnim_Weapon.SetFloat("AttackSpeed", attackSpeed);
 
         curAnimBody.speed = 1f;
         curAnim_Arm.speed = 1f;
         curAnim_Weapon.speed = 1f;
-    }
-
-
-    private void LoadAnimator(Player.WeaponType weaponType)
-    {
-
-        curAnimBody.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Body_{1}", weaponType, weaponType));
-        curAnim_Weapon.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Weapon_{1}", weaponType, weaponType));
-        string normalType = (player.attackType == CLASS.검) ? "NormalSword" : "NormalStaff";
-
-        curAnim_Arm.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
-        //Debug.Log(string.Format("Animation/Player/{0}/Player_Arm_{1}", normalType, normalType));
     }
 
     

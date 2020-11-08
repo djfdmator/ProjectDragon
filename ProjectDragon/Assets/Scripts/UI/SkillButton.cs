@@ -18,6 +18,7 @@ public class SkillButton : MonoBehaviour
     private GameObject activationObj;
     private GameObject inactivationObj;
 
+    private UIButton button;
     private BoxCollider col;
     private UISprite icon_sprite;
     private UISprite yellowRing;
@@ -37,6 +38,7 @@ public class SkillButton : MonoBehaviour
         yellowRing = activationObj.transform.Find("YellowRing").GetComponent<UISprite>();
         timeLabel = activationObj.transform.Find("TimeLabel").GetComponent<UILabel>();
         col = GetComponent<BoxCollider>();
+        button = GetComponent<UIButton>();
     }
 
     private void Start()
@@ -57,6 +59,7 @@ public class SkillButton : MonoBehaviour
         //str_ICON = string.Format("SkillIcon_Thunderbolt_Ingame");
 
         icon_sprite.spriteName = str_ICON;
+        button.normalSprite = str_ICON;
         timeLabel.text = Mathf.FloorToInt(coolTime).ToString();
 
     }
@@ -64,7 +67,7 @@ public class SkillButton : MonoBehaviour
 
     private void OnClick()
     {
-        if(player.inAttackTarget)
+        if (player.inSkillRange)
         {
             if (player.MP - mpCost >= 0)
             {

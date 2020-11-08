@@ -43,7 +43,7 @@ public class ManaStone : Monster
         }
 
     }
-    public override int HPChanged(int ATK, bool isCritical, int NukBack)
+    public override int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         IEnumerator flash = GetComponentInChildren<FlashWhite>().Flash();
         if (ATK > 0 && HP > 0)

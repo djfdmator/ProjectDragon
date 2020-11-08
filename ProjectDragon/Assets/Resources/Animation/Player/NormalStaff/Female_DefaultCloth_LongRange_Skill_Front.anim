@@ -108,7 +108,8 @@ AnimationClip:
   - time: 0.15
     functionName: CreateProjectile
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 5409751990359364113, guid: 060d0334665bc8745ba6746949c818ba,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

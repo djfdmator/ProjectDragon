@@ -90,12 +90,12 @@ public class JoyPad : MonoBehaviour
     }
     public void OnPress(bool pressed)
     {
-        if (!player.isDead)
+        if (!player.isDead && !player.isSkillActive)
         {
-            if (pressed == false && !player.isSkillActive)
+            if (pressed == false /*&& !player.isSkillActive*/)
             {
                 player.CurrentState = State.Idle;
-                StartCoroutine("fadeJoyStick");
+                StartCoroutine(fadeJoyStick());
             }
             if (pressed.Equals(true))
             {

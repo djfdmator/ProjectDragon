@@ -142,7 +142,7 @@ public class Boss_MaDongSeok : Monster
     /// <param name="ATK">보스가 공격당함을 기본 상정</param>
     /// <returns></returns>
 
-    public override int HPChanged(int ATK, bool isCritical, int NukBack)
+    public override int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         //damagePopup.Create(transform.position, ATK, false, transform);
         //if (HP < 50 && currentstate.Equals(BossState.Phase1))

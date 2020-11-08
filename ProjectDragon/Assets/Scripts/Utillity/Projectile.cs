@@ -21,12 +21,16 @@ public class Projectile : MonoBehaviour
         }
     }
     private bool isAngleAnim = false;                                                           //각도에 따른 애니메이션이 있는지
-    public float angle, speed, lifetime, generationtime, targetpointrangex, targetpointrangey;
+    public float angle, speed, lifetime, generationtime, targetpointrangex, targetpointrangey , nukBackPower;
 
     public List<string> tagsString;
     Rigidbody2D rb2d;
     Animator anim;
     Projectile projectile;
+    private HitEffect hitEffect = new HitEffect();
+
+
+    public string attackType;
 
     void Awake()
     {
@@ -78,14 +82,14 @@ public class Projectile : MonoBehaviour
     }
 */
 
-    public Projectile Create(List<string> _tagsString ,Vector2 _offset,float _colRadius,float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position, bool _isAngleAnim = false ,Transform parent = null )
+    public Projectile Create(List<string> _tagsString ,Vector2 _offset,float _colRadius,float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position, float _nukBackPower = 0.0f, bool _isAngleAnim = false ,Transform parent = null)
     {
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, parent);
         projectile = projectileObject.transform.GetComponent<Projectile>();
         projectile.gameObject.SetActive(true);
         projectile.GetComponent<CircleCollider2D>().offset = _offset;
         projectile.GetComponent<CircleCollider2D>().radius = _colRadius;
-        projectile.ProjectileInit(_angle, _speed, _damage, _projectileAnimator, _isplayskill, position , _isAngleAnim);
+        projectile.ProjectileInit(_angle, _speed, _damage, _projectileAnimator, _isplayskill, position , _nukBackPower,_isAngleAnim);
 
         projectile.tagsString = _tagsString;
         return projectile;
@@ -101,15 +105,12 @@ public class Projectile : MonoBehaviour
     /// <param name="_projectilename">투사체의 이름</param>
     /// <param name="_isplayskill">쏘는이 판별여부(if플레이어=true)</param>
     /// <param name="position">쏘아지는 위치</param>
-    public void ProjectileInit(float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position , bool _isAngleAnim = false)
+    /// <param name="_nukBackPower">넉백 파워 </param>
+    /// <param name="_isAngleAnim">투사체가 4방위인지 아닌지 </param>
+    public void ProjectileInit(float _angle, float _speed, int _damage, RuntimeAnimatorController _projectileAnimator, bool _isplayskill, Vector3 position , float _nukBackPower = 0.0f, bool _isAngleAnim = false )
     {
         Reset = ResetProjectile();
         inited = true;
-        isplayskill = _isplayskill;
-        m_angle = _angle;
-        speed = _speed;
-        damage = _damage;
-        isAngleAnim = _isAngleAnim;
         if (anim == null)
         {
             anim = gameObject.GetComponent<Animator>();
@@ -118,6 +119,14 @@ public class Projectile : MonoBehaviour
         {
             rb2d = gameObject.GetComponent<Rigidbody2D>();
         }
+        m_angle = _angle;
+        speed = _speed;
+        damage = _damage;
+        isAngleAnim = _isAngleAnim;
+        nukBackPower = _nukBackPower;
+        isplayskill = _isplayskill;
+        if(isplayskill) attackType = _projectileAnimator.name.Split('_')[0];
+
         anim.runtimeAnimatorController = _projectileAnimator;
         anim.Play("ProjecTileTest");
         anim.SetBool("Destory", false);
@@ -165,12 +174,11 @@ public class Projectile : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(s))
             {
-                //if (isplayskill)
-                //{
-                //    Debug.Log(targetObject.gameObject.name);
-                //    hitEffect.Create(targetObject.transform.position, attackType);
-                //}
-                collision.GetComponent<Character>().HPChanged(damage, false, 0);
+                if (isplayskill)
+                {
+                    hitEffect.Create(collision.gameObject.transform.position, attackType);
+                }
+                collision.GetComponent<Character>().HPChanged(damage, false, nukBackPower);
                 if (Reset != null)
                 {
                     StartCoroutine(Reset);
@@ -186,7 +194,6 @@ public class Projectile : MonoBehaviour
             Reset = null;
         }
         
-
     }
     //private void OnBecameInvisible()
     //{

@@ -18,6 +18,7 @@ public class TargetPoint : MonoBehaviour
     private HitEffect hitEffect = new HitEffect();
     private int attackDamage = 0;
     [SerializeField]  private Transform parentPool;
+    private Animator animator;
 
     [SerializeField] private GameObject targetObject;
     //[SerializeField] private List<GameObject> targetObject = new List<GameObject>();
@@ -28,15 +29,14 @@ public class TargetPoint : MonoBehaviour
     private void Awake()
     {
         parentPool = GameObject.FindGameObjectWithTag("ObjectPool").transform;
+        animator = GetComponent<Animator>();
+
+        animator.SetFloat("ReadyTime", projecTileReady);
+        animator.SetFloat("StartTime", projecTileStart);
+        animator.SetFloat("EndTime", projecTileEnd);
     }
 
 
-    private void Start()
-    {
-        GetComponent<Animator>().SetFloat("ReadyTime", projecTileReady);
-        GetComponent<Animator>().SetFloat("StartTime", projecTileStart);
-        GetComponent<Animator>().SetFloat("EndTime", projecTileEnd);
-    }
     /// <summary>
     /// 애니메이션 이벤트 함수 (데미지 주는 프레임에)
     /// </summary>
@@ -61,7 +61,11 @@ public class TargetPoint : MonoBehaviour
     /// </summary>
     public void ResetProjectile()
     {
+
         ObjectPool.Instance.PushToPool(poolItemName, gameObject);
+#if UNITY_EDITOR
+        Debug.Log("ResetProjectile");
+#endif
     }
     
 
@@ -97,16 +101,19 @@ public class TargetPoint : MonoBehaviour
         Transform _parent = parent != null ? parent : parentPool;
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, _parent);
         targetPoint = projectileObject.transform.GetComponent<TargetPoint>();
+        targetPoint.gameObject.SetActive(true);
         targetPoint.attackDamage = _damage;
         targetPoint.tagsString = tagsStringList;
         targetPoint.GetComponent<CircleCollider2D>().offset = colOffset;
         targetPoint.GetComponent<CircleCollider2D>().radius = colRadius;
-        targetPoint.GetComponent<Animator>().runtimeAnimatorController = _Animator;
+        targetPoint.animator.runtimeAnimatorController = _Animator;
         targetPoint.isplayskill = _isplayskill;
         targetPoint.transform.position = _isplayskill ?  position + Vector3.down*0.3f : position;               //몬스터와 플레이어 피벗이 달라서...임시로..
         targetPoint.attackType = _Animator.name.Split('_')[0];
-        targetPoint.gameObject.SetActive(true);
-        targetPoint.GetComponent<Animator>().Play("ProjecTileReady");
+        targetPoint.animator.SetFloat("ReadyTime", projecTileReady);
+        targetPoint.animator.SetFloat("StartTime", projecTileStart);
+        targetPoint.animator.SetFloat("EndTime", projecTileEnd);
+        targetPoint.animator.Play("ProjecTileReady");
         return targetPoint;
 
     }

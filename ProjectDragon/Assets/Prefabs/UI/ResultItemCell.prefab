@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5410787703810364991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -23.6, y: 23.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4004473001519789924}
@@ -62,8 +62,8 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 0
-  mWidth: 100
-  mHeight: 100
+  mWidth: 150
+  mHeight: 150
   mDepth: 7
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
@@ -83,8 +83,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 9128852880599c1408aacfe031870c24, type: 2}
-  mSpriteName: Rusty_Sword_01
+  mAtlas: {fileID: 11400000, guid: c114bd4ebf215bb488c2934aebb52219, type: 2}
+  mSpriteName: WeaponIcon_Old_Staff_01
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &6270314711707202560

@@ -30,7 +30,7 @@ public class Monster : Character
 
      //   Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"), true);
     }
-    public override int HPChanged(int ATK, bool isCritical, int NukBack)
+    public override int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         if (!isDead)
         {

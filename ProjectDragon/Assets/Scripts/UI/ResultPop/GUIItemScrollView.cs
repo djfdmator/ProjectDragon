@@ -29,7 +29,7 @@ public class GUIItemScrollView : MonoBehaviour
 
             EuipmentcellData cell = new EuipmentcellData();
             cell.DB_Num = ResulttemList[i].DB_Num;
-            cell.imageName = ResulttemList[i].imageName;
+            cell.imageName = string.Format("WeaponIcon_{0}", ResulttemList[i].imageName);
             cell.itemValue = ResulttemList[i].itemValue;
             cell.Class = ResulttemList[i].Class;
             cell.name = ResulttemList[i].name;

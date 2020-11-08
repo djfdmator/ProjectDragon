@@ -48,18 +48,21 @@ public class Doldori : FSM_NormalEnemy
     protected override IEnumerator Attack()
     {
         AttackStart();
-        invincible = true;                             //무적
-        yield return new WaitForSeconds(0.5f);         //대기
-
-        //Attacking
-        isAttacking = true;
-        objectAnimator.Play("Attacking");
-        attackDirection = direction;
-
-        while (isAttacking)
+        yield return new WaitForSeconds(1.0f);         //대기
+        if (!isDead)
         {
-            rb2d.AddForce(attackDirection * attackSpeed, ForceMode2D.Impulse);
-            yield return null;
+            invincible = true;                             //무적
+
+            //Attacking
+            isAttacking = true;
+            objectAnimator.Play("Attacking");
+            attackDirection = direction;
+
+            while (isAttacking && !isDead)
+            {
+                rb2d.AddForce(attackDirection * attackSpeed, ForceMode2D.Impulse);
+                yield return null;
+            }
         }
     }
 
@@ -82,7 +85,7 @@ public class Doldori : FSM_NormalEnemy
 
         AttackEndCor = null;
 #if UNITY_EDITOR
-        Debug.Log("AttackEndCor is nullll");
+        //Debug.Log("AttackEndCor is nullll");
 #endif
     }
 
@@ -98,7 +101,7 @@ public class Doldori : FSM_NormalEnemy
             //    || collision.gameObject.CompareTag("Cliff")|| collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
             //{
 #if UNITY_EDITOR
-                Debug.Log("AttackEndCor!");
+                //Debug.Log("AttackEndCor!");
 #endif
                 AttackEndCor = AttackEnd();
                 if(collision.gameObject.GetComponent<MapObject>() !=null)
@@ -107,7 +110,7 @@ public class Doldori : FSM_NormalEnemy
                     if( collision.gameObject.GetComponent<Box>() != null)       //박스는 뚫고 가기
                     {
 #if UNITY_EDITOR
-                        Debug.Log("AttackEndCor is null");
+                        //Debug.Log("AttackEndCor is null");
 #endif
                         AttackEndCor = null;
                         return;
@@ -115,7 +118,7 @@ public class Doldori : FSM_NormalEnemy
                 }
                 StartCoroutine(AttackEnd());
 #if UNITY_EDITOR
-                        Debug.Log("AttackEndCor Start!");
+                        //Debug.Log("AttackEndCor Start!");
 #endif
                 if (collision.gameObject.CompareTag("Player"))
                 {

@@ -127,7 +127,7 @@ public class Player_Ver0 : Character
 
 
 
-    public override int HPChanged(int ATK, bool isCritical, int NukBack)
+    public override int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         int original_HP = HP;
         // GameManager.Inst.CurrentHp = HP;

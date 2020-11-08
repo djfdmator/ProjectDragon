@@ -119,20 +119,17 @@ public class ShortRangeAttackArea : MonoBehaviour
     {
         int critical_Per = (int)player.critical;
         float a = Random.Range(0.0f, 100.0f);
-        int Damage;
-        Damage = player.ATTACKDAMAGE;
+        int Damage = player.ATTACKDAMAGE;
         if (critical_Per >= a)
         {
             player.isCriticalHit =true;
             Damage += (int)(Damage * 0.5f);
-            return Damage;
         }
         else
         {
             player.isCriticalHit =false;
-            player.ATTACKDAMAGE = player.ATTACKDAMAGE;
-            return player.ATTACKDAMAGE;
         }
+            return Damage;
     }
 
     public Collider2D[] FindViewTargets()
@@ -171,15 +168,15 @@ public class ShortRangeAttackArea : MonoBehaviour
                         Debug.DrawLine(originPos, targetPos, Color.red);
                     if (hitedTarget.CompareTag("Enemy") || hitedTarget.isActiveAndEnabled == true)
                     {
-                        if (player.isAttack)
+                        if (player.isAttacking)
                         //Player hit
                         {
-                            hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),player.isCriticalHit,0);
-                            player.isAttack = false;
+                            hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),player.isCriticalHit,player.nuckBackPower);
+                            player.isAttacking = false;
                         }
                         else
                         {
-                            player.isAttack = true;
+                            player.isAttacking = true;
                         }
                   //      hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage());
                        // 임시 버젼
@@ -205,7 +202,7 @@ public class ShortRangeAttackArea : MonoBehaviour
     /// </summary>
     public void RongAttack_normal()
     {
-        float _swordAttackangle = (player.EnemyArray.Count != 0) ? player.enemy_angle : player.current_angle;
+        float _attackangle = (player.EnemyArray.Count != 0) ? player.enemy_angle : player.current_angle;
 
         Vector2 offset = new Vector2(0.0f, 0.0f);
         float radius = 0.5f;
@@ -214,15 +211,15 @@ public class ShortRangeAttackArea : MonoBehaviour
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (player.weaponType == Player.WeaponType.NormalStaff)
         {
-            projectile.Create(player.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, player.projectileAnimator[2], true, player.transform.position);
+            projectile.Create(player.projectileTargetList, offset, radius, _attackangle, 5.0f, Take_Current_Damage(), player.projectileAnimator[2], false, player.transform.position, player.nuckBackPower);
         }
         else if (player.weaponType == Player.WeaponType.Nyx)
         {
-            projectile.Create(player.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, player.projectileAnimator[4], true, player.transform.position);
+            projectile.Create(player.projectileTargetList, offset, radius, _attackangle, 5.0f, Take_Current_Damage(), player.projectileAnimator[4], false, player.transform.position, player.nuckBackPower);
         }
         else if (player.weaponType == Player.WeaponType.Nereides)
         {
-            projectile.Create(player.projectileTargetList, offset, radius, _swordAttackangle, 5.0f, 10, player.projectileAnimator[6], true, player.transform.position);
+            projectile.Create(player.projectileTargetList, offset, radius, _attackangle, 5.0f, Take_Current_Damage(), player.projectileAnimator[6], false, player.transform.position, player.nuckBackPower);
         }
     }
     public void AttackCoolDown()

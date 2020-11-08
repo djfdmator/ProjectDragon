@@ -110,7 +110,7 @@ public class PlayerSkill : MonoBehaviour
         }
         else if (My_Player.weaponType == Player.WeaponType.Nereides)
         {
-            projectile.Create(My_Player.projectileTargetList, offset, radius, attackAngle, 1.5f, 17, My_Player.projectileAnimator[5], true, My_Player.transform.position, true);
+            projectile.Create(My_Player.projectileTargetList, offset, radius, attackAngle, 1.5f, 17, My_Player.projectileAnimator[5], true, My_Player.transform.position, My_Player.nuckBackPower,true);
 
         }
         else if (My_Player.weaponType == Player.WeaponType.Excalibur)

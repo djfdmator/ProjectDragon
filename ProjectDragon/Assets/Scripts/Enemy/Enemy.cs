@@ -233,7 +233,7 @@ public class Enemy : Monster
     }
 
     #region Hit
-    public override int HPChanged(int ATK, bool isCritical, int NukBack)
+    public override int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         //살아 있을때 + 무적이 아닐때
         if (!isDead && !invincible)
@@ -246,7 +246,7 @@ public class Enemy : Monster
     }
 
     IEnumerator KnockBackCor;
-    protected void Hit(int NukBack, bool isCritical)
+    protected void Hit(float NukBack, bool isCritical)
     {
         isHit = true;
         isWalk = false;

@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected int atk;
     [SerializeField] protected float atkSpeed;
     [SerializeField] protected float atkRange;
-    [SerializeField] protected float nuckBack;
+    [SerializeField] public float nuckBackPower;
 
 
     [Header("속성 저항값")]
@@ -45,8 +45,7 @@ public class Character : MonoBehaviour
 
 
 
-    public bool isAttack=true;
-    [SerializeField] protected bool isAttacking;
+    [SerializeField] public bool isAttacking;
     [SerializeField] protected bool isWalk;
     public bool isDead;
     protected bool isHit;
@@ -134,7 +133,7 @@ public class Character : MonoBehaviour
     /// <param name="NukBack"></param> NukBack = 뒤로 얼마나 넉백할건지
     /// <param name="isCritical"></param> isCritical = 넉백을 시킬건지? (크리티컬이 터졌는지)
     /// <returns></returns>
-    public virtual int HPChanged(int ATK, bool isCritical, int NukBack)
+    public virtual int HPChanged(int ATK, bool isCritical, float NukBack)
     {
         HP = HP - ATK;
         return HP;
