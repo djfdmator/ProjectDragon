@@ -87,6 +87,93 @@ MonoBehaviour:
   mSpriteName: Equipment_Item_Label
   mFixedAspect: 0
   mFillCenter: 1
+--- !u!1 &4496104931633714597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3298584971024174424}
+  - component: {fileID: 7483783118930975163}
+  m_Layer: 8
+  m_Name: New
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3298584971024174424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496104931633714597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -57.3, y: 56.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9197579365253086998}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7483783118930975163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496104931633714597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 40
+  mHeight: 40
+  mDepth: 3
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11400000, guid: 6585d5b81f79ade44bca1f3db82f5664, type: 2}
+  mSpriteName: EquipmentChange_NewLabel
+  mFixedAspect: 0
+  mFillCenter: 1
 --- !u!1 &9197579364569066104
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +513,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mColor: {r: 0.7882353, g: 0.85490197, b: 0.90588236, a: 1}
   mPivot: 3
   mWidth: 140
   mHeight: 30
@@ -585,6 +672,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9197579365861804839}
+  - {fileID: 3298584971024174424}
   m_Father: {fileID: 9197579364569066107}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -695,43 +783,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 0}
-    mMethodName: Event_PopupItem
-    mParameters:
-    - obj: {fileID: 0}
-      field: 
-    oneShot: 0
-  - mTarget: {fileID: 0}
-    mMethodName: Event_PopupItem
-    mParameters:
-    - obj: {fileID: 0}
-      field: 
-    oneShot: 0
-  - mTarget: {fileID: 0}
-    mMethodName: Event_PopupItem
-    mParameters:
-    - obj: {fileID: 0}
-      field: 
-    oneShot: 0
-  - mTarget: {fileID: 0}
-    mMethodName: Event_PopupItem
-    mParameters:
-    - obj: {fileID: 0}
-      field: 
-    oneShot: 0
-  - mTarget: {fileID: 0}
-    mMethodName: Event_PopupItem
-    mParameters:
-    - obj: {fileID: 0}
-      field: 
-    oneShot: 0
-  - mTarget: {fileID: 0}
-    mMethodName: Event_PopupItem
-    mParameters:
-    - obj: {fileID: 0}
-      field: 
-    oneShot: 0
+  onClick: []
 --- !u!1 &9197579365861804836
 GameObject:
   m_ObjectHideFlags: 0
