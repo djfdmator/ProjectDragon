@@ -34,9 +34,10 @@ public class Maintenance : MonoBehaviour
     #region Button
     public void OpenMaintenance()
     {
-        gameObject.SetActive(true);
+        inventory.SettingItem();
         RefreshManaCount();
         RefreshEquipItem();
+        gameObject.SetActive(true);
     }
 
     public void CloseMaintenance()

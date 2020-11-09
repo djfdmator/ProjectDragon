@@ -97,28 +97,28 @@ public class CharactorRepresentation : MonoBehaviour
         {
             case 0:
                 //녹슨검
-                charactorIllustrate.spriteName = "LobbyIllustration_Female_Worrior";
                 weaponIllustrate.transform.localPosition = new Vector3(8.3f, 336.5f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Worrior";
                 break;
             case 1:
                 //오래된 지팡이
-                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
                 weaponIllustrate.transform.localPosition = new Vector3(162.0f, 538.0f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
                 break;
             case 2:
                 //승리의 검
-                charactorIllustrate.spriteName = "LobbyIllustration_Female_Worrior";
                 weaponIllustrate.transform.localPosition = new Vector3(7.3f, 382.5f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Worrior";
+                break;
+            case 3:
+                //네레이더스
+                weaponIllustrate.transform.localPosition = new Vector3(141.6f, 714.5f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
                 break;
             case 4:
-                //네레이더스
-                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
-                weaponIllustrate.transform.localPosition = new Vector3(141.6f, 714.5f, 0.0f);
-                break;
-            case 5:
                 //닉스
-                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
                 weaponIllustrate.transform.localPosition = new Vector3(200.0f, 680.0f, 0.0f);    
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
                 break;
             default:
                 break;

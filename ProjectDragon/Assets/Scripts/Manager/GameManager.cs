@@ -133,9 +133,9 @@ public class GameManager : MonoSingleton<GameManager>
                 //File.WriteAllBytes(conn, loadDB.bytes);
             }
         }
-        yield return null;
         DataBaseConnecting();
         LoadAllTableData();
+        yield return null;
         loadComplete = true;
     }
 
@@ -942,8 +942,9 @@ public class GameManager : MonoSingleton<GameManager>
             string ImageName = reader.GetString(count++);
             int skill_Index = reader.GetInt32(count++);
             int option_Index = reader.GetInt32(count++);
+            bool isNew = reader.GetInt32(count++) == 1 ? true : false;
 
-            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index));
+            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index, isNew));
         }
         reader.Close();
         reader = null;
@@ -1019,9 +1020,10 @@ public class GameManager : MonoSingleton<GameManager>
             string ImageName = Database.Inst.playData.inventory[i].imageName;
             int Skill_Index = Database.Inst.playData.inventory[i].skill_Index;
             int OptionIndex = Database.Inst.playData.inventory[i].option_Index;
+            int isNew = Database.Inst.playData.inventory[i].isNew ? 1 : 0;
 
-            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex) " +
-                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + ")";
+            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex, isNew) " +
+                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + "," + isNew + ")";
             DEB_dbcmd.CommandText = sqlQuery;
             DEB_dbcmd.ExecuteNonQuery();
         }

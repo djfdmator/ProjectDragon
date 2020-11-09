@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3298584971024174424
 Transform:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 04d3bec25164a1349bb44720c6d649f4, type: 2}
-  mText: "\uB9C8\uB825 \uBC29\uCD9C"
+  mText: "\uD30C\uB3C4 \uBD80\uB984"
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0
@@ -638,7 +638,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 94de6fc7d941a544eb88cc96fb873496, type: 2}
-  mSpriteName: SkillIcon_ManaRelease
+  mSpriteName: SkillIcon_GoddessWave
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &9197579365253086999
@@ -868,7 +868,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: c114bd4ebf215bb488c2934aebb52219, type: 2}
-  mSpriteName: WeaponIcon_Excalibur
+  mSpriteName: WeaponIcon_Nereides
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &9197579365959302652
@@ -1185,7 +1185,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: cfdaa9ece6a98bd4c92416b452a0bf43, type: 2}
-  mText: 0
+  mText: 10
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 04d3bec25164a1349bb44720c6d649f4, type: 2}
-  mText: "\uC2B9\uB9AC\uC758 \uAC80"
+  mText: "\uB2C9\uC2A4"
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0

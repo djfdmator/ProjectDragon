@@ -25,6 +25,14 @@ public class LobbyManager_vr2 : MonoBehaviour
     private const int hashCode_Weapon = -224219278;
     private const int hashCode_Skill = 1312877309;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        Database.Inst.ToString();
+        GameManager.Inst.ToString();
+    }
+#endif
+
     void Start()
     {
         if (maintenance == null) maintenance = transform.Find("Maintenance").GetComponent<Maintenance>();
