@@ -291,7 +291,7 @@ public class Player : Character
                             }
 
                         }
-                        //Debug.Log("Distance = "+DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()));
+                        Debug.Log("Distance = "+DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()));
                         if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) > this.GetComponent<Player>().AtkRange && !isSkillActive)
                         {
                             inAttackTarget = false;
