@@ -40,11 +40,12 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         //ScreensizeReadjust();
+        database = Database.Inst;
 
         StartCoroutine(DataPhasing());
-        database = Database.Inst;
-        DataBaseConnecting();
-        StartCoroutine(LoadAllTableData());
+        //DataPhasing1();
+        //DataBaseConnecting();
+        //LoadAllTableData();
     }
 
     private void OnApplicationPause(bool pause)
@@ -106,7 +107,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     #region Database Connecting
 
-    //현재 파일 중에 DB파일이 없다면 복사 생성
     IEnumerator DataPhasing()
     {
         string conn;
@@ -133,8 +133,10 @@ public class GameManager : MonoSingleton<GameManager>
                 //File.WriteAllBytes(conn, loadDB.bytes);
             }
         }
-        loadComplete = true;
+        DataBaseConnecting();
+        LoadAllTableData();
         yield return null;
+        loadComplete = true;
     }
 
     //DB에 연결합니다.
@@ -165,7 +167,7 @@ public class GameManager : MonoSingleton<GameManager>
     #region Load&Save
 
     //모든 테이블의 정보를 로드 합니다.
-    IEnumerator LoadAllTableData()
+    void LoadAllTableData()
     {
         Load_Weapon_Table();
         Load_Armor_Table();
@@ -173,9 +175,6 @@ public class GameManager : MonoSingleton<GameManager>
         Load_Normal_Monster_Table();
         Load_Rare_Monster_Table();
         LoadPlayerData();
-
-        yield return null;
-        StopCoroutine(LoadAllTableData());
     }
 
     //플레이어 데이터를 로드합니다.
@@ -692,14 +691,10 @@ public class GameManager : MonoSingleton<GameManager>
                 Database.Inst.playData.maxHp = armor.hp + BaseHp;
 
                 int temp = preArmorHP - armor.hp;
-                Debug.Log("preArmorHP" + preArmorHP);
-                Debug.Log("armor.hp" + armor.hp);
 
                 temp = temp >= 0 ?  temp : 0;
                 Database.Inst.playData.currentHp += temp;
-                Debug.Log("EquipArmor 교체1 playerData currentHP = " + Database.Inst.playData.currentHp);
                 Database.Inst.playData.currentHp = Database.Inst.playData.currentHp > Database.Inst.playData.maxHp ? Database.Inst.playData.maxHp : Database.Inst.playData.currentHp;
-                Debug.Log("EquipArmor 교체2 playerData currentHP = " + Database.Inst.playData.currentHp);
                 if (!value.option_Index.Equals(-1))
                 {   //옵션이 붙어 있으면 옵션 적용
                     Database.OptionTable option = LoadOptionData(armor.optionTableName, value.option_Index);
@@ -947,8 +942,9 @@ public class GameManager : MonoSingleton<GameManager>
             string ImageName = reader.GetString(count++);
             int skill_Index = reader.GetInt32(count++);
             int option_Index = reader.GetInt32(count++);
+            bool isNew = reader.GetInt32(count++) == 1 ? true : false;
 
-            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index));
+            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index, isNew));
         }
         reader.Close();
         reader = null;
@@ -1024,9 +1020,10 @@ public class GameManager : MonoSingleton<GameManager>
             string ImageName = Database.Inst.playData.inventory[i].imageName;
             int Skill_Index = Database.Inst.playData.inventory[i].skill_Index;
             int OptionIndex = Database.Inst.playData.inventory[i].option_Index;
+            int isNew = Database.Inst.playData.inventory[i].isNew ? 1 : 0;
 
-            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex) " +
-                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + ")";
+            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex, isNew) " +
+                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + "," + isNew + ")";
             DEB_dbcmd.CommandText = sqlQuery;
             DEB_dbcmd.ExecuteNonQuery();
         }

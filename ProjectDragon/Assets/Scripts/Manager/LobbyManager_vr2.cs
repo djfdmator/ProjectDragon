@@ -9,6 +9,7 @@ public class LobbyManager_vr2 : MonoBehaviour
     public Maintenance maintenance = null;
     public OptionWindow optionWindow = null;
     public StatPanel statPanel = null;
+    public CharactorRepresentation charactorRepresentation;
 
     #region LobbyMain Component
     public UISprite hpProgress;
@@ -24,6 +25,14 @@ public class LobbyManager_vr2 : MonoBehaviour
     private const int hashCode_Weapon = -224219278;
     private const int hashCode_Skill = 1312877309;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        Database.Inst.ToString();
+        GameManager.Inst.ToString();
+    }
+#endif
+
     void Start()
     {
         if (maintenance == null) maintenance = transform.Find("Maintenance").GetComponent<Maintenance>();
@@ -33,6 +42,7 @@ public class LobbyManager_vr2 : MonoBehaviour
         optionWindow.gameObject.SetActive(false);
 
         if (statPanel == null) statPanel = transform.Find("LobbyPanel/TopUI/Statpanel").GetComponent<StatPanel>();
+        if (charactorRepresentation == null) charactorRepresentation = transform.Find("LobbyPanel/CharactorPanel").GetComponent<CharactorRepresentation>();
 
         #region EquipItem
         Transform equip = transform.Find("LobbyPanel/TopUI/EquipItem");
@@ -60,6 +70,7 @@ public class LobbyManager_vr2 : MonoBehaviour
         statPanel.RefreshStatData();
 
         //캐릭터 창 이미지 변경하기
+        charactorRepresentation.RefeshCharactorIllustrate();
     }
 
     #region Button

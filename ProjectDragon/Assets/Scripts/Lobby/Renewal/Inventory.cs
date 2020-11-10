@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     private UILabel itemLabel;
     private UILabel skillLabel;
     private Transform equip;
+    private Transform _new;
 
     public GameObject popupWeapon;
     public UILabel weaponName;
@@ -36,11 +37,10 @@ public class Inventory : MonoBehaviour
     public UILabel skillMpCost;
     public UILabel skillCoolTime;
 
-    List<GameObject> itemObjs = new List<GameObject>();
-
     public UIButton equipButton;
-    private int curChoiceItme = -1;
+    public int curChoiceItme = -1;
 
+    [System.Serializable]
     public struct ItemBtnData
     {
         public GameObject obj;
@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
 
     public List<ItemBtnData> itemBtnDatas = new List<ItemBtnData>();
 
-    void Start()
+    void Awake()
     {
         if (grid == null) grid = transform.Find("ItemWindow/Scroll View/Grid").GetComponent<UIGrid>();
         if (itemCell == null) itemCell = Resources.Load("UI/ItemCell") as GameObject;
@@ -62,6 +62,7 @@ public class Inventory : MonoBehaviour
         itemLabel = itemCell.transform.Find("ItemLabel").GetComponent<UILabel>();
         skillLabel = itemCell.transform.Find("SkillLabel").GetComponent<UILabel>();
         equip = itemCell.transform.Find("Equip");
+        _new = itemCell.transform.Find("ItemImage/New");
 
         if (equipButton == null) equipButton = transform.Find("ItemWindow/EquipButton").GetComponent<UIButton>();
 
@@ -86,21 +87,42 @@ public class Inventory : MonoBehaviour
         ArmorAtlas = Resources.Load<NGUIAtlas>("UI/ArmorIconAtlas");
 
         equipButton.isEnabled = false;
-
-        SettingItem();
     }
 
     public void SettingItem()
     {
         List<Database.Inventory> inventories = GameManager.Inst.PlayData.inventory;
 
+        if (itemBtnDatas.Count > 0)
+        {
+            for (int i = 0; i < itemBtnDatas.Count; i++)
+            {
+                Destroy(itemBtnDatas[i].obj);
+            }
+            itemBtnDatas.Clear();
+        }
+
         for (int i = 0; i < inventories.Count; i++)
         {
             if (inventories[i].Class == CLASS.갑옷) continue;
 
-            if (Database.Inst.playData.equiWeapon_InventoryNum != i)
+            if (Database.Inst.playData.equiWeapon_InventoryNum == i)
+            {
+                equip.gameObject.SetActive(true);
+            }
+            else
             {
                 equip.gameObject.SetActive(false);
+            }
+
+
+            if (inventories[i].isNew)
+            {
+                _new.gameObject.SetActive(true);
+            }
+            else
+            {
+                _new.gameObject.SetActive(false);
             }
 
             itemLabel.text = inventories[i].name;
@@ -119,15 +141,18 @@ public class Inventory : MonoBehaviour
             UIButton skillImageBtn = obj.transform.Find("SkillImage").GetComponent<UIButton>();
             UIButton itemCellBtn = obj.GetComponent<UIButton>();
 
+
             itemImageBtn.onClick.Clear();
             skillImageBtn.onClick.Clear();
             itemCellBtn.onClick.Clear();
 
             EventDelegate itemEvent = new EventDelegate(this, "Event_PopupItem");
             itemEvent.parameters[0].value = weapon.num;
+            itemEvent.parameters[1].value = i;
 
             EventDelegate skillEvent = new EventDelegate(this, "Event_PopupSkill");
             skillEvent.parameters[0].value = weapon.skill_Index;
+            skillEvent.parameters[1].value = i;
 
             EventDelegate itemChoiceBtn = new EventDelegate(this, "Event_ChoiceEquipItem");
             itemChoiceBtn.parameters[0].value = i;
@@ -136,36 +161,62 @@ public class Inventory : MonoBehaviour
             EventDelegate.Set(skillImageBtn.onClick, skillEvent);
             EventDelegate.Set(itemCellBtn.onClick, itemChoiceBtn);
 
-            ItemBtnData btnData = new ItemBtnData();
-            btnData.inventory_index = i;
-            btnData.weapon_index = weapon.num;
-            btnData.skill_index = weapon.skill_Index;
-            btnData.obj = obj;
+            ItemBtnData btnData = new ItemBtnData
+            {
+                inventory_index = i,
+                weapon_index = weapon.num,
+                skill_index = weapon.skill_Index,
+                obj = obj
+            };
 
             itemBtnDatas.Add(btnData);
-
-            itemObjs.Add(obj);
         }
-
-        grid.Reposition();
+   
+        SortByInventoryNum();
     }
 
-    public void Event_PopupItem(int weaponNum)
+    public void Event_PopupItem(int weaponNum, int inventoryNum)
     {
         WeaponPopup(Database.Inst.weapons[weaponNum]);
+        RefreshNewLabel(inventoryNum);
     }
 
-    public void Event_PopupSkill(int skill_Index)
+    public void Event_PopupSkill(int skill_Index, int inventoryNum)
     {
         SkillPopup(Database.Inst.skill[skill_Index]);
+        RefreshNewLabel(inventoryNum);
     }
 
     public void Event_ChoiceEquipItem(int inventoryNum)
     {
         curChoiceItme = inventoryNum;
-
+        RefreshNewLabel(inventoryNum);
         if (GameManager.Inst.PlayData.equiWeapon_InventoryNum != inventoryNum) equipButton.isEnabled = true;
         else equipButton.isEnabled = false;
+    }
+
+    public void AllRefreshNewLabel()
+    {
+        for (int i = 0; i < GameManager.Inst.PlayData.inventory.Count; i++)
+        {
+            GameManager.Inst.PlayData.inventory[i].isNew = false;
+        }
+    }
+
+    private void RefreshNewLabel(int inventoryNum)
+    {
+        if (GameManager.Inst.PlayData.inventory[inventoryNum].isNew)
+        {
+            GameManager.Inst.PlayData.inventory[inventoryNum].isNew = false;
+            for (int i = 0; i < itemBtnDatas.Count; i++)
+            {
+                if (itemBtnDatas[i].inventory_index == inventoryNum)
+                {
+                    itemBtnDatas[i].obj.transform.Find("ItemImage/New").gameObject.SetActive(false);
+                    break;
+                }
+            }
+        }
     }
 
     public void EquipButton()
@@ -174,22 +225,39 @@ public class Inventory : MonoBehaviour
         RefreshEquipItem();
         curChoiceItme = -1;
         equipButton.isEnabled = false;
+        SortByInventoryNum();
     }
 
     private void RefreshEquipItem()
     {
-        for(int i = 0; i < itemBtnDatas.Count; i++)
+        for (int i = 0; i < itemBtnDatas.Count; i++)
         {
-            if (curChoiceItme == itemBtnDatas[i].inventory_index)
+            if (GameManager.Inst.PlayData.equiWeapon_InventoryNum == itemBtnDatas[i].inventory_index)
             {
                 itemBtnDatas[i].obj.transform.Find("Equip").gameObject.SetActive(true);
-                itemBtnDatas[i].obj.transform.Find("SelectionImage").GetComponent<UISprite>().alpha = 0.0f;
+                itemBtnDatas[i].obj.GetComponent<UIToggle>().Set(false);
             }
             else
             {
                 itemBtnDatas[i].obj.transform.Find("Equip").gameObject.SetActive(false);
             }
         }
+    }
+
+    public void SortByInventoryNum()
+    {
+        for (int i = 0; i < itemBtnDatas.Count; i++)
+        {
+            if (itemBtnDatas[i].inventory_index == GameManager.Inst.PlayData.equiWeapon_InventoryNum)
+            {
+                itemBtnDatas[i].obj.transform.localPosition = new Vector3(0.0f, 10.0f, 0.0f);
+            }
+            else
+            {
+                itemBtnDatas[i].obj.transform.localPosition = new Vector3(0.0f, -5.0f * (itemBtnDatas[i].inventory_index + 1), 0.0f);
+            }
+        }
+        grid.Reposition();
     }
 
     public void WeaponPopup(Database.Weapon weapon)
@@ -227,22 +295,4 @@ public class Inventory : MonoBehaviour
         popupSkill.SetActive(false);
     }
 
-    public void RefreshEquip()
-    {
-        List<Database.Inventory> inventories = GameManager.Inst.PlayData.inventory;
-
-        for (int i = 0; i < inventories.Count; i++)
-        {
-            if (inventories[i].Class == CLASS.갑옷) continue;
-
-            if (Database.Inst.playData.equiWeapon_InventoryNum == i)
-            {
-                equip.gameObject.SetActive(true);
-            }
-            else
-            {
-
-            }
-        }
-    }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   mSprites:
   - name: WeaponIcon_Excalibur
     x: 0
-    y: 83
+    y: 169
     width: 87
     height: 87
     borderLeft: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
     paddingTop: 30
     paddingBottom: 33
   - name: WeaponIcon_Nereides
-    x: 0
-    y: 175
+    x: 87
+    y: 1
     width: 85
     height: 81
     borderLeft: 0
@@ -40,21 +40,8 @@ MonoBehaviour:
     paddingRight: 33
     paddingTop: 35
     paddingBottom: 34
-  - name: WeaponIcon_Nyx
+  - name: WeaponIcon_NormalStaff
     x: 88
-    y: 84
-    width: 86
-    height: 86
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 31
-    paddingRight: 33
-    paddingTop: 32
-    paddingBottom: 32
-  - name: WeaponIcon_Old_Staff_01
-    x: 172
     y: 172
     width: 83
     height: 84
@@ -66,9 +53,9 @@ MonoBehaviour:
     paddingRight: 33
     paddingTop: 33
     paddingBottom: 33
-  - name: WeaponIcon_Rusty_Sword_01
-    x: 86
-    y: 171
+  - name: WeaponIcon_NormalSword
+    x: 87
+    y: 83
     width: 85
     height: 85
     borderLeft: 0
@@ -79,5 +66,18 @@ MonoBehaviour:
     paddingRight: 32
     paddingTop: 32
     paddingBottom: 33
+  - name: WeaponIcon_Nyx
+    x: 0
+    y: 82
+    width: 86
+    height: 86
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 31
+    paddingRight: 33
+    paddingTop: 32
+    paddingBottom: 32
   mPixelSize: 1
   mReplacement: {fileID: 0}

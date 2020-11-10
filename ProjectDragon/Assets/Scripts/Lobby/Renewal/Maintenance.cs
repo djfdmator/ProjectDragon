@@ -13,9 +13,11 @@ public class Maintenance : MonoBehaviour
     public UISprite curSkillImage;
 
     public LobbyManager_vr2 lobbyManager;
-    public StatPanel statPanel;
 
-    void Start()
+    public StatPanel statPanel;
+    public CharactorRepresentation charactorRepresentation;
+
+    void Awake()
     {
         if (inventory == null) inventory = transform.Find("Inventory").GetComponent<Inventory>();
         if (manaCount == null) manaCount = transform.Find("TopUI/ManaCount/Label").GetComponent<UILabel>();
@@ -26,14 +28,16 @@ public class Maintenance : MonoBehaviour
 
         lobbyManager = transform.parent.GetComponent<LobbyManager_vr2>();
         statPanel = transform.Find("Statpanel").GetComponent<StatPanel>();
+        charactorRepresentation = transform.Find("Charactorpanel").GetComponent<CharactorRepresentation>();
     }
 
     #region Button
     public void OpenMaintenance()
     {
-        gameObject.SetActive(true);
+        inventory.SettingItem();
         RefreshManaCount();
         RefreshEquipItem();
+        gameObject.SetActive(true);
     }
 
     public void CloseMaintenance()
@@ -57,6 +61,7 @@ public class Maintenance : MonoBehaviour
         RefreshEquipItem();
         statPanel.RefreshStatData();
         lobbyManager.RefreshCharactorData();
+        charactorRepresentation.RefeshCharactorIllustrate();
     }
 
     #endregion

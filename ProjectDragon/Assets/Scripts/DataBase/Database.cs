@@ -331,9 +331,10 @@ public class Database : MonoSingleton<Database>
         public string imageName; //이미지 이름
         public int skill_Index; // 아이템이 가진 액티브 스킬의 DB에서의 Index
         public int option_Index;
+        public bool isNew;
 
         public Inventory(int _num, int _DB_Num, string _name, RARITY _rarity, CLASS _Class, int _itemValue,
-                           string _imageName, int _skill_Index, int _option_Index)
+                           string _imageName, int _skill_Index, int _option_Index, bool _isNew)
         {
             num = _num;
             DB_Num = _DB_Num;
@@ -344,6 +345,7 @@ public class Database : MonoSingleton<Database>
             imageName = _imageName;
             skill_Index = _skill_Index;
             option_Index = _option_Index;
+            isNew = _isNew;
         }
 
         public Inventory(Database.Weapon weapon)
@@ -357,6 +359,7 @@ public class Database : MonoSingleton<Database>
             imageName = weapon.imageName;
             skill_Index = weapon.skill_Index;
             option_Index = -1;
+            isNew = true;
         }
 
         public Inventory(Database.Armor armor)
@@ -370,6 +373,7 @@ public class Database : MonoSingleton<Database>
             imageName = armor.imageName;
             skill_Index = -1;
             option_Index = -1;
+            isNew = true;
         }
     }
 

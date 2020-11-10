@@ -6,12 +6,21 @@ public class CharactorRepresentation : MonoBehaviour
 {
 
     public GameObject playerimg;
+    public UISprite charactorIllustrate;
+    public UISprite weaponIllustrate;
     public float sizeoption = 2;
     private double distance;
 
-    void Start()
+    private void Awake()
     {
         playerimg = transform.Find("CharactorView/Charactor").gameObject;
+        if (charactorIllustrate == null) charactorIllustrate = playerimg.GetComponent<UISprite>();
+        if (weaponIllustrate == null) weaponIllustrate = playerimg.transform.Find("Weapon").GetComponent<UISprite>();
+    }
+
+    void Start()
+    {
+        RefeshCharactorIllustrate();
     }
 
     void Update()
@@ -76,15 +85,44 @@ public class CharactorRepresentation : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// 캐릭터의 스킨 조정
-    /// </summary>
-    /// <param name="playerclass"></param>
-    public void CharactorSkinSet(string playerclass)
+    //CharactorView postion - (-160, -120, 0)
+    //CharactorView collider rect - (0, 100, 800, 900)
+    public void RefeshCharactorIllustrate()
     {
-        Texture2D Skin = Resources.Load<Texture2D>(playerclass);
-        //equipCharactor.GetComponent<UITexture>().mainTexture = Skin;
+        int weaponName = GameManager.Inst.PlayerEquipWeapon.DB_Num;
+
+        weaponIllustrate.spriteName = "LobbyIllustration_" + GameManager.Inst.CurrentEquipWeapon.imageName;
+        weaponIllustrate.MakePixelPerfect();
+        switch (weaponName)
+        {
+            case 0:
+                //녹슨검
+                weaponIllustrate.transform.localPosition = new Vector3(8.3f, 336.5f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Worrior";
+                break;
+            case 1:
+                //오래된 지팡이
+                weaponIllustrate.transform.localPosition = new Vector3(162.0f, 538.0f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
+                break;
+            case 2:
+                //승리의 검
+                weaponIllustrate.transform.localPosition = new Vector3(7.3f, 382.5f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Worrior";
+                break;
+            case 3:
+                //네레이더스
+                weaponIllustrate.transform.localPosition = new Vector3(141.6f, 714.5f, 0.0f);
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
+                break;
+            case 4:
+                //닉스
+                weaponIllustrate.transform.localPosition = new Vector3(200.0f, 680.0f, 0.0f);    
+                charactorIllustrate.spriteName = "LobbyIllustration_Female_Wizard";
+                break;
+            default:
+                break;
+        }
     }
 
 }
