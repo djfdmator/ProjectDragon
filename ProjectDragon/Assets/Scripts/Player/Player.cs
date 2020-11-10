@@ -392,7 +392,7 @@ public class Player : Character
         {
             if (TempEnemy != null)
             {
-                //Time.timeScale = 0.5f;
+                Time.timeScale = 0.5f;
                 offset = new Vector2(0.0f, 0.3f);
                 targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
             }
