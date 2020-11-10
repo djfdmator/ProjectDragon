@@ -89,9 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8003796463881998554}
   - component: {fileID: 8003796463881998553}
-  - component: {fileID: 8003796463881998555}
   - component: {fileID: 8003796463881998556}
   - component: {fileID: 7424513767628997709}
+  - component: {fileID: 4723269918757482334}
   m_Layer: 0
   m_Name: TargetPoint
   m_TagString: Untagged
@@ -162,22 +162,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8003796463881998555
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003796463881998535}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.35
 --- !u!95 &8003796463881998556
 Animator:
   serializedVersion: 3
@@ -214,6 +198,21 @@ MonoBehaviour:
   projecTileStart: 1
   projecTileEnd: 1
   parentPool: {fileID: 0}
-  targetObject:
-  - {fileID: 0}
+  targetObject: {fileID: 0}
   tagsString: []
+--- !u!70 &4723269918757482334
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003796463881998535}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0

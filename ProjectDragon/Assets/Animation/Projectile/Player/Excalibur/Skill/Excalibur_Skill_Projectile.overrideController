@@ -7,9 +7,13 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Excalibur_Skill_Projectile
-  m_Controller: {fileID: 9100000, guid: 9f596bce886957240b9bc5ce641bd297, type: 2}
+  m_Controller: {fileID: 9100000, guid: 481ea9843462def4082143164510e26d, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 58dbb447925cb914a93fd53a04d52ede, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 88f8f00c0748e48479e0c49e61993d28, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 3332da2501f2aef4d962acdcd965dab2, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 5df6eb3972242f544a89e56071d6bc7e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4368225c20a9dc84c8e741a86dd07b73, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 197339e3b21c3f04daa92a06f507de56, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3756b713c5f1f4b40bc23659d8ffc487, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 30ae5dca7ba0d494d96b85698ebbc141, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 048fe698c684b7d4f92f61d51d69c442, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: afece7348b05096468df4349edb98fa8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1704024ff6d7dfa4e8068d872cf0478d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a4f02ea5e6883c24081c3003b80f4c32, type: 2}

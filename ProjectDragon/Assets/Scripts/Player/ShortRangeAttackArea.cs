@@ -205,7 +205,7 @@ public class ShortRangeAttackArea : MonoBehaviour
         float _attackangle = (player.EnemyArray.Count != 0) ? player.enemy_angle : player.current_angle;
 
         Vector2 offset = new Vector2(0.0f, 0.0f);
-        float radius = 0.5f;
+        float radius = 0.15f;
 
         //수정 예정  projectileTargetList를 데이터베이스에서 이넘으로 받아서 실행할것
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////

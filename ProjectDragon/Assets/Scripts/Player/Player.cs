@@ -14,7 +14,7 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public enum WeaponType { NormalSword, NormalStaff, Excalibur, 혈도, Nereides, Nyx,  };
+    public enum WeaponType { NormalSword, NormalStaff, Excalibur, Nereides, Nyx,  };
 
 
     //flash white material damaged of player
@@ -330,9 +330,9 @@ public class Player : Character
                     break;
                 }
             }
-            inAttackTarget = false;
-            inSkillRange = false;
         }
+        inAttackTarget = false;
+        inSkillRange = false;
     }
     public void TempNullSet()
     {
@@ -395,6 +395,7 @@ public class Player : Character
             float attackAngle = (EnemyArray.Count == 0) ? current_angle : enemy_angle;
 
             Vector2 offset = Vector2.zero;
+            Vector2 capsuleColSize = Vector2.one;
             float radius = 0.2f;
             if (weaponType == Player.WeaponType.NormalSword)
             {
@@ -402,15 +403,22 @@ public class Player : Character
             }
             else if (weaponType == Player.WeaponType.NormalStaff)
             {
+                capsuleColSize = new Vector2(0.6f, 1);
                 if (TempEnemy != null)
                 {
-                    offset = new Vector2(0.0f, 0.3f);
-                    targetProjectile.Create(projectileTargetList, offset, 0.4f, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
+                    offset = new Vector2(0.02f, 0.5f);
+                    capsuleColSize = new Vector2(0.8f, 1.3f);
+                    targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
                 }
             }
             else if (weaponType == Player.WeaponType.Excalibur)
             {
-                projectile.Create(projectileTargetList, offset, radius, attackAngle, 0, skillDamage, projectileAnimator[7], true, transform.position, nuckBackPower);
+                if (TempEnemy != null)
+                {
+                    offset = new Vector2(0.03f, 0.0f);
+                    capsuleColSize = new Vector2(0.6f, 1);
+                    targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[7], true, TempEnemy.transform.position);
+                }
             }
             else if (weaponType == Player.WeaponType.Nereides)
             {
@@ -421,13 +429,13 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
-                    offset = new Vector2(0.0f, 0.3f);
-                    targetProjectile.Create(projectileTargetList, offset, 0.7f, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
+                    offset = new Vector2(0.03f, 0.5f);
+                    capsuleColSize = new Vector2(0.8f, 1.3f);
+                    targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
                 }
             }
         }
     }
-
     private void FixedUpdate()
     {
         if (!isDead)
@@ -598,6 +606,11 @@ public class Player : Character
         ATTACKSPEED = GameManager.Inst.AttackSpeed;            //1
         nuckBackPower = GameManager.Inst.NuckBack_Power;
         AtkRange = GameManager.Inst.AttackRange;
+
+        //개발자 모드!
+        maxHp = 10000;
+        HP = 10000;
+
     }
     private void LoadWeaponData()
     {

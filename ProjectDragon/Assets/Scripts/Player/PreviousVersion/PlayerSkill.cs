@@ -121,9 +121,8 @@ public class PlayerSkill : MonoBehaviour
         {
             if (My_Player.TempEnemy != null)
             {
-                Time.timeScale = 0.5f;
                 offset = new Vector2(0.0f, 0.3f);
-                pointProjectile.Create(My_Player.projectileTargetList, offset, 0.4f, 17, My_Player.projectileAnimator[1], true, My_Player.TempEnemy.transform.position);
+                pointProjectile.Create(My_Player.projectileTargetList, offset, new Vector2(0.4f,0.4f), 17, My_Player.projectileAnimator[1], true, My_Player.TempEnemy.transform.position);
             }
         }
         else if (My_Player.weaponType == Player.WeaponType.Nyx)
@@ -131,7 +130,7 @@ public class PlayerSkill : MonoBehaviour
             if (My_Player.TempEnemy != null)
             {
                 offset = new Vector2(0.0f, 0.3f);
-                pointProjectile.Create(My_Player.projectileTargetList, offset, 0.7f, 17, My_Player.projectileAnimator[3],true, My_Player.TempEnemy.transform.position);
+                pointProjectile.Create(My_Player.projectileTargetList, offset, new Vector2(0.7f,0.7f), 17, My_Player.projectileAnimator[3],true, My_Player.TempEnemy.transform.position);
             }
         }
         

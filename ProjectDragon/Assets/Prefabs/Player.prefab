@@ -485,7 +485,7 @@ MonoBehaviour:
   atk: 0
   atkSpeed: 0
   atkRange: 1
-  nuckBack: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
@@ -501,6 +501,7 @@ MonoBehaviour:
   temp_Movespeed: 0
   AngleisAttack: 0
   inAttackTarget: 0
+  inSkillRange: 0
   isActive: 0
   isInvaid: 0
   isCriticalHit: 0
@@ -513,9 +514,7 @@ MonoBehaviour:
   - {fileID: 22100000, guid: e33bfe1adb5bc0c4b941575c5bfdbc7d, type: 2}
   - {fileID: 9100000, guid: 3b6f998f77c11a44cb96302deae21454, type: 2}
   - {fileID: 22100000, guid: 8a026b7c35d9a9843bb26e7586b15234, type: 2}
-  - {fileID: 22100000, guid: 8a031b071bac2ef48a6eefaf95140efb, type: 2}
-  proj_attackAnimator: {fileID: 0}
-  proj_skillAnimator: {fileID: 0}
+  - {fileID: 22100000, guid: 235a37a182948a74a887b5911c122b61, type: 2}
   mp: 100
   attackType: 3
   weaponType: 0

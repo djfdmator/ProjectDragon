@@ -1,9 +1,9 @@
 ﻿// ==============================================================
-// Cracked ThornPoint
+// 범위지정형 타겟 투사체
 //
 //  AUTHOR: Yang SeEun
 // CREATED: 2020-01-08
-// UPDATED: 2020-01-08
+// UPDATED: 2020-01-10
 // ==============================================================
 
 using System.Collections;
@@ -13,11 +13,11 @@ using UnityEngine;
 public class TargetPoint : MonoBehaviour
 {
     public string poolItemName = "TargetPoint";
-    public float projecTileReady =1, projecTileStart=1, projecTileEnd=1;
+    public float projecTileReady = 1, projecTileStart = 1, projecTileEnd = 1;
     private TargetPoint targetPoint;
     private HitEffect hitEffect = new HitEffect();
     private int attackDamage = 0;
-    [SerializeField]  private Transform parentPool;
+    [SerializeField] private Transform parentPool;
     private Animator animator;
 
     [SerializeField] private GameObject targetObject;
@@ -44,16 +44,16 @@ public class TargetPoint : MonoBehaviour
     {
         //foreach (GameObject target in targetObject)
         //{
-            if ((targetObject != null))
+        if ((targetObject != null))
+        {
+            if (isplayskill)
             {
-                if (isplayskill)
-                {
-                    hitEffect.Create(targetObject.transform.position, attackType);
-                }
-             targetObject.GetComponent<Character>().HPChanged(attackDamage, false, 0);
-
-                //if (targetObject.GetComponent<Character>().isDead) targetObject.Remove(targetObject);
+                hitEffect.Create(targetObject.transform.position, attackType);
             }
+            targetObject.GetComponent<Character>().HPChanged(attackDamage, false, 0);
+
+            //if (targetObject.GetComponent<Character>().isDead) targetObject.Remove(targetObject);
+        }
         //}
     }
     /// <summary>
@@ -67,11 +67,11 @@ public class TargetPoint : MonoBehaviour
         Debug.Log("ResetProjectile");
 #endif
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        foreach(string s in tagsString)
+        foreach (string s in tagsString)
         {
             if (collision.gameObject.CompareTag(s))
             {
@@ -84,7 +84,7 @@ public class TargetPoint : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-         foreach(string s in tagsString)
+        foreach (string s in tagsString)
         {
             if (collision.gameObject.CompareTag(s))
             {
@@ -96,7 +96,7 @@ public class TargetPoint : MonoBehaviour
 
 
 
-    public TargetPoint Create(List<string> tagsStringList, Vector2 colOffset, float colRadius, int _damage, RuntimeAnimatorController _Animator, bool _isplayskill, Vector3 position, Transform parent = null)
+    public TargetPoint Create(List<string> tagsStringList, Vector2 colOffset, Vector2 colSize, int _damage, RuntimeAnimatorController _Animator, bool _isplayskill, Vector3 position, Transform parent = null)
     {
         Transform _parent = parent != null ? parent : parentPool;
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, _parent);
@@ -104,11 +104,13 @@ public class TargetPoint : MonoBehaviour
         targetPoint.gameObject.SetActive(true);
         targetPoint.attackDamage = _damage;
         targetPoint.tagsString = tagsStringList;
-        targetPoint.GetComponent<CircleCollider2D>().offset = colOffset;
-        targetPoint.GetComponent<CircleCollider2D>().radius = colRadius;
+        //targetPoint.GetComponent<CircleCollider2D>().offset = colOffset;
+        //targetPoint.GetComponent<CircleCollider2D>().radius = colRadius;
+        targetPoint.GetComponent<CapsuleCollider2D>().offset = colOffset;
+        targetPoint.GetComponent<CapsuleCollider2D>().size = colSize;
         targetPoint.animator.runtimeAnimatorController = _Animator;
         targetPoint.isplayskill = _isplayskill;
-        targetPoint.transform.position = _isplayskill ?  position + Vector3.down*0.3f : position;               //몬스터와 플레이어 피벗이 달라서...임시로..
+        targetPoint.transform.position = _isplayskill ? position  : position;               //몬스터와 플레이어 피벗이 달라서...임시로..
         targetPoint.attackType = _Animator.name.Split('_')[0];
         targetPoint.animator.SetFloat("ReadyTime", projecTileReady);
         targetPoint.animator.SetFloat("StartTime", projecTileStart);

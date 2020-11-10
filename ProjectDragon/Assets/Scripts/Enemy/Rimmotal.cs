@@ -221,11 +221,11 @@ public class Rimmotal : Enemy
     {
         _thorn_attacking = true;
 
-        while (_thorn_attacking&&!isDead)
+        while (_thorn_attacking && !isDead)
         {
             if (inAtkDetectionRange)
             {
-                thornPoint.Create(projectileTargetList,Vector2.zero,0.35f,ATTACKDAMAGE, ThornAnimator,false, other.position - new Vector3(0.0f,0.5f,0.0f));
+                thornPoint.Create(projectileTargetList, Vector2.zero, new Vector2(0.7f, 0.7f), ATTACKDAMAGE, ThornAnimator, false, other.position - new Vector3(0.0f, 0.5f, 0.0f));
                 //thornTargeting.Create(skillDamage, "ThornTargeting", other.position);
                 yield return new WaitForSeconds(2.0f);
             }
