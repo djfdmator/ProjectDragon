@@ -19,7 +19,7 @@ public class SkillButton : MonoBehaviour
     private GameObject inactivationObj;
 
     private UIButton button;
-    private BoxCollider col;
+    private BoxCollider2D col;
     private UISprite icon_sprite;
     private UISprite yellowRing;
     private UILabel timeLabel;
@@ -37,7 +37,7 @@ public class SkillButton : MonoBehaviour
         icon_sprite = transform.Find("Mask").GetComponentInChildren<UISprite>();
         yellowRing = activationObj.transform.Find("YellowRing").GetComponent<UISprite>();
         timeLabel = activationObj.transform.Find("TimeLabel").GetComponent<UILabel>();
-        col = GetComponent<BoxCollider>();
+        col = GetComponent<BoxCollider2D>();
         button = GetComponent<UIButton>();
     }
 

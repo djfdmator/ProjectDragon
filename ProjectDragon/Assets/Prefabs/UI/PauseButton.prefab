@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3997374172862226075}
   - component: {fileID: 3997374172862226076}
   - component: {fileID: 3997374172862226074}
-  - component: {fileID: 3997374172862226073}
+  - component: {fileID: 1921021029996893009}
   m_Layer: 8
   m_Name: CloseButton
   m_TagString: Untagged
@@ -120,19 +120,32 @@ MonoBehaviour:
     mMethodName: CloseDialogue
     mParameters: []
     oneShot: 0
---- !u!65 &3997374172862226073
-BoxCollider:
+--- !u!61 &1921021029996893009
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3997374172862226072}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 200, y: 86, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 200, y: 86}
+  m_EdgeRadius: 0
 --- !u!1 &3997374173045476076
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +324,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3013
+  startingRenderQueue: 3035
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -636,7 +649,7 @@ GameObject:
   - component: {fileID: 3997374174113723011}
   - component: {fileID: 3997374174113723012}
   - component: {fileID: 3997374174113723010}
-  - component: {fileID: 3997374174113723009}
+  - component: {fileID: 1970013541822597916}
   m_Layer: 8
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -745,19 +758,32 @@ MonoBehaviour:
     mMethodName: ApplicationQuitBuuton
     mParameters: []
     oneShot: 0
---- !u!65 &3997374174113723009
-BoxCollider:
+--- !u!61 &1970013541822597916
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3997374174113723008}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 200, y: 86, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 200, y: 86}
+  m_EdgeRadius: 0
 --- !u!1 &3997374174537525437
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +983,7 @@ GameObject:
   - component: {fileID: 4710353119373207892}
   - component: {fileID: 4710353119373207891}
   - component: {fileID: 4710353119373207890}
-  - component: {fileID: 4710353119373207893}
+  - component: {fileID: 822365312997814841}
   m_Layer: 8
   m_Name: BackButton
   m_TagString: Untagged
@@ -1065,19 +1091,32 @@ MonoBehaviour:
     mMethodName: ClosePauseWindow
     mParameters: []
     oneShot: 0
---- !u!65 &4710353119373207893
-BoxCollider:
+--- !u!61 &822365312997814841
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710353119373207895}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 250, y: 108, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 250, y: 108}
+  m_EdgeRadius: 0
 --- !u!1 &4710353119581910535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710353119581910532}
   - component: {fileID: 4710353119581910530}
-  - component: {fileID: 4710353119581910533}
+  - component: {fileID: 2480155260698210783}
   m_Layer: 8
   m_Name: ModalSprite
   m_TagString: Untagged
@@ -1172,19 +1211,32 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
---- !u!65 &4710353119581910533
-BoxCollider:
+--- !u!61 &2480155260698210783
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710353119581910535}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1920, y: 1080, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1920, y: 1080}
+  m_EdgeRadius: 0
 --- !u!1 &4710353120040018776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1310,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3011
+  startingRenderQueue: 3016
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1379,7 +1431,7 @@ GameObject:
   - component: {fileID: 4710353120489550899}
   - component: {fileID: 4710353120489550892}
   - component: {fileID: 4710353120489550893}
-  - component: {fileID: 4710353120489550894}
+  - component: {fileID: 8479499475211210184}
   m_Layer: 8
   m_Name: PauseButton
   m_TagString: Untagged
@@ -1488,19 +1540,32 @@ MonoBehaviour:
     mMethodName: OpenPauseWindow
     mParameters: []
     oneShot: 0
---- !u!65 &4710353120489550894
-BoxCollider:
+--- !u!61 &8479499475211210184
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710353120489550898}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 134, y: 134, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 134, y: 134}
+  m_EdgeRadius: 0
 --- !u!1 &4710353120558249942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,7 +1576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710353120558249943}
   - component: {fileID: 4710353120558249941}
-  - component: {fileID: 4710353120558249940}
+  - component: {fileID: 7603536975718562673}
   m_Layer: 8
   m_Name: ModalSprite
   m_TagString: Untagged
@@ -1595,19 +1660,32 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
---- !u!65 &4710353120558249940
-BoxCollider:
+--- !u!61 &7603536975718562673
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710353120558249942}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1920, y: 1080, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1920, y: 1080}
+  m_EdgeRadius: 0
 --- !u!1 &4710353120677788511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,7 +1788,7 @@ GameObject:
   - component: {fileID: 4710353120895049735}
   - component: {fileID: 4710353120895049730}
   - component: {fileID: 4710353120895049733}
-  - component: {fileID: 4710353120895049732}
+  - component: {fileID: 4328651761972916964}
   m_Layer: 8
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1818,16 +1896,29 @@ MonoBehaviour:
     mMethodName: OpenDialogue
     mParameters: []
     oneShot: 0
---- !u!65 &4710353120895049732
-BoxCollider:
+--- !u!61 &4328651761972916964
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710353120895049734}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 250, y: 108, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 250, y: 108}
+  m_EdgeRadius: 0
