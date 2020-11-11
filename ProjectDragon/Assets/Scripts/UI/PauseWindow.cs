@@ -42,4 +42,9 @@ public class PauseWindow : MonoBehaviour
     {
         ButtonManager.GameQuit();
     }
+
+    public void GotoLobbyBuuton()
+    {
+        ButtonManager.GotoLobby();
+    }
 }

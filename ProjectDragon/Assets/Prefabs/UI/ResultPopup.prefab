@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 770874455610774256}
   - component: {fileID: 770874455610774261}
   - component: {fileID: 770874455610774258}
-  - component: {fileID: 770874455610774259}
+  - component: {fileID: 310756763277566200}
   m_Layer: 8
   m_Name: Btb Area Top
   m_TagString: Untagged
@@ -102,10 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 770874455610774257}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -119,32 +119,19 @@ MonoBehaviour:
     mMethodName: 
     mParameters: []
     oneShot: 0
---- !u!61 &770874455610774259
-BoxCollider2D:
+--- !u!65 &310756763277566200
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770874455610774257}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 450, y: 100}
-  m_EdgeRadius: 0
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &770874455682567621
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +143,7 @@ GameObject:
   - component: {fileID: 770874455682567620}
   - component: {fileID: 770874455682567625}
   - component: {fileID: 770874455682567622}
-  - component: {fileID: 770874455682567623}
+  - component: {fileID: 7246525243158746043}
   m_Layer: 8
   m_Name: Btb Area Bottom
   m_TagString: Untagged
@@ -247,10 +234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 770874455682567621}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.2
+  duration: 0
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -264,32 +251,19 @@ MonoBehaviour:
     mMethodName: 
     mParameters: []
     oneShot: 0
---- !u!61 &770874455682567623
-BoxCollider2D:
+--- !u!65 &7246525243158746043
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770874455682567621}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 450, y: 100}
-  m_EdgeRadius: 0
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &770874455830874486
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +275,7 @@ GameObject:
   - component: {fileID: 770874455830874489}
   - component: {fileID: 770874455830874490}
   - component: {fileID: 770874455830874491}
-  - component: {fileID: 2449728499422849176}
+  - component: {fileID: 6323748064457764356}
   m_Layer: 8
   m_Name: NextStageButton
   m_TagString: Untagged
@@ -336,20 +310,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -8
   rightAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -121
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 15
   topAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: 116
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -409,32 +383,19 @@ MonoBehaviour:
     mMethodName: NextStageButton
     mParameters: []
     oneShot: 0
---- !u!61 &2449728499422849176
-BoxCollider2D:
+--- !u!65 &6323748064457764356
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770874455830874486}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200, y: 101}
-  m_EdgeRadius: 0
+  m_Size: {x: 200, y: 101, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &770874456140110076
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +407,7 @@ GameObject:
   - component: {fileID: 770874456140110079}
   - component: {fileID: 770874456140109952}
   - component: {fileID: 770874456140109953}
-  - component: {fileID: 2447298169300915408}
+  - component: {fileID: 8913312135376856961}
   m_Layer: 8
   m_Name: LobbyButton
   m_TagString: Untagged
@@ -554,32 +515,19 @@ MonoBehaviour:
     mMethodName: LobbyButton
     mParameters: []
     oneShot: 0
---- !u!61 &2447298169300915408
-BoxCollider2D:
+--- !u!65 &8913312135376856961
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770874456140110076}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200, y: 101}
-  m_EdgeRadius: 0
+  m_Size: {x: 200, y: 101, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1069125516476594169
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,7 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5961618571284073559}
   - component: {fileID: 8682905190311424413}
-  - component: {fileID: 3975343533845151455}
+  - component: {fileID: 8882478801588511452}
   m_Layer: 8
   m_Name: ModalSprite
   m_TagString: Untagged
@@ -674,32 +622,19 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
---- !u!61 &3975343533845151455
-BoxCollider2D:
+--- !u!65 &8882478801588511452
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069125516476594169}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1920, y: 1080}
-  m_EdgeRadius: 0
+  m_Size: {x: 1920, y: 1080, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2404162085354633534
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +713,7 @@ GameObject:
   - component: {fileID: 4885482719131908773}
   - component: {fileID: 4885482719131908774}
   - component: {fileID: 4885482719131908775}
-  - component: {fileID: 2340212935574576379}
+  - component: {fileID: 6155323792469520199}
   m_Layer: 8
   m_Name: HomeButton
   m_TagString: Untagged
@@ -813,20 +748,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -99
   rightAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 101
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: -62
   topAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: 38
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -886,32 +821,19 @@ MonoBehaviour:
     mMethodName: LobbyButton
     mParameters: []
     oneShot: 0
---- !u!61 &2340212935574576379
-BoxCollider2D:
+--- !u!65 &6155323792469520199
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4885482719131908794}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200, y: 100}
-  m_EdgeRadius: 0
+  m_Size: {x: 200, y: 100, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4885482719269288937
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,19 +882,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719693082666}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -313
   rightAnchor:
-    target: {fileID: 4885482719693082666}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 313
   bottomAnchor:
-    target: {fileID: 4885482719693082666}
+    target: {fileID: 0}
     relative: 0
     absolute: 180
   topAnchor:
-    target: {fileID: 4885482719693082666}
+    target: {fileID: 0}
     relative: 1
     absolute: -180
   updateAnchors: 0
@@ -1148,19 +1070,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -200
   rightAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 200
   bottomAnchor:
-    target: {fileID: 4885482719776454284}
+    target: {fileID: 0}
     relative: 0
     absolute: 238
   topAnchor:
-    target: {fileID: 4885482719776454284}
+    target: {fileID: 0}
     relative: 1
     absolute: 288
   updateAnchors: 0
@@ -1201,7 +1123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885482719421982664}
   - component: {fileID: 4885482719421982667}
-  - component: {fileID: 447256105146871436}
+  - component: {fileID: 1724027222992779315}
   m_Layer: 8
   m_Name: Foreground
   m_TagString: Untagged
@@ -1236,19 +1158,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -92
   rightAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -42
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: 65
   topAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -64
   updateAnchors: 0
@@ -1279,32 +1201,19 @@ MonoBehaviour:
   mSpriteName: ScrollBar_Foreground
   mFixedAspect: 0
   mFillCenter: 1
---- !u!61 &447256105146871436
-BoxCollider2D:
+--- !u!65 &1724027222992779315
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4885482719421982665}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 401}
-  m_EdgeRadius: 0
+  m_Size: {x: 50, y: 401, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4885482719434121781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,19 +1258,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -200
   rightAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 200
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 549
   topAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -21
   updateAnchors: 0
@@ -1436,20 +1345,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: 71
   rightAnchor:
-    target: {fileID: 4885482719776454284}
+    target: {fileID: 0}
     relative: 1
     absolute: 127
   bottomAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: 224
   topAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 324
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1523,19 +1432,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: 21
   rightAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: -29
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -129
   topAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -29
   updateAnchors: 0
@@ -1610,19 +1519,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: 21
   rightAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: -29
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -129
   topAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -29
   updateAnchors: 0
@@ -1727,7 +1636,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3011
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1814,19 +1723,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -50
   rightAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 50
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -409
   topAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -309
   updateAnchors: 0
@@ -1936,20 +1845,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -192
   rightAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -136
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: 225
   topAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 324
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2025,19 +1934,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 12
   rightAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -14
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 78
   topAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -112
   updateAnchors: 0
@@ -2115,19 +2024,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -50
   rightAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 50
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -409
   topAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 1
     absolute: -309
   updateAnchors: 0
@@ -2151,7 +2060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885482720708308650}
   - component: {fileID: 4885482720708308692}
-  - component: {fileID: 2753932682972048022}
+  - component: {fileID: 3791148510783586680}
   m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
@@ -2186,19 +2095,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -92
   rightAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -42
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: 65
   topAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -64
   updateAnchors: 0
@@ -2229,32 +2138,19 @@ MonoBehaviour:
   mSpriteName: ScrollBar_Background
   mFixedAspect: 0
   mFillCenter: 1
---- !u!61 &2753932682972048022
-BoxCollider2D:
+--- !u!65 &3791148510783586680
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4885482720708308651}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 401}
-  m_EdgeRadius: 0
+  m_Size: {x: 50, y: 401, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4885482720710792291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,20 +2195,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 141
   rightAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: 197
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: 224
   topAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 324
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2477,19 +2373,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: 55
   rightAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -95
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 0
     absolute: 60
   topAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -120
   updateAnchors: 0
@@ -2503,7 +2399,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3016
+  startingRenderQueue: 3015
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -2613,20 +2509,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719776454284}
+    target: {fileID: 0}
     relative: 0
     absolute: -122
   rightAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: -66
   bottomAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: 224
   topAnchor:
-    target: {fileID: 4885482719776454284}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 324
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2702,19 +2598,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -55
   rightAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -69
   bottomAnchor:
-    target: {fileID: 4885482720179914295}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: -131
   topAnchor:
-    target: {fileID: 4885482720179914295}
+    target: {fileID: 0}
     relative: 1
     absolute: -31
   updateAnchors: 0
