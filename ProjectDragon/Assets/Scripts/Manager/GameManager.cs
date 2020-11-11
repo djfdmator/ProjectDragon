@@ -921,6 +921,7 @@ public class GameManager : MonoSingleton<GameManager>
         else
         {
             InitialPlayData();
+            InitializePlayerStat();
         }
     }
 

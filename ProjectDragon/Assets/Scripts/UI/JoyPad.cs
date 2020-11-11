@@ -95,7 +95,7 @@ public class JoyPad : MonoBehaviour
             if (pressed == false && !player.isSkillActive)
             {
                 player.CurrentState = State.Idle;
-                StartCoroutine(fadeJoyStick());
+                StartCoroutine("fadeJoyStick");
             }
             if (pressed.Equals(true))
             {
@@ -124,15 +124,15 @@ public class JoyPad : MonoBehaviour
                                     break;
                                 }
                             }
-                            else
+                            if (!hit.collider.tag.Equals("button"))
                             {
                                 return;
                             }
                         }
                     }
-                    //if (touch01.phase.Equals(TouchPhase.Ended))
-                    //{
-                    //}
+                    if (touch01.phase.Equals(TouchPhase.Ended))
+                    {
+                    }
                 }
                 if (Input.touchCount > 1)
                 {
@@ -153,11 +153,12 @@ public class JoyPad : MonoBehaviour
                                     return;
                                 }
                             }
-                            else
+                            if (!hit.collider.tag.Equals("button"))
                             {
                                 touch01 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
                                 target.transform.position = fingerPoint01;
+                                Debug.Log("버튼이 아닙니다.");
                                 return;
                             }
                         }
@@ -174,7 +175,6 @@ public class JoyPad : MonoBehaviour
             player.rigidbody2d.velocity = Vector2.zero;
         }
     }
-    
     public void OnDrag(Vector2 delta)
     {
         if (!player.isDead)
@@ -199,7 +199,7 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 break;
                             }
-                            else
+                            else if (!hit.collider.tag.Equals("button"))
                             {
                                 touch02 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch02.position);
@@ -244,13 +244,13 @@ public class JoyPad : MonoBehaviour
                     target2.localPosition = Vector3.ClampMagnitude(target2.localPosition, radius);
                     position = target2.localPosition;
                 }
-                if (player.CurrentState != State.Attack && !player.isSkillActive)
+                if (player.CurrentState != State.Attack)
                 {
-                    if (angle > 0)
+                    if (angle > 0 && !player.isSkillActive)
                     {
                         player.CurrentState = State.Walk;
                     }
-                    else if (angle == 0)
+                    else if (angle == 0 && !player.isSkillActive)
                     {
                         player.CurrentState = State.Idle;
                     }

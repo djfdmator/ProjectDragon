@@ -265,37 +265,35 @@ public class Player : Character
 
                     if (!isSkillActive)
                     {
-                        if (DistanceCheck(this.transform, TempEnemy.transform) <= this.AtkRange)
+                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
                         {
+                            inAttackTarget = true;
+
                             if (TempEnemy.GetComponent<Character>().HP > 0)
                             {
-                                inAttackTarget = true;
-                                if (attackType == CLASS.검)
+                                if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
                                 {
-                                    //moveSpeed = temp_Movespeed;
+                                    moveSpeed = 0;
                                     AngleisAttack = true;
                                     this.CurrentState = State.Attack;
                                 }
-                                else if (attackType == CLASS.지팡이)
+                                else if (attackType == CLASS.검 && joyPad.Pressed == true && !isSkillActive)
                                 {
-                                    if (joyPad.Pressed == false)
-                                    {
-                                        moveSpeed = 0;
-                                        AngleisAttack = true;
-                                        this.CurrentState = State.Attack;
-                                    }
-                                    else
-                                    {
-                                        moveSpeed = temp_Movespeed;
-                                        AngleisAttack = false;
-                                    }
+
+                                    moveSpeed = temp_Movespeed;
+                                    AngleisAttack = false;
+                                }
+                                if (attackType == CLASS.검 && !isSkillActive)
+                                {
+                                    AngleisAttack = true;
+                                    this.CurrentState = State.Attack;
                                 }
                             }
+
                         }
                         else
                         {
                             inAttackTarget = false;
-
                             AngleisAttack = false;
                             if (AngleisAttack == false && !isSkillActive)
                             {
@@ -313,6 +311,7 @@ public class Player : Character
                                 }
                             }
                         }
+
 
                         if (DistanceCheck(this.transform, TempEnemy.transform) <= this.skillRange)
                         {
