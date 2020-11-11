@@ -151,7 +151,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3007
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -261,6 +261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipmentChangeWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 4587679323011132398, guid: 66d3c47bf5302d141a529abd0c37c210,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4587679323011132385, guid: 66d3c47bf5302d141a529abd0c37c210,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,6 +329,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 144006373}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &198993196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4587679323011132387, guid: 66d3c47bf5302d141a529abd0c37c210,
+    type: 3}
+  m_PrefabInstance: {fileID: 144006373}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e6b4391f6bc3a48a71d63403d0e800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &236852396
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +528,7 @@ MonoBehaviour:
   map_Hiddens_Count: 1
   map_Prefabs: []
   map_Prefabs_Count: 1
-  numberOfRooms: 15
+  numberOfRooms: 10
   stair_LocalPosition: {x: 0, y: 0}
   worldSize: {x: 6, y: 6}
 --- !u!1 &406308194
@@ -1832,7 +1849,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3017
+  startingRenderQueue: 3034
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3308,6 +3325,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398329874761788449, guid: fd6053c2747e21a4e9b5521fde5446e2,
+        type: 3}
+      propertyPath: battleEquipmentChangeWindow
+      value: 
+      objectReference: {fileID: 198993196}
+    - target: {fileID: 770874455830874491, guid: fd6053c2747e21a4e9b5521fde5446e2,
+        type: 3}
+      propertyPath: onClick.Array.data[0].mMethodName
+      value: NextButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd6053c2747e21a4e9b5521fde5446e2, type: 3}

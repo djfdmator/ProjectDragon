@@ -152,7 +152,7 @@ public class Room : MonoBehaviour
         {
             if (obj.GetComponent<Monster>().isDead)
             {
-                roomManager.DropItem(false, obj.transform.position);
+                //roomManager.DropItem(false, obj.transform.position);
                 continue;
             }
             else

@@ -48,7 +48,7 @@ public class MapCreator : MonoBehaviour
     public int map_Prefabs_Count = 1;
 
     //room count
-    public int numberOfRooms = 15;
+    public int numberOfRooms = 10;
     private int gridSizeX, gridSizeY, gridSizeX_Cen, gridSizeY_Cen;
     //stair pos
     public Vector2 stair_LocalPosition = new Vector2(0.0f, 0.0f);

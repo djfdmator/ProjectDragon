@@ -67,12 +67,17 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         if (arrowDisableImage == null) arrowDisableImage = Resources.Load<Sprite>("UI/EquipmentChange_Disable");
         if (arrow == null) arrow = transform.Find("Arrow").gameObject;
 
-        inventory.SettingItem();
-        SettingEvent();
-
         ChoiceItemPanel.SetActive(false);
         arrow.GetComponent<UI2DSprite>().sprite2D = isOnArrow ? arrowEnableImage : arrowDisableImage;
         arrow.GetComponent<UI2DSpriteAnimation>().enabled = isOnArrow;
+
+        gameObject.SetActive(false);
+    }
+
+    public void Init()
+    {
+        inventory.SettingItem();
+        SettingEvent();
     }
 
     private void SettingEvent()
@@ -181,5 +186,11 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public void ChoiceSkillPopup()
     {
         inventory.SkillPopup(Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItme].skill_Index]);
+    }
+
+    public void NextStageButton()
+    {
+        Time.timeScale = 1.0f;
+        GameManager.Inst.Loading(true);
     }
 }

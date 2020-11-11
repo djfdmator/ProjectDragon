@@ -21,6 +21,8 @@ public class ResultPop : MonoBehaviour
     private int acheiveMP;
     private UILabel mpLabel;
 
+    public BattleEquipmentChangeWindow battleEquipmentChangeWindow;
+
 
     private void Awake()
     {
@@ -66,6 +68,12 @@ public class ResultPop : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         GameManager.Inst.Loading(true);
+    }
+
+    public void NextButton()
+    {
+        battleEquipmentChangeWindow.Init();
+        battleEquipmentChangeWindow.gameObject.SetActive(true);
     }
     #endregion
 

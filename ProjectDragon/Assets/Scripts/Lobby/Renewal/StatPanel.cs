@@ -25,12 +25,7 @@ public class StatPanel : MonoBehaviour
 
     private void Start()
     {
-        //if (damage == null) damage = transform.Find("Background/Damage/Label").GetComponent<UILabel>();
-        //if (hp == null) hp = transform.Find("Background/HP/Label").GetComponent<UILabel>();
-        //if (defence == null) defence = transform.Find("Background/Defence/Label").GetComponent<UILabel>();
-        //if (attackSpeed == null) attackSpeed = transform.Find("Background/AttackSpeed/Label").GetComponent<UILabel>();
-
-        //if (button == null) button = transform.Find("Background/Button").GetComponent<UISprite>();
+        transform.Find("Background").GetComponent<TweenPosition>().PlayReverse();
     }
 
     public void Toggle_ButtonImage()
@@ -40,10 +35,12 @@ public class StatPanel : MonoBehaviour
         {
             RefreshStatData();
             button.spriteName = "Lobby_Stats_L";
+            transform.Find("Background").GetComponent<TweenPosition>().PlayReverse();
         }
         else
         {
             button.spriteName = "Lobby_Stats_R";
+            transform.Find("Background").GetComponent<TweenPosition>().PlayForward();
         }
     }
 

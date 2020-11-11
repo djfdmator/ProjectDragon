@@ -44,11 +44,8 @@ public class Stair : MonoBehaviour
         {
             //게임 매니저에게 스테이지 지나갔다고 전달
             //게임 현재 위치 저장
-            //GameManagerTester.Inst.hp = player.HP;
-            //GameManagerTester.Inst.mana = player.MP;
             //다음 스테이지 시작
             roomManager.OpenResultPop(false);
-            //SceneManager.LoadScene("Map_Loading");
         }
     }
 

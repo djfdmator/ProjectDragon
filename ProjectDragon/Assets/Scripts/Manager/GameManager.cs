@@ -112,10 +112,10 @@ public class GameManager : MonoSingleton<GameManager>
         string conn;
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
-            conn = Application.persistentDataPath + "/DS_Database.sqlite";
+            conn = Application.persistentDataPath + "/DS_Database_vr_055.sqlite";
             if (!File.Exists(conn))
             {
-                using (UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/DS_Database.sqlite"))
+                using (UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/DS_Database_vr_055.sqlite"))
                 {
                     unityWebRequest.downloadedBytes.ToString();
                     yield return unityWebRequest.SendWebRequest().isDone;
@@ -145,11 +145,11 @@ public class GameManager : MonoSingleton<GameManager>
         string conn;
         if (Application.platform == RuntimePlatform.Android)
         {
-            conn = "URI=file:" + Application.persistentDataPath + "/DS_Database.sqlite";
+            conn = "URI=file:" + Application.persistentDataPath + "/DS_Database_vr_055.sqlite";
         }
         else
         {
-            conn = "URI=file:" + Application.dataPath + "/StreamingAssets/DS_Database.sqlite";
+            conn = "URI=file:" + Application.dataPath + "/StreamingAssets/DS_Database_vr_055.sqlite";
         }
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(conn);

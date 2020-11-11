@@ -89,7 +89,7 @@ public class Database : MonoSingleton<Database>
         public readonly string optionTableName;
 
 
-        public Weapon(int num, string name, RARITY rarity, string rarity_Text, CLASS _class, int atk_Min, int atk_Max, float atk_Range, float atk_Speed, 
+        public Weapon(int num, string name, RARITY rarity, string rarity_Text, CLASS _class, int atk_Min, int atk_Max, float atk_Range, float atk_Speed,
                         float nuckback_Power, float nuckback_Percentage, int item_Value, string description, string imageName, int skill_Index, string optionTableName)
         {
             this.num = num;
@@ -108,6 +108,26 @@ public class Database : MonoSingleton<Database>
             this.imageName = imageName;
             this.skill_Index = skill_Index;
             this.optionTableName = optionTableName;
+        }
+
+        public Weapon(Weapon w)
+        {
+            this.num = w.num;
+            this.name = w.name;
+            this.rarity = w.rarity;
+            this.rarity_Text = w.rarity_Text;
+            this.Class = w.Class;
+            this.atk_Min = w.atk_Min;
+            this.atk_Max = w.atk_Max;
+            this.atk_Range = w.atk_Range;
+            this.atk_Speed = w.atk_Speed;
+            this.nuckback_Power = w.nuckback_Power;
+            this.nuckback_Percentage = w.nuckback_Percentage;
+            this.item_Value = w.item_Value;
+            this.description = w.description;
+            this.imageName = w.imageName;
+            this.skill_Index = w.skill_Index;
+            this.optionTableName = w.optionTableName;
         }
     }
 
@@ -155,7 +175,7 @@ public class Database : MonoSingleton<Database>
         public readonly string description;
         public readonly string imageName;
 
-        public Skill(int num, string name, SKILLTYPE skillType, int atk, int mpCost, float coolTime, float skill_Range, float skill_Duration, 
+        public Skill(int num, string name, SKILLTYPE skillType, int atk, int mpCost, float coolTime, float skill_Range, float skill_Duration,
                     int parameter, string description, string imageName)
         {
             this.num = num;
@@ -228,8 +248,8 @@ public class Database : MonoSingleton<Database>
         public readonly string description;
         public readonly string imageName;
 
-        public Normal_Monster(int num, string name, Monster_Rarity monster_Rarity, int hp, float move_Speed, int atk, float atk_Speed, 
-                                float atk_Range, int ready_Time, int coolTime, int knock_Resist, int atk_Count, int drop_Mana_Min, 
+        public Normal_Monster(int num, string name, Monster_Rarity monster_Rarity, int hp, float move_Speed, int atk, float atk_Speed,
+                                float atk_Range, int ready_Time, int coolTime, int knock_Resist, int atk_Count, int drop_Mana_Min,
                                 int drop_Mana_Max, string description, string imageName)
         {
             this.num = num;
@@ -274,8 +294,8 @@ public class Database : MonoSingleton<Database>
         public readonly string description;
         public readonly string imageName;
 
-        public Rare_Monster(int num, string name, Monster_Rarity monster_Rarity, int hp, float move_Speed, int atk, float atk_Speed, float atk_Range, 
-                            float ready_Time, int coolTime, int knock_Resist, int atk_Count1, int atk_Count2, int skill_Cooltime, int skill_Damage, 
+        public Rare_Monster(int num, string name, Monster_Rarity monster_Rarity, int hp, float move_Speed, int atk, float atk_Speed, float atk_Range,
+                            float ready_Time, int coolTime, int knock_Resist, int atk_Count1, int atk_Count2, int skill_Cooltime, int skill_Damage,
                             int drop_Mana_Min, int drop_Mana_Max, string description, string imageName)
         {
             this.num = num;
@@ -420,9 +440,9 @@ public class Database : MonoSingleton<Database>
         //1~3 일반 방
         //4 - 보스방
         //스테이지 관련 변수
-        public int currentStage; 
+        public int currentStage;
         public int finalStage = 5;
-          
+
         //장비 강화 패시브에 의해 변경되는 값들
         public bool resist_Fire;
         public bool resist_Water;

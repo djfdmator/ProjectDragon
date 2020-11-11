@@ -42,8 +42,10 @@ public class RoomManager : MonoBehaviour
     public GameObject player;
 
     public GameObject Mana_Large;
+    public GameObject Hp;
     public List<Database.Inventory> items = new List<Database.Inventory>();
     public int mana = 0;
+    public int hp = 0;
 
     public GameObject resultPop;
 
@@ -66,6 +68,7 @@ public class RoomManager : MonoBehaviour
     private void ResourceLoad()
     {
         Mana_Large = Resources.Load("Object/Mana_Large") as GameObject;
+        Hp = Resources.Load("Object/Hp") as GameObject;
     }
 
     private void Start()
@@ -235,6 +238,60 @@ public class RoomManager : MonoBehaviour
         miniMap.button.GetComponent<BoxCollider>().enabled = true;
     }
 
+    //TODO : 림모탈에 연결하기
+    public void DropItem_Rimmotal(Vector3 _pos)
+    {
+        List<Database.Weapon> weapons = new List<Database.Weapon>();
+        for (int i = 0; i < Database.Inst.weapons.Count; i++)
+        {
+            if (Database.Inst.weapons[i].Class != CLASS.갑옷 && Database.Inst.weapons[i].rarity != RARITY.레전드)
+            {
+                bool isExist = false;
+                //인벤토리 검사
+                for (int j = 0; j < Database.Inst.playData.inventory.Count; j++)
+                {
+                    if (Database.Inst.playData.inventory[j].name == Database.Inst.weapons[i].name)
+                    {
+                        isExist = true;
+                    }
+                }
+                //현재 얻은 아이템 검사
+                for (int j = 0; j < items.Count; j++)
+                {
+                    if (items[j].name == Database.Inst.weapons[i].name)
+                    {
+                        isExist = true;
+                    }
+                }
+                //존재하지 않을 경우 생성
+                if (!isExist)
+                {
+                    weapons.Add(new Database.Weapon(Database.Inst.weapons[i]));
+                }
+            }
+        }
+        if (weapons.Count <= 0) return;
+
+        int itemCount = weapons.Count;
+        int rand = Random.Range(0, itemCount);
+        string imagePath = string.Empty;
+
+        imagePath = weapons[rand].imageName;
+        items.Add(new Database.Inventory(weapons[rand]));
+
+        //sprite로 imagePath적용 
+        GameObject gameObject = new GameObject("Item", typeof(SpriteRenderer));
+        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Object/DropItem");
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        gameObject.transform.SetParent(PlayerLocationInMap().transform);
+        Vector3 temp = Random.insideUnitCircle * 0.4f;
+        gameObject.transform.position = _pos + temp;
+        gameObject.transform.rotation = Quaternion.identity;
+        PlayerLocationInMap().items.Add(gameObject);
+
+        weapons.Clear();
+    }
+
     public void DropItem(bool isMana, Vector3 _pos)
     {
         if (!isMana)
@@ -257,7 +314,7 @@ public class RoomManager : MonoBehaviour
                 }
                 //sprite로 imagePath적용 
                 GameObject gameObject = new GameObject("Item", typeof(SpriteRenderer));
-                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Object/Items");
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Object/DropItem");
                 gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
                 gameObject.transform.SetParent(PlayerLocationInMap().transform);
                 Vector3 temp = Random.insideUnitCircle * 0.4f;
@@ -268,9 +325,20 @@ public class RoomManager : MonoBehaviour
         }
         else
         {
-            mana += 20;
-            Vector3 temp = Random.insideUnitCircle * 0.4f;
-            PlayerLocationInMap().items.Add(Instantiate(Mana_Large, _pos + temp, Quaternion.identity, PlayerLocationInMap().transform));
+            if (Random.Range(0, 10) <= 3)
+            {
+                Vector3 temp = Random.insideUnitCircle * 0.4f;
+                if (Random.Range(0, 3) <= 1)
+                {
+                    mana += 20;
+                    PlayerLocationInMap().items.Add(Instantiate(Mana_Large, _pos + temp, Quaternion.identity, PlayerLocationInMap().transform));
+                }
+                else
+                {
+                    hp += 5;
+                    PlayerLocationInMap().items.Add(Instantiate(Hp, _pos + temp, Quaternion.identity, PlayerLocationInMap().transform));
+                }
+            }
         }
     }
 
@@ -279,6 +347,12 @@ public class RoomManager : MonoBehaviour
         Vector3 pos = new Vector3();
         float time = 0.0f;
         //GameManager.Inst.EndGame_Get_Item();
+        if (hp != 0)
+        {
+            //TODO : 세은이에게 hp 어떻게 더해주는지 물어보기
+            player.GetComponent<Player>();
+            hp = 0;
+        }
         while (time <= _playTime)
         {
             if (gameObjects.Count.Equals(0)) break;
@@ -301,6 +375,8 @@ public class RoomManager : MonoBehaviour
 
     public void OpenResultPop(bool playerIsDead)
     {
+        GameManager.Inst.Mp = mana;
+        GameManager.Inst.Insert_Inventory_Item(items);
         resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
         resultPop.SetActive(true);
     }
