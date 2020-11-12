@@ -321,6 +321,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4587679322958009999, guid: 66d3c47bf5302d141a529abd0c37c210,
+        type: 3}
+      propertyPath: onClick.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587679322958009999, guid: 66d3c47bf5302d141a529abd0c37c210,
+        type: 3}
+      propertyPath: onClick.Array.data[0].mTarget
+      value: 
+      objectReference: {fileID: 198993196}
+    - target: {fileID: 4587679322958009999, guid: 66d3c47bf5302d141a529abd0c37c210,
+        type: 3}
+      propertyPath: onClick.Array.data[0].mMethodName
+      value: NextStageButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66d3c47bf5302d141a529abd0c37c210, type: 3}
 --- !u!4 &144006374 stripped

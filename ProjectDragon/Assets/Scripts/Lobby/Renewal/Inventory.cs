@@ -83,6 +83,8 @@ public class Inventory : MonoBehaviour
         if (skillMpCost == null) skillMpCost = popupSkill.transform.Find("Mana/Label").GetComponent<UILabel>();
         if (skillCoolTime == null) skillCoolTime = popupSkill.transform.Find("CoolTime/Label").GetComponent<UILabel>();
 
+        SettingItem();
+
         weaponAtlas = Resources.Load<NGUIAtlas>("UI/WeaponIconAtlas");
         ArmorAtlas = Resources.Load<NGUIAtlas>("UI/ArmorIconAtlas");
 
