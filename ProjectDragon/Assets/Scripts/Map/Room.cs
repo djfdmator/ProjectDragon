@@ -52,15 +52,7 @@ public class Room : MonoBehaviour
 
     private IEnumerator gathering;
 
-    public GameObject MiniMapPos //미니맵 상에서의 방 오브젝트
-    {
-        get { return miniMapPos; }
-        set
-        {
-            miniMapPos = value;
-        }
-    }
-    private GameObject miniMapPos;
+    public int miniMap_Index;
 
     private void Awake()
     {
@@ -250,44 +242,11 @@ public class Room : MonoBehaviour
         roomState = RoomState.Clear;
         OpenAllDoor(); //모든 문 열기
 
-        roomManager.miniMap.transform.parent.gameObject.SetActive(true); //미니맵 켜기
-        miniMapPos.GetComponent<UISprite>().alpha = 1.0f; //
-
-        #region 수정 필요 -- 이미지 로드, 포탈 표시 방식 -- 미니맵
-        //포탈이 있는 방이라면 미니맵 상에서 포탈 표시
-        if (!roomType.Equals(RoomType.Normal))
-        {
-            miniMapPos.transform.Find("Portal").GetComponent<UISprite>().enabled = true;
-        }
-
-        //방이 normal 이 아니라면 미니맵에서 특별한 색으로 표시
-        switch (roomType)
-        {
-            case RoomType.Begin:
-                miniMapPos.GetComponent<UISprite>().color = Color.white;
-                break;
-            case RoomType.NPC:
-                miniMapPos.GetComponent<UISprite>().color = Color.yellow;
-                break;
-            case RoomType.Stair:
-                miniMapPos.GetComponent<UISprite>().color = Color.green;
-                gameObject.transform.Find("Stair").GetComponent<Stair>().IsOpen = true;
-                break;
-            case RoomType.Boss:
-                miniMapPos.GetComponent<UISprite>().color = Color.red;
-                //다음으로 넘어가는 문이 열려야 함
-                gameObject.transform.Find("Stair").GetComponent<Stair>().IsOpen = true;
-                break;
-            default:
-                break;
-        }
-        #endregion
+        roomManager.miniMap.gameObject.SetActive(true); //미니맵 켜기
 
         //포탈 켜기
         roomManager.PortalOn();
 
-        //아이템 획득 - 미구현 상태, 드랍 구현 필요
-        //CollectAll_Items();
 
     }
 
