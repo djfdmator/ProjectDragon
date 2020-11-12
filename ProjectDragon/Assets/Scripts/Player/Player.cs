@@ -3,7 +3,7 @@
 //
 //  AUTHOR: Yang SeEun
 // CREATED: 2020-11-03
-// UPDATED: 2020-11-03
+// UPDATED: 2020-11-12
 // ==============================================================
 
 
@@ -157,7 +157,7 @@ public class Player : Character
 
             if (uiStatus != null)
             {
-                uiStatus.ChangeMpBar(mp, value);
+                uiStatus.ChangeMpLabel(mp, value);
             }
             if (value > 0)
             {
@@ -239,97 +239,87 @@ public class Player : Character
 
     public IEnumerator CalculateDistanceWithPlayer()
     {
-        // 적이 하나라도 있으면
-        if (EnemyArray.Count >= 1)
+
+        isActive = true;
+        while (!isDead && EnemyArray.Count > 0)
         {
-            isActive = true;
-            //동작
-            while (isActive && !isDead)
+            for (int a = 0; a < EnemyArray.Count; a++)
             {
-                if (EnemyArray.Count > 0)
+                TempEnemy = EnemyArray[0];
+
+                EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
+            }
+            for (int a = 0; a < EnemyArray.Count; a++)
+            {
+                if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
                 {
-                    for (int a = 0; a < EnemyArray.Count; a++)
-                    {
-                        TempEnemy = EnemyArray[0];
+                    TempEnemy = EnemyArray[a];
+                }
+            }
+            this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
 
-                        EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
-                    }
-                    for (int a = 0; a < EnemyArray.Count; a++)
+            if (!isSkillActive)
+            {
+                if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
+                {
+                    inAttackTarget = true;
+
+                    if (TempEnemy.GetComponent<Character>().HP > 0)
                     {
-                        if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
+                        if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
                         {
-                            TempEnemy = EnemyArray[a];
+                            moveSpeed = 0;
+                            AngleisAttack = true;
+                            this.CurrentState = State.Attack;
                         }
-                    }
-                    this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
-
-                    if (!isSkillActive)
-                    {
-                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
+                        else if (attackType == CLASS.지팡이 && joyPad.Pressed == true && !isSkillActive)
                         {
-                            inAttackTarget = true;
-
-                            if (TempEnemy.GetComponent<Character>().HP > 0)
-                            {
-                                if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
-                                {
-                                    moveSpeed = 0;
-                                    AngleisAttack = true;
-                                    this.CurrentState = State.Attack;
-                                }
-                                else if (attackType == CLASS.검 && joyPad.Pressed == true && !isSkillActive)
-                                {
-                                    moveSpeed = temp_Movespeed;
-                                    AngleisAttack = false;
-                                }
-                                if (attackType == CLASS.검 && !isSkillActive)
-                                {
-                                    AngleisAttack = true;
-                                    this.CurrentState = State.Attack;
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            inAttackTarget = false;
+                            moveSpeed = temp_Movespeed;
                             AngleisAttack = false;
-                            if (AngleisAttack == false && !isSkillActive)
-                            {
-                                if (attackType == CLASS.지팡이)
-                                {
-                                    moveSpeed = temp_Movespeed;
-                                }
-                                if (enemy_angle != 0 && joyPad.Pressed == true)
-                                {
-                                    this.CurrentState = State.Walk;
-                                }
-                                if (joyPad.Pressed == false && !isSkillActive)
-                                {
-                                    this.CurrentState = State.Idle;
-                                }
-                            }
                         }
-
-
-                        if (DistanceCheck(this.transform, TempEnemy.transform) <= this.skillRange)
+                        if (attackType == CLASS.검 && !isSkillActive)
                         {
-                            inSkillRange = true;
-                        }
-                        else
-                        {
-                            inSkillRange = false;
+                            AngleisAttack = true;
+                            this.CurrentState = State.Attack;
                         }
                     }
-                    yield return new WaitForSeconds(0.1f);
+
                 }
                 else
                 {
-                    isActive = false;
-                    break;
+                    inAttackTarget = false;
+                    AngleisAttack = false;
+                    if (AngleisAttack == false && !isSkillActive)
+                    {
+                        if (attackType == CLASS.지팡이)
+                        {
+                            moveSpeed = temp_Movespeed;
+                        }
+                        if (enemy_angle != 0 && joyPad.Pressed == true)
+                        {
+                            this.CurrentState = State.Walk;
+                        }
+                        if (joyPad.Pressed == false && !isSkillActive)
+                        {
+                            this.CurrentState = State.Idle;
+                        }
+                    }
+                }
+
+
+                if (DistanceCheck(this.transform, TempEnemy.transform) <= this.skillRange)
+                {
+                    inSkillRange = true;
+                }
+                else
+                {
+                    inSkillRange = false;
                 }
             }
+            yield return null;
         }
+
+        isActive = false;
         inAttackTarget = false;
         inSkillRange = false;
         AngleisAttack = false;
@@ -436,6 +426,46 @@ public class Player : Character
             }
         }
     }
+
+    #region 이전버전 FixedUpdate
+    //private void FixedUpdate()
+    //{
+    //    if (!isDead)
+    //    {
+    //        if(!isSkillActive)
+    //        {
+    //            current_angle = joyPad.angle;
+    //        }
+
+    //        if (joyPad.Pressed)
+    //        {
+    //            joystickPos = joyPad.position;
+    //            //joystick
+    //            h = joystickPos.x;
+    //            v = joystickPos.y;
+    //        }
+
+
+    //        //Make Right direction by Set Animatoion bool setting
+    //        if (!StopPlayer.Equals(true))
+    //        {
+    //            rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
+    //            ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
+    //            //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
+    //        }
+    //        if (StopPlayer.Equals(true))
+    //        {
+    //            rigidbody2d.velocity = Vector2.zero;
+    //            StopTime += Time.deltaTime;
+    //            if (StopTime >= StopMaxTime)
+    //            {
+    //                //   StopPlayer = false;
+    //                StopTime = 0;
+    //            }
+    //        }
+    //    }
+    //}
+    #endregion
     private void FixedUpdate()
     {
         if (!isDead)
@@ -445,28 +475,28 @@ public class Player : Character
                 current_angle = joyPad.angle;
             }
 
-            if (joyPad.Pressed)
-            {
-                joystickPos = joyPad.position;
-                //joystick
-                h = joystickPos.x;
-                v = joystickPos.y;
-            }
-
             //Make Right direction by Set Animatoion bool setting
-            if (!StopPlayer.Equals(true))
+            if (StopPlayer.Equals(false))
             {
-                rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
-                ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
-                //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
+                if (joyPad.Pressed)
+                {
+                    joystickPos = joyPad.position;
+                    //joystick
+                    h = joystickPos.x;
+                    v = joystickPos.y;
+                    rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
+                }
+                else
+                {
+                    rigidbody2d.velocity = Vector2.zero;
+                }
             }
-            if (StopPlayer.Equals(true))
+            else
             {
                 rigidbody2d.velocity = Vector2.zero;
                 StopTime += Time.deltaTime;
                 if (StopTime >= StopMaxTime)
                 {
-                    //   StopPlayer = false;
                     StopTime = 0;
                 }
             }

@@ -75,12 +75,12 @@ public class MapCreator : MonoBehaviour
         int curStage = GameManager.Inst.CurrentStage;
 
 #if UNITY_EDITOR
-        curStage = 1;
+        //curStage = 1;
         Debug.Log("MapCreate : " + curStage);
         Debug.Log("MapCreate : " + curStage % 4);
         Debug.Log("MapCreate : " + curStage / 4);
 #endif
-        if(curStage % 5 == 0)
+        if(curStage % 4 == 0)
         {
             //보스 맵
             isBossMap = true;
@@ -91,12 +91,12 @@ public class MapCreator : MonoBehaviour
             isBossMap = false;
         }
 
-        if(0 < curStage && curStage <= 5)
+        if(0 < curStage && curStage <= 4)
         {
             //숲
             mapType = "Forest";
         }
-        else if(5 < curStage && curStage <= 10)
+        else if(4 < curStage && curStage <= 10)
         {
             //스테이지 추가시 추가
         }
