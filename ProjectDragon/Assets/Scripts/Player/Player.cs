@@ -279,7 +279,6 @@ public class Player : Character
                                 }
                                 else if (attackType == CLASS.검 && joyPad.Pressed == true && !isSkillActive)
                                 {
-
                                     moveSpeed = temp_Movespeed;
                                     AngleisAttack = false;
                                 }
@@ -326,12 +325,14 @@ public class Player : Character
                 }
                 else
                 {
+                    isActive = false;
                     break;
                 }
             }
         }
         inAttackTarget = false;
         inSkillRange = false;
+        AngleisAttack = false;
     }
     public void TempNullSet()
     {

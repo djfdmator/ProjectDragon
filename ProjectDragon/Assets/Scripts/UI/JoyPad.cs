@@ -82,23 +82,39 @@ public class JoyPad : MonoBehaviour
         if (Pressed == false)
         {
             target2.GetComponent<UISprite>().spriteName = "ingameui_43";
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
             target.GetComponent<UISprite>().enabled = false;
             target2.GetComponent<UISprite>().enabled = false;
         }
 
     }
+    private IEnumerator co_Fade = null;
     public void OnPress(bool pressed)
     {
+#if UNITY_EDITOR
+        Debug.Log("touch" + Input.touchCount + pressed.ToString());
+#endif
         if (!player.isDead)
         {
-            if (pressed == false && !player.isSkillActive)
+            if (pressed.Equals(false))
             {
+                if(!player.isSkillActive)
+                {
                 player.CurrentState = State.Idle;
-                StartCoroutine("fadeJoyStick");
+#if UNITY_EDITOR
+                Debug.Log("Fade");
+#endif
+                }
+                co_Fade = fadeJoyStick();
+                StartCoroutine(co_Fade);
+                ResetJoystick();
             }
-            if (pressed.Equals(true))
+            else
             {
+                if(co_Fade !=null) StopCoroutine(co_Fade);
+#if UNITY_EDITOR
+                Debug.Log("onPress");
+#endif
                 target.GetComponent<UISprite>().enabled = true;
                 target2.GetComponent<UISprite>().enabled = true;
                 target2.GetComponent<UISprite>().depth = target.GetComponent<UISprite>().depth + 1;
@@ -119,12 +135,14 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 if (centerOnPress)
                                 {
-
                                     target.transform.position = fingerPoint01;
+#if UNITY_EDITOR
+                                    Debug.Log("들어가?");
+#endif
                                     break;
                                 }
                             }
-                            if (!hit.collider.tag.Equals("button"))
+                            else
                             {
                                 return;
                             }
@@ -150,6 +168,9 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 if (centerOnPress)
                                 {
+#if UNITY_EDITOR
+                                    Debug.Log("여기도..?");
+#endif
                                     return;
                                 }
                             }
@@ -158,17 +179,13 @@ public class JoyPad : MonoBehaviour
                                 touch01 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
                                 target.transform.position = fingerPoint01;
-                                Debug.Log("버튼이 아닙니다.");
                                 return;
                             }
                         }
                     }
                 }
             }
-            else
-            {
-                ResetJoystick();
-            }
+           
         }
         else
         {
@@ -199,7 +216,7 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 break;
                             }
-                            else if (!hit.collider.tag.Equals("button"))
+                            else
                             {
                                 touch02 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch02.position);
