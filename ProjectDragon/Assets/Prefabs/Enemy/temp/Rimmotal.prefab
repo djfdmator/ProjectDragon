@@ -4892,10 +4892,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54042b84b940eaf4b8512de10d7ac482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  hp: 100
+  maxHp: 120
+  hp: 120
   moveSpeed: 1
-  atk: 5
+  atk: 10
   atkSpeed: 2
   atkRange: 3
   nuckBackPower: 0
@@ -4909,8 +4909,6 @@ MonoBehaviour:
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -4921,8 +4919,8 @@ MonoBehaviour:
     m_Bits: 0
   collisionPlayer: 0
   isNuckback: 1
-  skillCooltime: 0
-  skillDamage: 0
+  skillCooltime: 6
+  skillDamage: 8
   m_bDebugMode: 1
   inAtkDetectionRange: 0
   originOffset: 0

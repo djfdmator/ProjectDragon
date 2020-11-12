@@ -12,7 +12,6 @@ public class Doldori : FSM_NormalEnemy
 {
     CapsuleCollider2D capsuleCol;
     Vector3 attackDirection;
-    IEnumerator AttackEndCor = null;
 
     [SerializeField] float attackSpeed=0.2f;
 
@@ -95,7 +94,7 @@ public class Doldori : FSM_NormalEnemy
     protected override void OnCollisionStay2D(Collision2D collision)
     {
         //연속으로 될경우 방지 (한번만 돌리게)
-        if (NEState == NormalEnemyState.Attack && AttackEndCor == null)
+        if (NEState.Equals(NormalEnemyState.Attack) && AttackEndCor == null)
         {
             if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
                 || collision.gameObject.CompareTag("Cliff") || collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
@@ -116,7 +115,6 @@ public class Doldori : FSM_NormalEnemy
                         return;
                     }
                 }
-                StartCoroutine(AttackEndCor);
 #if UNITY_EDITOR
                         Debug.Log("AttackEndCor Start!");
 #endif
@@ -124,6 +122,7 @@ public class Doldori : FSM_NormalEnemy
                 {
                     Attack_On();
                 }
+                StartCoroutine(AttackEndCor);
   
            }
         }

@@ -49,20 +49,31 @@ public class ShortRangeAttackArea : MonoBehaviour
     public void Update()
     {
         //if(player.attackType==AttackType.ShortRange)
+        //{
+        if (player.AngleisAttack == true)
         {
-            if (player.AngleisAttack == true)
-            {
-                angle = player.enemy_angle;
-                m_viewRotateZ = player.enemy_angle;
-            }
-            else
-            {
-                player.MoveSpeed = player.temp_Movespeed;   
-                angle = player.current_angle;
-                m_viewRotateZ = player.current_angle;
-            }
+            angle = player.enemy_angle;
+            m_viewRotateZ = player.enemy_angle;
         }
+        else
+        {
+            player.MoveSpeed = player.temp_Movespeed;
+            angle = player.current_angle;
+            m_viewRotateZ = player.current_angle;
+        }
+        //}
     }
+    //public void Update()
+    //{
+
+    //    if (player.AngleisAttack.Equals(false))
+    //    {
+    //        player.MoveSpeed = player.temp_Movespeed;
+    //    }
+    //    angle = player.current_angle;
+    //    m_viewRotateZ = player.current_angle;
+
+    //}
 
     #region 이전버전 AttackOn
     //public void AttackOn()
@@ -174,6 +185,7 @@ public class ShortRangeAttackArea : MonoBehaviour
                         if (player.isAttacking)
                         //Player hit
                         {
+                            SoundManager.Inst.Ds_EffectPlayerDB(5);
                             hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),player.isCriticalHit,player.nuckBackPower);
                             player.isAttacking = false;
                         }
@@ -212,6 +224,9 @@ public class ShortRangeAttackArea : MonoBehaviour
 
         //수정 예정  projectileTargetList를 데이터베이스에서 이넘으로 받아서 실행할것
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        SoundManager.Inst.Ds_EffectPlayerDB(7);
+
         if (player.weaponType == Player.WeaponType.NormalStaff)
         {
             projectile.Create(player.projectileTargetList, offset, radius, _attackangle, 5.0f, Take_Current_Damage(), player.projectileAnimator[2], false, player.transform.position, player.nuckBackPower);
