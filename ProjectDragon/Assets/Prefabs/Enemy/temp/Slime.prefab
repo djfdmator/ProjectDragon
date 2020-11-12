@@ -4862,27 +4862,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00109878124b3f34c83db8ead3806c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
-  hp: 15
-  moveSpeed: 0.5
+  maxHp: 40
+  hp: 40
+  moveSpeed: 1
   atk: 5
-  nuckBack: 0
-  maxHp: 15
-  atkSpeed: 2
-  atkRange: 0.7
+  atkSpeed: 1
+  atkRange: 0.52
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -4900,7 +4896,7 @@ MonoBehaviour:
   originOffset: 0
   readyTime: 1
   cooltime: 3
-  attackCount: 2
+  attackCount: 1
   normalEnemyState: 0
 --- !u!58 &2779741969946795077
 CircleCollider2D:

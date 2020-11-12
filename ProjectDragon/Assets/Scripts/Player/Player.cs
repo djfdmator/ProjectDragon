@@ -16,7 +16,6 @@ public class Player : Character
 {
     public enum WeaponType { NormalSword, NormalStaff, Excalibur, Nereides, Nyx,  };
 
-
     //flash white material damaged of player
     private FlashWhite damaged_flash;
     private IEnumerator damaged_flash_corrutine;
@@ -27,17 +26,23 @@ public class Player : Character
     private CameraFollow camera;
     private IEnumerator P_Camera_Shake;
 
+    [HideInInspector] public Rigidbody2D rigidbody2d;
+    private PlayerAnimControll animcontroll;
+
+
+    public bool isActive;               //자동 공격 시작인지 (방안에 들어가 시작할때)
+    public bool isInvaid =false;
+    public bool isCriticalHit = false;
+
+
     public float temp_Movespeed;
     // 테스팅용
     public bool AngleisAttack;
     public bool inAttackTarget = false;
     public bool inSkillRange = false;
 
-
-    public bool isActive;               //코루틴 제어 함수
-    public bool isInvaid =false;
-    public bool isCriticalHit = false;
-
+    public float enemy_angle;
+    private bool preSkillState = false;
 
     [SerializeField] protected State myState;
     public State CurrentState
@@ -45,18 +50,25 @@ public class Player : Character
         get { return myState; }
         set
         {
+            preSkillState = myState.Equals(State.Skill) ? true : false;
             myState = value;
 
             //Anim
-            GetComponent<PlayerAnimControll>().CurrentState = myState;
+            animcontroll.CurrentState = myState;
 
-            if (isActive && (AngleisAttack || isSkillActive))       //angle
+            //angle
+            if (isActive && (preSkillState.Equals(true) && myState.Equals(State.Idle)))
             {
-                GetComponent<PlayerAnimControll>().ChangeAngleAnim(enemy_angle);
+                current_angle = enemy_angle;
+            }
+
+            if (isActive && (AngleisAttack || isSkillActive))    
+            {
+                animcontroll.ChangeAngleAnim(enemy_angle);
             }
             else
             {
-                GetComponent<PlayerAnimControll>().ChangeAngleAnim(current_angle);
+                animcontroll.ChangeAngleAnim(current_angle);
             }
         }
     }
@@ -101,8 +113,6 @@ public class Player : Character
     private float horizontalSpeed = 5.0f;
     private float verticalSpeed = 5.0f;
 
-
-    [HideInInspector] public Rigidbody2D rigidbody2d;
 
     //************UI***********
     //JoyStick
@@ -185,7 +195,8 @@ public class Player : Character
             float a = Random.Range(0.0f, 100.0f);
             if (invaid >= a)
             {
-                currentATK = ATK - (ATK * 0.1f);
+                currentATK = 0;
+                //currentATK = ATK - (ATK * 0.1f);
                 // Debug.Log("회피성공");
                 isInvaid = true;
             }
@@ -239,7 +250,6 @@ public class Player : Character
 
     public IEnumerator CalculateDistanceWithPlayer()
     {
-
         isActive = true;
         while (!isDead && EnemyArray.Count > 0)
         {
@@ -247,7 +257,7 @@ public class Player : Character
             {
                 TempEnemy = EnemyArray[0];
 
-                EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
+                EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.transform, EnemyArray[a].transform);
             }
             for (int a = 0; a < EnemyArray.Count; a++)
             {
@@ -256,52 +266,58 @@ public class Player : Character
                     TempEnemy = EnemyArray[a];
                 }
             }
-            this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
+            enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
 
             if (!isSkillActive)
             {
-                if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
+                if (DistanceCheck(this.transform, TempEnemy.transform) <= this.GetComponent<Player>().AtkRange)
                 {
                     inAttackTarget = true;
 
                     if (TempEnemy.GetComponent<Character>().HP > 0)
                     {
-                        if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
-                        {
-                            moveSpeed = 0;
-                            AngleisAttack = true;
-                            this.CurrentState = State.Attack;
-                        }
-                        else if (attackType == CLASS.지팡이 && joyPad.Pressed == true && !isSkillActive)
-                        {
-                            moveSpeed = temp_Movespeed;
-                            AngleisAttack = false;
-                        }
-                        if (attackType == CLASS.검 && !isSkillActive)
+                        if (attackType == CLASS.검)
                         {
                             AngleisAttack = true;
-                            this.CurrentState = State.Attack;
+                            CurrentState = State.Attack;
+                        }
+                        else if (attackType == CLASS.지팡이)
+                        {
+                            if (joyPad.Pressed == true)
+                            {
+                                moveSpeed = temp_Movespeed;
+                                AngleisAttack = false;
+                            }
+                            else
+                            {
+                                moveSpeed = 0;
+                                AngleisAttack = true;
+                                CurrentState = State.Attack;
+                            }
                         }
                     }
-
                 }
                 else
                 {
                     inAttackTarget = false;
                     AngleisAttack = false;
-                    if (AngleisAttack == false && !isSkillActive)
+                    if (AngleisAttack == false )
                     {
                         if (attackType == CLASS.지팡이)
                         {
                             moveSpeed = temp_Movespeed;
                         }
-                        if (enemy_angle != 0 && joyPad.Pressed == true)
+
+                        if( joyPad.Pressed == true)
                         {
-                            this.CurrentState = State.Walk;
+                            if (enemy_angle != 0)
+                            {
+                                CurrentState = State.Walk;
+                            }
                         }
-                        if (joyPad.Pressed == false && !isSkillActive)
+                        else
                         {
-                            this.CurrentState = State.Idle;
+                            CurrentState = State.Idle;
                         }
                     }
                 }
@@ -315,6 +331,10 @@ public class Player : Character
                 {
                     inSkillRange = false;
                 }
+            }
+            else
+            {
+                inAttackTarget = false;
             }
             yield return null;
         }
@@ -345,8 +365,8 @@ public class Player : Character
         Initalize_Player_Link();
 
         temp_Movespeed = moveSpeed;
-        critical = 50f;
-        invaid = 30f;
+        critical = 50.0f;
+        invaid = 6.0f;
 
         projectileTargetList.Add("Enemy");
         //GameManager.Inst.SavePlayerData();
@@ -389,10 +409,12 @@ public class Player : Character
             float radius = 0.2f;
             if (weaponType == Player.WeaponType.NormalSword)
             {
+                SoundManager.Inst.Ds_EffectPlayerDB(6);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position, nuckBackPower);
             }
             else if (weaponType == Player.WeaponType.NormalStaff)
             {
+                SoundManager.Inst.Ds_EffectPlayerDB(17);
                 capsuleColSize = new Vector2(0.6f, 1);
                 if (TempEnemy != null)
                 {
@@ -405,6 +427,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(7);
                     offset = new Vector2(0.03f, 0.0f);
                     capsuleColSize = new Vector2(0.6f, 1);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[7], true, TempEnemy.transform.position);
@@ -412,6 +435,7 @@ public class Player : Character
             }
             else if (weaponType == Player.WeaponType.Nereides)
             {
+                SoundManager.Inst.Ds_EffectPlayerDB(7);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
 
             }
@@ -419,6 +443,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(7);
                     offset = new Vector2(0.03f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
@@ -470,15 +495,20 @@ public class Player : Character
     {
         if (!isDead)
         {
-            if(!isSkillActive)
+            if (joyPad.Pressed.Equals(true)&& !isSkillActive)
             {
                 current_angle = joyPad.angle;
             }
 
+            //if (!isSkillActive)
+            //{
+            //    current_angle = joyPad.angle;
+            //}
+
             //Make Right direction by Set Animatoion bool setting
             if (StopPlayer.Equals(false))
             {
-                if (joyPad.Pressed)
+                if (joyPad.Pressed.Equals(true))
                 {
                     joystickPos = joyPad.position;
                     //joystick
@@ -659,6 +689,7 @@ public class Player : Character
         base.Start();
         damaged_flash = GetComponent<FlashWhite>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animcontroll = GetComponent<PlayerAnimControll>();
 
         uiRoot = GameObject.Find("UI Root").gameObject;
         joyPad = uiRoot.transform.Find("JoyPad").GetComponent<JoyPad>();
@@ -666,6 +697,8 @@ public class Player : Character
         uiStatus = uiRoot.transform.Find("Status").GetComponent<BattleStatus>();
 
         camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+
+
     }
     
 

@@ -69,6 +69,7 @@ public class RoomManager : MonoBehaviour
         ResourceLoad();
     }
 
+
     private void ResourceLoad()
     {
         Mana_Large = Resources.Load("Object/Mana_Large") as GameObject;

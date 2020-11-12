@@ -201,6 +201,7 @@ public class FSM_NormalEnemy : Enemy
             yield return null;
         }
     }
+    protected IEnumerator AttackEndCor = null;
 
     protected virtual IEnumerator Attack()
     {
@@ -209,7 +210,8 @@ public class FSM_NormalEnemy : Enemy
         isAttacking = true;
         yield return null;
 
-        StartCoroutine(AttackEnd());
+        AttackEndCor = AttackEnd();
+        StartCoroutine(AttackEndCor);
     }
 
     protected void AttackStart()
@@ -253,6 +255,7 @@ public class FSM_NormalEnemy : Enemy
 
             yield return null;
         }
+        AttackEndCor = null;
     }
     #endregion
 

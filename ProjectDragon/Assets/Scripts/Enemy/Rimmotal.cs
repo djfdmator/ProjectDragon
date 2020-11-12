@@ -94,11 +94,11 @@ public class Rimmotal : Enemy
         Vector2 offset = new Vector2(-0.01f, -0.1f);
         float radius = 0.1f;
 
-        projectile.Create(projectileTargetList, offset, radius, Angle - 20.0f, 4.0f, 2, LeafAnimator, false, transform.position);
-        projectile.Create(projectileTargetList, offset, radius, Angle - 15.0f, 4.0f, 2, LeafAnimator, false, transform.position);
-        projectile.Create(projectileTargetList, offset, radius, Angle , 4.0f, 2, LeafAnimator, false, transform.position);
-        projectile.Create(projectileTargetList, offset, radius, Angle + 15.0f, 4.0f, 2, LeafAnimator, false, transform.position);
-        projectile.Create(projectileTargetList, offset, radius, Angle + 20.0f, 4.0f, 2, LeafAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle - 20.0f, 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle - 15.0f, 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle , 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle + 15.0f, 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
+        projectile.Create(projectileTargetList, offset, radius, Angle + 20.0f, 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
 
     }
 
@@ -225,9 +225,9 @@ public class Rimmotal : Enemy
         {
             if (inAtkDetectionRange)
             {
-                thornPoint.Create(projectileTargetList, Vector2.zero, new Vector2(0.7f, 0.7f), ATTACKDAMAGE, ThornAnimator, false, other.position - new Vector3(0.0f, 0.5f, 0.0f));
+                thornPoint.Create(projectileTargetList, Vector2.zero, new Vector2(0.7f, 0.7f), skillDamage, ThornAnimator, false, other.position - new Vector3(0.0f, 0.5f, 0.0f));
                 //thornTargeting.Create(skillDamage, "ThornTargeting", other.position);
-                yield return new WaitForSeconds(2.0f);
+                yield return new WaitForSeconds(2.5f);
             }
             yield return null;
         }
@@ -238,7 +238,7 @@ public class Rimmotal : Enemy
     /// <returns></returns>
     IEnumerator CoolTimeCheck()
     {
-        yield return new WaitForSeconds(6.0f);
+        yield return new WaitForSeconds(skillCooltime);
         _thorn_attacking = false;
 
     }

@@ -5137,7 +5137,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.09}
+  m_Offset: {x: 0, y: -0.30321524}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5148,7 +5148,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.8}
+  m_Size: {x: 0.5, y: 0.44971758}
   m_EdgeRadius: 0
 --- !u!50 &5409751990359364115
 Rigidbody2D:
@@ -5253,15 +5253,15 @@ MonoBehaviour:
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAnim_AnglePos: 0
+  rigidbody2d: {fileID: 0}
+  isActive: 0
+  isInvaid: 0
+  isCriticalHit: 0
   temp_Movespeed: 0
   AngleisAttack: 0
   inAttackTarget: 0
   inSkillRange: 0
-  isActive: 0
-  isInvaid: 0
-  isCriticalHit: 0
+  enemy_angle: 0
   myState: 0
   projectileAnimator:
   - {fileID: 22100000, guid: 034c7f47935ef0044a0378613ba46b81, type: 2}
@@ -5285,7 +5285,6 @@ MonoBehaviour:
   StopPlayer: 0
   StopMaxTime: 0
   walk_Sound: {fileID: 0}
-  rigidbody2d: {fileID: 0}
   joystickPos: {x: 0, y: 0, z: 0}
   h: 0
   v: 0

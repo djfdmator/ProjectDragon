@@ -195,8 +195,4 @@ public class Character : MonoBehaviour
 
     [HideInInspector]
     public int current_Anim_Frame;
-    [HideInInspector]
-    public float enemy_angle;
-    [HideInInspector]
-    public AnglePos myAnim_AnglePos;
 }
