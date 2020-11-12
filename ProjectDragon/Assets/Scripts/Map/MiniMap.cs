@@ -66,11 +66,11 @@ public class MiniMap : MonoBehaviour
             //클리어가 안된 방들 미니맵에서 연하게 표시
             if(!obj.roomState.Equals(RoomState.Clear))
             {
-                obj.MiniMapPos.SetActive(true);
-                obj.MiniMapPos.GetComponent<UISprite>().alpha = 0.5f;
+                //obj.MiniMapPos.SetActive(true);
+                //obj.MiniMapPos.GetComponent<UISprite>().alpha = 0.5f;
  
                 //히든방은 숨깁니다.
-                if (obj.roomType.Equals(RoomType.Hidden)) obj.MiniMapPos.GetComponent<UISprite>().alpha = 0.0f;
+//                if (obj.roomType.Equals(RoomType.Hidden)) obj.MiniMapPos.GetComponent<UISprite>().alpha = 0.0f;
             }
         }
     }
@@ -112,7 +112,7 @@ public class MiniMap : MonoBehaviour
                 button.onClick.Add(teleport);
             }
 
-            temp_room.MiniMapPos = room[i];
+           // temp_room.MiniMapPos = room[i];
 
             //처음 시작시 시작방을 제외하고 미니맵에서 지웁니다.
             if (x != 0.0f || y != 0.0f)
@@ -152,8 +152,8 @@ public class MiniMap : MonoBehaviour
         roomRoot.localScale = new Vector3(2.0f, 2.0f, 1.0f);
         roomRoot.localPosition *= 2.0f;
 
-        button.onClick.RemoveAt(0);
-        StartCoroutine(AddButton(mini));
+        //button.onClick.Add(mini);
+        //button.onClick.RemoveAt(0);
     }
 
     //미니맵 축소
@@ -178,16 +178,16 @@ public class MiniMap : MonoBehaviour
         roomRoot.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         roomRoot.localPosition /= 2.0f;
 
-        button.onClick.RemoveAt(0);
-        StartCoroutine(AddButton(maxi));
+        //button.onClick.Add(maxi);
+        //button.onClick.RemoveAt(0);
     }
 
     //클릭 이벤트 바꾸기
-    IEnumerator AddButton(EventDelegate _Event)
-    {
-        yield return new WaitForSeconds(0.3f);
-        button.onClick.Add(_Event);
-    }
+    //IEnumerator AddButton(EventDelegate _Event)
+    //{
+    //    yield return new WaitForSeconds(0.3f);
+    //    button.onClick.Add(_Event);
+    //}
 
     //플레이어 teleport
     public void Teleport(int _x, int _y)

@@ -68,19 +68,18 @@ public class MapCreator : MonoBehaviour
     //수정 필요함
     private void SettingCreateRegion()
     {
-        //GameManager.Inst.CurrentStage = 3;
 #if UNITY_EDITOR
         Debug.Log("GameManager.Inst.CurrentStage : " + GameManager.Inst.CurrentStage);
 #endif
         int curStage = GameManager.Inst.CurrentStage;
 
 #if UNITY_EDITOR
-        curStage = 1;
+        //curStage = 1;
         Debug.Log("MapCreate : " + curStage);
         Debug.Log("MapCreate : " + curStage % 4);
         Debug.Log("MapCreate : " + curStage / 4);
 #endif
-        if(curStage % 5 == 0)
+        if(curStage % 4 == 0)
         {
             //보스 맵
             isBossMap = true;
@@ -91,34 +90,18 @@ public class MapCreator : MonoBehaviour
             isBossMap = false;
         }
 
-        if(0 < curStage && curStage <= 5)
+        if(0 < curStage && curStage <= 4)
         {
             //숲
             mapType = "Forest";
         }
-        else if(5 < curStage && curStage <= 10)
+        else if(4 < curStage && curStage <= 10)
         {
             //스테이지 추가시 추가
         }
     }
 
-    /// <summary>
-    /// Initialized data
-    /// </summary>
-    private void Init()
-    {
-        gridSizeX_Cen = (int)(worldSize.x / 2);
-        gridSizeY_Cen = (int)(worldSize.y / 2);
-        gridSizeX = (int)worldSize.x;
-        gridSizeY = (int)worldSize.y;
-
-        if (numberOfRooms >= gridSizeX * gridSizeY)
-        {
-            numberOfRooms = Mathf.RoundToInt(gridSizeX * gridSizeY);
-        }
-        map_Data = new GameObject[gridSizeX, gridSizeY];
-    }
-
+    #region ResourceLoad
     /// <summary>
     /// Load All Map Prefabs
     /// </summary>
@@ -138,6 +121,11 @@ public class MapCreator : MonoBehaviour
         }
     }
 
+    private void ResourceLoadBossMap()
+    {
+        map_Base = Resources.Load("Map/" + mapType + "/Boss/Base") as GameObject;
+        map_Stair = Resources.Load("Map/" + mapType + "/Boss/Boss") as GameObject;
+    }
     private void ResourceLoadNormalMap()
     {
         map_Base = Resources.Load("Map/" + mapType + "/Base") as GameObject;
@@ -159,12 +147,25 @@ public class MapCreator : MonoBehaviour
             map_Prefabs[i] = Resources.Load(name) as GameObject;
         }
     }
+    #endregion
 
-    private void ResourceLoadBossMap()
+    /// <summary>
+    /// Initialized data
+    /// </summary>
+    private void Init()
     {
-        map_Base = Resources.Load("Map/" + mapType + "/Boss/Base") as GameObject;
-        map_Stair = Resources.Load("Map/" + mapType + "/Boss/Boss") as GameObject;
+        gridSizeX_Cen = (int)(worldSize.x / 2);
+        gridSizeY_Cen = (int)(worldSize.y / 2);
+        gridSizeX = (int)worldSize.x;
+        gridSizeY = (int)worldSize.y;
+
+        if (numberOfRooms >= gridSizeX * gridSizeY)
+        {
+            numberOfRooms = Mathf.RoundToInt(gridSizeX * gridSizeY);
+        }
+        map_Data = new GameObject[gridSizeX, gridSizeY];
     }
+
 
     void Start()
     {
