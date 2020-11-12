@@ -3266,6 +3266,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResultPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 4885482719693082667, guid: fd6053c2747e21a4e9b5521fde5446e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4885482719693082666, guid: fd6053c2747e21a4e9b5521fde5446e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3560,6 +3565,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4710353120489550898, guid: cba0a52e3bf31004fa5372441f6cff84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4710353120489550899, guid: cba0a52e3bf31004fa5372441f6cff84,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3730,6 +3740,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkillButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 68280073618526175, guid: 95922c0c33b58274497535a08b23f639,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3165667263361394077, guid: 95922c0c33b58274497535a08b23f639,
         type: 3}

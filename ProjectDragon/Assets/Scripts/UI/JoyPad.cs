@@ -82,23 +82,39 @@ public class JoyPad : MonoBehaviour
         if (Pressed == false)
         {
             target2.GetComponent<UISprite>().spriteName = "ingameui_43";
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
             target.GetComponent<UISprite>().enabled = false;
             target2.GetComponent<UISprite>().enabled = false;
         }
 
     }
+    private IEnumerator co_Fade = null;
     public void OnPress(bool pressed)
     {
+#if UNITY_EDITOR
+        Debug.Log("touch" + Input.touchCount + pressed.ToString());
+#endif
         if (!player.isDead)
         {
-            if (pressed == false && !player.isSkillActive)
+            if (pressed.Equals(false))
             {
+                if(!player.isSkillActive)
+                {
                 player.CurrentState = State.Idle;
-                StartCoroutine(fadeJoyStick());
+#if UNITY_EDITOR
+                Debug.Log("Fade");
+#endif
+                }
+                co_Fade = fadeJoyStick();
+                StartCoroutine(co_Fade);
+                ResetJoystick();
             }
-            if (pressed.Equals(true))
+            else
             {
+                if(co_Fade !=null) StopCoroutine(co_Fade);
+#if UNITY_EDITOR
+                Debug.Log("onPress");
+#endif
                 target.GetComponent<UISprite>().enabled = true;
                 target2.GetComponent<UISprite>().enabled = true;
                 target2.GetComponent<UISprite>().depth = target.GetComponent<UISprite>().depth + 1;
@@ -119,8 +135,10 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 if (centerOnPress)
                                 {
-
                                     target.transform.position = fingerPoint01;
+#if UNITY_EDITOR
+                                    Debug.Log("들어가?");
+#endif
                                     break;
                                 }
                             }
@@ -130,9 +148,9 @@ public class JoyPad : MonoBehaviour
                             }
                         }
                     }
-                    //if (touch01.phase.Equals(TouchPhase.Ended))
-                    //{
-                    //}
+                    if (touch01.phase.Equals(TouchPhase.Ended))
+                    {
+                    }
                 }
                 if (Input.touchCount > 1)
                 {
@@ -150,10 +168,13 @@ public class JoyPad : MonoBehaviour
                                 ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
                                 if (centerOnPress)
                                 {
+#if UNITY_EDITOR
+                                    Debug.Log("여기도..?");
+#endif
                                     return;
                                 }
                             }
-                            else
+                            if (!hit.collider.tag.Equals("button"))
                             {
                                 touch01 = Input.GetTouch(1);
                                 fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
@@ -164,17 +185,13 @@ public class JoyPad : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                ResetJoystick();
-            }
+           
         }
         else
         {
             player.rigidbody2d.velocity = Vector2.zero;
         }
     }
-    
     public void OnDrag(Vector2 delta)
     {
         if (!player.isDead)
@@ -244,13 +261,13 @@ public class JoyPad : MonoBehaviour
                     target2.localPosition = Vector3.ClampMagnitude(target2.localPosition, radius);
                     position = target2.localPosition;
                 }
-                if (player.CurrentState != State.Attack && !player.isSkillActive)
+                if (player.CurrentState != State.Attack)
                 {
-                    if (angle > 0)
+                    if (angle > 0 && !player.isSkillActive)
                     {
                         player.CurrentState = State.Walk;
                     }
-                    else if (angle == 0)
+                    else if (angle == 0 && !player.isSkillActive)
                     {
                         player.CurrentState = State.Idle;
                     }

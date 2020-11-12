@@ -97,9 +97,9 @@ public class Doldori : FSM_NormalEnemy
         //연속으로 될경우 방지 (한번만 돌리게)
         if (NEState == NormalEnemyState.Attack && AttackEndCor == null)
         {
-            //if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
-            //    || collision.gameObject.CompareTag("Cliff")|| collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
-            //{
+            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
+                || collision.gameObject.CompareTag("Cliff") || collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
+            {
 #if UNITY_EDITOR
                 //Debug.Log("AttackEndCor!");
 #endif
@@ -125,7 +125,7 @@ public class Doldori : FSM_NormalEnemy
                     Attack_On();
                 }
   
-           // }
+           }
         }
     }
 

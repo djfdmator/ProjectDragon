@@ -15,8 +15,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 441ad51a738ae4f41a1d1be52a4f5c7e, type: 2}
   mSprites:
   - name: EquipmentChange_Arrow1
-    x: 1942
-    y: 115
+    x: 1921
+    y: 1982
     width: 52
     height: 66
     borderLeft: 0
@@ -28,8 +28,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Arrow2
-    x: 1995
-    y: 115
+    x: 1974
+    y: 1982
     width: 52
     height: 66
     borderLeft: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Arrow3
-    x: 1980
-    y: 182
+    x: 1921
+    y: 1915
     width: 52
     height: 66
     borderLeft: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Arrow4
-    x: 1927
-    y: 182
+    x: 1974
+    y: 1915
     width: 52
     height: 66
     borderLeft: 0
@@ -80,8 +80,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_ChangeButton_Activate
-    x: 1507
-    y: 153
+    x: 367
+    y: 49
     width: 209
     height: 95
     borderLeft: 0
@@ -93,8 +93,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_ChangeButton_Normal
-    x: 1717
-    y: 153
+    x: 786
+    y: 45
     width: 209
     height: 95
     borderLeft: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Information_Cooltime
-    x: 1507
-    y: 265
+    x: 2004
+    y: 1826
     width: 36
     height: 36
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Information_Mana
-    x: 1232
-    y: 418
+    x: 1921
+    y: 1775
     width: 31
     height: 45
     borderLeft: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Information_Select
-    x: 786
-    y: 672
+    x: 0
+    y: 376
     width: 785
     height: 295
     borderLeft: 0
@@ -158,8 +158,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Inventory_Title
-    x: 1507
-    y: 89
+    x: 1610
+    y: 799
     width: 299
     height: 63
     borderLeft: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_NewLabel
-    x: 1191
-    y: 423
+    x: 1963
+    y: 1822
     width: 40
     height: 40
     borderLeft: 0
@@ -184,8 +184,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Nextstage_Normal
-    x: 1662
-    y: 416
+    x: 1286
+    y: 767
     width: 323
     height: 95
     borderLeft: 0
@@ -197,8 +197,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Stats_Attack
-    x: 1149
-    y: 422
+    x: 1921
+    y: 1821
     width: 41
     height: 41
     borderLeft: 0
@@ -210,8 +210,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: EquipmentChange_Title
-    x: 1285
-    y: 512
+    x: 1006
+    y: 863
     width: 406
     height: 104
     borderLeft: 0
@@ -223,8 +223,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_HPbar_BackGround
-    x: 1285
-    y: 411
+    x: 1413
+    y: 867
     width: 376
     height: 100
     borderLeft: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_HPbar_HP
-    x: 0
-    y: 148
+    x: 1556
+    y: 722
     width: 300
     height: 44
     borderLeft: 0
@@ -249,8 +249,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_MPbar_BackGround
-    x: 1692
-    y: 516
+    x: 1006
+    y: 635
     width: 277
     height: 100
     borderLeft: 0
@@ -262,8 +262,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_PauseButton_Click
-    x: 0
-    y: 12
+    x: 1286
+    y: 632
     width: 134
     height: 134
     borderLeft: 0
@@ -275,8 +275,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_PauseButton_Normal
-    x: 1807
-    y: 18
+    x: 1421
+    y: 632
     width: 134
     height: 134
     borderLeft: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_Skill_Button_Activation
-    x: 0
-    y: 452
+    x: 786
+    y: 308
     width: 219
     height: 219
     borderLeft: 0
@@ -301,8 +301,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_Skill_Button_Disabled
-    x: 440
-    y: 452
+    x: 786
+    y: 528
     width: 219
     height: 219
     borderLeft: 0
@@ -314,8 +314,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ingame_Skill_Time_Activation
-    x: 1662
-    y: 249
+    x: 600
+    y: 32
     width: 175
     height: 166
     borderLeft: 0
@@ -327,8 +327,8 @@ MonoBehaviour:
     paddingTop: 31
     paddingBottom: 22
   - name: Ingame_Skill_Time_Disabled
-    x: 1838
-    y: 249
+    x: 786
+    y: 141
     width: 175
     height: 166
     borderLeft: 0
@@ -340,8 +340,8 @@ MonoBehaviour:
     paddingTop: 31
     paddingBottom: 22
   - name: Ingame_Skill_Time_Off
-    x: 220
-    y: 452
+    x: 786
+    y: 748
     width: 219
     height: 219
     borderLeft: 0
@@ -353,10 +353,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_37
-    x: 660
-    y: 463
-    width: 208
-    height: 208
+    x: 367
+    y: 145
+    width: 232
+    height: 230
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -366,10 +366,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_40
-    x: 1077
-    y: 464
-    width: 207
-    height: 207
+    x: 1921
+    y: 1863
+    width: 51
+    height: 51
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -379,10 +379,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_43
-    x: 869
-    y: 464
-    width: 207
-    height: 207
+    x: 1973
+    y: 1863
+    width: 51
+    height: 51
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -392,8 +392,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_51
-    x: 1345
-    y: 147
+    x: 1006
+    y: 44
     width: 161
     height: 154
     borderLeft: 0
@@ -405,8 +405,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ingameui_57
-    x: 660
-    y: 286
+    x: 600
+    y: 199
     width: 182
     height: 176
     borderLeft: 0
@@ -418,8 +418,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 5
   - name: Pause_Back_Click
-    x: 1094
-    y: 193
+    x: 1006
+    y: 526
     width: 250
     height: 108
     borderLeft: 0
@@ -431,8 +431,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Back_Normal
-    x: 1400
-    y: 302
+    x: 1006
+    y: 417
     width: 250
     height: 108
     borderLeft: 0
@@ -444,8 +444,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Exit_Click
-    x: 843
-    y: 228
+    x: 1006
+    y: 308
     width: 250
     height: 108
     borderLeft: 0
@@ -457,8 +457,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Exit_Normal
-    x: 1149
-    y: 302
+    x: 1006
+    y: 199
     width: 250
     height: 108
     borderLeft: 0
@@ -470,8 +470,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Panel
-    x: 1572
-    y: 617
+    x: 0
+    y: 25
     width: 366
     height: 350
     borderLeft: 0
@@ -483,8 +483,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Pause_Title
-    x: 869
-    y: 337
+    x: 1006
+    y: 736
     width: 279
     height: 126
     borderLeft: 0

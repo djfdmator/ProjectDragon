@@ -141,7 +141,6 @@ public class ShortRangeAttackArea : MonoBehaviour
 
         foreach (Collider2D hitedTarget in hitedTargets)
         {
-            
             Vector2 targetPos = hitedTarget.transform.position;
             Vector2 dir = (targetPos - originPos).normalized;
             Vector2 lookDir = AngleToDirZ(m_viewRotateZ);
@@ -158,14 +157,18 @@ public class ShortRangeAttackArea : MonoBehaviour
                 if (rayHitedTarget)
                 {
                     //Debug.Log(rayHitedTarget.transform.gameObject.name);
+#if UNITY_EDITOR
                     if (m_bDebugMode)
                         Debug.DrawLine(originPos, rayHitedTarget.point, Color.yellow);
+#endif
                 }
                 else
                 {
                     hitedTargetContainer.Add(hitedTarget);
+#if UNITY_EDITOR
                     if (m_bDebugMode)
                         Debug.DrawLine(originPos, targetPos, Color.red);
+#endif
                     if (hitedTarget.CompareTag("Enemy") || hitedTarget.isActiveAndEnabled == true)
                     {
                         if (player.isAttacking)
