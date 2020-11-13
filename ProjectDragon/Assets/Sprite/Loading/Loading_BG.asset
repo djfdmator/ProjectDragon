@@ -42,7 +42,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: bg3
     x: 0
-    y: 3016
+    y: 854
     width: 1920
     height: 1080
     borderLeft: 0
@@ -54,6 +54,32 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: bg4
+    x: 1921
+    y: 854
+    width: 1920
+    height: 1080
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: bg5
+    x: 0
+    y: 3016
+    width: 1920
+    height: 1080
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: bg6
     x: 1921
     y: 3016
     width: 1920

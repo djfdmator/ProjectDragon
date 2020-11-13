@@ -13,7 +13,7 @@ using UnityEngine;
 
 public class Crack : MonoBehaviour
 {
-    private Room room;
+    public Room room;
     private Door door;
 
     public Sprite sprite;

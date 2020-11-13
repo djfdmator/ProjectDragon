@@ -40,6 +40,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: SkillIcon_ManaRelease
+    x: 0
+    y: 161
+    width: 86
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: SkillIcon_SavageChain
     x: 87
     y: 65
@@ -54,7 +67,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: SkillIcon_Thunderbolt
-    x: 0
+    x: 174
     y: 161
     width: 86
     height: 95

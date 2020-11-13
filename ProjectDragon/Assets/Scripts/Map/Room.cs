@@ -61,29 +61,30 @@ public class Room : MonoBehaviour
         gathering = Gathering(2.0f);
     }
 
-    private void Start() {
+    private void Start()
+    {
         //gathering = Gathering(2.0f);    
     }
 
     private void OnEnable()
     {
-        switch(roomType)
+        switch (roomType)
         {
             case RoomType.Hidden:
-            SoundManager.Inst.Ds_BGMPlayerDB(6);
-            break;
+                SoundManager.Inst.Ds_BGMPlayerDB(6);
+                break;
             case RoomType.NPC:
-            SoundManager.Inst.Ds_BGMPlayerDB(5);
-            break;
+                SoundManager.Inst.Ds_BGMPlayerDB(5);
+                break;
             case RoomType.Boss:
-            SoundManager.Inst.Ds_BGMPlayerDB(7);
-            break;
+                SoundManager.Inst.Ds_BGMPlayerDB(7);
+                break;
             default:
-            SoundManager.Inst.Ds_BGMPlayerDB(4);
-            break;
+                SoundManager.Inst.Ds_BGMPlayerDB(4);
+                break;
         }
 
-        if(GameManager.Inst.CurrentStage != Database.Inst.playData.finalStage)
+        if (GameManager.Inst.CurrentStage != Database.Inst.playData.finalStage)
             StartCoroutine(gathering);
     }
     private void OnDisable()
@@ -109,7 +110,7 @@ public class Room : MonoBehaviour
             {
                 Enemies.Add(obj.gameObject);
             }
-            
+
         }
     }
 
@@ -125,7 +126,7 @@ public class Room : MonoBehaviour
             {
                 //몬스터가 한 마리도 없다면 클리어입니다.
                 IsClear();
-                if(GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
+                if (GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
                 {
                     roomManager.OpenResultPop(false);
                 }

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class HiddenItem : MonoBehaviour
 {
+    private bool isGet = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if(collision.CompareTag("Player") && !isGet)
         {
+            isGet = true;
             GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().items.Add(new Database.Inventory(Database.Inst.weapons[2]));
 
-            Destroy(this.gameObject);
+            Destroy(transform.Find("Item").gameObject);
         }
     }
 }
