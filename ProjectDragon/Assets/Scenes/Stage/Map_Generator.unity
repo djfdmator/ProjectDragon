@@ -680,6 +680,18 @@ MonoBehaviour:
   mSpriteName: Ingame_MiniMap_NowIcon
   mFixedAspect: 0
   mFillCenter: 1
+--- !u!114 &432319987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3321427363335049377, guid: 060d0334665bc8745ba6746949c818ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 905988040599756465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e670ad07d3c082e4aa9c7eeb97f84928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470327745
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +750,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 97815
+    m_Bits: 130583
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2757,7 +2769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1810136842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3328,11 +3340,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResultPopup
       objectReference: {fileID: 0}
-    - target: {fileID: 4885482719693082667, guid: fd6053c2747e21a4e9b5521fde5446e2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4885482719693082666, guid: fd6053c2747e21a4e9b5521fde5446e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3615,11 +3622,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 4710353120489550898, guid: cba0a52e3bf31004fa5372441f6cff84,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4710353120489550899, guid: cba0a52e3bf31004fa5372441f6cff84,
         type: 3}
@@ -5001,7 +5003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &8230890849543928200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5096,7 +5098,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 432319987}
+    mMethodName: Gathering
+    mParameters: []
+    oneShot: 0
 --- !u!65 &8230890849573500504
 BoxCollider:
   m_ObjectHideFlags: 0

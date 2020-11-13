@@ -57,7 +57,7 @@ public class Player : Character
             animcontroll.CurrentState = myState;
 
             //angle
-            if (isActive && (preSkillState.Equals(true) && myState.Equals(State.Idle)))
+            if (isActive && (preSkillState.Equals(true) && myState.Equals(State.Idle)))         //Idle 이전에 스킬상태였다면
             {
                 current_angle = enemy_angle;
             }
@@ -76,8 +76,8 @@ public class Player : Character
 
     //애니메이터 리소스
     public RuntimeAnimatorController[] projectileAnimator;              
-    private RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
-    private RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
+    //private RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
+    //private RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
 
 
     #region 플레이어 세팅
@@ -237,6 +237,17 @@ public class Player : Character
         rigidbody2d.velocity = Vector2.zero;
     }
 
+    public void Gathering()
+    {
+        if (!isDead)
+        {
+            isSkillActive = false;
+            StopPlayer = false;
+        }
+            CurrentState = State.Get;
+        Debug.Log("CurrentState " + CurrentState);
+    }
+
 
     public void OnStop()
     {
@@ -343,6 +354,8 @@ public class Player : Character
         inAttackTarget = false;
         inSkillRange = false;
         AngleisAttack = false;
+
+        OnStop();
     }
     public void TempNullSet()
     {
@@ -366,7 +379,7 @@ public class Player : Character
 
         temp_Movespeed = moveSpeed;
         critical = 50.0f;
-        invaid = 6.0f;
+        invaid = 10.0f;
 
         projectileTargetList.Add("Enemy");
         //GameManager.Inst.SavePlayerData();
@@ -414,10 +427,11 @@ public class Player : Character
             }
             else if (weaponType == Player.WeaponType.NormalStaff)
             {
-                SoundManager.Inst.Ds_EffectPlayerDB(17);
                 capsuleColSize = new Vector2(0.6f, 1);
                 if (TempEnemy != null)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(17);
+
                     offset = new Vector2(0.02f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
@@ -435,7 +449,8 @@ public class Player : Character
             }
             else if (weaponType == Player.WeaponType.Nereides)
             {
-                SoundManager.Inst.Ds_EffectPlayerDB(7);
+                //파도효과음
+                SoundManager.Inst.Ds_EffectPlayerDB(9);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
 
             }
@@ -594,39 +609,46 @@ public class Player : Character
         }
         return AnglePos.Front;
     }
-    //콜리젼에 따른 플레이어 밀림 방지
-    protected void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision != null)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
 
-                rigidbody2d.bodyType = RigidbodyType2D.Kinematic;
-                rigidbody2d.velocity = Vector2.zero;
-            }
-        }
-    }
-    // 콜리젼이 해제 됐을 때의 플레이어 밀림 방지
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision != null)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                rigidbody2d.bodyType = RigidbodyType2D.Dynamic;
+    #region [이전버전] 밀림 방지용 충돌처리
+    ////콜리젼에 따른 플레이어 밀림 방지
+    //protected void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision != null)
+    //    {
+    //        if (collision.gameObject.CompareTag("Enemy"))
+    //        {
 
-            }
-        }
-    }
+    //            rigidbody2d.bodyType = RigidbodyType2D.Kinematic;
+    //            rigidbody2d.velocity = Vector2.zero;
+    //        }
+    //    }
+    //}
+    //// 콜리젼이 해제 됐을 때의 플레이어 밀림 방지
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision != null)
+    //    {
+    //        if (collision.gameObject.CompareTag("Enemy"))
+    //        {
+    //            rigidbody2d.bodyType = RigidbodyType2D.Dynamic;
 
-    
+    //        }
+    //    }
+    //}
+    #endregion
+
     public void CameraShake()
     {
         P_Camera_Shake = camera.Shake(1, 1.0f);
         StartCoroutine(P_Camera_Shake);
     }
     #endregion
+
+
+
+
+
 
     //무기 정보 세팅
     public void ChangeWeapon()

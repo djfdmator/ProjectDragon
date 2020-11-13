@@ -20,11 +20,12 @@ public class Mr_Gobulhwa : FSM_NormalEnemy
 
     protected override void Awake()
     {
-        base.Awake();
-        circleCol = GetComponent<CircleCollider2D>();
+        circleCol = GetComponents<CircleCollider2D>()[0];
+        triggerCol = GetComponents<CircleCollider2D>()[1];
         col = circleCol;
         childDustParticle = transform.Find("DustParticle").gameObject;
         projectile = new Projectile();
+        base.Awake();
         //projectile = this.gameObject.AddComponent<Projectile>();
 
     }

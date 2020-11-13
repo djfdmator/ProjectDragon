@@ -31,7 +31,7 @@ public class PauseWindow : MonoBehaviour
     }
     public void OpenPauseWindow()
     {
-        SoundManager.Inst.Ds_EffectPlayerDB(10);
+        SoundManager.Inst.Ds_EffectPlayerDB(1);
 
         gameObject.SetActive(true);
         TogglePause(true);

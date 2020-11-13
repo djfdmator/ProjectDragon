@@ -1,7 +1,10 @@
-﻿/////////////////////////////////////////////////
-/////////////MADE BY Yang SeEun/////////////////
-/////////////////2019-12-18////////////////////
-//////////////////////////////////////////////
+﻿// ==============================================================
+// 몬스터 돌진형인 돌돌이
+//
+//  AUTHOR: Yang SeEun
+// CREATED: 2019-09-18
+// UPDATED: 2020-11-13
+// ==============================================================
 
 
 using System.Collections;
@@ -10,24 +13,25 @@ using UnityEngine;
 
 public class Doldori : FSM_NormalEnemy
 {
-    CapsuleCollider2D capsuleCol;
+    CircleCollider2D circleCol;
     Vector3 attackDirection;
 
     [SerializeField] float attackSpeed=0.2f;
 
     protected override void Awake()
     {
-        base.Awake();
-        capsuleCol = GetComponent<CapsuleCollider2D>();
-        col = capsuleCol;
+        circleCol = GetComponents<CircleCollider2D>()[0];
+        triggerCol = GetComponents<CircleCollider2D>()[1];
+        col = circleCol;
         m_viewTargetMask = LayerMask.GetMask("Player", "Wall" , "Cliff"); // 근거리는 Cliff 추가
+        base.Awake();
         //childDustParticle = transform.Find("DustParticle").gameObject;
     }
 
     protected override RaycastHit2D[] GetRaycastType()
     {
         //CapsuleCas
-        return Physics2D.CapsuleCastAll(startingPosition, capsuleCol.size, CapsuleDirection2D.Vertical,0, direction,AtkRange - originOffset, m_viewTargetMask);
+        return Physics2D.CircleCastAll(startingPosition, circleCol.radius, direction,AtkRange - originOffset, m_viewTargetMask);
     }
 
     protected override void Start()
@@ -138,21 +142,27 @@ public class Doldori : FSM_NormalEnemy
         base.Dead();
     }
 
+
+    #region [이전버전] 밀림 방지용 충돌처리
+    //몬스터끼리의 충돌이 가능할때 사용한 함수들
+
     //부모함수 부르지않기 위해서 (지우면안됨)
     protected override void OnCollisionExit2D(Collision2D collision)
     {
-    } 
-    protected override void OnTriggerStay2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-
-        if (isAttacking)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                //충돌할때 Attack이면 콜라이더끄기
-                Physics2D.IgnoreCollision(collision, col);
-            }
-        }
     }
+    //protected override void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    base.OnTriggerStay2D(collision);
+
+    //    if (isAttacking)
+    //    {
+    //        if (collision.gameObject.CompareTag("Enemy"))
+    //        {
+    //            //충돌할때 Attack이면 콜라이더끄기
+    //            Physics2D.IgnoreCollision(collision, col);
+
+    //        }
+    //    }
+    //}
+    #endregion
 }
