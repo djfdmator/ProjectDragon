@@ -126,7 +126,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 208, y: 208, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &934865982247372343
 GameObject:
@@ -661,7 +661,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 6585d5b81f79ade44bca1f3db82f5664, type: 2}
-  mSpriteName: ingameui_37
+  mSpriteName: ingameui_51
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &7500817586525472736
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 6585d5b81f79ade44bca1f3db82f5664, type: 2}
-  mSpriteName: ingameui_37
+  mSpriteName: ingameui_51
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &7500817587824542254

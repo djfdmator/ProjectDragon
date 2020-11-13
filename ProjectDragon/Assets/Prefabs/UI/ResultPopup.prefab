@@ -380,7 +380,7 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 2398329874761788449}
-    mMethodName: NextStageButton
+    mMethodName: NextButton
     mParameters: []
     oneShot: 0
 --- !u!65 &6323748064457764356
@@ -442,20 +442,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 99
   rightAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: -14
   bottomAnchor:
-    target: {fileID: 4885482719269288936}
+    target: {fileID: 0}
     relative: 0
     absolute: 15
   topAnchor:
-    target: {fileID: 4885482719269288936}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: 116
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
@@ -859,7 +859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4885482719269288937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4885482721039773364}
@@ -1676,6 +1676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSuccess: 0
+  battleEquipmentChangeWindow: {fileID: 0}
 --- !u!1 &4885482719776454285
 GameObject:
   m_ObjectHideFlags: 0

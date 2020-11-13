@@ -3,7 +3,7 @@
 //
 //  AUTHOR: Yang SeEun
 // CREATED: 2020-11-03
-// UPDATED: 2020-11-03
+// UPDATED: 2020-11-12
 // ==============================================================
 
 
@@ -16,7 +16,6 @@ public class Player : Character
 {
     public enum WeaponType { NormalSword, NormalStaff, Excalibur, Nereides, Nyx,  };
 
-
     //flash white material damaged of player
     private FlashWhite damaged_flash;
     private IEnumerator damaged_flash_corrutine;
@@ -27,17 +26,23 @@ public class Player : Character
     private CameraFollow camera;
     private IEnumerator P_Camera_Shake;
 
+    [HideInInspector] public Rigidbody2D rigidbody2d;
+    private PlayerAnimControll animcontroll;
+
+
+    public bool isActive;               //자동 공격 시작인지 (방안에 들어가 시작할때)
+    public bool isInvaid =false;
+    public bool isCriticalHit = false;
+
+
     public float temp_Movespeed;
     // 테스팅용
     public bool AngleisAttack;
     public bool inAttackTarget = false;
     public bool inSkillRange = false;
 
-
-    public bool isActive;               //코루틴 제어 함수
-    public bool isInvaid =false;
-    public bool isCriticalHit = false;
-
+    public float enemy_angle;
+    private bool preSkillState = false;
 
     [SerializeField] protected State myState;
     public State CurrentState
@@ -45,18 +50,25 @@ public class Player : Character
         get { return myState; }
         set
         {
+            preSkillState = myState.Equals(State.Skill) ? true : false;
             myState = value;
 
             //Anim
-            GetComponent<PlayerAnimControll>().CurrentState = myState;
+            animcontroll.CurrentState = myState;
 
-            if (isActive && (AngleisAttack || isSkillActive))       //angle
+            //angle
+            if (isActive && (preSkillState.Equals(true) && myState.Equals(State.Idle)))         //Idle 이전에 스킬상태였다면
             {
-                GetComponent<PlayerAnimControll>().ChangeAngleAnim(enemy_angle);
+                current_angle = enemy_angle;
+            }
+
+            if (isActive && (AngleisAttack || isSkillActive))    
+            {
+                animcontroll.ChangeAngleAnim(enemy_angle);
             }
             else
             {
-                GetComponent<PlayerAnimControll>().ChangeAngleAnim(current_angle);
+                animcontroll.ChangeAngleAnim(current_angle);
             }
         }
     }
@@ -64,8 +76,8 @@ public class Player : Character
 
     //애니메이터 리소스
     public RuntimeAnimatorController[] projectileAnimator;              
-    private RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
-    private RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
+    //private RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
+    //private RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
 
 
     #region 플레이어 세팅
@@ -101,8 +113,6 @@ public class Player : Character
     private float horizontalSpeed = 5.0f;
     private float verticalSpeed = 5.0f;
 
-
-    [HideInInspector] public Rigidbody2D rigidbody2d;
 
     //************UI***********
     //JoyStick
@@ -157,7 +167,7 @@ public class Player : Character
 
             if (uiStatus != null)
             {
-                uiStatus.ChangeMpBar(mp, value);
+                uiStatus.ChangeMpLabel(mp, value);
             }
             if (value > 0)
             {
@@ -185,7 +195,8 @@ public class Player : Character
             float a = Random.Range(0.0f, 100.0f);
             if (invaid >= a)
             {
-                currentATK = ATK - (ATK * 0.1f);
+                currentATK = 0;
+                //currentATK = ATK - (ATK * 0.1f);
                 // Debug.Log("회피성공");
                 isInvaid = true;
             }
@@ -226,6 +237,17 @@ public class Player : Character
         rigidbody2d.velocity = Vector2.zero;
     }
 
+    public void Gathering()
+    {
+        if (!isDead)
+        {
+            isSkillActive = false;
+            StopPlayer = false;
+        }
+            CurrentState = State.Get;
+        Debug.Log("CurrentState " + CurrentState);
+    }
+
 
     public void OnStop()
     {
@@ -239,100 +261,101 @@ public class Player : Character
 
     public IEnumerator CalculateDistanceWithPlayer()
     {
-        // 적이 하나라도 있으면
-        if (EnemyArray.Count >= 1)
+        isActive = true;
+        while (!isDead && EnemyArray.Count > 0)
         {
-            isActive = true;
-            //동작
-            while (isActive && !isDead)
+            for (int a = 0; a < EnemyArray.Count; a++)
             {
-                if (EnemyArray.Count > 0)
+                TempEnemy = EnemyArray[0];
+
+                EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.transform, EnemyArray[a].transform);
+            }
+            for (int a = 0; a < EnemyArray.Count; a++)
+            {
+                if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
                 {
-                    for (int a = 0; a < EnemyArray.Count; a++)
-                    {
-                        TempEnemy = EnemyArray[0];
+                    TempEnemy = EnemyArray[a];
+                }
+            }
+            enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
 
-                        EnemyArray[a].GetComponent<Monster>().distanceOfPlayer = DistanceCheck(this.GetComponent<Transform>(), EnemyArray[a].GetComponent<Transform>());
-                    }
-                    for (int a = 0; a < EnemyArray.Count; a++)
+            if (!isSkillActive)
+            {
+                if (DistanceCheck(this.transform, TempEnemy.transform) <= this.GetComponent<Player>().AtkRange)
+                {
+                    inAttackTarget = true;
+
+                    if (TempEnemy.GetComponent<Character>().HP > 0)
                     {
-                        if (TempEnemy.GetComponent<Monster>().distanceOfPlayer > EnemyArray[a].GetComponent<Monster>().distanceOfPlayer)
+                        if (attackType == CLASS.검)
                         {
-                            TempEnemy = EnemyArray[a];
+                            AngleisAttack = true;
+                            CurrentState = State.Attack;
                         }
-                    }
-                    this.enemy_angle = GetAngle(TempEnemy.transform.position, this.transform.position);
-
-                    if (!isSkillActive)
-                    {
-                        if (DistanceCheck(this.GetComponent<Transform>(), TempEnemy.GetComponent<Transform>()) <= this.GetComponent<Player>().AtkRange && !isSkillActive)
+                        else if (attackType == CLASS.지팡이)
                         {
-                            inAttackTarget = true;
-
-                            if (TempEnemy.GetComponent<Character>().HP > 0)
+                            if (joyPad.Pressed == true)
                             {
-                                if (attackType == CLASS.지팡이 && joyPad.Pressed == false && !isSkillActive)
-                                {
-                                    moveSpeed = 0;
-                                    AngleisAttack = true;
-                                    this.CurrentState = State.Attack;
-                                }
-                                else if (attackType == CLASS.검 && joyPad.Pressed == true && !isSkillActive)
-                                {
-                                    moveSpeed = temp_Movespeed;
-                                    AngleisAttack = false;
-                                }
-                                if (attackType == CLASS.검 && !isSkillActive)
-                                {
-                                    AngleisAttack = true;
-                                    this.CurrentState = State.Attack;
-                                }
+                                moveSpeed = temp_Movespeed;
+                                AngleisAttack = false;
                             }
-
-                        }
-                        else
-                        {
-                            inAttackTarget = false;
-                            AngleisAttack = false;
-                            if (AngleisAttack == false && !isSkillActive)
+                            else
                             {
-                                if (attackType == CLASS.지팡이)
-                                {
-                                    moveSpeed = temp_Movespeed;
-                                }
-                                if (enemy_angle != 0 && joyPad.Pressed == true)
-                                {
-                                    this.CurrentState = State.Walk;
-                                }
-                                if (joyPad.Pressed == false && !isSkillActive)
-                                {
-                                    this.CurrentState = State.Idle;
-                                }
+                                moveSpeed = 0;
+                                AngleisAttack = true;
+                                CurrentState = State.Attack;
                             }
                         }
-
-
-                        if (DistanceCheck(this.transform, TempEnemy.transform) <= this.skillRange)
-                        {
-                            inSkillRange = true;
-                        }
-                        else
-                        {
-                            inSkillRange = false;
-                        }
                     }
-                    yield return new WaitForSeconds(0.1f);
                 }
                 else
                 {
-                    isActive = false;
-                    break;
+                    inAttackTarget = false;
+                    AngleisAttack = false;
+                    if (AngleisAttack == false )
+                    {
+                        if (attackType == CLASS.지팡이)
+                        {
+                            moveSpeed = temp_Movespeed;
+                        }
+
+                        if( joyPad.Pressed == true)
+                        {
+                            if (enemy_angle != 0)
+                            {
+                                CurrentState = State.Walk;
+                            }
+                        }
+                        else
+                        {
+                            CurrentState = State.Idle;
+                        }
+                    }
+                }
+
+
+                if (DistanceCheck(this.transform, TempEnemy.transform) <= this.skillRange)
+                {
+                    inSkillRange = true;
+                }
+                else
+                {
+                    inSkillRange = false;
                 }
             }
+            else
+            {
+                inAttackTarget = false;
+            }
+            yield return null;
         }
+
+        isActive = false;
         inAttackTarget = false;
         inSkillRange = false;
         AngleisAttack = false;
+
+        OnStop();
     }
     public void TempNullSet()
     {
@@ -355,8 +378,8 @@ public class Player : Character
         Initalize_Player_Link();
 
         temp_Movespeed = moveSpeed;
-        critical = 50f;
-        invaid = 30f;
+        critical = 50.0f;
+        invaid = 10.0f;
 
         projectileTargetList.Add("Enemy");
         //GameManager.Inst.SavePlayerData();
@@ -399,6 +422,7 @@ public class Player : Character
             float radius = 0.2f;
             if (weaponType == Player.WeaponType.NormalSword)
             {
+                SoundManager.Inst.Ds_EffectPlayerDB(6);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position, nuckBackPower);
             }
             else if (weaponType == Player.WeaponType.NormalStaff)
@@ -406,6 +430,8 @@ public class Player : Character
                 capsuleColSize = new Vector2(0.6f, 1);
                 if (TempEnemy != null)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(17);
+
                     offset = new Vector2(0.02f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[1], true, TempEnemy.transform.position);
@@ -415,6 +441,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(7);
                     offset = new Vector2(0.03f, 0.0f);
                     capsuleColSize = new Vector2(0.6f, 1);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[7], true, TempEnemy.transform.position);
@@ -422,6 +449,8 @@ public class Player : Character
             }
             else if (weaponType == Player.WeaponType.Nereides)
             {
+                //파도효과음
+                SoundManager.Inst.Ds_EffectPlayerDB(9);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
 
             }
@@ -429,6 +458,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(7);
                     offset = new Vector2(0.03f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
@@ -436,37 +466,82 @@ public class Player : Character
             }
         }
     }
+
+    #region 이전버전 FixedUpdate
+    //private void FixedUpdate()
+    //{
+    //    if (!isDead)
+    //    {
+    //        if(!isSkillActive)
+    //        {
+    //            current_angle = joyPad.angle;
+    //        }
+
+    //        if (joyPad.Pressed)
+    //        {
+    //            joystickPos = joyPad.position;
+    //            //joystick
+    //            h = joystickPos.x;
+    //            v = joystickPos.y;
+    //        }
+
+
+    //        //Make Right direction by Set Animatoion bool setting
+    //        if (!StopPlayer.Equals(true))
+    //        {
+    //            rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
+    //            ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
+    //            //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
+    //        }
+    //        if (StopPlayer.Equals(true))
+    //        {
+    //            rigidbody2d.velocity = Vector2.zero;
+    //            StopTime += Time.deltaTime;
+    //            if (StopTime >= StopMaxTime)
+    //            {
+    //                //   StopPlayer = false;
+    //                StopTime = 0;
+    //            }
+    //        }
+    //    }
+    //}
+    #endregion
     private void FixedUpdate()
     {
         if (!isDead)
         {
-            if(!isSkillActive)
+            if (joyPad.Pressed.Equals(true)&& !isSkillActive)
             {
                 current_angle = joyPad.angle;
             }
 
-            if (joyPad.Pressed)
-            {
-                joystickPos = joyPad.position;
-                //joystick
-                h = joystickPos.x;
-                v = joystickPos.y;
-            }
+            //if (!isSkillActive)
+            //{
+            //    current_angle = joyPad.angle;
+            //}
 
             //Make Right direction by Set Animatoion bool setting
-            if (!StopPlayer.Equals(true))
+            if (StopPlayer.Equals(false))
             {
-                rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
-                ////transform.Translate(Vector2.right * Time.deltaTime * h * horizontalSpeed * moveSpeed, Space.World);
-                //transform.Translate(Vector2.up * Time.deltaTime * v * verticalSpeed * moveSpeed, Space.World);
+                if (joyPad.Pressed.Equals(true))
+                {
+                    joystickPos = joyPad.position;
+                    //joystick
+                    h = joystickPos.x;
+                    v = joystickPos.y;
+                    rigidbody2d.velocity = new Vector2(10.0f * Time.deltaTime * h * horizontalSpeed * moveSpeed, 10.0f * Time.deltaTime * v * verticalSpeed * moveSpeed);
+                }
+                else
+                {
+                    rigidbody2d.velocity = Vector2.zero;
+                }
             }
-            if (StopPlayer.Equals(true))
+            else
             {
                 rigidbody2d.velocity = Vector2.zero;
                 StopTime += Time.deltaTime;
                 if (StopTime >= StopMaxTime)
                 {
-                    //   StopPlayer = false;
                     StopTime = 0;
                 }
             }
@@ -534,39 +609,46 @@ public class Player : Character
         }
         return AnglePos.Front;
     }
-    //콜리젼에 따른 플레이어 밀림 방지
-    protected void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision != null)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
 
-                rigidbody2d.bodyType = RigidbodyType2D.Kinematic;
-                rigidbody2d.velocity = Vector2.zero;
-            }
-        }
-    }
-    // 콜리젼이 해제 됐을 때의 플레이어 밀림 방지
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision != null)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                rigidbody2d.bodyType = RigidbodyType2D.Dynamic;
+    #region [이전버전] 밀림 방지용 충돌처리
+    ////콜리젼에 따른 플레이어 밀림 방지
+    //protected void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision != null)
+    //    {
+    //        if (collision.gameObject.CompareTag("Enemy"))
+    //        {
 
-            }
-        }
-    }
+    //            rigidbody2d.bodyType = RigidbodyType2D.Kinematic;
+    //            rigidbody2d.velocity = Vector2.zero;
+    //        }
+    //    }
+    //}
+    //// 콜리젼이 해제 됐을 때의 플레이어 밀림 방지
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision != null)
+    //    {
+    //        if (collision.gameObject.CompareTag("Enemy"))
+    //        {
+    //            rigidbody2d.bodyType = RigidbodyType2D.Dynamic;
 
-    
+    //        }
+    //    }
+    //}
+    #endregion
+
     public void CameraShake()
     {
         P_Camera_Shake = camera.Shake(1, 1.0f);
         StartCoroutine(P_Camera_Shake);
     }
     #endregion
+
+
+
+
+
 
     //무기 정보 세팅
     public void ChangeWeapon()
@@ -629,6 +711,7 @@ public class Player : Character
         base.Start();
         damaged_flash = GetComponent<FlashWhite>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        animcontroll = GetComponent<PlayerAnimControll>();
 
         uiRoot = GameObject.Find("UI Root").gameObject;
         joyPad = uiRoot.transform.Find("JoyPad").GetComponent<JoyPad>();
@@ -636,6 +719,8 @@ public class Player : Character
         uiStatus = uiRoot.transform.Find("Status").GetComponent<BattleStatus>();
 
         camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
+
+
     }
     
 

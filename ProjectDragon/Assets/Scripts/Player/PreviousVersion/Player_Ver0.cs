@@ -22,6 +22,7 @@ public class Player_Ver0 : Character
     // HP GAUGE
     public HPGauge HPBar;
     public MPGauge MPBar;
+    public float enemy_angle;
 
     public State CurrentState
     {

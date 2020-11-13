@@ -28,8 +28,8 @@ MonoBehaviour:
     paddingTop: 18
     paddingBottom: 18
   - name: SkillIcon_GoddessWave_Ingame
-    x: 0
-    y: 5
+    x: 164
+    y: 169
     width: 159
     height: 159
     borderLeft: 0
@@ -40,9 +40,22 @@ MonoBehaviour:
     paddingRight: 30
     paddingTop: 30
     paddingBottom: 30
-  - name: SkillIcon_SavageChain_Ingame
+  - name: SkillIcon_ManaRelease_Ingame
     x: 0
     y: 165
+    width: 163
+    height: 163
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 28
+    paddingRight: 28
+    paddingTop: 28
+    paddingBottom: 28
+  - name: SkillIcon_SavageChain_Ingame
+    x: 0
+    y: 1
     width: 163
     height: 163
     borderLeft: 0

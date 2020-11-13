@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1796311145485425637}
   - component: {fileID: 1796311145485425639}
   - component: {fileID: 1796311145485425638}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 1796311146230742164}
   - component: {fileID: 1796311146230742167}
   - component: {fileID: 1796311146230742160}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BossTargetpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 4228233166006613452}
   - component: {fileID: 1016931592598459962}
   - component: {fileID: 1644892890006041949}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

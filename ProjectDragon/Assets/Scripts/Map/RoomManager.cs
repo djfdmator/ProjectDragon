@@ -47,7 +47,9 @@ public class RoomManager : MonoBehaviour
     public int mana = 0;
     public int hp = 0;
 
+    private GameObject uiRoot;
     public GameObject resultPop;
+    public BattleStatus battleStatus;
 
     private void Awake()
     {
@@ -60,10 +62,13 @@ public class RoomManager : MonoBehaviour
         screenTransitions = GameObject.FindGameObjectWithTag("ScreenTransitions").GetComponent<ScreenTransitions>();
         player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<BoxCollider2D>().enabled = false;
-        resultPop = GameObject.Find("UI Root").transform.Find("ResultPopup").gameObject;
+        uiRoot = GameObject.Find("UI Root").gameObject;
+        resultPop = uiRoot.transform.Find("ResultPopup").gameObject;
+        battleStatus = uiRoot.transform.Find("Status").GetComponent<BattleStatus>();
         resultPop.SetActive(false);
         ResourceLoad();
     }
+
 
     private void ResourceLoad()
     {
@@ -349,10 +354,12 @@ public class RoomManager : MonoBehaviour
         //GameManager.Inst.EndGame_Get_Item();
         if (hp != 0)
         {
-            //TODO : 세은이에게 hp 어떻게 더해주는지 물어보기
-            player.GetComponent<Player>();
+            player.GetComponent<Player>().HP+=hp;
             hp = 0;
         }
+        
+        battleStatus.ChangeAddMpLabel(mana);
+
         while (time <= _playTime)
         {
             if (gameObjects.Count.Equals(0)) break;
