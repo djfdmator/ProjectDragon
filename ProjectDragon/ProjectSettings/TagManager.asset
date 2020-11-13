@@ -42,7 +42,7 @@ TagManager:
   - Player
   - Wall
   - Cliff
-  - 
+  - Projectile
   - Object
   - 
   - 

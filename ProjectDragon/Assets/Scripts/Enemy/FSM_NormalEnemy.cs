@@ -30,6 +30,10 @@ public class FSM_NormalEnemy : Enemy
         set
         {
             normalEnemyState = value;
+            if(!normalEnemyState.Equals(NormalEnemyState.Attack))
+            {
+                isAttacking = false;
+            }
             SetState(normalEnemyState);
 
         }
@@ -203,6 +207,16 @@ public class FSM_NormalEnemy : Enemy
     }
     protected IEnumerator AttackEndCor = null;
 
+    protected void AttackStart()
+    {
+        //Attack Animation parameters
+        objectAnimator.SetBool("Attack", true);
+        objectAnimator.SetBool("isAttackActive", isAttackActive);
+
+        //Cooltime Initialize
+        Current_readyTime = 0;
+        Current_cooltime = 0;
+    }
     protected virtual IEnumerator Attack()
     {
         AttackStart();
@@ -214,16 +228,6 @@ public class FSM_NormalEnemy : Enemy
         StartCoroutine(AttackEndCor);
     }
 
-    protected void AttackStart()
-    {
-        //Attack Animation parameters
-        objectAnimator.SetBool("Attack", true);
-        objectAnimator.SetBool("isAttackActive", isAttackActive);
-
-        //Cooltime Initialize
-        Current_readyTime = 0;
-        Current_cooltime = 0;
-    }
 
     //애니메이션 n번 돌리고 -> Idle로
     #region Attack 공격 횟수 관리

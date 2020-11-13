@@ -818,7 +818,7 @@ public class GameManager : MonoSingleton<GameManager>
         Debug.Log("BaseHp "+ BaseHp);
         Debug.Log("currentHp " + playData.currentHp);
         playData.moveSpeed = 1.0f;
-        playData.currentStage = 3;
+        playData.currentStage = 0;
         playData.mp = 1000;
         playData.sex = SEX.None;
 

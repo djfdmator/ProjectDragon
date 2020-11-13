@@ -38,10 +38,8 @@ public class Rimmotal : Enemy
     }
     protected override void Awake()
     {
-        base.Awake();
-        
-
-        capsuleCol = GetComponent<CapsuleCollider2D>();
+        capsuleCol = GetComponents<CapsuleCollider2D>()[0];
+        triggerCol = GetComponents<CapsuleCollider2D>()[1];
         col = capsuleCol;
         m_viewTargetMask = LayerMask.GetMask("Player", "Wall", "Cliff"); // 근거리는 Cliff 추가
         childDustParticle = transform.Find("DustParticle").gameObject;
@@ -49,6 +47,7 @@ public class Rimmotal : Enemy
         //thornTargeting = new ThornTargeting();
         projectile = new Projectile();
         thornPoint = new TargetPoint();
+        base.Awake();
     }
 
 

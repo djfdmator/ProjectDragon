@@ -185,7 +185,7 @@ public class ShortRangeAttackArea : MonoBehaviour
                         if (player.isAttacking)
                         //Player hit
                         {
-                            SoundManager.Inst.Ds_EffectPlayerDB(5);
+                            SoundManager.Inst.Ds_EffectPlayerDB(8);
                             hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),player.isCriticalHit,player.nuckBackPower);
                             player.isAttacking = false;
                         }
