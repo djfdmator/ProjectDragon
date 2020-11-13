@@ -128,10 +128,10 @@ public class Enemy : Monster
     {
         base.Dead();
 
-        if (objectAnimator.GetBool("objectAnimator"))
-        {
-            objectAnimator.SetBool("IsDead", true);
-        }
+        //if (objectAnimator.GetBool("objectAnimator"))
+        //{
+        //    objectAnimator.SetBool("IsDead", true);
+        //}
         //Dead Animation parameters
         objectAnimator.SetTrigger("Dead");
 
