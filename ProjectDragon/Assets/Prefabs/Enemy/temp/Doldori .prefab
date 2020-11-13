@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6775708866940135156}
   - component: {fileID: 6806236910962505811}
   - component: {fileID: 6775708866940135158}
-  - component: {fileID: 1678028229157493543}
+  - component: {fileID: 1888222273183041397}
   - component: {fileID: 3258986304330116704}
   m_Layer: 10
   m_Name: 'Doldori '
@@ -240,26 +240,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22afc2d9841208a4a8a0a532635ad9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
-  hp: 50
+  maxHp: 20
+  hp: 20
   moveSpeed: 1
-  atk: 5
+  atk: 12
   atkSpeed: 2
   atkRange: 4
-  nuckBack: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 0
   isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -275,13 +272,13 @@ MonoBehaviour:
   m_bDebugMode: 1
   inAtkDetectionRange: 0
   originOffset: 0
-  readyTime: 1.5
-  cooltime: 3.5
+  readyTime: 1
+  cooltime: 3
   attackCount: 0
   normalEnemyState: 0
   attackSpeed: 0.2
---- !u!70 &1678028229157493543
-CapsuleCollider2D:
+--- !u!58 &1888222273183041397
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -294,8 +291,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.55, y: 0.55}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!58 &3258986304330116704
 CircleCollider2D:
   m_ObjectHideFlags: 0

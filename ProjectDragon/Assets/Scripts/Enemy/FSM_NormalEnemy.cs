@@ -30,6 +30,10 @@ public class FSM_NormalEnemy : Enemy
         set
         {
             normalEnemyState = value;
+            if(!normalEnemyState.Equals(NormalEnemyState.Attack))
+            {
+                isAttacking = false;
+            }
             SetState(normalEnemyState);
 
         }
@@ -201,16 +205,7 @@ public class FSM_NormalEnemy : Enemy
             yield return null;
         }
     }
-
-    protected virtual IEnumerator Attack()
-    {
-        AttackStart();
-
-        isAttacking = true;
-        yield return null;
-
-        StartCoroutine(AttackEnd());
-    }
+    protected IEnumerator AttackEndCor = null;
 
     protected void AttackStart()
     {
@@ -222,6 +217,17 @@ public class FSM_NormalEnemy : Enemy
         Current_readyTime = 0;
         Current_cooltime = 0;
     }
+    protected virtual IEnumerator Attack()
+    {
+        AttackStart();
+
+        isAttacking = true;
+        yield return null;
+
+        AttackEndCor = AttackEnd();
+        StartCoroutine(AttackEndCor);
+    }
+
 
     //애니메이션 n번 돌리고 -> Idle로
     #region Attack 공격 횟수 관리
@@ -253,6 +259,7 @@ public class FSM_NormalEnemy : Enemy
 
             yield return null;
         }
+        AttackEndCor = null;
     }
     #endregion
 

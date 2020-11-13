@@ -8266,6 +8266,8 @@ GameObject:
   m_Component:
   - component: {fileID: 911486669}
   - component: {fileID: 911486670}
+  - component: {fileID: 911486672}
+  - component: {fileID: 911486671}
   m_Layer: 8
   m_Name: ItemWindow
   m_TagString: Untagged
@@ -8346,6 +8348,33 @@ MonoBehaviour:
   mSpriteName: Equipment_Item_BackGround
   mFixedAspect: 0
   mFillCenter: 1
+--- !u!65 &911486671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911486668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 780, y: 630, z: 1}
+  m_Center: {x: -16, y: 0, z: 0}
+--- !u!114 &911486672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911486668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 307796140}
+  draggablePanel: {fileID: 0}
 --- !u!1 &919836005
 GameObject:
   m_ObjectHideFlags: 0

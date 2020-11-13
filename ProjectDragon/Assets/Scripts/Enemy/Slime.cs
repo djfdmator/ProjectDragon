@@ -9,16 +9,16 @@ using UnityEngine;
 
 public class Slime : FSM_NormalEnemy
 {
-    CircleCollider2D circleCol;
+    [SerializeField] CircleCollider2D circleCol;
     protected override void Awake()
     {
-
-        base.Awake();
-        circleCol = GetComponent<CircleCollider2D>();
+        circleCol = GetComponents<CircleCollider2D>()[0];
+        triggerCol = GetComponents<CircleCollider2D>()[1];
         col = circleCol;
         m_viewTargetMask = LayerMask.GetMask("Player", "Wall", "Cliff"); // 근거리는 Cliff 추가
         childDustParticle = transform.Find("DustParticle").gameObject;
         childDeadParticle = transform.Find("SlimeDead_Particle").gameObject;
+        base.Awake();
     }
 
     protected override RaycastHit2D[] GetRaycastType()
@@ -59,9 +59,15 @@ public class Slime : FSM_NormalEnemy
 
     protected override IEnumerator Attack()
     {
+        rb2d.isKinematic = true;       //앞으로 달려가는 공격애니메이션으로 플레이어와 콜라이더가 충돌이 나서 버그발생 
         isNuckback = false;
-
         StartCoroutine(base.Attack());
+        yield return null;
+    }
+    protected override IEnumerator AttackEnd()
+    {
+        StartCoroutine(base.AttackEnd());
+        rb2d.isKinematic = false;
         yield return null;
     }
 

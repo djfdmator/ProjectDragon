@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2767004985795059374}
   - component: {fileID: 2767004985795059373}
   - component: {fileID: 2767004985795059372}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,9 @@ MonoBehaviour:
   generationtime: 0
   targetpointrangex: 0
   targetpointrangey: 0
+  nukBackPower: 0
   tagsString: []
+  attackType: 
 --- !u!50 &2767004985795059374
 Rigidbody2D:
   serializedVersion: 4

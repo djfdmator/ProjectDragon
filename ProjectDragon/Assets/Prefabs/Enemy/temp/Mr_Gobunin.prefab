@@ -241,27 +241,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d493fdfd2aa144999c137bf5803895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
-  hp: 20
-  moveSpeed: 1
-  atk: 2
-  nuckBack: 0
-  maxHp: 20
-  atkSpeed: 2
-  atkRange: 5.22
+  maxHp: 50
+  hp: 50
+  moveSpeed: 1.5
+  atk: 8
+  atkSpeed: 1
+  atkRange: 5
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0

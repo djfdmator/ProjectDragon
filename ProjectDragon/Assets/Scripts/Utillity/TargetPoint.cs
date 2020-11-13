@@ -61,11 +61,7 @@ public class TargetPoint : MonoBehaviour
     /// </summary>
     public void ResetProjectile()
     {
-
         ObjectPool.Instance.PushToPool(poolItemName, gameObject);
-#if UNITY_EDITOR
-        Debug.Log("ResetProjectile");
-#endif
     }
 
 
