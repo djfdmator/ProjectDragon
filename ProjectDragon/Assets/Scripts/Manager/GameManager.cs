@@ -695,6 +695,7 @@ public class GameManager : MonoSingleton<GameManager>
                 temp = temp >= 0 ?  temp : 0;
                 Database.Inst.playData.currentHp += temp;
                 Database.Inst.playData.currentHp = Database.Inst.playData.currentHp > Database.Inst.playData.maxHp ? Database.Inst.playData.maxHp : Database.Inst.playData.currentHp;
+                
                 if (!value.option_Index.Equals(-1))
                 {   //옵션이 붙어 있으면 옵션 적용
                     Database.OptionTable option = LoadOptionData(armor.optionTableName, value.option_Index);
@@ -815,8 +816,10 @@ public class GameManager : MonoSingleton<GameManager>
 
         playData.maxHp = BaseHp;
         playData.currentHp = BaseHp;
+#if UNITY_EDITORY
         Debug.Log("BaseHp "+ BaseHp);
         Debug.Log("currentHp " + playData.currentHp);
+#endif
         playData.moveSpeed = 1.0f;
         playData.currentStage = 0;
         playData.mp = 1000;
@@ -887,10 +890,10 @@ public class GameManager : MonoSingleton<GameManager>
         Database.Inst.playData.inventory.Add(new Database.Inventory(Database.Inst.armors[0]));
         InitializePlayerStat();
     }
-    #endregion
+#endregion
 
     //테스트 완료
-    #region Database_Load_Player_Data
+#region Database_Load_Player_Data
     //플레이어 데이터 로드 함수
 
     //플레이어 프리팹 로드
@@ -974,10 +977,10 @@ public class GameManager : MonoSingleton<GameManager>
     //    reader.Close();
     //    reader = null;
     //}
-    #endregion
+#endregion
 
     //테스트 완료
-    #region Database_Save_Player_Data
+#region Database_Save_Player_Data
 
     public void Save_PlayerPrefs_Data()
     {
@@ -1047,11 +1050,11 @@ public class GameManager : MonoSingleton<GameManager>
     //    }
     //}
 
-    #endregion
+#endregion
 
 
     //readonly data
-    #region Database_Load_Method
+#region Database_Load_Method
 
     //쿼리문으로 직접 들고 오는 함수 - 예시
     public void LoadWeaponData()
@@ -1240,5 +1243,5 @@ public class GameManager : MonoSingleton<GameManager>
         reader = null;
     }
 
-    #endregion
+#endregion
 }

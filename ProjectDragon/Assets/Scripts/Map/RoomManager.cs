@@ -227,15 +227,15 @@ public class RoomManager : MonoBehaviour
     //미니맵의 크기를 키웁니다.
     public void MiniMapMaximalize()
     {
-        if (!miniMap.button.onClick[0].methodName.Equals("Minimalize")) miniMap.Maximalize();
-        miniMap.button.GetComponent<BoxCollider>().enabled = false;
+        miniMap.Maximalize();
+        //miniMap.button.GetComponent<BoxCollider>().enabled = false;
     }
 
     //미니맵을 작게 합니다.
     public void MiniMapMinimalize()
     {
-        if (!miniMap.button.onClick[0].methodName.Equals("Maximalize")) miniMap.Minimalize();
-        miniMap.button.GetComponent<BoxCollider>().enabled = true;
+        miniMap.Minimalize();
+        //miniMap.button.GetComponent<BoxCollider>().enabled = true;
     }
 
     //TODO : 림모탈에 연결하기

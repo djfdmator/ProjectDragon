@@ -31,10 +31,8 @@ public class Portal : MonoBehaviour
     private bool isPortalOn = false;
     private Sprite portalOnImage;
 
-    //private void Awake()
-    //{
-        
-    //}
+    public bool isPortalActivate = false;
+
     private void Start()
     {
         RoomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
@@ -49,6 +47,7 @@ public class Portal : MonoBehaviour
 #endif
         if(collision.CompareTag("Player") && isPortalOn)
         {
+            isPortalActivate = true;
             RoomManager.MiniMapMaximalize();
         }
     }
@@ -57,6 +56,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag("Player") && isPortalOn)
         {
+            isPortalActivate = false;
             RoomManager.MiniMapMinimalize();
         }
     }
