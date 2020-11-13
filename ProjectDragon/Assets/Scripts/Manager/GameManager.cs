@@ -37,6 +37,8 @@ public class GameManager : MonoSingleton<GameManager>
     public IDbCommand DEB_dbcmd;
     public bool loadComplete = false;
 
+    private string DBName = "/DS_Database_vr_056.sqlite";
+
     private void Awake()
     {
         //ScreensizeReadjust();
@@ -112,10 +114,10 @@ public class GameManager : MonoSingleton<GameManager>
         string conn;
         if (Application.platform.Equals(RuntimePlatform.Android))
         {
-            conn = Application.persistentDataPath + "/DS_Database_vr_055.sqlite";
+            conn = Application.persistentDataPath + DBName;
             if (!File.Exists(conn))
             {
-                using (UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets/DS_Database_vr_055.sqlite"))
+                using (UnityWebRequest unityWebRequest = UnityWebRequest.Get("jar:file://" + Application.dataPath + "!/assets" + DBName))
                 {
                     unityWebRequest.downloadedBytes.ToString();
                     yield return unityWebRequest.SendWebRequest().isDone;
@@ -145,11 +147,11 @@ public class GameManager : MonoSingleton<GameManager>
         string conn;
         if (Application.platform == RuntimePlatform.Android)
         {
-            conn = "URI=file:" + Application.persistentDataPath + "/DS_Database_vr_055.sqlite";
+            conn = "URI=file:" + Application.persistentDataPath + DBName;
         }
         else
         {
-            conn = "URI=file:" + Application.dataPath + "/StreamingAssets/DS_Database_vr_055.sqlite";
+            conn = "URI=file:" + Application.dataPath + "/StreamingAssets" + DBName;
         }
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(conn);
