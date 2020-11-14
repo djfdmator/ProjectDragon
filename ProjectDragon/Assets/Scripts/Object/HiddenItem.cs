@@ -11,6 +11,7 @@ public class HiddenItem : MonoBehaviour
         if(collision.CompareTag("Player") && !isGet)
         {
             isGet = true;
+            SoundManager.Inst.Ds_EffectPlayerDB(31);
             GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().items.Add(new Database.Inventory(Database.Inst.weapons[2]));
 
             Destroy(transform.Find("Item").gameObject);

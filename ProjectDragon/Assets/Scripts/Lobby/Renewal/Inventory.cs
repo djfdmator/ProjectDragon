@@ -174,18 +174,21 @@ public class Inventory : MonoBehaviour
 
     public void Event_PopupItem(int weaponNum, int inventoryNum)
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         WeaponPopup(Database.Inst.weapons[weaponNum]);
         RefreshNewLabel(inventoryNum);
     }
 
     public void Event_PopupSkill(int skill_Index, int inventoryNum)
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         SkillPopup(Database.Inst.skill[skill_Index]);
         RefreshNewLabel(inventoryNum);
     }
 
     public void Event_ChoiceEquipItem(int inventoryNum)
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         curChoiceItme = inventoryNum;
         RefreshNewLabel(inventoryNum);
         if (GameManager.Inst.PlayData.equiWeapon_InventoryNum != inventoryNum) equipButton.isEnabled = true;
@@ -218,6 +221,7 @@ public class Inventory : MonoBehaviour
 
     public void EquipButton()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         GameManager.Inst.PlayerEquipWeapon = GameManager.Inst.PlayData.inventory[curChoiceItme];
         RefreshEquipItem();
         curChoiceItme = -1;
@@ -284,11 +288,13 @@ public class Inventory : MonoBehaviour
 
     public void CloseWeaponPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         popupWeapon.SetActive(false);
     }
 
     public void CloseSkillPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         popupSkill.SetActive(false);
     }
 

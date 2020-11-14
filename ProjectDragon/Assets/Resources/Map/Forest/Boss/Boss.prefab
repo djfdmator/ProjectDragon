@@ -829,27 +829,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6052a4692bead940bd921d49d0dfcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  maxHp: 100
   hp: 0
   moveSpeed: 0
   atk: 0
-  nuckBack: 0
-  maxHp: 100
   atkSpeed: 0
   atkRange: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -864,8 +860,6 @@ MonoBehaviour:
   projectilespeed: 5
   projectiletime: 0
   Idletime: 0
-  Roaraudio: {fileID: 8300000, guid: 77af0dfe6631dae458ebcb08ef4cd7f0, type: 3}
-  projectileStone: []
   projectile: {fileID: 0}
   random: 0
   projectilenum: 0
@@ -16018,27 +16012,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bace13f0b92db40a57533a2552c4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  maxHp: 0
   hp: 0
   moveSpeed: 0
   atk: 0
-  nuckBack: 0
-  maxHp: 0
   atkSpeed: 0
   atkRange: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -16954,27 +16944,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bace13f0b92db40a57533a2552c4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  maxHp: 0
   hp: 0
   moveSpeed: 0
   atk: 0
-  nuckBack: 0
-  maxHp: 0
   atkSpeed: 0
   atkRange: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -17445,27 +17431,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bace13f0b92db40a57533a2552c4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  maxHp: 0
   hp: 0
   moveSpeed: 0
   atk: 0
-  nuckBack: 0
-  maxHp: 0
   atkSpeed: 0
   atkRange: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
@@ -27439,27 +27421,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bace13f0b92db40a57533a2552c4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  maxHp: 0
   hp: 0
   moveSpeed: 0
   atk: 0
-  nuckBack: 0
-  maxHp: 0
   atkSpeed: 0
   atkRange: 0
+  nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
   myRotat: {x: 0, y: 0, z: 0}
   current_angle: 0
   other: {fileID: 0}
-  isAttack: 1
+  isAttacking: 0
   isWalk: 0
   isDead: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
-  enemy_angle: 0
-  myAttackType: 0
-  myAnim_AnglePos: 0
   invincible: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0

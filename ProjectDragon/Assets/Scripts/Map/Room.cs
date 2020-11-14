@@ -73,8 +73,9 @@ public class Room : MonoBehaviour
             case RoomType.Hidden:
                 SoundManager.Inst.Ds_BGMPlayerDB(6);
                 break;
+            case RoomType.Stair:
             case RoomType.NPC:
-                SoundManager.Inst.Ds_BGMPlayerDB(4);
+                SoundManager.Inst.Ds_BGMPlayerDB(12);
                 break;
             case RoomType.Boss:
                 SoundManager.Inst.Ds_BGMPlayerDB(7);

@@ -83,13 +83,16 @@ public class Root : MapObject
     {
         base.HpChanged(_damage);
 
+        SoundManager.Inst.EffectPlayerDB(29, gameObject);
         if (hp <= halfHP && rootState.Equals(State.Phase1))
         {
+            SoundManager.Inst.EffectPlayerDB(30, gameObject);
             ChangeSprite();
         }
         else if (hp <= 0.0f && rootState.Equals(State.Phase2))
         {
             rootState = State.Destroy;
+            SoundManager.Inst.EffectPlayerDB(30, gameObject);
             StartCoroutine(vfx);
         }
     }

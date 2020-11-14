@@ -60,18 +60,22 @@ public class ResultPop : MonoBehaviour
     #region Button
     public void LobbyButton()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         Time.timeScale = 1.0f;
+        GameManager.Inst.PlayerDeadToInitialData();
         ButtonManager.GotoLobby();
     }
    
     public void NextStageButton()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         Time.timeScale = 1.0f;
         GameManager.Inst.Loading(true);
     }
 
     public void NextButton()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         Time.timeScale = 1.0f;
         gameObject.SetActive(false);
         battleEquipmentChangeWindow.Init();

@@ -76,6 +76,8 @@ public class Loading : MonoBehaviour
         //uIRoot.manualHeight = 1080;
         //uIRoot.manualWidth = 1920;
 
+        SoundManager.Inst.StopBgm();
+
         //init
         if (isBattle)
         {
