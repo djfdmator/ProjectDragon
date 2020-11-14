@@ -391,7 +391,7 @@ public class JoyPad : MonoBehaviour
 
         // Release the finger control and set the joystick back to the default position
         position = Vector2.zero;
-        Debug.Log("Reset?");
+        //Debug.Log("Reset?");
         target2.localPosition = userInitTouchPos;
 
         //for (int i = 0; i < 100; i++)

@@ -185,7 +185,7 @@ public class ShortRangeAttackArea : MonoBehaviour
                         if (player.isAttacking)
                         //Player hit
                         {
-                            SoundManager.Inst.Ds_EffectPlayerDB(8);
+                            SoundManager.Inst.EffectPlayerDB(8, this.gameObject);
                             hitedTarget.GetComponent<Character>().HPChanged(Take_Current_Damage(),player.isCriticalHit,player.nuckBackPower);
                             player.isAttacking = false;
                         }
@@ -225,7 +225,7 @@ public class ShortRangeAttackArea : MonoBehaviour
         //수정 예정  projectileTargetList를 데이터베이스에서 이넘으로 받아서 실행할것
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///
-        SoundManager.Inst.Ds_EffectPlayerDB(7);
+        SoundManager.Inst.EffectPlayerDB(7, this.gameObject);
 
         if (player.weaponType == Player.WeaponType.NormalStaff)
         {

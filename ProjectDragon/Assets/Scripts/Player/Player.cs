@@ -14,7 +14,7 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public enum WeaponType { NormalSword, NormalStaff, Excalibur, Nereides, Nyx,  };
+    public enum WeaponType { NormalSword, NormalStaff, Excalibur, Nereides, Nyx, };
 
     //flash white material damaged of player
     private FlashWhite damaged_flash;
@@ -31,7 +31,7 @@ public class Player : Character
 
 
     public bool isActive;               //자동 공격 시작인지 (방안에 들어가 시작할때)
-    public bool isInvaid =false;
+    public bool isInvaid = false;
     public bool isCriticalHit = false;
 
 
@@ -62,7 +62,7 @@ public class Player : Character
                 current_angle = enemy_angle;
             }
 
-            if (isActive && (AngleisAttack || isSkillActive))    
+            if (isActive && (AngleisAttack || isSkillActive))
             {
                 animcontroll.ChangeAngleAnim(enemy_angle);
             }
@@ -75,7 +75,7 @@ public class Player : Character
 
 
     //애니메이터 리소스
-    public RuntimeAnimatorController[] projectileAnimator;              
+    public RuntimeAnimatorController[] projectileAnimator;
     //private RuntimeAnimatorController proj_attackAnimator;              //현재 평타 투사체
     //private RuntimeAnimatorController proj_skillAnimator;              //현재 스킬 투사체
 
@@ -126,7 +126,7 @@ public class Player : Character
     public float h;
     public float v;
 
-    
+
     //적 찾기
     public List<GameObject> EnemyArray;
     public GameObject TempEnemy;
@@ -189,8 +189,8 @@ public class Player : Character
     {
         int original_HP = HP;
         // GameManager.Inst.CurrentHp = HP;
-        float currentATK=ATK;
-        if(ATK>0)
+        float currentATK = ATK;
+        if (ATK > 0)
         {
             float a = Random.Range(0.0f, 100.0f);
             if (invaid >= a)
@@ -200,7 +200,8 @@ public class Player : Character
                 // Debug.Log("회피성공");
                 isInvaid = true;
             }
-            else{
+            else
+            {
                 isInvaid = false;
             }
         }
@@ -208,12 +209,12 @@ public class Player : Character
         {
             isInvaid = false;
         }
-        
-        if(original_HP>=HP)
+
+        if (original_HP >= HP)
         {
             damaged_flash_corrutine = damaged_flash.Flash();
-            IEnumerator A=transform.GetChild(0).GetComponent<FlashWhite>().Flash();
-            IEnumerator B=transform.GetChild(1).GetComponent<FlashWhite>().Flash();
+            IEnumerator A = transform.GetChild(0).GetComponent<FlashWhite>().Flash();
+            IEnumerator B = transform.GetChild(1).GetComponent<FlashWhite>().Flash();
             StopCoroutine(A);
             StopCoroutine(B);
             StopCoroutine(damaged_flash_corrutine);
@@ -221,12 +222,12 @@ public class Player : Character
             StartCoroutine(B);
             StartCoroutine(damaged_flash_corrutine);
             damagePopup.Create(transform.position + new Vector3(0.0f, 0.5f, 0.0f), (int)currentATK, false, isInvaid, transform);
-            
+
             original_HP = HP;
         }
-        base.HPChanged((int)currentATK,isCritical,NukBack);
+        base.HPChanged((int)currentATK, isCritical, NukBack);
         //Debug.Log((float)HP / (float)maxHp);
-        SoundManager.Inst.Ds_EffectPlayerDB(4);
+        SoundManager.Inst.EffectPlayerDB(4, this.gameObject);
         return HP;
     }
 
@@ -244,8 +245,8 @@ public class Player : Character
             isSkillActive = false;
             StopPlayer = false;
         }
-            CurrentState = State.Get;
-        Debug.Log("CurrentState " + CurrentState);
+        CurrentState = State.Get;
+        //Debug.Log("CurrentState " + CurrentState);
     }
 
 
@@ -312,14 +313,14 @@ public class Player : Character
                 {
                     inAttackTarget = false;
                     AngleisAttack = false;
-                    if (AngleisAttack == false )
+                    if (AngleisAttack == false)
                     {
                         if (attackType == CLASS.지팡이)
                         {
                             moveSpeed = temp_Movespeed;
                         }
 
-                        if( joyPad.Pressed == true)
+                        if (joyPad.Pressed == true)
                         {
                             if (enemy_angle != 0)
                             {
@@ -363,7 +364,7 @@ public class Player : Character
         CurrentState = State.Idle;
         AngleisAttack = false;
     }
-    
+
 
     protected override void Awake()
     {
@@ -401,7 +402,7 @@ public class Player : Character
         CurrentState = State.Skill;
         //각 SkillAnim에 이벤트함수로 넣음...
         //CreateProjectile();
-  
+
     }
 
 
@@ -422,7 +423,7 @@ public class Player : Character
             float radius = 0.2f;
             if (weaponType == Player.WeaponType.NormalSword)
             {
-                SoundManager.Inst.Ds_EffectPlayerDB(6);
+                SoundManager.Inst.EffectPlayerDB(6, this.gameObject);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position, nuckBackPower);
             }
             else if (weaponType == Player.WeaponType.NormalStaff)
@@ -430,7 +431,7 @@ public class Player : Character
                 capsuleColSize = new Vector2(0.6f, 1);
                 if (TempEnemy != null)
                 {
-                    SoundManager.Inst.Ds_EffectPlayerDB(18);
+                    SoundManager.Inst.EffectPlayerDB(18, this.gameObject);
 
                     offset = new Vector2(0.02f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
@@ -441,7 +442,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
-                    SoundManager.Inst.Ds_EffectPlayerDB(22);
+                    SoundManager.Inst.EffectPlayerDB(22, this.gameObject);
                     offset = new Vector2(0.03f, 0.0f);
                     capsuleColSize = new Vector2(0.6f, 1);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[7], true, TempEnemy.transform.position);
@@ -450,7 +451,7 @@ public class Player : Character
             else if (weaponType == Player.WeaponType.Nereides)
             {
                 //파도효과음
-                SoundManager.Inst.Ds_EffectPlayerDB(19);
+                SoundManager.Inst.EffectPlayerDB(19, this.gameObject);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
 
             }
@@ -458,7 +459,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
-                    SoundManager.Inst.Ds_EffectPlayerDB(20);
+                    SoundManager.Inst.EffectPlayerDB(20, this.gameObject);
                     offset = new Vector2(0.03f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
@@ -510,7 +511,7 @@ public class Player : Character
     {
         if (!isDead)
         {
-            if (joyPad.Pressed.Equals(true)&& !isSkillActive)
+            if (joyPad.Pressed.Equals(true) && !isSkillActive)
             {
                 current_angle = joyPad.angle;
             }
@@ -655,7 +656,7 @@ public class Player : Character
     {
         LoadWeaponData();
 
-        GetComponent<PlayerAnimControll>().LoadAnimator(weaponType,attackType,ATTACKSPEED);
+        GetComponent<PlayerAnimControll>().LoadAnimator(weaponType, attackType, ATTACKSPEED);
         skillButton.Init(skillCoolTime, skillMpCost, skill_ImageName);
     }
 
@@ -720,7 +721,7 @@ public class Player : Character
 
         camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
     }
-    
 
-    
+
+
 }

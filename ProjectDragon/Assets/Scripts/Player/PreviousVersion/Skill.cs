@@ -45,11 +45,11 @@ public class Skill : MonoBehaviour
         PlayerAngle = player.enemy_angle;
         this.gameObject.transform.rotation = Quaternion.Euler(0, 0, PlayerAngle - 90);
     }
-    public void Update()
-    {
-        Debug.Log("skill?");
-        //this.gameObject.transform.position;
-    }
+    //public void Update()
+    //{
+    //    //Debug.Log("skill?");
+    //    //this.gameObject.transform.position;
+    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Equals("Enemy"))

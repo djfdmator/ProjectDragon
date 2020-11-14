@@ -93,7 +93,7 @@ public class Rimmotal : Enemy
         Vector2 offset = new Vector2(-0.01f, -0.1f);
         float radius = 0.1f;
 
-        SoundManager.Inst.Ds_EffectPlayerDB(26);
+        SoundManager.Inst.EffectPlayerDB(26, this.gameObject);
 
         projectile.Create(projectileTargetList, offset, radius, Angle - 20.0f, 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
         projectile.Create(projectileTargetList, offset, radius, Angle - 15.0f, 4.0f, ATTACKDAMAGE, LeafAnimator, false, transform.position);
@@ -194,7 +194,7 @@ public class Rimmotal : Enemy
         {
             yield return null;
         }
-        SoundManager.Inst.Ds_EffectPlayerDB(27);
+        SoundManager.Inst.EffectPlayerDB(27, this.gameObject);
 
         float cliptime = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(cliptime/ objectAnimator.GetCurrentAnimatorStateInfo(0).speed);

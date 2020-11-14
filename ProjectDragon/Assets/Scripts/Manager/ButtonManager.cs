@@ -81,7 +81,7 @@ public static class ButtonManager
                         //LobbyManager.inst.test = SceneManager.GetActiveScene().name;
                         //LobbyManager.inst.QuitState();
                     }
-                    Debug.Log(debug);
+                    //Debug.Log(debug);
                     break;
             }
             
@@ -151,7 +151,7 @@ public static class ButtonManager
         }
         else
         {
-            Debug.Log("SetActiveObject가 없어요.");
+            //Debug.Log("SetActiveObject가 없어요.");
         }
     }
     public static void GameQuit()

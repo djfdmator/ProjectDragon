@@ -46,7 +46,7 @@ public class StatPanel : MonoBehaviour
 
     public void RefreshStatData()
     {
-        Debug.Log(damage);
+        //Debug.Log(damage);
         damage.text = GameManager.Inst.Atk_Max.ToString();
         hp.text = GameManager.Inst.MaxHp.ToString();
         defence.text = GameManager.Inst.CurrentEquipArmor.hp.ToString();

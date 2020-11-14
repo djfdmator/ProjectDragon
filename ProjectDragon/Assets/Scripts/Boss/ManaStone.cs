@@ -29,7 +29,7 @@ public class ManaStone : Monster
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    Debug.Log(gameObject.transform.parent.parent.transform.Find(string.Format("ManaStonePlace{0}", i + 1)).Find("ManaStone").gameObject.activeSelf);
+                   // Debug.Log(gameObject.transform.parent.parent.transform.Find(string.Format("ManaStonePlace{0}", i + 1)).Find("ManaStone").gameObject.activeSelf);
                     if (gameObject.transform.parent.parent.transform.Find(string.Format("ManaStonePlace{0}", i + 1)).Find("ManaStone").gameObject.activeSelf)
                     {
                         active = true;

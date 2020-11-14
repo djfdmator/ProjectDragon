@@ -43,7 +43,7 @@ public class Boss_MaDongSeok : Monster
     {
         HP = maxHp;
         Bossphasechange = BossPhase();
-        Debug.Log(HP);
+        //Debug.Log(HP);
 
         base.Awake();
     }
@@ -53,7 +53,7 @@ public class Boss_MaDongSeok : Monster
         objectAnimator= GetComponent<Animator>();
         Bossroom = gameObject.transform.parent.transform.Find("보스방").gameObject;
         manastone = new GameObject[4];
-        Debug.Log(SoundManager.Inst.gameObject.name);
+        //Debug.Log(SoundManager.Inst.gameObject.name);
         for (int i = 0; i < 4; i++)
         {
             manastone[i] = Bossroom.transform.Find(string.Format("ManaStonePlace{0}", i + 1)).gameObject;
@@ -103,7 +103,7 @@ public class Boss_MaDongSeok : Monster
 
         viewportposition0 = MCamera.ViewportToWorldPoint(new Vector3(0, 0, 1));
         viewportposition1 = MCamera.ViewportToWorldPoint(new Vector3(1, 1, 1));
-        Debug.Log("0번" + viewportposition0 + "1번" + viewportposition1);
+        //Debug.Log("0번" + viewportposition0 + "1번" + viewportposition1);
         
 
         base.Start();
@@ -156,7 +156,7 @@ public class Boss_MaDongSeok : Monster
         {
             IEnumerator flash = GetComponentInChildren<FlashWhite>().Flash();
             StartCoroutine(flash);
-            Debug.Log("flash");
+            //Debug.Log("flash");
         }
         return base.HPChanged(ATK, isCritical, NukBack);
     }
@@ -171,7 +171,7 @@ public class Boss_MaDongSeok : Monster
         if (HP > 0)
         {
             currentstate++;
-            Debug.Log(HP);
+            //Debug.Log(HP);
             yield return new WaitForSeconds(1f);
             GameObject.Find("Main Camera").GetComponent<CameraFollow>().BossFollow(gameObject);
             yield return StartCoroutine(Roar());
@@ -192,7 +192,7 @@ public class Boss_MaDongSeok : Monster
                                 PhaseState = ArmsChasingPlayer();
                                 //PhseState = State3();
                                 //레프트 라이트 랜덤
-                                Debug.Log("lol");
+                                //Debug.Log("lol");
                                 break;
                             }
                         case 1:
@@ -224,7 +224,7 @@ public class Boss_MaDongSeok : Monster
                     {
                         case 0:
                             {
-                                Debug.Log("lol12");
+                                //Debug.Log("lol12");
                                 count++;
                                 PhaseState = ManaStoneSumon();
                                 //PhseState = State4();
@@ -390,16 +390,16 @@ public class Boss_MaDongSeok : Monster
                     }
             }
             count++;
-            Debug.Log("Phase2" + count);
+            //Debug.Log("Phase2" + count);
             ArmsDamagesetfalse();
             yield return StartCoroutine(HandHitDown);
         }
-        Debug.Log("HitDown");
+        //Debug.Log("HitDown");
         yield return null;
     }
     IEnumerator RightHandHitDown(int placenum)
     {
-        Debug.Log("Righthand");
+        //Debug.Log("Righthand");
         float time = 0;
         Vector3 hitposition = hitDownplace[placenum].transform.position;
         hitposition.y += 10;
@@ -428,10 +428,10 @@ public class Boss_MaDongSeok : Monster
         }
         LayerMask playerlayer = LayerMask.GetMask("Player");
         Vector2 boxcollidersize = hitDownplace[placenum].GetComponent<BoxCollider2D>().size;
-        Debug.Log(boxcollidersize);
+        //Debug.Log(boxcollidersize);
         boxcollidersize.x = boxcollidersize.x * hitDownplace[placenum].transform.localScale.x;
         boxcollidersize.y = boxcollidersize.y * hitDownplace[placenum].transform.localScale.y;
-        Debug.Log(hitDownplace[placenum].transform.localScale.x);
+        //Debug.Log(hitDownplace[placenum].transform.localScale.x);
         if (Physics2D.OverlapBox(hitDownplace[placenum].transform.position, boxcollidersize, 0, playerlayer))
         {
             player.GetComponent<Character>().HPChanged(damage,false,0);
@@ -453,7 +453,7 @@ public class Boss_MaDongSeok : Monster
     }
     IEnumerator LeftHandHitDown(int placenum)
     {
-        Debug.Log("Lefthand");
+        //Debug.Log("Lefthand");
         float time = 0;
         Vector3 hitposition = hitDownplace[placenum].transform.position;
         hitposition.y += 10;
@@ -484,14 +484,14 @@ public class Boss_MaDongSeok : Monster
         Vector2 boxcollidersize = hitDownplace[placenum].GetComponent<BoxCollider2D>().size;
         boxcollidersize.x = boxcollidersize.x * hitDownplace[placenum].transform.localScale.x;
         boxcollidersize.y = boxcollidersize.y * hitDownplace[placenum].transform.localScale.y;
-        Debug.Log(hitDownplace[placenum].transform.localScale.x);
+        //Debug.Log(hitDownplace[placenum].transform.localScale.x);
         if (Physics2D.OverlapBox(hitDownplace[placenum].transform.position, boxcollidersize, 0, playerlayer))
         {
             StartCoroutine(Camera.main.GetComponent<CameraFollow>().Shake(0.5f, 1));
             player.GetComponent<Character>().HPChanged(damage,false,0);
         }
         SoundManager.Inst.Ds_EffectPlayerDB(15);
-        Debug.Log(Physics2D.OverlapBox(hitDownplace[placenum].transform.position, boxcollidersize, 0, playerlayer)); 
+        //Debug.Log(Physics2D.OverlapBox(hitDownplace[placenum].transform.position, boxcollidersize, 0, playerlayer)); 
         armLeft.transform.position = hitDownplace[placenum].transform.position;
         hitDownplace[placenum].SetActive(false);
         armLeft.transform.GetChild(0).gameObject.SetActive(true);
@@ -507,7 +507,7 @@ public class Boss_MaDongSeok : Monster
            manastone[i].transform.Find("ManaStone").GetComponent<ManaStone>().ManaStoneSumon();
         }
         StartCoroutine(player.GetComponent<Player>().CalculateDistanceWithPlayer());
-        Debug.Log("ManaStoneSumon");
+        //Debug.Log("ManaStoneSumon");
         Phase2Timecheck = COPhase2Timecheck();
         StartCoroutine(Phase2Timecheck);
         while (time < 0.5)
@@ -533,12 +533,12 @@ public class Boss_MaDongSeok : Monster
             projectile.Create(projectileTargetList,Vector2.zero,radius,angle, projectilespeed, projectiledamage, projectileanim, true, bossmouth);
             yield return new WaitForSeconds(0.25f);
         }
-        Debug.Log("ManaShoot1");
+        //Debug.Log("ManaShoot1");
         yield return new WaitForSeconds(1.0f);
     }
     IEnumerator ManaShoot2()
     {
-        Debug.Log("ManaShoot2");
+        //Debug.Log("ManaShoot2");
         for (int j = 0; j < 9; j++)
         {
             float angle = 80 - (j * 20);
@@ -560,7 +560,7 @@ public class Boss_MaDongSeok : Monster
         currentstate++;
         count = 0;
         StartCoroutine(Bossphasechange);
-        Debug.Log("COPhase2Timecheck");
+        //Debug.Log("COPhase2Timecheck");
     }
     IEnumerator RockSumon()
     {
@@ -585,7 +585,7 @@ public class Boss_MaDongSeok : Monster
                 {
                     if (hit.collider.GetComponent<BossTargetpoint>() != null)
                     {
-                        Debug.Log("겹침");
+                        //Debug.Log("겹침");
                         ishit = true;
                     }
                 }
@@ -594,7 +594,7 @@ public class Boss_MaDongSeok : Monster
             yield return StartCoroutine(Projectile(targetposition, !i.Equals(random)));
         }
         yield return new WaitForSeconds(Idletime);
-        Debug.Log("RockSumon");
+        //Debug.Log("RockSumon");
         //StartCoroutine(Bossphasechange);
     }
     IEnumerator Chargingmana()
@@ -614,11 +614,11 @@ public class Boss_MaDongSeok : Monster
         }
         razer.SetActive(false);
         yield return null;
-        Debug.Log("RazerBeam" + Bossphasechange.Current.ToString());
+        //Debug.Log("RazerBeam" + Bossphasechange.Current.ToString());
     }
     IEnumerator LeftSweep()
     {
-        Debug.Log("LeftSweep");
+        //Debug.Log("LeftSweep");
         Vector3 armposition= armright.transform.position;
         float time = 0;
         while(time<1.0f)
@@ -645,7 +645,7 @@ public class Boss_MaDongSeok : Monster
             yield return null;
             hitDownplace[4].SetActive(false);
         }
-        Debug.Log("End");
+        //Debug.Log("End");
         time = 0;
         while (time < 1.0f)
         {
@@ -655,11 +655,11 @@ public class Boss_MaDongSeok : Monster
         }
         
         yield return null;
-        Debug.Log("LeftSweep");
+        //Debug.Log("LeftSweep");
     }
     IEnumerator RightSweep()
     {
-        Debug.Log("RightSweep");
+        //Debug.Log("RightSweep");
         Vector3 armposition = armLeft.transform.position;
         float time = 0;
         while (time < 1)
@@ -674,7 +674,7 @@ public class Boss_MaDongSeok : Monster
         }
         time = 0;
         int j=5;
-        Debug.Log(hitDownplace[j].transform.position.x+""+armLeft.transform.position.x);
+        //Debug.Log(hitDownplace[j].transform.position.x+""+armLeft.transform.position.x);
 
         while (time < 1.5f)
         {
@@ -692,7 +692,7 @@ public class Boss_MaDongSeok : Monster
             
             hitDownplace[1].SetActive(false);
         }
-        Debug.Log("End");
+        //Debug.Log("End");
         time = 0;
         while (time < 1)
         {
@@ -712,7 +712,7 @@ public class Boss_MaDongSeok : Monster
         yield return new WaitForSeconds(1.0f);
         SoundManager.Inst.Ds_EffectPlayerDB(13);
         yield return new WaitForSeconds(1.0f);
-        Debug.Log("Roar");
+        //Debug.Log("Roar");
     }
     public void TargeExplosion(Vector3 _targetpoint)
     {
@@ -726,7 +726,7 @@ public class Boss_MaDongSeok : Monster
     IEnumerator Projectile(Vector3 projectileposition, bool _week)
     {
         targetpoint.Create(projectilespeed, projectiledamage, "BossTargetPointObj", projectileposition, _week);
-        Debug.Log(_week);
+        //Debug.Log(_week);
         yield return new WaitForSeconds(projectiletime);
     }
     public float GetAngle(Vector3 Start, Vector3 End)
@@ -746,7 +746,7 @@ public class Boss_MaDongSeok : Monster
         }
         Phase2Timecheck=COPhase2Timecheck();
         currentstate=BossState.Phase4;
-        Debug.Log(currentstate);
+        //Debug.Log(currentstate);
         StartCoroutine(PhaseState);
     }
     public void ArmsDamageset()

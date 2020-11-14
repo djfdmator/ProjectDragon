@@ -92,7 +92,7 @@ public class Equipmentcell : UIReuseScrollViewCell
         for (int i = 0; i < LobbyManager.inst.ItemInfo.transform.childCount; i++)
         {
             //ItemInfo.GetComponentsInChildren<UILabel>()[i].UpdateAnchors();
-            Debug.Log(i + "(" + LobbyManager.inst.ItemInfo.transform.childCount + ")");
+            //Debug.Log(i + "(" + LobbyManager.inst.ItemInfo.transform.childCount + ")");
             LobbyManager.inst.ItemInfo.transform.GetChild(i).gameObject.SetActive(false);
             //ItemInfo.GetComponentsInChildren<UILabel>()[i].gameObject.SetActive(false);
         }
@@ -315,10 +315,10 @@ public class Equipmentcell : UIReuseScrollViewCell
     {
         if (sender.Equals(gameObject) && !state)
         {
-            Debug.Log(Mathf.Abs(pressyposition - gameObject.transform.position.y));
+            //Debug.Log(Mathf.Abs(pressyposition - gameObject.transform.position.y));
             if (Mathf.Abs(pressyposition -gameObject.transform.position.y)<0.1f)
             {
-                Debug.Log("cellclick");
+                //Debug.Log("cellclick");
                 SoundManager.Inst.Ds_EffectPlayerDB(1);
                 switch (LobbyManager.inst.lobbystate)
                 {
@@ -370,7 +370,7 @@ public class Equipmentcell : UIReuseScrollViewCell
                             }
                             for (int i = 0; i < LobbyManager.inst.Selecteditem.Count; i++)
                             {
-                                Debug.Log(string.Format(LobbyManager.inst.Selecteditem.Count + "," + check));
+                                //Debug.Log(string.Format(LobbyManager.inst.Selecteditem.Count + "," + check));
                                 LobbyManager.inst.DecompositionPanel.transform.Find(string.Format("DecompositionInfo/Itemplace{0}/ItemIcon", i)).GetComponent<UISprite>().spriteName = GameManager.Inst.PlayData.inventory[LobbyManager.inst.Selecteditem[i]].imageName;
                                 manavalue += GameManager.Inst.PlayData.inventory[LobbyManager.inst.Selecteditem[i]].itemValue;
                                 LobbyManager.inst.equipanel.transform.Find("ItemWindow/FilterButtonBGI").GetComponent<UIButton>().isEnabled = true;

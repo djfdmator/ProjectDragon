@@ -34,13 +34,13 @@ public class Maintenance : MonoBehaviour
 
     private void Start()
     {
+        inventory.SettingItem();
         
     }
 
     #region Button
     public void OpenMaintenance()
     {
-        inventory.SettingItem();
         RefreshManaCount();
         RefreshEquipItem();
         gameObject.SetActive(true);
