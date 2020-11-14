@@ -19,7 +19,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         Ds_efxSource.loop = false;
         Ds_musicSource = gameObject.AddComponent<AudioSource>();
         Ds_musicSource.loop = true;
-
     }
     /// <summary>
     /// 배경음 재생 SoundManager.Inst.Ds_BgmPlayer(Audio ***);
@@ -53,8 +52,34 @@ public class SoundManager : MonoSingleton<SoundManager>
         AudioClip Effect=Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index,false));
         #if UNITY_EDITOR
         //Debug.Log(Effect.name);
-        #endif
-        Ds_PlaySingle(Effect);
+#endif
+        //Ds_PlaySingle(Effect);
+        PlayEffectSound(this.gameObject, Effect);
+    }
+
+    /// <summary>
+    /// 새로운 버전 효과음플레이!
+    /// </summary>
+    /// <param name="_index"></param>
+    /// <param name="obj"></param>
+    public void EffectPlayerDB(int _index,GameObject obj)
+    {
+        PlayEffectSound(this.gameObject, Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index, false)));
+    }
+
+    private void PlayEffectSound(GameObject obj, AudioClip clip)
+    {
+        AudioSource audioSource;
+        if (obj.GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = obj.AddComponent<AudioSource>();
+        }
+        audioSource.volume = Database.Inst.playData.SFX_Volume;
+        audioSource.PlayOneShot(clip);
     }
     /// <summary>
     /// 하나의 효과음재생 SoundManager.Inst.PlaySingle(Audio ***);
