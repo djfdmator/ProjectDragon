@@ -3110,7 +3110,7 @@ MonoBehaviour:
   dragEffect: 1
   restrictWithinPanel: 1
   constrainOnDrag: 1
-  disableDragIfFits: 0
+  disableDragIfFits: 1
   smoothDragStart: 1
   iOSDragEmulation: 1
   scrollWheelFactor: 0.25
@@ -5395,7 +5395,7 @@ MonoBehaviour:
   rawValue: 1
   direction: 2
   mInverted: 0
-  mSize: 0.99358976
+  mSize: 1
   mScroll: 0
   mDir: 2
 --- !u!65 &506512023
@@ -11409,8 +11409,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16, y: 598.141, z: 0}
-  m_Center: {x: 0, y: 1.9294891, z: 0}
+  m_Size: {x: 16, y: 602, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1168045253
 GameObject:
   m_ObjectHideFlags: 0
@@ -15007,14 +15007,14 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1477
+  mWidth: 1920
   mHeight: 1080
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.3675926
+  aspectRatio: 1.7777778
   mType: 0
   mFillDirection: 4
   mFillAmount: 1

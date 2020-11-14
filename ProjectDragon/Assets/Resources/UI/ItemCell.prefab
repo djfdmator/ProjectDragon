@@ -252,7 +252,7 @@ MonoBehaviour:
   mHeight: 156
   mDepth: 0
   mMat: {fileID: 0}
-  autoResizeBoxCollider: 1
+  autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 4.4615383
@@ -351,7 +351,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 696, y: 156, z: 0}
+  m_Size: {x: 696, y: 152, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9197579364720691925
 GameObject:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: cfdaa9ece6a98bd4c92416b452a0bf43, type: 2}
-  mText: 0
+  mText: 8
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0

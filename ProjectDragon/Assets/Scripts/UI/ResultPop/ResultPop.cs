@@ -72,8 +72,8 @@ public class ResultPop : MonoBehaviour
 
     public void NextButton()
     {
+        Time.timeScale = 1.0f;
         battleEquipmentChangeWindow.Init();
-        battleEquipmentChangeWindow.gameObject.SetActive(true);
     }
     #endregion
 

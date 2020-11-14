@@ -520,7 +520,7 @@ public class GameManager : MonoSingleton<GameManager>
             if (CurrentHp <= 0)
             {
                 //die
-                InitializePlayData();
+                //InitializePlayData();
                 //죽는 씬전환
                 StartCoroutine(GameEnd());
             }
@@ -691,12 +691,7 @@ public class GameManager : MonoSingleton<GameManager>
                 Database.Armor armor = Database.Inst.armors[value.DB_Num];
                 Database.Inst.playData.equiArmor_InventoryNum = value.num;
                 Database.Inst.playData.maxHp = armor.hp + BaseHp;
-
-                int temp = preArmorHP - armor.hp;
-
-                temp = temp >= 0 ?  temp : 0;
-                Database.Inst.playData.currentHp += temp;
-                Database.Inst.playData.currentHp = Database.Inst.playData.currentHp > Database.Inst.playData.maxHp ? Database.Inst.playData.maxHp : Database.Inst.playData.currentHp;
+                Database.Inst.playData.currentHp = MaxHp;
                 
                 if (!value.option_Index.Equals(-1))
                 {   //옵션이 붙어 있으면 옵션 적용
@@ -780,7 +775,7 @@ public class GameManager : MonoSingleton<GameManager>
     #endregion
 
     /// <summary>
-    /// 플레이어가 죽었거나 포기했을때 부르면 데이터가 초기화 됩니다.
+    /// 플레이어가 포기했을때 부르면 데이터가 초기화 됩니다.
     /// </summary>
     public void InitializePlayData()
     {
@@ -793,8 +788,30 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(3.0f);
         //결과창 띄우기
         GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().OpenResultPop(true);
-        Debug.Log("GameEnd");
+        //Debug.Log("GameEnd");
         yield return null;
+    }
+
+    public void PlayerDeadToInitialData()
+    {
+        Database.PlayData playData = Database.Inst.playData;
+
+        playData.equiWeapon_InventoryNum = 0;
+        playData.equiArmor_InventoryNum = 1;
+
+        playData.maxHp = BaseHp;
+        playData.currentHp = BaseHp;
+
+        playData.moveSpeed = 1.0f;
+        playData.currentStage = 0;
+        playData.mp = 1000;
+
+        InitializePlayerStat();
+
+        if (playData.inventory.Count > 2)
+        {
+            playData.inventory.RemoveRange(2, playData.inventory.Count - 2);
+        }
     }
     #region 공사중 - 초기화 구조 바꿔야 함
 
@@ -818,7 +835,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         playData.maxHp = BaseHp;
         playData.currentHp = BaseHp;
-#if UNITY_EDITORY
+#if UNITY_EDITOR
         Debug.Log("BaseHp "+ BaseHp);
         Debug.Log("currentHp " + playData.currentHp);
 #endif

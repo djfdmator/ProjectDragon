@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour
         if (skillMpCost == null) skillMpCost = popupSkill.transform.Find("Mana/Label").GetComponent<UILabel>();
         if (skillCoolTime == null) skillCoolTime = popupSkill.transform.Find("CoolTime/Label").GetComponent<UILabel>();
 
-        SettingItem();
+        //SettingItem();
 
         weaponAtlas = Resources.Load<NGUIAtlas>("UI/WeaponIconAtlas");
         ArmorAtlas = Resources.Load<NGUIAtlas>("UI/ArmorIconAtlas");
@@ -142,11 +142,6 @@ public class Inventory : MonoBehaviour
             UIButton itemImageBtn = obj.transform.Find("ItemImage").GetComponent<UIButton>();
             UIButton skillImageBtn = obj.transform.Find("SkillImage").GetComponent<UIButton>();
             UIButton itemCellBtn = obj.GetComponent<UIButton>();
-
-
-            itemImageBtn.onClick.Clear();
-            skillImageBtn.onClick.Clear();
-            itemCellBtn.onClick.Clear();
 
             EventDelegate itemEvent = new EventDelegate(this, "Event_PopupItem");
             itemEvent.parameters[0].value = weapon.num;
@@ -252,7 +247,7 @@ public class Inventory : MonoBehaviour
         {
             if (itemBtnDatas[i].inventory_index == GameManager.Inst.PlayData.equiWeapon_InventoryNum)
             {
-                itemBtnDatas[i].obj.transform.localPosition = new Vector3(0.0f, 10.0f, 0.0f);
+                itemBtnDatas[i].obj.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             }
             else
             {

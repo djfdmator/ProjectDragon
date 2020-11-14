@@ -1391,7 +1391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229277610767781730}
   - component: {fileID: 4229277610767781729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2816,8 +2816,8 @@ MonoBehaviour:
   movement: 1
   dragEffect: 1
   restrictWithinPanel: 1
-  constrainOnDrag: 0
-  disableDragIfFits: 0
+  constrainOnDrag: 1
+  disableDragIfFits: 1
   smoothDragStart: 1
   iOSDragEmulation: 1
   scrollWheelFactor: 0.25
@@ -4289,7 +4289,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 4587679323011132387}
+    mMethodName: NextStageButton
+    mParameters: []
+    oneShot: 0
 --- !u!65 &6446020411057860809
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4407,7 +4411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4587679323011132385
 Transform:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class Room : MonoBehaviour
                 SoundManager.Inst.Ds_BGMPlayerDB(6);
                 break;
             case RoomType.NPC:
-                SoundManager.Inst.Ds_BGMPlayerDB(5);
+                SoundManager.Inst.Ds_BGMPlayerDB(4);
                 break;
             case RoomType.Boss:
                 SoundManager.Inst.Ds_BGMPlayerDB(7);
@@ -248,7 +248,10 @@ public class Room : MonoBehaviour
         //포탈 켜기
         roomManager.PortalOn();
 
-
+        if(roomType == RoomType.Stair)
+        {
+            transform.Find("Stair").GetComponent<Stair>().IsOpen = true;
+        }
     }
 
     private IEnumerator Gathering(float _gatherTime)

@@ -29,12 +29,18 @@ public class Maintenance : MonoBehaviour
         lobbyManager = transform.parent.GetComponent<LobbyManager_vr2>();
         statPanel = transform.Find("Statpanel").GetComponent<StatPanel>();
         charactorRepresentation = transform.Find("Charactorpanel").GetComponent<CharactorRepresentation>();
+
+    }
+
+    private void Start()
+    {
+        
     }
 
     #region Button
     public void OpenMaintenance()
     {
-        //inventory.SettingItem();
+        inventory.SettingItem();
         RefreshManaCount();
         RefreshEquipItem();
         gameObject.SetActive(true);

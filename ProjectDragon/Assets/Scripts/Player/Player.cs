@@ -690,8 +690,8 @@ public class Player : Character
         AtkRange = GameManager.Inst.AttackRange;
 
         //개발자 모드!
-        maxHp = 10000;
-        HP = 10000;
+        //maxHp = 10000;
+        //HP = 10000;
 
     }
     private void LoadWeaponData()

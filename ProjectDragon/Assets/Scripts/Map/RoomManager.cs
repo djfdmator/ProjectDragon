@@ -382,8 +382,16 @@ public class RoomManager : MonoBehaviour
 
     public void OpenResultPop(bool playerIsDead)
     {
-        GameManager.Inst.Mp = mana;
-        GameManager.Inst.Insert_Inventory_Item(items);
+        if (!playerIsDead)
+        {
+            GameManager.Inst.Mp += mana;
+            GameManager.Inst.Insert_Inventory_Item(items);
+        }
+        else
+        {
+            GameManager.Inst.PlayerDeadToInitialData();
+        }
+
         resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
         resultPop.SetActive(true);
     }
