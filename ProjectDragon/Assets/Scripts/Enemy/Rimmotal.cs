@@ -227,6 +227,8 @@ public class Rimmotal : Enemy
         {
             if (inAtkDetectionRange)
             {
+                SoundManager.Inst.EffectPlayerDB(28, this.gameObject);
+
                 thornPoint.Create(projectileTargetList, Vector2.zero, new Vector2(0.7f, 0.7f), skillDamage, ThornAnimator, false, other.position - new Vector3(0.0f, 0.5f, 0.0f));
                 //thornTargeting.Create(skillDamage, "ThornTargeting", other.position);
                 yield return new WaitForSeconds(2.5f);

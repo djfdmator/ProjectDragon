@@ -87,6 +87,7 @@ public class RoomManager : MonoBehaviour
         Camera.main.GetComponent<CameraFollow>().enabled = false;
         player.transform.position = new Vector3(0.0f, 10.0f, 0.0f);
         StartCoroutine(Fade());
+
         float time = 0.0f;
         float y = 0.0f;
         int count = 0;
@@ -96,12 +97,14 @@ public class RoomManager : MonoBehaviour
             {
                 count++;
                 StartCoroutine(GameManager.Inst.ParticlePlay("Effect/DustExplosion", new Vector2(0.0f, -0.5f)));
+                SoundManager.Inst.Ds_EffectPlayerDB(10);
             }
             time += Time.deltaTime;
             y = Mathf.Lerp(player.transform.position.y, 0.0f, time * 0.5f);
             player.transform.position = new Vector3(0.0f, y, 0.0f);
             yield return null;
         }
+
         player.GetComponent<BoxCollider2D>().enabled = true;
         Camera.main.GetComponent<CameraFollow>().enabled = true;
     }
@@ -213,6 +216,7 @@ public class RoomManager : MonoBehaviour
     {
         if (_x != player_PosX || _y != player_PosY)
         {
+            SoundManager.Inst.Ds_EffectPlayerDB(11);
             PlayerLocationInMap().gameObject.SetActive(false);
             MiniMapMinimalize();
             SetPlayerPos(_x, _y);
@@ -247,6 +251,10 @@ public class RoomManager : MonoBehaviour
     public void DropItem_Rimmotal(Vector3 _pos)
     {
         List<Database.Weapon> weapons = new List<Database.Weapon>();
+
+        int Drop_Rand = Random.Range(0, 10);
+        if (Drop_Rand <= 3) return;
+
         for (int i = 0; i < Database.Inst.weapons.Count; i++)
         {
             if (Database.Inst.weapons[i].Class != CLASS.갑옷 && Database.Inst.weapons[i].rarity != RARITY.레전드)
@@ -371,6 +379,7 @@ public class RoomManager : MonoBehaviour
                 gameObjects[i].transform.position = pos;
                 if ((player.transform.position - gameObjects[i].transform.position).magnitude <= 0.2f)
                 {
+                    SoundManager.Inst.Ds_EffectPlayerDB(32);
                     Destroy(gameObjects[i]);
                     gameObjects.RemoveAt(i);
                 }
@@ -386,11 +395,14 @@ public class RoomManager : MonoBehaviour
         {
             GameManager.Inst.Mp += mana;
             GameManager.Inst.Insert_Inventory_Item(items);
+            SoundManager.Inst.Ds_BGMPlayerDB(10);
         }
         else
         {
             GameManager.Inst.PlayerDeadToInitialData();
+            SoundManager.Inst.Ds_BGMPlayerDB(9);
         }
+        SoundManager.Inst.Ds_musicSource.loop = false;
 
         resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
         resultPop.SetActive(true);

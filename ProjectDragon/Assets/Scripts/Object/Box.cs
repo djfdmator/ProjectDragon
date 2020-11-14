@@ -48,6 +48,7 @@ public class Box : MapObject
 
     protected override IEnumerator Effect()
     {
+        SoundManager.Inst.EffectPlayerDB(30, gameObject);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         particle.SetActive(true);

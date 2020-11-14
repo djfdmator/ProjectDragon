@@ -8,8 +8,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 {
     public AudioSource Ds_efxSource;//효과음
     public AudioSource Ds_musicSource;//배경음악
-    int bgmnum=-1;
-    public List<AudioClip> Clips=new List<AudioClip>();
+    int bgmnum = -1;
+    public List<AudioClip> Clips = new List<AudioClip>();
     /// <summary>
     /// 초기의 배경음과 이펙스재생을 할 오디오 소스 생성
     /// </summary>
@@ -29,28 +29,29 @@ public class SoundManager : MonoSingleton<SoundManager>
         Ds_musicSource.clip = _clip;
         Ds_musicSource.Play();
         Ds_musicSource.volume = Database.Inst.playData.BGM_Volume;
+        Ds_musicSource.loop = true;
     }
     public void Ds_BGMPlayerDB(int _index)
     {
-        
-        AudioClip BGM=Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index,true));
-        if(!bgmnum.Equals(_index))
+
+        AudioClip BGM = Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index, true));
+        if (!bgmnum.Equals(_index))
         {
-            bgmnum=_index;
-        #if UNITY_EDITOR
-        //Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
-        #endif
-        Ds_BgmPlayer(BGM);
+            bgmnum = _index;
+#if UNITY_EDITOR
+            //Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
+#endif
+            Ds_BgmPlayer(BGM);
         }
     }
-    
+
     public void Ds_EffectPlayerDB(int _index)
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         //Debug.Log(GameManager.Inst.LoadSoundQue(_index,false));
-        #endif
-        AudioClip Effect=Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index,false));
-        #if UNITY_EDITOR
+#endif
+        AudioClip Effect = Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index, false));
+#if UNITY_EDITOR
         //Debug.Log(Effect.name);
 #endif
         //Ds_PlaySingle(Effect);
@@ -62,7 +63,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     /// </summary>
     /// <param name="_index"></param>
     /// <param name="obj"></param>
-    public void EffectPlayerDB(int _index,GameObject obj)
+    public void EffectPlayerDB(int _index, GameObject obj)
     {
         PlayEffectSound(this.gameObject, Resources.Load<AudioClip>(GameManager.Inst.LoadSoundQue(_index, false)));
     }
@@ -115,15 +116,20 @@ public class SoundManager : MonoSingleton<SoundManager>
         Database.Inst.playData.SFX_Volume = value;
         Ds_efxSource.volume = value;
     }
-    public void WalkSound(AudioClip _clip,State state)
+    public void WalkSound(AudioClip _clip, State state)
     {
-        if(state == State.Walk)
+        if (state == State.Walk)
         {
             Ds_efxSource.clip = _clip;
             Ds_efxSource.Play();
             Ds_efxSource.volume = Database.Inst.playData.SFX_Volume;
         }
         Ds_efxSource.Stop();
+    }
+
+    public void StopBgm()
+    {
+        Ds_musicSource.Stop();
     }
     //ERROR
     //public void SoundSet(params int[] _indexes)

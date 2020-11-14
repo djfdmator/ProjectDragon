@@ -53,11 +53,13 @@ public class Maintenance : MonoBehaviour
 
     public void CurWeaponPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         inventory.WeaponPopup(GameManager.Inst.CurrentEquipWeapon);
     }
 
     public void CurSkillPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         inventory.SkillPopup(GameManager.Inst.CurrentSkill);
     }
 

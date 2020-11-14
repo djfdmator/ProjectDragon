@@ -416,7 +416,7 @@ public class Database : MonoSingleton<Database>
         public List<Inventory> inventory = new List<Inventory>();
         //public List<Emblem> emblem = new List<Emblem>();
         //public string nickName;
-        public readonly int baseHp = 30;
+        public readonly int baseHp = 250;
         public int mp; //money power, 돈의 힘
         public SEX sex;
         public float moveSpeed;

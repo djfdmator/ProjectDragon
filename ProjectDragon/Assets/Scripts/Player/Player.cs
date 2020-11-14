@@ -154,6 +154,8 @@ public class Player : Character
                     hp = -1;
                     CurrentState = State.Dead;
                     Dead();
+
+                    SoundManager.Inst.EffectPlayerDB(33, this.gameObject);
                 }
                 GameManager.Inst.CurrentHp = hp;
             }

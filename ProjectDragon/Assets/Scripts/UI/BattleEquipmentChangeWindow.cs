@@ -76,6 +76,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     public void Init()
     {
+        SoundManager.Inst.Ds_BGMPlayerDB(3);
         inventory.SettingItem();
         RefreshCurEquipItem();
         SettingEvent();
@@ -171,26 +172,31 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     public void CurrentWeaponPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         inventory.WeaponPopup(GameManager.Inst.CurrentEquipWeapon);
     }
 
     public void CurrentSkillPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         inventory.SkillPopup(GameManager.Inst.CurrentSkill);
     }
 
     public void ChoiceWeaponPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         inventory.WeaponPopup(Database.Inst.weapons[GameManager.Inst.PlayData.inventory[inventory.curChoiceItme].DB_Num]);
     }
 
     public void ChoiceSkillPopup()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         inventory.SkillPopup(Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItme].skill_Index]);
     }
 
     public void NextStageButton()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         GameManager.Inst.Loading(true);
     }
 }
