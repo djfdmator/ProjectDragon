@@ -98,7 +98,7 @@ public class Doldori : FSM_NormalEnemy
     protected override void OnCollisionStay2D(Collision2D collision)
     {
         //연속으로 될경우 방지 (한번만 돌리게)
-        if (NEState.Equals(NormalEnemyState.Attack) && AttackEndCor == null)
+        if (isAttacking && AttackEndCor == null)
         {
             if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
                 || collision.gameObject.CompareTag("Cliff") || collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
@@ -107,7 +107,11 @@ public class Doldori : FSM_NormalEnemy
                 Debug.Log("AttackEndCor!");
 #endif
                 AttackEndCor = AttackEnd();
-                if(collision.gameObject.GetComponent<MapObject>() !=null)
+                if (collision.gameObject.CompareTag("Player"))
+                {
+                    Attack_On();
+                }
+                else if(collision.gameObject.GetComponent<MapObject>() !=null)
                 {
                     collision.gameObject.GetComponent<MapObject>().HpChanged(50);
                     if( collision.gameObject.GetComponent<Box>() != null)       //박스는 뚫고 가기
@@ -119,14 +123,11 @@ public class Doldori : FSM_NormalEnemy
                         return;
                     }
                 }
+                StartCoroutine(AttackEndCor);
 #if UNITY_EDITOR
                         Debug.Log("AttackEndCor Start!");
 #endif
-                if (collision.gameObject.CompareTag("Player"))
-                {
-                    Attack_On();
-                }
-                StartCoroutine(AttackEndCor);
+                
   
            }
         }

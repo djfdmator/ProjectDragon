@@ -342,7 +342,6 @@ public class JoyPad : MonoBehaviour
                 // to compensate for the deadZone radius.
 
                 // This prevents the position from snapping from zero to the deadZone radius.
-
                 position = position / radius * Mathf.InverseLerp(radius, deadZone, 1);
             }
 
@@ -391,8 +390,8 @@ public class JoyPad : MonoBehaviour
     {
 
         // Release the finger control and set the joystick back to the default position
-
         position = Vector2.zero;
+        Debug.Log("Reset?");
         target2.localPosition = userInitTouchPos;
 
         //for (int i = 0; i < 100; i++)

@@ -76,7 +76,7 @@ public class SkillButton : MonoBehaviour
                 player.MP -= mpCost;
                 StartCoroutine(CalcCoolTime());
                 OnActive();
-                SoundManager.Inst.Ds_EffectPlayerDB(12);
+                //SoundManager.Inst.Ds_EffectPlayerDB(12);
             }
         }
         else
@@ -85,6 +85,7 @@ public class SkillButton : MonoBehaviour
             Debug.Log("공격범위에 대상이 없음");
 #endif
             //띠릭 Sound
+            SoundManager.Inst.Ds_EffectPlayerDB(24);
         }
     }
 
