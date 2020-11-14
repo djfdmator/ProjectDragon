@@ -643,18 +643,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.3972944, g: 0.70810896, b: 0.9056604, a: 1}
   mPivot: 3
-  mWidth: 106
+  mWidth: 32
   mHeight: 26
   mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 4.076923
+  keepAspectRatio: 1
+  aspectRatio: 2.65
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 04d3bec25164a1349bb44720c6d649f4, type: 2}
-  mText: +407896
+  mText: +0
   mFontSize: 25
   mFontStyle: 0
   mAlignment: 1

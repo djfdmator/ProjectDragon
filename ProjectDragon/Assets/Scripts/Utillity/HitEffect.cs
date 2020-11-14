@@ -27,9 +27,35 @@ public class HitEffect : MonoBehaviour
         hitEffect.gameObject.SetActive(true);
         hitEffect.transform.position = position;
         hitEffect.ResetInit();
+        hitEffect.SFXHitSound(animString);
         hitEffect.animator.SetBool(animString, true);
 
         return hitEffect;
+    }
+
+    private void SFXHitSound(string weapon)
+    {
+        if(weapon.Equals("NormalStaff"))
+        {
+            SoundManager.Inst.Ds_EffectPlayerDB(17);
+        }
+        else if (weapon.Equals("NormalSword"))
+        {
+            SoundManager.Inst.Ds_EffectPlayerDB(8);
+        }
+        else if (weapon.Equals("Nereides"))
+        {
+            SoundManager.Inst.Ds_EffectPlayerDB(9);
+        }
+        else if (weapon.Equals("Nyx"))
+        {
+            SoundManager.Inst.Ds_EffectPlayerDB(21);
+        }
+        else if (weapon.Equals("Excalibur"))
+        {
+            SoundManager.Inst.Ds_EffectPlayerDB(23);
+        }
+
     }
 
     private void ResetInit()

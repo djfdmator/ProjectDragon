@@ -319,34 +319,57 @@ public class Enemy : Monster
 
 
     #region [이전버전] 밀림 방지용 충돌처리
+    #region [이전버전] Player에게 다가가는 무리들에 대한 이동조정
+    //protected virtual void OnCollisionStay2D(Collision2D collision)
+    //{
+    //    //Player에게 다가가는 무리들에 대한 이동조정.. (walk)
+
+    //    if (collision.gameObject.CompareTag("Player") ||
+    //         (collision.gameObject.CompareTag("Enemy") && (collision.gameObject.GetComponent<Enemy>().collisionPlayer)))
+    //    {
+    //        collisionPlayer = true;
+    //        if (collisionPlayer)
+    //        {
+    //            rb2d.isKinematic = true;
+    //            rb2d.velocity = Vector2.zero;
+    //        }
+    //    }
+
+    //}
+    //protected virtual void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player") ||
+    //        collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        rb2d.isKinematic = false;
+    //        collisionPlayer = false;
+    //    }
+    //}
+    #endregion
+
+
     #region Player에게 다가가는 무리들에 대한 이동조정
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
         //Player에게 다가가는 무리들에 대한 이동조정.. (walk)
-
-        if (collision.gameObject.CompareTag("Player") ||
-             (collision.gameObject.CompareTag("Enemy") && (collision.gameObject.GetComponent<Enemy>().collisionPlayer)))
+        if (collision.gameObject.CompareTag("Player"))
         {
             collisionPlayer = true;
-            if (collisionPlayer)
-            {
-                rb2d.isKinematic = true;
-                rb2d.velocity = Vector2.zero;
-            }
+
+            rb2d.isKinematic = true;
+            rb2d.velocity = Vector2.zero;
         }
 
     }
     protected virtual void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") ||
-            collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             rb2d.isKinematic = false;
             collisionPlayer = false;
         }
     }
     #endregion
-
     //protected virtual void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.gameObject.CompareTag("Enemy"))

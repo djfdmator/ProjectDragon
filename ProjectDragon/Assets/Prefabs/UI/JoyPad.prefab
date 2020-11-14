@@ -301,12 +301,12 @@ MonoBehaviour:
   tapCount: 0
   normalize: 1
   position: {x: 0, y: 0}
-  deadZone: 2
+  deadZone: 0
   fadeOutAlpha: 0.2
   fadeOutDelay: 1
   widget: {fileID: 0}
   scale: {x: 1, y: 1, z: 1}
-  radius: 80
+  radius: 20
 --- !u!65 &6020744350644383598
 BoxCollider:
   m_ObjectHideFlags: 0
