@@ -430,7 +430,7 @@ public class Player : Character
                 capsuleColSize = new Vector2(0.6f, 1);
                 if (TempEnemy != null)
                 {
-                    SoundManager.Inst.Ds_EffectPlayerDB(17);
+                    SoundManager.Inst.Ds_EffectPlayerDB(18);
 
                     offset = new Vector2(0.02f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
@@ -441,7 +441,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
-                    SoundManager.Inst.Ds_EffectPlayerDB(7);
+                    SoundManager.Inst.Ds_EffectPlayerDB(22);
                     offset = new Vector2(0.03f, 0.0f);
                     capsuleColSize = new Vector2(0.6f, 1);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[7], true, TempEnemy.transform.position);
@@ -450,7 +450,7 @@ public class Player : Character
             else if (weaponType == Player.WeaponType.Nereides)
             {
                 //파도효과음
-                SoundManager.Inst.Ds_EffectPlayerDB(9);
+                SoundManager.Inst.Ds_EffectPlayerDB(19);
                 projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
 
             }
@@ -458,7 +458,7 @@ public class Player : Character
             {
                 if (TempEnemy != null)
                 {
-                    SoundManager.Inst.Ds_EffectPlayerDB(7);
+                    SoundManager.Inst.Ds_EffectPlayerDB(20);
                     offset = new Vector2(0.03f, 0.5f);
                     capsuleColSize = new Vector2(0.8f, 1.3f);
                     targetProjectile.Create(projectileTargetList, offset, capsuleColSize, skillDamage, projectileAnimator[3], true, TempEnemy.transform.position);
@@ -689,9 +689,9 @@ public class Player : Character
         nuckBackPower = GameManager.Inst.NuckBack_Power;
         AtkRange = GameManager.Inst.AttackRange;
 
-        //개발자 모드!
-        maxHp = 10000;
-        HP = 10000;
+        ////개발자 모드!
+        //maxHp = 10000;
+        //HP = 10000;
 
     }
     private void LoadWeaponData()
@@ -719,8 +719,6 @@ public class Player : Character
         uiStatus = uiRoot.transform.Find("Status").GetComponent<BattleStatus>();
 
         camera = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
-
-
     }
     
 
