@@ -31,6 +31,7 @@ public class StatPanel : MonoBehaviour
     public void Toggle_ButtonImage()
     {
         isOpen = !isOpen;
+        SoundManager.Inst.Ds_EffectPlayerDB(34);
         if(isOpen)
         {
             RefreshStatData();

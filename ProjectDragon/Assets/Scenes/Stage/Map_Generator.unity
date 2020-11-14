@@ -5165,6 +5165,16 @@ PrefabInstance:
       propertyPath: mDepth
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 4885482720773138126, guid: fd6053c2747e21a4e9b5521fde5446e2,
+        type: 3}
+      propertyPath: startingRenderQueue
+      value: 3035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885482720773138126, guid: fd6053c2747e21a4e9b5521fde5446e2,
+        type: 3}
+      propertyPath: mDepth
+      value: 27
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd6053c2747e21a4e9b5521fde5446e2, type: 3}
 --- !u!1 &804878521151990139

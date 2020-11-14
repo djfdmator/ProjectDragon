@@ -14525,10 +14525,6 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 266162544}
-    mMethodName: ButtonSound1
-    mParameters: []
-    oneShot: 0
   - mTarget: {fileID: 1655946527}
     mMethodName: Toggle_ButtonImage
     mParameters: []
@@ -15239,10 +15235,6 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 266162544}
-    mMethodName: ButtonSound1
-    mParameters: []
-    oneShot: 0
   - mTarget: {fileID: 406955663}
     mMethodName: Toggle_ButtonImage
     mParameters: []
