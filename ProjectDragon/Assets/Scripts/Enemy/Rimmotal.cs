@@ -247,4 +247,11 @@ public class Rimmotal : Enemy
 
     }
 
+    public override void Dead()
+    {
+        base.Dead();
+
+        GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().DropItem_Rimmotal(transform.position);
+    }
+
 }
