@@ -249,7 +249,7 @@ public class MapCreator : MonoBehaviour
                     iterations++;
                 } while (NumberOfNeighbors(checkPos, takenPositions) > 1 && iterations < 100); // 이해 안감
                 if (iterations >= 50)
-                    Debug.Log("error: could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
+                   Debug.Log("error: could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
             }
             //방이 얼마나 멀리 있는지 검사 합니다.
             depth = DepthCheck((int)checkPos.x + gridSizeX_Cen, (int)checkPos.y + gridSizeY_Cen);
@@ -386,7 +386,7 @@ public class MapCreator : MonoBehaviour
 
         if (inc >= 100)
         { // break loop if it takes too long: this loop isnt garuanteed to find solution, which is fine for this
-            Debug.Log("Error: could not find position with only one neighbor");
+            //Debug.Log("Error: could not find position with only one neighbor");
         }
         return checkingPos;
     }

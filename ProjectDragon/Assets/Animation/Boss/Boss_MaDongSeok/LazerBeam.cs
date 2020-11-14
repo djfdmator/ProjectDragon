@@ -30,14 +30,14 @@ public class LazerBeam : MonoBehaviour
             
             for (int j = 0; j < stoptag.Count; j++)
             {
-                Debug.Log(hit[i].transform.name);
+                //Debug.Log(hit[i].transform.name);
                 if (hit[i].transform.CompareTag("Player"))
                 {
                     if (!damagecheck)
                     {
                         tag = true;
-                        Debug.DrawLine(transform.position, hit[i].point);
-                        Debug.Log(hit[i].transform.gameObject.name);
+                        //Debug.DrawLine(transform.position, hit[i].point);
+                        //Debug.Log(hit[i].transform.gameObject.name);
                         linerenderer.SetPosition(0, transform.position);
                         linerenderer.SetPosition(1, hit[i].point);
                         hit[i].transform.GetComponent<Character>().HPChanged(damage, false, 0);
@@ -47,8 +47,8 @@ public class LazerBeam : MonoBehaviour
                 {
                     tag = true;
                     hit[i].transform.gameObject.SendMessage("LazserHit", damage);
-                    Debug.DrawLine(transform.position, hit[i].point);
-                    Debug.Log(hit[i].transform.gameObject.name);
+                    //Debug.DrawLine(transform.position, hit[i].point);
+                    //Debug.Log(hit[i].transform.gameObject.name);
                     linerenderer.SetPosition(0, transform.position);
                     linerenderer.SetPosition(1, hit[i].point);
                     break;
@@ -66,8 +66,8 @@ public class LazerBeam : MonoBehaviour
             }
             if (hit[i].transform.CompareTag("Wall"))
             {
-                Debug.DrawLine(transform.position, hit[i].point);
-                Debug.Log(hit[i].transform.gameObject.name);
+                //Debug.DrawLine(transform.position, hit[i].point);
+                //Debug.Log(hit[i].transform.gameObject.name);
                 linerenderer.SetPosition(0, transform.position);
                 linerenderer.SetPosition(1, hit[i].point);
                 break;

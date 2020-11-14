@@ -193,6 +193,13 @@ public class Projectile : MonoBehaviour
             StartCoroutine(Reset);
             Reset = null;
         }
+
+        if(collision.tag.Equals("Object") && Reset != null)
+        {
+            collision.GetComponent<MapObject>().HpChanged(25);
+            StartCoroutine(Reset);
+            Reset = null;
+        }
         
     }
     //private void OnBecameInvisible()

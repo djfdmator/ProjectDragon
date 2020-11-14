@@ -37,23 +37,23 @@ public class HitEffect : MonoBehaviour
     {
         if(weapon.Equals("NormalStaff"))
         {
-            SoundManager.Inst.Ds_EffectPlayerDB(17);
+            SoundManager.Inst.EffectPlayerDB(17, this.gameObject);
         }
         else if (weapon.Equals("NormalSword"))
         {
-            SoundManager.Inst.Ds_EffectPlayerDB(8);
+            SoundManager.Inst.EffectPlayerDB(8, this.gameObject);
         }
         else if (weapon.Equals("Nereides"))
         {
-            SoundManager.Inst.Ds_EffectPlayerDB(9);
+            SoundManager.Inst.EffectPlayerDB(9, this.gameObject);
         }
         else if (weapon.Equals("Nyx"))
         {
-            SoundManager.Inst.Ds_EffectPlayerDB(21);
+            SoundManager.Inst.EffectPlayerDB(21, this.gameObject);
         }
         else if (weapon.Equals("Excalibur"))
         {
-            SoundManager.Inst.Ds_EffectPlayerDB(23);
+            SoundManager.Inst.EffectPlayerDB(23, this.gameObject);
         }
 
     }

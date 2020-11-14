@@ -79,6 +79,21 @@ public class Root : MapObject
         }
     }
 
+    public override void HpChanged(int _damage)
+    {
+        base.HpChanged(_damage);
+
+        if (hp <= halfHP && rootState.Equals(State.Phase1))
+        {
+            ChangeSprite();
+        }
+        else if (hp <= 0.0f && rootState.Equals(State.Phase2))
+        {
+            rootState = State.Destroy;
+            StartCoroutine(vfx);
+        }
+    }
+
     // 밑동이 부서지는 연출
     private void ChangeSprite()
     {

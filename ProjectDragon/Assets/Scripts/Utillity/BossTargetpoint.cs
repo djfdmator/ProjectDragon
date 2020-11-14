@@ -35,7 +35,7 @@ public class BossTargetpoint : MonoBehaviour
     public void ProjecTileEnd()
     {
         SoundManager.Inst.Ds_EffectPlayerDB(16);
-        Debug.Log(player);
+        //Debug.Log(player);
         if (!(player == null))
         {
             player.GetComponent<Player>().HPChanged(AttackPoint,false,0);
@@ -44,7 +44,7 @@ public class BossTargetpoint : MonoBehaviour
         Stone.transform.position = gameObject.transform.position;
         if (!week)
         {
-            Debug.Log(week + "sprite");
+            //Debug.Log(week + "sprite");
             Stone.GetComponent<MadongSeokStone>().weekstone = week;
             Stone.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Object/멀쩡한돌박힘");
         }

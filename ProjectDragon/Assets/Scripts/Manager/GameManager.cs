@@ -37,7 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
     public IDbCommand DEB_dbcmd;
     public bool loadComplete = false;
 
-    private string DBName = "/DS_Database_vr_056.sqlite";
+    private string DBName = "/DS_Database_vr_057.sqlite";
 
     private void Awake()
     {

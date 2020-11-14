@@ -59,6 +59,8 @@ public class PauseWindow : MonoBehaviour
 
     public void GotoLobbyBuuton()
     {
+        Time.timeScale = 1.0f;
+        GameManager.Inst.PlayerDeadToInitialData();
         SoundManager.Inst.Ds_EffectPlayerDB(1);
 
         ButtonManager.GotoLobby();

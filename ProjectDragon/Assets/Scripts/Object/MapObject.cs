@@ -45,7 +45,7 @@ public class MapObject : MonoBehaviour
     protected virtual IEnumerator Effect()
     {
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<PolygonCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
 
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);

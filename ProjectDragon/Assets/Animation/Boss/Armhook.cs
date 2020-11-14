@@ -10,7 +10,7 @@ public class Armhook : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player");
+            //Debug.Log("Player");
             player = collision.GetComponent<Player>();
         }
     }
@@ -18,7 +18,7 @@ public class Armhook : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("PlayerExit");
+            //Debug.Log("PlayerExit");
             player = null;
         }
     }
@@ -26,7 +26,7 @@ public class Armhook : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player");
+            //Debug.Log("Player");
             player = collision.GetComponent<Player>();
         }
     }
@@ -37,7 +37,7 @@ public class Armhook : MonoBehaviour
         if (player != null)
         {
             player.HPChanged(ATK,false,0);
-            Debug.Log(player);
+           // Debug.Log(player);
         }
         gameObject.SetActive(false);
     }
