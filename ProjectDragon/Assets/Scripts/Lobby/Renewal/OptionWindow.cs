@@ -61,7 +61,7 @@ public class OptionWindow : MonoBehaviour
 
     public void ResetGame()
     {
-        //TODO : 데이터 초기화 수정해야함
+        GameManager.Inst.InitializePlayData();
 
         SceneManager.LoadScene("Title");
 

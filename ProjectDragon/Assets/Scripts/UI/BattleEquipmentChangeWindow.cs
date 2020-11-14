@@ -77,7 +77,9 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public void Init()
     {
         inventory.SettingItem();
+        RefreshCurEquipItem();
         SettingEvent();
+        gameObject.SetActive(true);
     }
 
     private void SettingEvent()
@@ -85,7 +87,6 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         EventDelegate toggleArrow = new EventDelegate(this, "ToggleArrow");
         EventDelegate refreshChoiceItem = new EventDelegate(this, "RefreshChoiceItem");
 
-        Debug.Log(inventory.itemBtnDatas.Count);
         for (int i = 0; i < inventory.itemBtnDatas.Count; i++)
         {
             UIButton button = inventory.itemBtnDatas[i].obj.GetComponent<UIButton>();
@@ -190,7 +191,6 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     public void NextStageButton()
     {
-        Time.timeScale = 1.0f;
         GameManager.Inst.Loading(true);
     }
 }
