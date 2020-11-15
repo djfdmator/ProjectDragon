@@ -5,7 +5,7 @@ using UnityEngine;
 public class Armhook : MonoBehaviour
 {
     Player player;
-    int ATK=1;
+    int ATK=15;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

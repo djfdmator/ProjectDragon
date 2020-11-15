@@ -7,13 +7,12 @@ public class LazerBeam : MonoBehaviour
 {
     private LineRenderer linerenderer;
     public List<string> stoptag;
-    public int damage;
+    public int damage = 1;
     bool damagecheck;
     // Start is called before the first frame update
     void Start()
     {
         damagecheck = false;
-        damage = 1;
         linerenderer = GetComponent<LineRenderer>();
         linerenderer.enabled = true;
         linerenderer.useWorldSpace = true;

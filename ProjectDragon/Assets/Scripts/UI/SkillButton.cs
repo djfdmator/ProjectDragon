@@ -67,7 +67,7 @@ public class SkillButton : MonoBehaviour
 
     private void OnClick()
     {
-        if (player.inSkillRange)
+        if (player.inSkillRange && !player.isDead)
         {
             if (player.MP - mpCost >= 0)
             {

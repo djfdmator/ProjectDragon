@@ -127,10 +127,11 @@ public class Room : MonoBehaviour
             {
                 //몬스터가 한 마리도 없다면 클리어입니다.
                 IsClear();
-                if (GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
-                {
-                    roomManager.OpenResultPop(false);
-                }
+                //if (roomType == RoomType.Boss && GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
+                //{
+                //    roomManager.OpenResultPop(false);
+                //    Debug.Log("boss");
+                //}
             }
             else if (!roomState.Equals(RoomState.Activate)) CheckPlayerPos();
 

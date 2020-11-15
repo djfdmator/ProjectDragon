@@ -855,7 +855,7 @@ MonoBehaviour:
   armLeft: {fileID: 0}
   arms: {fileID: 0}
   currentstate: 0
-  projectiledamage: 1
+  projectiledamage: 15
   animationtimecheck: 0
   projectilespeed: 5
   projectiletime: 0
@@ -869,7 +869,7 @@ MonoBehaviour:
   EndSprite: {fileID: 0}
   player: {fileID: 0}
   razer: {fileID: 0}
-  damage: 1
+  damage: 15
   handuptime: 0
   handdowntime: 0
   handwaittime: 0
@@ -27704,7 +27704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoptag: []
-  damage: 0
+  damage: 5
 --- !u!1001 &1749479487727622141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27907,11 +27907,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6167611623783638663}
     m_Modifications:
-    - target: {fileID: 9016142016997736193, guid: 96d4954dfe449e84883db319ae5be83a,
-        type: 3}
-      propertyPath: m_Name
-      value: North
-      objectReference: {fileID: 0}
     - target: {fileID: 9016142016997736194, guid: 96d4954dfe449e84883db319ae5be83a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27967,6 +27962,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9016142016997736193, guid: 96d4954dfe449e84883db319ae5be83a,
+        type: 3}
+      propertyPath: m_Name
+      value: North
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d4954dfe449e84883db319ae5be83a, type: 3}
 --- !u!4 &3305106109103773884 stripped
@@ -27982,11 +27982,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6167611623783638663}
     m_Modifications:
-    - target: {fileID: 6591191194554528653, guid: 45638ec8d26bf4a4583df44b232fe3c7,
-        type: 3}
-      propertyPath: m_Name
-      value: West
-      objectReference: {fileID: 0}
     - target: {fileID: 6591191194554528652, guid: 45638ec8d26bf4a4583df44b232fe3c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28042,6 +28037,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6591191194554528653, guid: 45638ec8d26bf4a4583df44b232fe3c7,
+        type: 3}
+      propertyPath: m_Name
+      value: West
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45638ec8d26bf4a4583df44b232fe3c7, type: 3}
 --- !u!4 &4457014668410335872 stripped
@@ -28057,11 +28057,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6167611623783638663}
     m_Modifications:
-    - target: {fileID: 7556887491081396518, guid: e649d81497675224f942537841cef079,
-        type: 3}
-      propertyPath: m_Name
-      value: South
-      objectReference: {fileID: 0}
     - target: {fileID: 7556887491081396517, guid: e649d81497675224f942537841cef079,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28116,6 +28111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556887491081396518, guid: e649d81497675224f942537841cef079,
+        type: 3}
+      propertyPath: m_Name
+      value: South
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e649d81497675224f942537841cef079, type: 3}
