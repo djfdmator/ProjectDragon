@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class ResultPop : MonoBehaviour
 {
-    
+
     public bool isSuccess;
 
     private GameObject BG;
@@ -35,7 +35,7 @@ public class ResultPop : MonoBehaviour
         failPopup.SetActive(false);
         successPopup.SetActive(false);
     }
-  
+
     public void OnResult(int _mp, bool _isSuccess)
     {
         acheiveMP = _mp;
@@ -45,6 +45,16 @@ public class ResultPop : MonoBehaviour
         if (isSuccess)
         {
             successPopup.SetActive(true);
+
+            if (GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
+            {
+                successPopup.transform.Find("NextStageButton").GetComponent<UISprite>().spriteName = "GoLobbyButton";
+            }
+            else
+            {
+                successPopup.transform.Find("NextStageButton").GetComponent<UISprite>().spriteName = "NextStageButton";
+            }
+
         }
         else
         {
@@ -63,22 +73,39 @@ public class ResultPop : MonoBehaviour
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         Time.timeScale = 1.0f;
         GameManager.Inst.PlayerDeadToInitialData();
-        ButtonManager.GotoLobby();
+        GameManager.Inst.Loading(false);
     }
-   
+
     public void NextStageButton()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         Time.timeScale = 1.0f;
-        GameManager.Inst.Loading(true);
+        if (GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
+        {
+            GameManager.Inst.PlayerDeadToInitialData();
+            ButtonManager.GotoLobby();
+        }
+        else
+        {
+            GameManager.Inst.Loading(true);
+        }
     }
 
     public void NextButton()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         Time.timeScale = 1.0f;
-        gameObject.SetActive(false);
-        battleEquipmentChangeWindow.Init();
+
+        if (GameManager.Inst.CurrentStage == Database.Inst.playData.finalStage)
+        {
+            GameManager.Inst.PlayerDeadToInitialData();
+            GameManager.Inst.Loading(false);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            battleEquipmentChangeWindow.Init();
+        }
     }
     #endregion
 

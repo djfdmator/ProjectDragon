@@ -291,6 +291,7 @@ public class RoomManager : MonoBehaviour
 
         imagePath = weapons[rand].imageName;
         items.Add(new Database.Inventory(weapons[rand]));
+        items[items.Count - 1].num += items.Count - 1;
 
         //sprite로 imagePath적용 
         GameObject gameObject = new GameObject("Item", typeof(SpriteRenderer));

@@ -12,8 +12,9 @@ public class HiddenItem : MonoBehaviour
         {
             isGet = true;
             SoundManager.Inst.Ds_EffectPlayerDB(31);
-            GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().items.Add(new Database.Inventory(Database.Inst.weapons[2]));
-
+            RoomManager roomManager = GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>();
+            roomManager.items.Add(new Database.Inventory(Database.Inst.weapons[2]));
+            roomManager.items[roomManager.items.Count - 1].num += roomManager.items.Count - 1;
             Destroy(transform.Find("Item").gameObject);
         }
     }
