@@ -426,7 +426,7 @@ public class Player : Character
             if (weaponType == Player.WeaponType.NormalSword)
             {
                 SoundManager.Inst.EffectPlayerDB(6, this.gameObject);
-                projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[0], true, transform.position, nuckBackPower);
+                projectile.Create(projectileTargetList, offset, radius, attackAngle, 3.0f, skillDamage, projectileAnimator[0], true, transform.position, nuckBackPower);
             }
             else if (weaponType == Player.WeaponType.NormalStaff)
             {
@@ -454,7 +454,7 @@ public class Player : Character
             {
                 //파도효과음
                 SoundManager.Inst.EffectPlayerDB(19, this.gameObject);
-                projectile.Create(projectileTargetList, offset, radius, attackAngle, 1.5f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
+                projectile.Create(projectileTargetList, offset, radius, attackAngle, 4.0f, skillDamage, projectileAnimator[5], true, transform.position, nuckBackPower, true);
 
             }
             else if (weaponType == Player.WeaponType.Nyx)

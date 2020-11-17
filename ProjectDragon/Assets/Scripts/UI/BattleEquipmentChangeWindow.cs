@@ -6,7 +6,15 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 {
     public Inventory inventory;
 
+    #region Enhancement
+    public GameObject enhancementObj;
+    #endregion
+
+    #region Equipment Change
+    public GameObject equipmentChangeObj;
+
     #region Current Equip Item
+    public Transform curItemPanel;
     public UISprite weaponIcon;
     public UISprite skillIcon;
     public UILabel weaponLabel;
@@ -38,21 +46,28 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public GameObject arrow;
     #endregion
 
+    #endregion
     void Start()
     {
         if (inventory == null) inventory = transform.Find("Inventory").GetComponent<Inventory>();
 
-        if (weaponIcon == null) weaponIcon = transform.Find("CurItemPanel/Item/Icon").GetComponent<UISprite>();
-        if (skillIcon == null) skillIcon = transform.Find("CurItemPanel/Skill/Icon").GetComponent<UISprite>();
-        if (weaponLabel == null) weaponLabel = transform.Find("CurItemPanel/ItemName").GetComponent<UILabel>();
-        if (atkLabel == null) atkLabel = transform.Find("CurItemPanel/Atk").GetComponent<UILabel>();
-        if (skillNameLabel == null) skillNameLabel = transform.Find("CurItemPanel/SkillName").GetComponent<UILabel>();
-        if (damageLabel == null) damageLabel = transform.Find("CurItemPanel/Damage").GetComponent<UILabel>();
-        if (rankLabel == null) rankLabel = transform.Find("CurItemPanel/Rank").GetComponent<UILabel>();
-        if (coolTimeLabel == null) coolTimeLabel = transform.Find("CurItemPanel/CoolTime/Label").GetComponent<UILabel>();
-        if (manaLabel == null) manaLabel = transform.Find("CurItemPanel/Mana/Label").GetComponent<UILabel>();
+        if (enhancementObj == null) enhancementObj = transform.Find("Enhancement").gameObject;
 
-        if (ChoiceItemPanel == null) ChoiceItemPanel = transform.Find("ChoiceItemPanel/ItemPanel").gameObject;
+
+        if (equipmentChangeObj == null) equipmentChangeObj = transform.Find("EquipmentChange").gameObject;
+
+        if (curItemPanel == null) curItemPanel = transform.Find("EquipmentChange/CurItemPanel");
+        if (weaponIcon == null) weaponIcon = curItemPanel.Find("Icon").GetComponent<UISprite>();
+        if (skillIcon == null) skillIcon = curItemPanel.Find("Icon").GetComponent<UISprite>();
+        if (weaponLabel == null) weaponLabel = curItemPanel.Find("ItemName").GetComponent<UILabel>();
+        if (atkLabel == null) atkLabel = curItemPanel.Find("Atk").GetComponent<UILabel>();
+        if (skillNameLabel == null) skillNameLabel = curItemPanel.Find("SkillName").GetComponent<UILabel>();
+        if (damageLabel == null) damageLabel = curItemPanel.Find("Damage").GetComponent<UILabel>();
+        if (rankLabel == null) rankLabel = curItemPanel.Find("Rank").GetComponent<UILabel>();
+        if (coolTimeLabel == null) coolTimeLabel = curItemPanel.Find("CoolTime/Label").GetComponent<UILabel>();
+        if (manaLabel == null) manaLabel = curItemPanel.Find("Mana/Label").GetComponent<UILabel>();
+
+        if (ChoiceItemPanel == null) ChoiceItemPanel = transform.Find("EquipmentChange/ChoiceItemPanel/ItemPanel").gameObject;
         if (weaponIcon2 == null) weaponIcon2 = ChoiceItemPanel.transform.Find("Item/Icon").GetComponent<UISprite>();
         if (skillIcon2 == null) skillIcon2 = ChoiceItemPanel.transform.Find("Skill/Icon").GetComponent<UISprite>();
         if (weaponLabel2 == null) weaponLabel2 = ChoiceItemPanel.transform.Find("ItemName").GetComponent<UILabel>();

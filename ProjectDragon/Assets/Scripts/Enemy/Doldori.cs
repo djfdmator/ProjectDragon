@@ -16,8 +16,6 @@ public class Doldori : FSM_NormalEnemy
     CircleCollider2D circleCol;
     Vector3 attackDirection;
 
-    [SerializeField] float attackSpeed=0.2f;
-
     protected override void Awake()
     {
         circleCol = GetComponents<CircleCollider2D>()[0];
@@ -63,7 +61,7 @@ public class Doldori : FSM_NormalEnemy
 
             while (isAttacking && !isDead)
             {
-                rb2d.AddForce(attackDirection * attackSpeed, ForceMode2D.Impulse);
+                rb2d.AddForce(attackDirection * ATTACKSPEED, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(Time.deltaTime);
             }
         }

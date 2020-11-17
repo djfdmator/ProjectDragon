@@ -363,10 +363,10 @@ public class RoomManager : MonoBehaviour
         //GameManager.Inst.EndGame_Get_Item();
         if (hp != 0)
         {
-            player.GetComponent<Player>().HP+=hp;
+            player.GetComponent<Player>().HP += hp;
             hp = 0;
         }
-        
+
         battleStatus.ChangeAddMpLabel(mana);
 
         while (time <= _playTime)

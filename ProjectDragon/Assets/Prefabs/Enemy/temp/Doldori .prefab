@@ -244,7 +244,7 @@ MonoBehaviour:
   hp: 20
   moveSpeed: 1
   atk: 12
-  atkSpeed: 2
+  atkSpeed: 0.4
   atkRange: 4
   nuckBackPower: 0
   myPos: {x: 0, y: 0, z: 0}
@@ -265,6 +265,7 @@ MonoBehaviour:
   m_viewTargetMask:
     serializedVersion: 2
     m_Bits: 0
+  col: {fileID: 0}
   collisionPlayer: 0
   isNuckback: 1
   skillCooltime: 0
@@ -276,7 +277,6 @@ MonoBehaviour:
   cooltime: 3
   attackCount: 0
   normalEnemyState: 0
-  attackSpeed: 0.2
 --- !u!58 &1888222273183041397
 CircleCollider2D:
   m_ObjectHideFlags: 0
