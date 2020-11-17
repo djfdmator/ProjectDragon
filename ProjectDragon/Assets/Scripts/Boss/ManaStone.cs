@@ -24,7 +24,7 @@ public class ManaStone : Monster
         gameObject.SetActive(false);
         if (HP < 0)
         {
-            boss.HPChanged(34, false, 0);
+            boss.HPChanged(20, false, 0);
             if (boss.currentstate.Equals(BossState.Phase2))
             {
                 for (int i = 0; i < 4; i++)

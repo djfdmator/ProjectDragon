@@ -64,14 +64,21 @@ public class BossTargetpoint : MonoBehaviour
             player = null;
         }
     }
+
+    //돌이 아래로 떨어졌을떄 이벤트
     public void ExplosionTarget()
     {
         if (boss.currentstate.Equals(BossState.Phase1))
         {
+            //생성
             boss.TargeExplosion(gameObject.transform.position);
+#if UNITY_EDITOR
+            Debug.Log("boss.TargeExplosion(gameObject.transform.position);");
+#endif
         }
         else
         {
+            //데미지
             if (player != null)
             {
                 player.GetComponent<Character>().HPChanged(25,false,0);
@@ -85,13 +92,12 @@ public class BossTargetpoint : MonoBehaviour
     }
     public BossTargetpoint Create(float _speed, int _damage, string poolItemName, Vector3 position, bool _week, Transform parent = null)
     {
-
         GameObject projectileObject = ObjectPool.Instance.PopFromPool(poolItemName, parent);
         targetpointobj = projectileObject.transform.GetComponent<BossTargetpoint>();
 
         targetpointobj.transform.position = position;
-        targetpointobj.gameObject.SetActive(true);
         targetpointobj.week = _week;
+        targetpointobj.gameObject.SetActive(true);
         targetpointobj.GetComponent<Animator>().Play("ProjecTileReady");
         if (week)
         {

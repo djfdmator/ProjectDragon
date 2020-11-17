@@ -37,7 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
     public IDbCommand DEB_dbcmd;
     public bool loadComplete = false;
 
-    private string DBName = "/DS_Database_vr_099.sqlite";
+    private string DBName = "/DS_Database_vr_103.sqlite";
 
     private void Awake()
     {
@@ -804,7 +804,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         playData.moveSpeed = 1.0f;
         playData.currentStage = 0;
-        playData.mp = 1000;
+        playData.mp = 500;
 
         InitializePlayerStat();
 
@@ -826,8 +826,8 @@ public class GameManager : MonoSingleton<GameManager>
 
         playData.isMachineVibration = true;
         playData.isScreenVibration = true;
-        playData.BGM_Volume = 0.5f;
-        playData.SFX_Volume = 0.5f;
+        playData.BGM_Volume = 0.8f;
+        playData.SFX_Volume = 0.3f;
 
         //playData.nickName = string.Empty;
         playData.equiWeapon_InventoryNum = 0;
@@ -841,7 +841,7 @@ public class GameManager : MonoSingleton<GameManager>
 #endif
         playData.moveSpeed = 1.0f;
         playData.currentStage = 0;
-        playData.mp = 1000;
+        playData.mp = 500;
         playData.sex = SEX.None;
 
         playData.skin = 0;

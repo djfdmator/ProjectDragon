@@ -829,8 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6052a4692bead940bd921d49d0dfcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
-  hp: 0
+  maxHp: 160
+  hp: 160
   moveSpeed: 0
   atk: 0
   atkSpeed: 0
@@ -866,7 +866,6 @@ MonoBehaviour:
   count: 0
   explosion: []
   projectileanim: {fileID: 22100000, guid: 843554f60cd8a0a4cb7a3a0f59b86a26, type: 2}
-  EndSprite: {fileID: 0}
   player: {fileID: 0}
   razer: {fileID: 0}
   damage: 15
@@ -27907,6 +27906,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6167611623783638663}
     m_Modifications:
+    - target: {fileID: 9016142016997736193, guid: 96d4954dfe449e84883db319ae5be83a,
+        type: 3}
+      propertyPath: m_Name
+      value: North
+      objectReference: {fileID: 0}
     - target: {fileID: 9016142016997736194, guid: 96d4954dfe449e84883db319ae5be83a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27962,11 +27966,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9016142016997736193, guid: 96d4954dfe449e84883db319ae5be83a,
-        type: 3}
-      propertyPath: m_Name
-      value: North
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d4954dfe449e84883db319ae5be83a, type: 3}
 --- !u!4 &3305106109103773884 stripped
@@ -27982,6 +27981,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6167611623783638663}
     m_Modifications:
+    - target: {fileID: 6591191194554528653, guid: 45638ec8d26bf4a4583df44b232fe3c7,
+        type: 3}
+      propertyPath: m_Name
+      value: West
+      objectReference: {fileID: 0}
     - target: {fileID: 6591191194554528652, guid: 45638ec8d26bf4a4583df44b232fe3c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28037,11 +28041,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6591191194554528653, guid: 45638ec8d26bf4a4583df44b232fe3c7,
-        type: 3}
-      propertyPath: m_Name
-      value: West
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45638ec8d26bf4a4583df44b232fe3c7, type: 3}
 --- !u!4 &4457014668410335872 stripped
@@ -28057,6 +28056,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6167611623783638663}
     m_Modifications:
+    - target: {fileID: 7556887491081396518, guid: e649d81497675224f942537841cef079,
+        type: 3}
+      propertyPath: m_Name
+      value: South
+      objectReference: {fileID: 0}
     - target: {fileID: 7556887491081396517, guid: e649d81497675224f942537841cef079,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28111,11 +28115,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556887491081396518, guid: e649d81497675224f942537841cef079,
-        type: 3}
-      propertyPath: m_Name
-      value: South
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e649d81497675224f942537841cef079, type: 3}

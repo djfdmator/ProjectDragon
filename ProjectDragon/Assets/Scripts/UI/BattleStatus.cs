@@ -69,9 +69,9 @@ public class BattleStatus : MonoBehaviour
         {
             m_curHP = _curHp;
         }
-        Co_HpCount = HpCount( _nextHp);
+        Co_HpCount = HpCount(_nextHp);
         StartCoroutine(Co_HpCount);
-       
+
 
     }
     /// <summary>
@@ -107,14 +107,14 @@ public class BattleStatus : MonoBehaviour
         {
             StopCoroutine(Co_addMpCount);
         }
-       
+
         Co_addMpCount = AddMpCount(_targetMp);
         StartCoroutine(Co_addMpCount);
     }
 
     #region Count
 
-    private IEnumerator MpCount (float target)
+    private IEnumerator MpCount(float target)
     {
         //Label
         float offest = (target - m_curMP) / duration;
@@ -141,13 +141,13 @@ public class BattleStatus : MonoBehaviour
             }
         }
         curMpLabel.text = string.Format("{0:#,##0}", Mathf.Floor(tempTarget));
-        m_curHP = tempTarget;
+        m_curMP = tempTarget;
 
         Co_MpCount = null;
         yield return null;
     }
 
-    private IEnumerator AddMpCount (float target)
+    private IEnumerator AddMpCount(float target)
     {
         //Label
         float offest = (target - m_addMP) / duration;
@@ -183,7 +183,7 @@ public class BattleStatus : MonoBehaviour
 
         if (target - m_curHP > 0)                            //증가
         {
-            while (m_curHP <tempTarget)
+            while (m_curHP < tempTarget)
             {
                 //progress bar
                 hp_foreGround.fillAmount = m_curHP / m_maxHP;

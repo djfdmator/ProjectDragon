@@ -4864,7 +4864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 40
   hp: 40
-  moveSpeed: 0.5
+  moveSpeed: 1
   atk: 5
   atkSpeed: 1
   atkRange: 0.7
@@ -4887,6 +4887,7 @@ MonoBehaviour:
   m_viewTargetMask:
     serializedVersion: 2
     m_Bits: 0
+  col: {fileID: 0}
   collisionPlayer: 0
   isNuckback: 1
   skillCooltime: 0
@@ -4898,6 +4899,7 @@ MonoBehaviour:
   cooltime: 3
   attackCount: 1
   normalEnemyState: 0
+  circleCol: {fileID: 0}
 --- !u!58 &2779741969946795077
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5101,6 +5103,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1948673296124083830}
     m_Modifications:
+    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
+        type: 3}
+      propertyPath: m_Name
+      value: SlimeDead_Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 786176781489709825, guid: f0f05efb2ec55c343903975976a46693,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5154,16 +5166,6 @@ PrefabInstance:
     - target: {fileID: 786176781489709825, guid: f0f05efb2ec55c343903975976a46693,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
-        type: 3}
-      propertyPath: m_Name
-      value: SlimeDead_Particle
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654103198165665724, guid: f0f05efb2ec55c343903975976a46693,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773265781101867591, guid: f0f05efb2ec55c343903975976a46693,

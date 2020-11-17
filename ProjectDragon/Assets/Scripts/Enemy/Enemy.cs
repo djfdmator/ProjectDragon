@@ -359,7 +359,6 @@ public class Enemy : Monster
             rb2d.isKinematic = true;
             rb2d.velocity = Vector2.zero;
         }
-
     }
     protected virtual void OnCollisionExit2D(Collision2D collision)
     {

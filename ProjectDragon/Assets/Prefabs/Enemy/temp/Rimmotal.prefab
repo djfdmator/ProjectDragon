@@ -4892,8 +4892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54042b84b940eaf4b8512de10d7ac482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 120
-  hp: 120
+  maxHp: 400
+  hp: 400
   moveSpeed: 1
   atk: 10
   atkSpeed: 2
@@ -4917,6 +4917,7 @@ MonoBehaviour:
   m_viewTargetMask:
     serializedVersion: 2
     m_Bits: 0
+  col: {fileID: 0}
   collisionPlayer: 0
   isNuckback: 1
   skillCooltime: 6
