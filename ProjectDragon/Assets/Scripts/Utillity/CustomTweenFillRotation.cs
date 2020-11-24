@@ -7,22 +7,20 @@ public class CustomTweenFillRotation : MonoBehaviour
     public UISprite sprite;
     public float playTime = 1.0f;
     public AnimationCurve ac;
-
     public UIButton button;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        sprite.fillAmount = 0.0f;
     }
 
     public void FuncA()
     {
         button.isEnabled = false;
-        StartCoroutine(acTest());
+        StartCoroutine(AcTest());
     }
 
-    private IEnumerator acTest()
+    private IEnumerator AcTest()
     {
         float time = 0.0f;
         sprite.fillAmount = 0.0f;

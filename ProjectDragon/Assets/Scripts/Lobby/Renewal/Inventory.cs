@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
     public UILabel skillCoolTime;
 
     public UIButton equipButton;
-    public int curChoiceItme = -1;
+    public int curChoiceItem = -1;
 
     [System.Serializable]
     public struct ItemBtnData
@@ -189,7 +189,7 @@ public class Inventory : MonoBehaviour
     public void Event_ChoiceEquipItem(int inventoryNum)
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        curChoiceItme = inventoryNum;
+        curChoiceItem = inventoryNum;
         RefreshNewLabel(inventoryNum);
         if (GameManager.Inst.PlayData.equiWeapon_InventoryNum != inventoryNum) equipButton.isEnabled = true;
         else equipButton.isEnabled = false;
@@ -222,9 +222,9 @@ public class Inventory : MonoBehaviour
     public void EquipButton()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        GameManager.Inst.PlayerEquipWeapon = GameManager.Inst.PlayData.inventory[curChoiceItme];
+        GameManager.Inst.PlayerEquipWeapon = GameManager.Inst.PlayData.inventory[curChoiceItem];
         RefreshEquipItem();
-        curChoiceItme = -1;
+        curChoiceItem = -1;
         equipButton.isEnabled = false;
         SortByInventoryNum();
     }
@@ -259,6 +259,20 @@ public class Inventory : MonoBehaviour
             }
         }
         grid.Reposition();
+    }
+
+    public void ReleaseItemChoiceEffect()
+    {
+        if (curChoiceItem == -1) return;
+
+        for (int i = 0; i < itemBtnDatas.Count; i++)
+        {
+            if (itemBtnDatas[i].inventory_index == curChoiceItem)
+            {
+                itemBtnDatas[i].obj.GetComponent<UIToggle>().Set(false);
+                break;
+            }
+        }
     }
 
     public void WeaponPopup(Database.Weapon weapon)
@@ -296,6 +310,11 @@ public class Inventory : MonoBehaviour
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         popupSkill.SetActive(false);
+    }
+
+    public void EquipButtonSetActive(bool value)
+    {
+        equipButton.gameObject.SetActive(value);
     }
 
 }
