@@ -7375,7 +7375,7 @@ MonoBehaviour:
   skillMpCost: {fileID: 0}
   skillCoolTime: {fileID: 0}
   equipButton: {fileID: 0}
-  curChoiceItme: -1
+  curChoiceItem: -1
   itemBtnDatas: []
 --- !u!1 &782260144
 GameObject:
