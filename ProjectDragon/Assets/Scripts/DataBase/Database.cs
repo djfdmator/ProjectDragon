@@ -87,10 +87,11 @@ public class Database : MonoSingleton<Database>
         public readonly string imageName; //이미지 이름
         public readonly int skill_Index; // 
         public readonly string optionTableName;
+        public readonly int enhanceValue;
 
 
         public Weapon(int num, string name, RARITY rarity, string rarity_Text, CLASS _class, int atk_Min, int atk_Max, float atk_Range, float atk_Speed,
-                        float nuckback_Power, float nuckback_Percentage, int item_Value, string description, string imageName, int skill_Index, string optionTableName)
+                        float nuckback_Power, float nuckback_Percentage, int item_Value, string description, string imageName, int skill_Index, string optionTableName, int enhanceValue)
         {
             this.num = num;
             this.name = name;
@@ -108,6 +109,7 @@ public class Database : MonoSingleton<Database>
             this.imageName = imageName;
             this.skill_Index = skill_Index;
             this.optionTableName = optionTableName;
+            this.enhanceValue = enhanceValue;
         }
 
         public Weapon(Weapon w)
@@ -128,6 +130,7 @@ public class Database : MonoSingleton<Database>
             this.imageName = w.imageName;
             this.skill_Index = w.skill_Index;
             this.optionTableName = w.optionTableName;
+            this.enhanceValue = w.enhanceValue;
         }
     }
 
@@ -166,7 +169,7 @@ public class Database : MonoSingleton<Database>
         public readonly int num;
         public readonly string name;
         public readonly SKILLTYPE skillType;
-        public readonly int atk; //데미지
+        public int atk; //데미지
         public readonly int mpCost;
         public readonly float coolTime; // 쿨타임
         public readonly float skill_Range; //사정거리
@@ -174,9 +177,10 @@ public class Database : MonoSingleton<Database>
         public readonly int parameter; //공격횟수
         public readonly string description;
         public readonly string imageName;
+        public readonly int enhanceValue;
 
         public Skill(int num, string name, SKILLTYPE skillType, int atk, int mpCost, float coolTime, float skill_Range, float skill_Duration,
-                    int parameter, string description, string imageName)
+                    int parameter, string description, string imageName, int enhanceValue)
         {
             this.num = num;
             this.name = name;
@@ -189,6 +193,23 @@ public class Database : MonoSingleton<Database>
             this.parameter = parameter;
             this.description = description;
             this.imageName = imageName;
+            this.enhanceValue = enhanceValue;
+        }
+
+        public Skill(Skill skill)
+        {
+            this.num = skill.num;
+            this.name = skill.name;
+            this.skillType = skill.skillType;
+            this.atk = skill.atk;
+            this.mpCost = skill.mpCost;
+            this.coolTime = skill.coolTime;
+            this.skill_Range = skill.skill_Range;
+            this.skill_Duration = skill.skill_Duration;
+            this.parameter = skill.parameter;
+            this.description = skill.description;
+            this.imageName = skill.imageName;
+            this.enhanceValue = skill.enhanceValue;
         }
     }
 
@@ -352,9 +373,10 @@ public class Database : MonoSingleton<Database>
         public int skill_Index; // 아이템이 가진 액티브 스킬의 DB에서의 Index
         public int option_Index;
         public bool isNew;
+        public int enhanceLevel;
 
         public Inventory(int _num, int _DB_Num, string _name, RARITY _rarity, CLASS _Class, int _itemValue,
-                           string _imageName, int _skill_Index, int _option_Index, bool _isNew)
+                           string _imageName, int _skill_Index, int _option_Index, bool _isNew, int _enhanceLevel)
         {
             num = _num;
             DB_Num = _DB_Num;
@@ -366,6 +388,7 @@ public class Database : MonoSingleton<Database>
             skill_Index = _skill_Index;
             option_Index = _option_Index;
             isNew = _isNew;
+            enhanceLevel = _enhanceLevel;
         }
 
         public Inventory(Database.Weapon weapon)
@@ -380,6 +403,7 @@ public class Database : MonoSingleton<Database>
             skill_Index = weapon.skill_Index;
             option_Index = -1;
             isNew = true;
+            enhanceLevel = 0;
         }
 
         public Inventory(Database.Armor armor)
@@ -394,6 +418,7 @@ public class Database : MonoSingleton<Database>
             skill_Index = -1;
             option_Index = -1;
             isNew = true;
+            enhanceLevel = 0;
         }
     }
 

@@ -127,13 +127,13 @@ public class Inventory : MonoBehaviour
                 _new.gameObject.SetActive(false);
             }
 
-            itemLabel.text = inventories[i].name;
+            itemLabel.text = inventories[i].name + (inventories[i].enhanceLevel == 0 ? "" : " +" + inventories[i].enhanceLevel);
 
             Database.Weapon weapon = Database.Inst.weapons[inventories[i].DB_Num];
             Database.Skill skill = Database.Inst.skill[weapon.skill_Index];
             //itemImage.atlas = weaponAtlas;
             itemImage.spriteName = "WeaponIcon_" + inventories[i].imageName;
-            damage.text = weapon.atk_Min.ToString();
+            damage.text = (weapon.atk_Min + weapon.enhanceValue * inventories[i].enhanceLevel).ToString();
             skillImage.spriteName = "SkillIcon_" + skill.imageName;
             skillLabel.text = skill.name;
 
@@ -168,21 +168,21 @@ public class Inventory : MonoBehaviour
 
             itemBtnDatas.Add(btnData);
         }
-   
+
         SortByInventoryNum();
     }
 
     public void Event_PopupItem(int weaponNum, int inventoryNum)
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        WeaponPopup(Database.Inst.weapons[weaponNum]);
+        WeaponPopup(Database.Inst.weapons[weaponNum], GameManager.Inst.PlayData.inventory[inventoryNum]);
         RefreshNewLabel(inventoryNum);
     }
 
     public void Event_PopupSkill(int skill_Index, int inventoryNum)
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        SkillPopup(Database.Inst.skill[skill_Index]);
+        SkillPopup(Database.Inst.skill[skill_Index], GameManager.Inst.PlayData.inventory[inventoryNum]);
         RefreshNewLabel(inventoryNum);
     }
 
@@ -275,25 +275,38 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void WeaponPopup(Database.Weapon weapon)
+    public void RefreshEnhanceCellData()
     {
-        weaponName.text = weapon.name;
+        for (int i = 0; i < itemBtnDatas.Count; i++)
+        {
+            if (itemBtnDatas[i].inventory_index == curChoiceItem)
+            {
+                itemBtnDatas[i].obj.transform.Find("Damage").GetComponent<UILabel>().text = (Database.Inst.weapons[GameManager.Inst.PlayData.inventory[curChoiceItem].DB_Num].atk_Min + Database.Inst.weapons[GameManager.Inst.PlayData.inventory[curChoiceItem].DB_Num].enhanceValue * GameManager.Inst.PlayData.inventory[curChoiceItem].enhanceLevel).ToString();
+                itemBtnDatas[i].obj.transform.Find("ItemLabel").GetComponent<UILabel>().text = GameManager.Inst.PlayData.inventory[curChoiceItem].name + " +" + GameManager.Inst.PlayData.inventory[curChoiceItem].enhanceLevel;
+                break;
+            }
+        }
+    }
+
+    public void WeaponPopup(Database.Weapon weapon, Database.Inventory item)
+    {
+        weaponName.text = weapon.name + (item.enhanceLevel == 0 ? "" : " +" + item.enhanceLevel.ToString());
         weaponRank.text = weapon.rarity.ToString();
         weaponDescription.text = weapon.description;
-        weaponAtkMin.text = weapon.atk_Min.ToString();
-        weaponAtkMax.text = weapon.atk_Max.ToString();
+        weaponAtkMin.text = (weapon.atk_Min + weapon.enhanceValue * item.enhanceLevel).ToString();
+        weaponAtkMax.text = (weapon.atk_Max + weapon.enhanceValue * item.enhanceLevel).ToString();
         weaponAtkSpeed.text = weapon.atk_Speed.ToString();
         weaponNuckback.text = weapon.nuckback_Percentage.ToString();
 
         popupWeapon.SetActive(true);
     }
 
-    public void SkillPopup(Database.Skill skill)
+    public void SkillPopup(Database.Skill skill, Database.Inventory item)
     {
         skillName.text = skill.name;
         skillRank.text = skill.skillType.ToString();
         skillDescription.text = skill.description;
-        skillAtk.text = skill.atk.ToString();
+        skillAtk.text = (skill.atk + skill.enhanceValue * item.enhanceLevel).ToString();
         skillMpCost.text = skill.mpCost.ToString();
         skillCoolTime.text = skill.coolTime.ToString();
 
