@@ -26,7 +26,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public UILabel enhance_NextItemAtk;
     public UILabel enhance_NextSkillAtk;
 
-
+    public BoxCollider doingEnhance;
     public UISprite enhance_effectSprite;
     public float playTime = 2.0f;
     public AnimationCurve effectCurve;
@@ -95,11 +95,13 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         if (enhance_ItemInfo == null) enhance_ItemInfo = enhancementObj.transform.Find("ItemInfo").gameObject;
         if (enhance_CurItemAtk == null) enhance_CurItemAtk = enhance_ItemInfo.transform.Find("Before/Atk").GetComponent<UILabel>();
         if (enhance_CurSkillAtk == null) enhance_CurSkillAtk = enhance_ItemInfo.transform.Find("Before/SkillAtk").GetComponent<UILabel>();
-        if (enhance_CurItemAtk == null) enhance_CurItemAtk = enhance_ItemInfo.transform.Find("After/Atk").GetComponent<UILabel>();
-        if (enhance_CurSkillAtk == null) enhance_CurSkillAtk = enhance_ItemInfo.transform.Find("After/SkillAtk").GetComponent<UILabel>();
+        if (enhance_NextItemAtk == null) enhance_NextItemAtk = enhance_ItemInfo.transform.Find("After/Atk").GetComponent<UILabel>();
+        if (enhance_NextSkillAtk == null) enhance_NextSkillAtk = enhance_ItemInfo.transform.Find("After/SkillAtk").GetComponent<UILabel>();
+
+        if (doingEnhance == null) doingEnhance = enhancementObj.transform.Find("DoingEnhance").GetComponent<BoxCollider>();
         #endregion
 
-        #region Equipment Change
+            #region Equipment Change
         if (equipmentChangeObj == null) equipmentChangeObj = transform.Find("EquipmentChange").gameObject;
 
         if (curItemPanel == null) curItemPanel = equipmentChangeObj.transform.Find("CurItemPanel");
@@ -140,13 +142,14 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Init()
+    public void Init(int acheiveMP)
     {
         SoundManager.Inst.Ds_BGMPlayerDB(3);
         inventory.SettingItem();
         RefreshCurEquipItem();
         SettingEquipChangeEvent();
         gameObject.SetActive(true);
+        GameManager.Inst.Mp += acheiveMP;
     }
 
     private void SettingEquipChangeEvent()
@@ -157,6 +160,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         for (int i = 0; i < inventory.itemBtnDatas.Count; i++)
         {
             UIButton button = inventory.itemBtnDatas[i].obj.GetComponent<UIButton>();
+            if (button.onClick.Count >= 2) button.onClick.RemoveAt(1);
             button.onClick.Add(toggleArrow);
             button.onClick.Add(refreshChoiceItem);
         }
@@ -181,11 +185,12 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     {
         Database.Weapon weapon = GameManager.Inst.CurrentEquipWeapon;
         Database.Skill skill = GameManager.Inst.CurrentSkill;
+        Database.Inventory item = GameManager.Inst.PlayerEquipWeapon;
 
         weaponIcon.spriteName = "WeaponIcon_" + weapon.imageName;
         skillIcon.spriteName = "SkillIcon_" + skill.imageName;
-        weaponLabel.text = weapon.name;
-        atkLabel.text = "공격력 : " + weapon.atk_Min + " ~ " + weapon.atk_Max;
+        weaponLabel.text = weapon.name + (item.enhanceLevel == 0 ? "" : " +" + item.enhanceLevel.ToString());
+        atkLabel.text = "공격력 : " + (weapon.atk_Min + weapon.enhanceValue * item.enhanceLevel) + " ~ " + (weapon.atk_Max + weapon.enhanceValue * item.enhanceLevel);
         skillNameLabel.text = skill.name;
         damageLabel.text = "데미지 : " + skill.atk;
         rankLabel.text = weapon.rarity_Text;
@@ -202,13 +207,14 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     {
         Database.Weapon weapon = Database.Inst.weapons[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].DB_Num];
         Database.Skill skill = Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].skill_Index];
+        Database.Inventory item = GameManager.Inst.PlayData.inventory[inventory.curChoiceItem];
 
         weaponIcon2.spriteName = "WeaponIcon_" + weapon.imageName;
         skillIcon2.spriteName = "SkillIcon_" + skill.imageName;
-        weaponLabel2.text = weapon.name;
-        atkLabel2.text = "공격력 : " + weapon.atk_Min + " ~ " + weapon.atk_Max;
+        weaponLabel2.text = weapon.name + (item.enhanceLevel == 0 ? "" : " +" + item.enhanceLevel.ToString());
+        atkLabel2.text = "공격력 : " + (weapon.atk_Min + weapon.enhanceValue * item.enhanceLevel) + " ~ " + (weapon.atk_Max + weapon.enhanceValue * item.enhanceLevel);
         skillNameLabel2.text = skill.name;
-        damageLabel2.text = "데미지 : " + skill.atk;
+        damageLabel2.text = "데미지 : " + (skill.atk + skill.enhanceValue * item.enhanceLevel);
         rankLabel2.text = weapon.rarity_Text;
         coolTimeLabel2.text = skill.coolTime + "s";
         manaLabel2.text = skill.mpCost.ToString();
@@ -218,25 +224,25 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public void CurrentWeaponPopup()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        inventory.WeaponPopup(GameManager.Inst.CurrentEquipWeapon);
+        inventory.WeaponPopup(GameManager.Inst.CurrentEquipWeapon, GameManager.Inst.PlayerEquipWeapon);
     }
 
     public void CurrentSkillPopup()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        inventory.SkillPopup(GameManager.Inst.CurrentSkill);
+        inventory.SkillPopup(GameManager.Inst.CurrentSkill, GameManager.Inst.PlayerEquipWeapon);
     }
 
     public void ChoiceWeaponPopup()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        inventory.WeaponPopup(Database.Inst.weapons[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].DB_Num]);
+        inventory.WeaponPopup(Database.Inst.weapons[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].DB_Num], GameManager.Inst.PlayData.inventory[inventory.curChoiceItem]);
     }
 
     public void ChoiceSkillPopup()
     {
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
-        inventory.SkillPopup(Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].skill_Index]);
+        inventory.SkillPopup(Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].skill_Index], GameManager.Inst.PlayData.inventory[inventory.curChoiceItem]);
     }
 
     public void NextStageButton()
@@ -262,6 +268,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         inventory.ReleaseItemChoiceEffect();
 
         //인벤토리 아이템 선택 이벤트 변경
+        SettingEnhanceEvent();
 
         equipmentChangeObj.SetActive(false);
         enhancementObj.SetActive(true);
@@ -285,6 +292,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         inventory.ReleaseItemChoiceEffect();
 
         //인벤토리 아이템 선택 이벤트 변경
+        SettingEquipChangeEvent();
 
         equipmentChangeObj.SetActive(true);
         enhancementObj.SetActive(false);
@@ -299,6 +307,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         enhance_ItemInfo.SetActive(false);
         enhance_Cost.text = "";
         enhance_Button.isEnabled = false;
+        doingEnhance.enabled = false;
     }
 
     public void SettingEnhanceEvent()
@@ -319,12 +328,13 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     {
         Database.Weapon weapon = Database.Inst.weapons[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].DB_Num];
         Database.Skill skill = Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].skill_Index];
+        Database.Inventory choiceItem = GameManager.Inst.PlayData.inventory[inventory.curChoiceItem];
 
-        enhance_ItemName.text = weapon.name;
-        enhance_ItemImage.spriteName = weapon.imageName;
+        enhance_ItemName.text = weapon.name + (choiceItem.enhanceLevel == 0 ? "": " +" + choiceItem.enhanceLevel.ToString());
+        enhance_ItemImage.spriteName = "WeaponIcon_" + weapon.imageName;
         //소유 마나량에 따라 처리 다르게 하기
-        enhance_Cost.text = "0";
-        if(GameManager.Inst.Mp >= 0)
+        enhance_Cost.text = (400 + choiceItem.enhanceLevel * 50).ToString();
+        if(GameManager.Inst.Mp >= 400 + choiceItem.enhanceLevel * 50)
         {
             enhance_Dialogue.spriteName = "Descriptionwindow_Activate";
             enhance_Button.isEnabled = true;
@@ -336,10 +346,11 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         }
         enhance_Dialogue.transform.localPosition = new Vector3(-445.0f, -350.0f, 0.0f);
 
-        enhance_CurItemAtk.text = weapon.atk_Min + " ~ " + weapon.atk_Max;
-        enhance_CurSkillAtk.text = skill.atk.ToString();
-        enhance_NextItemAtk.text = weapon.atk_Min + " ~ " + weapon.atk_Max;
-        enhance_NextSkillAtk.text = skill.atk.ToString();
+
+        enhance_CurItemAtk.text = (weapon.atk_Min + weapon.enhanceValue * choiceItem.enhanceLevel) + " ~ " + (weapon.atk_Max + weapon.enhanceValue * choiceItem.enhanceLevel);
+        enhance_CurSkillAtk.text = (skill.atk + skill.enhanceValue * choiceItem.enhanceLevel).ToString();
+        enhance_NextItemAtk.text = (weapon.atk_Min + weapon.enhanceValue * (choiceItem.enhanceLevel + 1)) + " ~ " + (weapon.atk_Max + weapon.enhanceValue * (choiceItem.enhanceLevel + 1));
+        enhance_NextSkillAtk.text = (skill.atk + skill.enhanceValue * (choiceItem.enhanceLevel + 1)).ToString();
         enhance_ItemInfo.SetActive(true);
     }
 
@@ -375,6 +386,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     private IEnumerator TweenFillRotationAC()
     {
         float time = 0.0f;
+        doingEnhance.enabled = true;
         enhance_effectSprite.fillAmount = 0.0f;
         while (time <= playTime)
         {
@@ -382,5 +394,22 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+        enhance_effectSprite.fillAmount = 0.0f;
+
+        //effect 추가
+
+        Database.Inventory choiceItem = GameManager.Inst.PlayData.inventory[inventory.curChoiceItem];
+        GameManager.Inst.Mp -= 400 + choiceItem.enhanceLevel * 50;
+        choiceItem.enhanceLevel++;
+        if(GameManager.Inst.PlayData.equiWeapon_InventoryNum == inventory.curChoiceItem)
+        {
+            GameManager.Inst.PlayerEquipWeapon = choiceItem;
+        }
+
+        ItemChoiceEvent(inventory.curChoiceItem);
+        inventory.RefreshEnhanceCellData();
+
+        yield return null;
+        doingEnhance.enabled = false;
     }
 }

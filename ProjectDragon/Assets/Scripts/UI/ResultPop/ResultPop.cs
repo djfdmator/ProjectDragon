@@ -104,7 +104,7 @@ public class ResultPop : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            battleEquipmentChangeWindow.Init();
+            battleEquipmentChangeWindow.Init(acheiveMP);
         }
     }
     #endregion

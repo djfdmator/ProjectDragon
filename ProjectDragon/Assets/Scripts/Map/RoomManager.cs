@@ -394,7 +394,7 @@ public class RoomManager : MonoBehaviour
     {
         if (!playerIsDead)
         {
-            GameManager.Inst.Mp += mana;
+            //GameManager.Inst.Mp += mana;
             GameManager.Inst.Insert_Inventory_Item(items);
             SoundManager.Inst.Ds_BGMPlayerDB(10);
         }

@@ -37,7 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
     public IDbCommand DEB_dbcmd;
     public bool loadComplete = false;
 
-    private string DBName = "/DS_Database_vr_103.sqlite";
+    private string DBName = "/DS_Database_vr_107.sqlite";
 
     private void Awake()
     {
@@ -600,7 +600,10 @@ public class GameManager : MonoSingleton<GameManager>
 #endif
                 return null;
             }
-            return Database.Inst.skill[PlayerEquipWeapon.skill_Index];
+            Database.Skill skill = new Database.Skill(Database.Inst.skill[PlayerEquipWeapon.skill_Index]);
+            skill.atk += skill.enhanceValue * PlayerEquipWeapon.enhanceLevel;
+
+            return skill;
         }
     }
     //현재 장착 무기
@@ -653,8 +656,8 @@ public class GameManager : MonoSingleton<GameManager>
             {
                 Database.Weapon weapon = Database.Inst.weapons[value.DB_Num];
                 Database.Inst.playData.equiWeapon_InventoryNum = value.num;
-                Database.Inst.playData.atk_Min = weapon.atk_Min;
-                Database.Inst.playData.atk_Max = weapon.atk_Max;
+                Database.Inst.playData.atk_Min = weapon.atk_Min + weapon.enhanceValue * value.enhanceLevel;
+                Database.Inst.playData.atk_Max = weapon.atk_Max + weapon.enhanceValue * value.enhanceLevel;
                 Database.Inst.playData.atk_Speed = weapon.atk_Speed;
                 Database.Inst.playData.atk_Range = weapon.atk_Range;
                 Database.Inst.playData.nuckBack_Power = weapon.nuckback_Power;
@@ -966,8 +969,9 @@ public class GameManager : MonoSingleton<GameManager>
             int skill_Index = reader.GetInt32(count++);
             int option_Index = reader.GetInt32(count++);
             bool isNew = reader.GetInt32(count++) == 1 ? true : false;
+            int enhanceLevel = reader.GetInt32(count++);
 
-            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index, isNew));
+            Database.Inst.playData.inventory.Add(new Database.Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, skill_Index, option_Index, isNew, enhanceLevel));
         }
         reader.Close();
         reader = null;
@@ -1044,9 +1048,10 @@ public class GameManager : MonoSingleton<GameManager>
             int Skill_Index = Database.Inst.playData.inventory[i].skill_Index;
             int OptionIndex = Database.Inst.playData.inventory[i].option_Index;
             int isNew = Database.Inst.playData.inventory[i].isNew ? 1 : 0;
+            int enhanceLevel = Database.Inst.playData.inventory[i].enhanceLevel;
 
-            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex, isNew) " +
-                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + "," + isNew + ")";
+            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex, isNew, EnhanceLevel) " +
+                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + "," + isNew + "," + enhanceLevel + ")";
             DEB_dbcmd.CommandText = sqlQuery;
             DEB_dbcmd.ExecuteNonQuery();
         }
@@ -1102,9 +1107,10 @@ public class GameManager : MonoSingleton<GameManager>
         string ImageName = reader.GetString(count++);
         int Skill_Index = reader.GetInt32(count++);
         string OptionTableName = reader.GetString(count++);
+        int EnhanceValue = reader.GetInt32(count++);
 
 #if UNITY_EDITOR
-        Debug.Log(new Database.Weapon(Num, Name, Rarity, Rarity_Text, Class, Atk_Min, Atk_Max, Attack_Range, Attack_Speed, Nuckback_Power, Nuckback_Percentage, Item_Value, Description, ImageName, Skill_Index, OptionTableName));
+        Debug.Log(new Database.Weapon(Num, Name, Rarity, Rarity_Text, Class, Atk_Min, Atk_Max, Attack_Range, Attack_Speed, Nuckback_Power, Nuckback_Percentage, Item_Value, Description, ImageName, Skill_Index, OptionTableName, EnhanceValue));
 #endif
         //return new Database.Weapon(Num, Name, Rarity, Class, Damage, Attack_Count, Attack_Range, Attack_Speed, Nuckback, Item_Value, Description, ImageName, Skill_Index, OptionTableName));
         reader.Close();
@@ -1137,8 +1143,9 @@ public class GameManager : MonoSingleton<GameManager>
             string ImageName = reader.GetString(count++);
             int Skill_Index = reader.GetInt32(count++);
             string OptionTableName = reader.GetString(count++);
+            int EnhanceValue = reader.GetInt32(count++);
 
-            Database.Inst.weapons.Add(new Database.Weapon(Num, Name, Rarity, Rarity_Text, Class, Atk_Min, Atk_Max, Attack_Range, Attack_Speed, Nuckback_Power, Nuckback_Percentage, Item_Value, Description, ImageName, Skill_Index, OptionTableName));
+            Database.Inst.weapons.Add(new Database.Weapon(Num, Name, Rarity, Rarity_Text, Class, Atk_Min, Atk_Max, Attack_Range, Attack_Speed, Nuckback_Power, Nuckback_Percentage, Item_Value, Description, ImageName, Skill_Index, OptionTableName, EnhanceValue));
         }
         reader.Close();
         reader = null;
@@ -1188,8 +1195,9 @@ public class GameManager : MonoSingleton<GameManager>
             int Parameter = reader.GetInt32(count++);
             string Description = reader.GetString(count++);
             string ImageName = reader.GetString(count++);
+            int EnhanceValue = reader.GetInt32(count++);
 
-            Database.Inst.skill.Add(new Database.Skill(Num, Name, SkillType, Atk, MpCost, CoolTime, Skill_Range, Skill_Duration, Parameter, Description, ImageName));
+            Database.Inst.skill.Add(new Database.Skill(Num, Name, SkillType, Atk, MpCost, CoolTime, Skill_Range, Skill_Duration, Parameter, Description, ImageName, EnhanceValue));
         }
         reader.Close();
         reader = null;
