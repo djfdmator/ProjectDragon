@@ -625,10 +625,10 @@ MonoBehaviour:
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 200
-  mSortingOrder: 0
+  mSortingOrder: 4
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
-  useSortingOrder: 0
+  useSortingOrder: 1
 --- !u!54 &7129510660466996681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -689,32 +689,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 2596612058287147219}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 0
     absolute: -78
   rightAnchor:
-    target: {fileID: 2596612058287147219}
-    relative: 0.5
+    target: {fileID: 0}
+    relative: 1
     absolute: 114
   bottomAnchor:
-    target: {fileID: 2596612058287147219}
+    target: {fileID: 0}
     relative: 0
     absolute: 23
   topAnchor:
-    target: {fileID: 2596612058287147219}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: 63
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 192
+  mWidth: 174
   mHeight: 40
   mDepth: 20003
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.8
+  aspectRatio: 4.35
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 04d3bec25164a1349bb44720c6d649f4, type: 2}
@@ -728,7 +728,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 2
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
@@ -738,8 +738,8 @@ MonoBehaviour:
   mFloatSpacingX: 0
   mFloatSpacingY: 0
   mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mOverflowHeight: 0
+  mOverflowWidth: 1000
+  mOverflowHeight: 50
   mModifier: 0
   mShrinkToFit: 0
   mMaxLineWidth: 0
@@ -1057,7 +1057,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2596612058640443581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -529, z: 0}
+  m_LocalPosition: {x: 0, y: -504, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2596612058287147219}
@@ -1076,32 +1076,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 2596612058287147219}
+    target: {fileID: 0}
     relative: 0
     absolute: -320
   rightAnchor:
-    target: {fileID: 2596612058287147219}
+    target: {fileID: 0}
     relative: 1
     absolute: 320
   bottomAnchor:
-    target: {fileID: 2596612058287147219}
+    target: {fileID: 0}
     relative: 0
     absolute: -64
   topAnchor:
-    target: {fileID: 2596612058287147219}
-    relative: 0
+    target: {fileID: 0}
+    relative: 1
     absolute: 86
   updateAnchors: 0
   mColor: {r: 0, g: 0, b: 0, a: 0.6}
   mPivot: 4
-  mWidth: 2560
+  mWidth: 1920
   mHeight: 150
   mDepth: 20002
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 17.066668
+  aspectRatio: 12.8
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -1115,8 +1115,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 0}
-  mSpriteName: "\uC81C\uBAA9 \uC5C6\uC74C"
+  mAtlas: {fileID: 11400000, guid: d0e10a3ce2a6d0043b73b0ac8f0b1409, type: 2}
+  mSpriteName: Lobby_Topbar_Background
   mFixedAspect: 0
   mFillCenter: 1
 --- !u!1 &2596612058701406232

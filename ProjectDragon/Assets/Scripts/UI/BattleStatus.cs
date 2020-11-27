@@ -16,7 +16,7 @@ public class BattleStatus : MonoBehaviour
     private UISprite hp_foreGround;
     private UILabel hpLabel;
     private UILabel curMpLabel;
-    private UILabel addMpLabel;
+    public UILabel addMpLabel;
 
     //현재 스테이지의 Hp, Mp
     private float m_curHP;
