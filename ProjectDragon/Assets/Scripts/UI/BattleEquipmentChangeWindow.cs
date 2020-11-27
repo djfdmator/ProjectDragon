@@ -272,6 +272,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public void RightButton()
     {
         StopAllCoroutines();
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         StartCoroutine(TweenPosition(0.2f, title_EquipmentChange.gameObject, new Vector2(-400.0f, 450.0f)));
         StartCoroutine(TweenPosition(0.2f, title_Enhancement.gameObject, new Vector2(0.0f, 450.0f)));
         StartCoroutine(TweenScale(0.2f, title_EquipmentChange.gameObject, new Vector2(0.5f, 0.5f)));
@@ -295,6 +296,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public void LeftButton()
     {
         StopAllCoroutines();
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         StartCoroutine(TweenPosition(0.2f, title_EquipmentChange.gameObject, new Vector2(0.0f, 450.0f)));
         StartCoroutine(TweenPosition(0.2f, title_Enhancement.gameObject, new Vector2(400.0f, 450.0f)));
         StartCoroutine(TweenScale(0.2f, title_EquipmentChange.gameObject, new Vector2(1.0f, 1.0f)));
@@ -398,6 +400,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     public void EnhanceButton()
     {
+        SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
         StartCoroutine(TweenFillRotationAC());
     }
 
@@ -408,6 +411,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         enhance_effectSprite.fillAmount = 0.0f;
         parti_Effect.gameObject.SetActive(true);
         parti_Effect.Play();
+        SoundManager.Inst.EffectPlayerDB(36, this.gameObject);
         while (time <= playTime)
         {
             enhance_effectSprite.fillAmount = effectCurve.Evaluate(time / playTime);
@@ -428,15 +432,13 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         ItemChoiceEvent(inventory.curChoiceItem);
         inventory.RefreshEnhanceCellData();
 
+        SoundManager.Inst.EffectPlayerDB(38, this.gameObject);
         yield return new WaitForSeconds(0.5f);
-        //StartCoroutine(SuccessEvent());
-        //yield return null;
+
         enhance_effectSprite.fillAmount = 0.0f;
-        yield return new WaitForSeconds(tempTime);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(SuccessEvent());
     }
-
-    public float tempTime = 0.5f;
 
     private IEnumerator SuccessEvent()
     {
@@ -444,6 +446,7 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         image.alpha = 1.0f;
         EnhanceSuccess.SetRect(0.0f, 0.0f, 638.0f, 1.0f);
         EnhanceSuccess.gameObject.SetActive(true);
+        SoundManager.Inst.EffectPlayerDB(39, this.gameObject);
 
         float temp = 255.0f;
         float time = 0.0f;

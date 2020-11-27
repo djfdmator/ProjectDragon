@@ -18692,10 +18692,10 @@ MonoBehaviour:
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 23
-  mSortingOrder: 0
+  mSortingOrder: 3
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
-  useSortingOrder: 0
+  useSortingOrder: 1
 --- !u!1 &4229277610594885304
 GameObject:
   m_ObjectHideFlags: 0
@@ -22519,7 +22519,6 @@ MonoBehaviour:
   arrowEnableImage: {fileID: 21300000, guid: d33822548ece8894f9e7a0b2a191e17b, type: 3}
   arrowDisableImage: {fileID: 21300000, guid: 0b64b9964fd408641a68c29a48da32d4, type: 3}
   arrow: {fileID: 4587679323750832185}
-  tempTime: 0.5
 --- !u!1 &4587679323152905995
 GameObject:
   m_ObjectHideFlags: 0
