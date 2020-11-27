@@ -11,6 +11,9 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
     public Transform title_EquipmentChange;
     public Transform title_Enhancement;
 
+    private GameObject uiRoot;
+    private BattleStatus battleStatus;
+
     #region Enhancement
     public GameObject enhancementObj;
 
@@ -28,8 +31,11 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     public BoxCollider doingEnhance;
     public UISprite enhance_effectSprite;
+    public ParticleSystem parti_Effect;
     public float playTime = 2.0f;
     public AnimationCurve effectCurve;
+
+    public UIPanel EnhanceSuccess;
 
     #endregion
 
@@ -73,6 +79,9 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     void Start()
     {
+        if (uiRoot == null) uiRoot = GameObject.Find("UI Root").gameObject;
+        if (battleStatus == null) battleStatus = uiRoot.transform.Find("Status").GetComponent<BattleStatus>();
+
         if (inventory == null) inventory = transform.Find("Inventory").GetComponent<Inventory>();
 
         if (leftButton == null) leftButton = transform.Find("ToggleButton/Left").GetComponent<UIButton>();
@@ -86,8 +95,9 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         if (enhance_ItemName == null) enhance_ItemName = enhancementObj.transform.Find("ItemNameLabel").GetComponent<UILabel>();
         if (enhance_Dialogue == null) enhance_Dialogue = enhancementObj.transform.Find("Dialogue").GetComponent<UISprite>();
 
-        if (enhance_ItemImage == null) enhance_ItemImage = enhancementObj.transform.Find("MagicCircle/ItemSlot/ItemImage").GetComponent<UISprite>();
-        if (enhance_effectSprite == null) enhance_effectSprite = enhancementObj.transform.Find("MagicCircle/MagicCircleEffect").GetComponent<UISprite>();
+        if (enhance_ItemImage == null) enhance_ItemImage = enhancementObj.transform.Find("ItemSlot/ItemSlot/ItemImage").GetComponent<UISprite>();
+        if (enhance_effectSprite == null) enhance_effectSprite = enhancementObj.transform.Find("MagicCircleEffect").GetComponent<UISprite>();
+        if (parti_Effect == null) parti_Effect = enhance_effectSprite.transform.Find("Panel/Effect").GetComponent<ParticleSystem>();
 
         if (enhance_Button == null) enhance_Button = enhancementObj.transform.Find("EnhanceButton").GetComponent<UIButton>();
         if (enhance_Cost == null) enhance_Cost = enhance_Button.transform.Find("CostLabel").GetComponent<UILabel>();
@@ -99,9 +109,11 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         if (enhance_NextSkillAtk == null) enhance_NextSkillAtk = enhance_ItemInfo.transform.Find("After/SkillAtk").GetComponent<UILabel>();
 
         if (doingEnhance == null) doingEnhance = enhancementObj.transform.Find("DoingEnhance").GetComponent<BoxCollider>();
+        if (EnhanceSuccess == null) EnhanceSuccess = enhancementObj.transform.Find("EnhanceSuccess").GetComponent<UIPanel>();
+
         #endregion
 
-            #region Equipment Change
+        #region Equipment Change
         if (equipmentChangeObj == null) equipmentChangeObj = transform.Find("EquipmentChange").gameObject;
 
         if (curItemPanel == null) curItemPanel = equipmentChangeObj.transform.Find("CurItemPanel");
@@ -140,6 +152,9 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         title_Enhancement.GetComponent<UISprite>().alpha = 0.5f;
 
         gameObject.SetActive(false);
+
+        parti_Effect.gameObject.SetActive(false);
+        EnhanceSuccess.gameObject.SetActive(false);
     }
 
     public void Init(int acheiveMP)
@@ -149,6 +164,9 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         RefreshCurEquipItem();
         SettingEquipChangeEvent();
         gameObject.SetActive(true);
+
+        battleStatus.ChangeMpLabel(GameManager.Inst.Mp, GameManager.Inst.Mp + acheiveMP);
+        battleStatus.addMpLabel.text = "+0";
         GameManager.Inst.Mp += acheiveMP;
     }
 
@@ -330,11 +348,11 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         Database.Skill skill = Database.Inst.skill[GameManager.Inst.PlayData.inventory[inventory.curChoiceItem].skill_Index];
         Database.Inventory choiceItem = GameManager.Inst.PlayData.inventory[inventory.curChoiceItem];
 
-        enhance_ItemName.text = weapon.name + (choiceItem.enhanceLevel == 0 ? "": " +" + choiceItem.enhanceLevel.ToString());
+        enhance_ItemName.text = weapon.name + (choiceItem.enhanceLevel == 0 ? "" : " +" + choiceItem.enhanceLevel.ToString());
         enhance_ItemImage.spriteName = "WeaponIcon_" + weapon.imageName;
         //소유 마나량에 따라 처리 다르게 하기
         enhance_Cost.text = (400 + choiceItem.enhanceLevel * 50).ToString();
-        if(GameManager.Inst.Mp >= 400 + choiceItem.enhanceLevel * 50)
+        if (GameManager.Inst.Mp >= 400 + choiceItem.enhanceLevel * 50)
         {
             enhance_Dialogue.spriteName = "Descriptionwindow_Activate";
             enhance_Button.isEnabled = true;
@@ -388,20 +406,21 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         float time = 0.0f;
         doingEnhance.enabled = true;
         enhance_effectSprite.fillAmount = 0.0f;
+        parti_Effect.gameObject.SetActive(true);
+        parti_Effect.Play();
         while (time <= playTime)
         {
             enhance_effectSprite.fillAmount = effectCurve.Evaluate(time / playTime);
             time += Time.deltaTime;
             yield return null;
         }
-        enhance_effectSprite.fillAmount = 0.0f;
-
-        //effect 추가
 
         Database.Inventory choiceItem = GameManager.Inst.PlayData.inventory[inventory.curChoiceItem];
-        GameManager.Inst.Mp -= 400 + choiceItem.enhanceLevel * 50;
+        int enhanceCost = 400 + choiceItem.enhanceLevel * 50;
+        battleStatus.ChangeMpLabel(GameManager.Inst.Mp, GameManager.Inst.Mp - enhanceCost);
+        GameManager.Inst.Mp -= enhanceCost;
         choiceItem.enhanceLevel++;
-        if(GameManager.Inst.PlayData.equiWeapon_InventoryNum == inventory.curChoiceItem)
+        if (GameManager.Inst.PlayData.equiWeapon_InventoryNum == inventory.curChoiceItem)
         {
             GameManager.Inst.PlayerEquipWeapon = choiceItem;
         }
@@ -409,7 +428,46 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
         ItemChoiceEvent(inventory.curChoiceItem);
         inventory.RefreshEnhanceCellData();
 
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
+        //StartCoroutine(SuccessEvent());
+        //yield return null;
+        enhance_effectSprite.fillAmount = 0.0f;
+        yield return new WaitForSeconds(tempTime);
+        StartCoroutine(SuccessEvent());
+    }
+
+    public float tempTime = 0.5f;
+
+    private IEnumerator SuccessEvent()
+    {
+        UISprite image = EnhanceSuccess.transform.Find("Sprite").GetComponent<UISprite>();
+        image.alpha = 1.0f;
+        EnhanceSuccess.SetRect(0.0f, 0.0f, 638.0f, 1.0f);
+        EnhanceSuccess.gameObject.SetActive(true);
+
+        float temp = 255.0f;
+        float time = 0.0f;
+        float playTime = 1.0f;
+        while (time <= playTime)
+        {
+            time += Time.deltaTime;
+            EnhanceSuccess.SetRect(0.0f, 0.0f, 638.0f, 1.0f + temp * time / playTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        time = 0.0f;
+        playTime = 0.5f;
+        while (time <= playTime)
+        {
+            time += Time.deltaTime;
+            image.alpha = 1.0f - time / playTime;
+            yield return null;
+        }
+
+        EnhanceSuccess.gameObject.SetActive(false);
+        parti_Effect.gameObject.SetActive(false);
         doingEnhance.enabled = false;
     }
 }
