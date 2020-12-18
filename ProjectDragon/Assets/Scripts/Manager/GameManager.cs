@@ -171,6 +171,10 @@ public class GameManager : MonoSingleton<GameManager>
     //모든 테이블의 정보를 로드 합니다.
     void LoadAllTableData()
     {
+        //TODO: 업적 테이블 로드
+        Load_Encyclopedia_Monster_Table();
+        Load_Encyclopedia_Weapon_Table();
+
         Load_Weapon_Table();
         Load_Armor_Table();
         Load_ActiveSkill_Table();
@@ -1028,7 +1032,7 @@ public class GameManager : MonoSingleton<GameManager>
         PlayerPrefs.Save();
     }
 
-    void Save_Inventory_Table()
+    private void Save_Inventory_Table()
     {
         //Reset Table
         string sqlQuery = "DELETE FROM Inventory";
@@ -1074,11 +1078,73 @@ public class GameManager : MonoSingleton<GameManager>
     //    }
     //}
 
-#endregion
+    private void Save_Achievement_Table()
+    {
+        //Reset Table
+        string sqlQuery = "DELETE FROM Achievement";
+        DEB_dbcmd.CommandText = sqlQuery;
+        DEB_dbcmd.ExecuteNonQuery();
+
+        //Insert Data into Table
+        for (int i = 0; i < Database.Inst.achievementList.Count; i++)
+        {
+            int Num = Database.Inst.playData.inventory[i].num;
+            int DB_Num = Database.Inst.playData.inventory[i].DB_Num;
+            string Name = Database.Inst.playData.inventory[i].name;
+            int Rarity = (int)Database.Inst.playData.inventory[i].rarity;
+            int Class = (int)Database.Inst.playData.inventory[i].Class;
+            int ItemValue = Database.Inst.playData.inventory[i].itemValue;
+            string ImageName = Database.Inst.playData.inventory[i].imageName;
+            int Skill_Index = Database.Inst.playData.inventory[i].skill_Index;
+            int OptionIndex = Database.Inst.playData.inventory[i].option_Index;
+            int isNew = Database.Inst.playData.inventory[i].isNew ? 1 : 0;
+            int enhanceLevel = Database.Inst.playData.inventory[i].enhanceLevel;
+
+            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex, isNew, EnhanceLevel) " +
+                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + "," + isNew + "," + enhanceLevel + ")";
+            DEB_dbcmd.CommandText = sqlQuery;
+            DEB_dbcmd.ExecuteNonQuery();
+        }
+    }
+
+    private void Save_Encyclopedia_Monster_Table()
+    {
+        //Reset Table
+        string sqlQuery = "DELETE FROM Achievement";
+        DEB_dbcmd.CommandText = sqlQuery;
+        DEB_dbcmd.ExecuteNonQuery();
+
+        //Insert Data into Table
+        for (int i = 0; i < Database.Inst.encyclopedia_MonsterList.Count; i++)
+        {
+            sqlQuery = string.Format("");
+            DEB_dbcmd.CommandText = sqlQuery;
+            DEB_dbcmd.ExecuteNonQuery();
+        }
+    }
+
+    private void Save_Encyclopedia_Weapon_Table()
+    {
+        //Reset Table
+        string sqlQuery = "DELETE FROM Achievement";
+        DEB_dbcmd.CommandText = sqlQuery;
+        DEB_dbcmd.ExecuteNonQuery();
+
+        //Insert Data into Table
+        for (int i = 0; i < Database.Inst.encyclopedia_WeaponList.Count; i++)
+        {
+
+            sqlQuery = string.Format("");
+            DEB_dbcmd.CommandText = sqlQuery;
+            DEB_dbcmd.ExecuteNonQuery();
+        }
+    }
+
+    #endregion
 
 
     //readonly data
-#region Database_Load_Method
+    #region Database_Load_Method
 
     //쿼리문으로 직접 들고 오는 함수 - 예시
     public void LoadWeaponData()
@@ -1270,5 +1336,75 @@ public class GameManager : MonoSingleton<GameManager>
         reader = null;
     }
 
-#endregion
+    private void Load_Achievement_Table()
+    {
+        Database.Inst.achievementList.Clear();
+
+        string sqlQuery = "SELECT * FROM Achievement";
+        DEB_dbcmd.CommandText = sqlQuery;
+        IDataReader reader = DEB_dbcmd.ExecuteReader();
+        while (reader.Read())
+        {
+            int count = 0;
+            int num = reader.GetInt32(count++);
+            string title = reader.GetString(count++);
+            string description = reader.GetString(count++);
+            string imageName = reader.GetString(count++);
+            int isSuccess = reader.GetInt32(count++);
+            int targetValue = reader.GetInt32(count++);
+            int currentValue = reader.GetInt32(count++);
+
+
+            Database.Inst.achievementList.Add(new Database.Achievement(num, title, description, imageName, isSuccess, targetValue,currentValue));
+        }
+        reader.Close();
+        reader = null;
+    }
+
+    private void Load_Encyclopedia_Monster_Table()
+    {
+        Database.Inst.encyclopedia_MonsterList.Clear();
+
+        string sqlQuery = "SELECT * FROM Encyclopedia_Monster";
+        DEB_dbcmd.CommandText = sqlQuery;
+        IDataReader reader = DEB_dbcmd.ExecuteReader();
+        while (reader.Read())
+        {
+            int count = 0;
+            int num = reader.GetInt32(count++);
+            string name = reader.GetString(count++);
+            string description = reader.GetString(count++);
+            string imageName = reader.GetString(count++);
+            int isSuccess = reader.GetInt32(count++);
+           
+
+            Database.Inst.encyclopedia_MonsterList.Add(new Database.Encyclopedia(num, name, description, imageName, isSuccess));
+        }
+        reader.Close();
+        reader = null;
+    }
+    private void Load_Encyclopedia_Weapon_Table()
+    {
+        Database.Inst.encyclopedia_WeaponList.Clear();
+
+        string sqlQuery = "SELECT * FROM Encyclopedia_Weapon";
+        DEB_dbcmd.CommandText = sqlQuery;
+        IDataReader reader = DEB_dbcmd.ExecuteReader();
+        while (reader.Read())
+        {
+            int count = 0;
+            int num = reader.GetInt32(count++);
+            string name = reader.GetString(count++);
+            string description = reader.GetString(count++);
+            string imageName = reader.GetString(count++);
+            int isSuccess = reader.GetInt32(count++);
+
+
+            Database.Inst.encyclopedia_WeaponList.Add(new Database.Encyclopedia(num, name, description, imageName, isSuccess));
+        }
+        reader.Close();
+        reader = null;
+    }
+
+    #endregion
 }
