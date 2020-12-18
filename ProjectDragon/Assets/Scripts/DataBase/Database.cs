@@ -422,6 +422,52 @@ public class Database : MonoSingleton<Database>
         }
     }
 
+    [System.Serializable]
+    public class Achievement
+    {
+        public int num;
+        public string title;
+        public string description;
+        public string imageName;
+        public bool isSuccess = false;
+
+
+        public int targetValue;
+        public int currentValue;
+
+        public Achievement(int _num, string _title, string _desc, string _imageName , int _isSuccess, int _targetValue, int _currentValue)
+        {
+            this.num = _num;
+            this.title = _title;
+            this.description = _desc;
+            this.imageName = _imageName;
+            this.isSuccess = System.Convert.ToBoolean(_isSuccess);
+            this.targetValue = _targetValue;
+            this.currentValue = _currentValue;
+        }
+    }
+
+    [System.Serializable]
+    public class Encyclopedia
+    {
+        public int num;
+        public string name;
+        public string description;
+        public string imageName;
+        public bool isSuccess = false;
+
+        public Encyclopedia(int _num, string _name, string _desc, string _imageName, int _isSuccess)
+        {
+            this.num = _num;
+            this.name = _name;
+            this.description = _desc;
+            this.imageName = _imageName;
+            this.isSuccess = System.Convert.ToBoolean(_isSuccess);
+        }
+    }
+
+
+ 
     #endregion
 
 
@@ -485,12 +531,17 @@ public class Database : MonoSingleton<Database>
     }
 
     //Tables - Just Read
-
     public List<Weapon> weapons = new List<Weapon>();
     public List<Armor> armors = new List<Armor>();
     public List<Normal_Monster> normal_Monsters = new List<Normal_Monster>();
     public List<Rare_Monster> rare_Monsters = new List<Rare_Monster>();
     public List<Skill> skill = new List<Skill>();
+
+
+    //업적, 도감
+    public List<Achievement> achievementList = new List<Achievement>();
+    public List<Encyclopedia> encyclopedia_MonsterList = new List<Encyclopedia>();
+    public List<Encyclopedia> encyclopedia_WeaponList = new List<Encyclopedia>();
 
     //Player Game Data Instace
     public PlayData playData = new PlayData();
