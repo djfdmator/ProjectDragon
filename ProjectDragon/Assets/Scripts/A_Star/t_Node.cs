@@ -1,12 +1,4 @@
-﻿// ==============================================================
-// A*에 사용될 Node
-//
-//  AUTHOR: Yang SeEun
-// CREATED:
-// UPDATED: 2020-01-01
-// ==============================================================
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
