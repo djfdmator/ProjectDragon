@@ -40,7 +40,8 @@ public class LobbyManager_vr2 : MonoBehaviour
         maintenance.gameObject.SetActive(false);
 
         if (encyclopedia == null) encyclopedia = transform.Find("Encyclopedia").GetComponent<Encyclopedia_Popup>();
-        encyclopedia.gameObject.SetActive(false);
+        //encyclopedia.CreateSlot();
+        //encyclopedia.gameObject.SetActive(false);
 
         if (optionWindow == null) optionWindow = transform.Find("PopupWindow").Find("OptionWindow").GetComponent<OptionWindow>();
         optionWindow.gameObject.SetActive(false);

@@ -441,6 +441,8 @@ public class Database : MonoSingleton<Database>
             this.title = _title;
             this.description = _desc;
             this.imageName = _imageName;
+            //this.active = System.Convert.ToBoolean(_active);
+            this.active = _active == 0 ? false:true;
             this.active = System.Convert.ToBoolean(_active);
             this.targetValue = _targetValue;
             this.currentValue = _currentValue;
@@ -471,7 +473,9 @@ public class Database : MonoSingleton<Database>
             this.name = _name;
             this.description = _desc;
             this.imageName = _imageName;
-            this.active = System.Convert.ToBoolean(_active);
+            //this.active = System.Convert.ToBoolean(_active);
+            this.active = _active == 0 ? false:true;
+
         }
         public void Refresh(bool _active)
         {
@@ -571,5 +575,6 @@ public class Database : MonoSingleton<Database>
     {
         return playData.inventory.Count;
     }
+
     #endregion
 }

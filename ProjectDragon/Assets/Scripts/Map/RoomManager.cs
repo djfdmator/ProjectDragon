@@ -397,6 +397,18 @@ public class RoomManager : MonoBehaviour
             //GameManager.Inst.Mp += mana;
             GameManager.Inst.Insert_Inventory_Item(items);
             SoundManager.Inst.Ds_BGMPlayerDB(10);
+
+            //무기 도감
+            foreach(Database.Inventory item in items)
+            {
+                if(!GameManager.Inst.PlayData.encyclopedia_WeaponList[item.DB_Num].active)
+                {
+                    //도감 활성화
+                    GameManager.Inst.PlayData.encyclopedia_WeaponList[item.DB_Num].active = true;
+                }
+            }
+            //도감 데이터 저장
+            GameManager.Inst.Save_Encyclopedia_Weapon_Table();
         }
         else
         {
