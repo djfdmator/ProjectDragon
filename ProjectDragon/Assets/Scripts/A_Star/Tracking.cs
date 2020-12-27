@@ -1,7 +1,7 @@
 ﻿// ==============================================================
-// Cracked Tracking the player.
+// Tracking the player.
 //
-//  AUTHOR: Yang SeEun
+// AUTHOR: Yang SeEun
 // CREATED:
 // UPDATED: 2019-12-16
 // ==============================================================
