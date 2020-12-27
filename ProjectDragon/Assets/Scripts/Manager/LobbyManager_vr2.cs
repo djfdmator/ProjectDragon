@@ -7,6 +7,7 @@ public class LobbyManager_vr2 : MonoBehaviour
     public List<GUITestScrollView> gUITestScrollViews;
 
     public Maintenance maintenance = null;
+    public Encyclopedia_Popup encyclopedia = null;
     public OptionWindow optionWindow = null;
     public StatPanel statPanel = null;
     public CharactorRepresentation charactorRepresentation;
@@ -37,6 +38,9 @@ public class LobbyManager_vr2 : MonoBehaviour
     {
         if (maintenance == null) maintenance = transform.Find("Maintenance").GetComponent<Maintenance>();
         maintenance.gameObject.SetActive(false);
+
+        if (encyclopedia == null) encyclopedia = transform.Find("Encyclopedia").GetComponent<Encyclopedia_Popup>();
+        encyclopedia.gameObject.SetActive(false);
 
         if (optionWindow == null) optionWindow = transform.Find("PopupWindow").Find("OptionWindow").GetComponent<OptionWindow>();
         optionWindow.gameObject.SetActive(false);
@@ -134,6 +138,13 @@ public class LobbyManager_vr2 : MonoBehaviour
     {
         ButtonSound1();
         maintenance.OpenMaintenance();
+    }
+
+    //도감창으로 가기
+    public void EncyclopediaButton()
+    {
+        ButtonSound1();
+        encyclopedia.OpenEncyclopediaPopup();
     }
 
     //배틀로 간다.

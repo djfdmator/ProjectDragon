@@ -429,21 +429,30 @@ public class Database : MonoSingleton<Database>
         public string title;
         public string description;
         public string imageName;
-        public bool isSuccess = false;
+        public bool active = false;
 
 
         public int targetValue;
         public int currentValue;
 
-        public Achievement(int _num, string _title, string _desc, string _imageName, int _isSuccess, int _targetValue, int _currentValue)
+        public Achievement(int _num, string _title, string _desc, string _imageName, int _active, int _targetValue, int _currentValue)
         {
             this.num = _num;
             this.title = _title;
             this.description = _desc;
             this.imageName = _imageName;
-            this.isSuccess = System.Convert.ToBoolean(_isSuccess);
+            this.active = System.Convert.ToBoolean(_active);
             this.targetValue = _targetValue;
             this.currentValue = _currentValue;
+        }
+
+        public void Refresh()
+        {
+            this.currentValue += 1;
+            if(targetValue == currentValue)
+            {
+                this.active = true;
+            }
         }
     }
 
@@ -454,15 +463,19 @@ public class Database : MonoSingleton<Database>
         public string name;
         public string description;
         public string imageName;
-        public bool isSuccess = false;
+        public bool active;
 
-        public Encyclopedia(int _num, string _name, string _desc, string _imageName, int _isSuccess)
+        public Encyclopedia(int _num, string _name, string _desc, string _imageName, int _active)
         {
             this.num = _num;
             this.name = _name;
             this.description = _desc;
             this.imageName = _imageName;
-            this.isSuccess = System.Convert.ToBoolean(_isSuccess);
+            this.active = System.Convert.ToBoolean(_active);
+        }
+        public void Refresh(bool _active)
+        {
+            this.active = _active;
         }
     }
 
@@ -485,6 +498,14 @@ public class Database : MonoSingleton<Database>
 
         //=========================================================
         public List<Inventory> inventory = new List<Inventory>();
+
+        //업적, 도감
+        public List<Achievement> achievementList = new List<Achievement>();
+        public List<Encyclopedia> encyclopedia_MonsterList = new List<Encyclopedia>();
+        public List<Encyclopedia> encyclopedia_WeaponList = new List<Encyclopedia>();
+
+
+
         //public List<Emblem> emblem = new List<Emblem>();
         //public string nickName;
         public readonly int baseHp = 250;
@@ -537,11 +558,6 @@ public class Database : MonoSingleton<Database>
     public List<Normal_Monster> normal_Monsters = new List<Normal_Monster>();
     public List<Rare_Monster> rare_Monsters = new List<Rare_Monster>();
     public List<Skill> skill = new List<Skill>();
-
-    //업적, 도감
-    public List<Achievement> achievementList = new List<Achievement>();
-    public List<Encyclopedia> encyclopedia_MonsterList = new List<Encyclopedia>();
-    public List<Encyclopedia> encyclopedia_WeaponList = new List<Encyclopedia>();
 
 
     //Player Game Data Instace

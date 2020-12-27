@@ -172,6 +172,7 @@ public class GameManager : MonoSingleton<GameManager>
     void LoadAllTableData()
     {
         //TODO: 업적 테이블 로드
+        Load_Achievement_Table();
         Load_Encyclopedia_Monster_Table();
         Load_Encyclopedia_Weapon_Table();
 
@@ -202,6 +203,13 @@ public class GameManager : MonoSingleton<GameManager>
         Save_PlayerPrefs_Data();
         //플레이어의 패시브를 저장
         //Save_Emblem_PlayData();
+
+        //도감 데이터 저장
+        Save_Encyclopedia_Monster_Table();
+        Save_Encyclopedia_Weapon_Table();
+        //업적 데이터 저장
+        Save_Achievement_Table();
+
 #if UNITY_EDITOR
         Debug.Log("Save Player Data Complete");
 #endif
@@ -209,10 +217,19 @@ public class GameManager : MonoSingleton<GameManager>
 
     #endregion
 
+    //현재 사용안함.
     public void ResetPlayerData()
     {
-        ResetInventory();
-        Save_Inventory_Table();
+        //ResetInventory();
+        //Save_Inventory_Table();
+
+        ResetEncyclopedia();
+        Save_Encyclopedia_Monster_Table();
+        Save_Encyclopedia_Weapon_Table();
+
+        ResetAchievement();
+        Save_Achievement_Table();
+
         //ResetEmblem();
         //Save_Emblem_PlayData();
         PlayerPrefs.DeleteAll();
@@ -829,6 +846,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         //ResetInventory();
         //ResetEmblem();
+
+        //TODO: 도감 업적 초기화
+        ResetEncyclopedia();
+        ResetAchievement();
+
         Database.PlayData playData = Database.Inst.playData;
 
         playData.isMachineVibration = true;
@@ -885,6 +907,28 @@ public class GameManager : MonoSingleton<GameManager>
         Database.Inst.playData.inventory.RemoveRange(0, Database.Inst.playData.inventory.Count);
         //database.playData.inventory.Add(new Database.Inventory(database.weapons[0]));
         //database.playData.inventory.Add(new Database.Inventory(database.armors[0]));
+    }
+
+    //도감(무기,몬스터) 초기화
+    private void ResetEncyclopedia()
+    {
+        for (int i = 0; i < Database.Inst.playData.encyclopedia_MonsterList.Count;i++)
+        {
+            Database.Inst.playData.encyclopedia_MonsterList[i].active = false;
+        }
+        for (int i = 0; i < Database.Inst.playData.encyclopedia_WeaponList.Count; i++)
+        {
+            Database.Inst.playData.encyclopedia_WeaponList[i].active = false;
+        }
+    }
+
+    //도감(무기,몬스터) 초기화
+    private void ResetAchievement()
+    {
+        for (int i = 0; i < Database.Inst.playData.achievementList.Count; i++)
+        {
+            Database.Inst.playData.achievementList[i].active = false;
+        }
     }
     /// <summary>
     /// reset emblem table and player data, if unlocked emblemes are retained
@@ -1035,6 +1079,7 @@ public class GameManager : MonoSingleton<GameManager>
     void Save_Inventory_Table()
     {
         //Reset Table
+        Debug.Log("Reset Inventory");
         string sqlQuery = "DELETE FROM Inventory";
         DEB_dbcmd.CommandText = sqlQuery;
         DEB_dbcmd.ExecuteNonQuery();
@@ -1087,22 +1132,18 @@ public class GameManager : MonoSingleton<GameManager>
         DEB_dbcmd.ExecuteNonQuery();
 
         //Insert Data into Table
-        for (int i = 0; i < Database.Inst.achievementList.Count; i++)
+        for (int i = 0; i < Database.Inst.playData.achievementList.Count; i++)
         {
-            int Num = Database.Inst.playData.inventory[i].num;
-            int DB_Num = Database.Inst.playData.inventory[i].DB_Num;
-            string Name = Database.Inst.playData.inventory[i].name;
-            int Rarity = (int)Database.Inst.playData.inventory[i].rarity;
-            int Class = (int)Database.Inst.playData.inventory[i].Class;
-            int ItemValue = Database.Inst.playData.inventory[i].itemValue;
-            string ImageName = Database.Inst.playData.inventory[i].imageName;
-            int Skill_Index = Database.Inst.playData.inventory[i].skill_Index;
-            int OptionIndex = Database.Inst.playData.inventory[i].option_Index;
-            int isNew = Database.Inst.playData.inventory[i].isNew ? 1 : 0;
-            int enhanceLevel = Database.Inst.playData.inventory[i].enhanceLevel;
+            int num = Database.Inst.playData.achievementList[i].num;
+            string title = Database.Inst.playData.achievementList[i].title;
+            string description = Database.Inst.playData.achievementList[i].description;
+            string imageName = Database.Inst.playData.achievementList[i].imageName;
+            bool active = Database.Inst.playData.achievementList[i].active;
+            int targetValue = Database.Inst.playData.achievementList[i].targetValue;
+            int currentValue = Database.Inst.playData.achievementList[i].currentValue;
 
-            sqlQuery = "INSERT INTO Inventory(Num, DB_Num, Name, Rarity, Class, ItemValue, ImageName, Skill_Index, OptionIndex, isNew, EnhanceLevel) " +
-                        "values(" + Num + "," + DB_Num + ",'" + Name + "'," + Rarity + "," + Class + "," + ItemValue + ",'" + ImageName + "'," + Skill_Index + "," + OptionIndex + "," + isNew + "," + enhanceLevel + ")";
+            sqlQuery = string.Format("INSERT INTO Achievement(Num,Title,Description,ImageName,Active,targetValue,currentValue) " +
+                "values({0},'{1}','{2}','{3}',{4},{5},{6})", num, title, description, imageName, Convert.ToInt32(active), targetValue, currentValue);
             DEB_dbcmd.CommandText = sqlQuery;
             DEB_dbcmd.ExecuteNonQuery();
         }
@@ -1111,14 +1152,21 @@ public class GameManager : MonoSingleton<GameManager>
     private void Save_Encyclopedia_Monster_Table()
     {
         //Reset Table
-        string sqlQuery = "DELETE FROM Achievement";
+        string sqlQuery = "DELETE FROM Encyclopedia_Monster";
         DEB_dbcmd.CommandText = sqlQuery;
         DEB_dbcmd.ExecuteNonQuery();
 
         //Insert Data into Table
-        for (int i = 0; i < Database.Inst.encyclopedia_MonsterList.Count; i++)
+        for (int i = 0; i < Database.Inst.playData.encyclopedia_MonsterList.Count; i++)
         {
-            sqlQuery = string.Format("");
+            int num = Database.Inst.playData.encyclopedia_MonsterList[i].num;
+            string title = Database.Inst.playData.encyclopedia_MonsterList[i].name;
+            string description = Database.Inst.playData.encyclopedia_MonsterList[i].description;
+            string imageName = Database.Inst.playData.encyclopedia_MonsterList[i].imageName;
+            bool isSuccess = Database.Inst.playData.encyclopedia_MonsterList[i].active;
+
+            sqlQuery = string.Format("INSERT INTO Encyclopedia_Monster(Num,Name,Description,ImageName,Active) " +
+                "values({0},'{1}','{2}','{3}',{4})", num, title, description, imageName, Convert.ToInt32(isSuccess));
             DEB_dbcmd.CommandText = sqlQuery;
             DEB_dbcmd.ExecuteNonQuery();
         }
@@ -1127,18 +1175,39 @@ public class GameManager : MonoSingleton<GameManager>
     private void Save_Encyclopedia_Weapon_Table()
     {
         //Reset Table
-        string sqlQuery = "DELETE FROM Achievement";
+        string sqlQuery = "DELETE FROM Encyclopedia_Weapon";
         DEB_dbcmd.CommandText = sqlQuery;
         DEB_dbcmd.ExecuteNonQuery();
 
         //Insert Data into Table
-        for (int i = 0; i < Database.Inst.encyclopedia_WeaponList.Count; i++)
+        for (int i = 0; i < Database.Inst.playData.encyclopedia_WeaponList.Count; i++)
         {
+            int num = Database.Inst.playData.encyclopedia_WeaponList[i].num;
+            string title = Database.Inst.playData.encyclopedia_WeaponList[i].name;
+            string description = Database.Inst.playData.encyclopedia_WeaponList[i].description;
+            string imageName = Database.Inst.playData.encyclopedia_WeaponList[i].imageName;
+            bool isSuccess = Database.Inst.playData.encyclopedia_WeaponList[i].active;
 
-            sqlQuery = string.Format("");
+            sqlQuery = string.Format("INSERT INTO Encyclopedia_Weapon(Num,Name,Description,ImageName,Active) " +
+                "values({0},'{1}','{2}','{3}',{4})", num, title, description, imageName, Convert.ToInt32(isSuccess));
             DEB_dbcmd.CommandText = sqlQuery;
             DEB_dbcmd.ExecuteNonQuery();
         }
+    }
+
+    private void Save_Encyclopedia_Monster(int num, bool active)
+    {
+        int i = Convert.ToInt32(active);
+        string sqlQuery = string.Format("UPDATE Encyclopedia_Monster SET Active='{0}'WHERE Num='{1}'LIMIT 1", i, num);
+        DEB_dbcmd.CommandText = sqlQuery;
+        DEB_dbcmd.ExecuteNonQuery();
+    }
+    private void Save_Encyclopedia_Weapon(int num,bool active)
+    {
+        int i = Convert.ToInt32(active);
+        string sqlQuery = string.Format("UPDATE Encyclopedia_Weapon SET Active='{0}'WHERE Num='{1}'LIMIT 1", i, num);
+        DEB_dbcmd.CommandText = sqlQuery;
+        DEB_dbcmd.ExecuteNonQuery();
     }
 
 
@@ -1340,7 +1409,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Load_Achievement_Table()
     {
-        Database.Inst.achievementList.Clear();
+        Database.Inst.playData.achievementList.Clear();
 
         string sqlQuery = "SELECT * FROM Achievement";
         DEB_dbcmd.CommandText = sqlQuery;
@@ -1352,12 +1421,12 @@ public class GameManager : MonoSingleton<GameManager>
             string title = reader.GetString(count++);
             string description = reader.GetString(count++);
             string imageName = reader.GetString(count++);
-            int isSuccess = reader.GetInt32(count++);
+            int active = reader.GetInt32(count++);
             int targetValue = reader.GetInt32(count++);
             int currentValue = reader.GetInt32(count++);
 
 
-            Database.Inst.achievementList.Add(new Database.Achievement(num, title, description, imageName, isSuccess, targetValue, currentValue));
+            Database.Inst.playData.achievementList.Add(new Database.Achievement(num, title, description, imageName, active, targetValue, currentValue));
         }
         reader.Close();
         reader = null;
@@ -1365,7 +1434,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Load_Encyclopedia_Monster_Table()
     {
-        Database.Inst.encyclopedia_MonsterList.Clear();
+        Database.Inst.playData.encyclopedia_MonsterList.Clear();
 
         string sqlQuery = "SELECT * FROM Encyclopedia_Monster";
         DEB_dbcmd.CommandText = sqlQuery;
@@ -1377,17 +1446,17 @@ public class GameManager : MonoSingleton<GameManager>
             string name = reader.GetString(count++);
             string description = reader.GetString(count++);
             string imageName = reader.GetString(count++);
-            int isSuccess = reader.GetInt32(count++);
+            int active = reader.GetInt32(count++);
 
 
-            Database.Inst.encyclopedia_MonsterList.Add(new Database.Encyclopedia(num, name, description, imageName, isSuccess));
+            Database.Inst.playData.encyclopedia_MonsterList.Add(new Database.Encyclopedia(num, name, description, imageName, active));
         }
         reader.Close();
         reader = null;
     }
     private void Load_Encyclopedia_Weapon_Table()
     {
-        Database.Inst.encyclopedia_WeaponList.Clear();
+        Database.Inst.playData.encyclopedia_WeaponList.Clear();
 
         string sqlQuery = "SELECT * FROM Encyclopedia_Weapon";
         DEB_dbcmd.CommandText = sqlQuery;
@@ -1402,7 +1471,7 @@ public class GameManager : MonoSingleton<GameManager>
             int isSuccess = reader.GetInt32(count++);
 
 
-            Database.Inst.encyclopedia_WeaponList.Add(new Database.Encyclopedia(num, name, description, imageName, isSuccess));
+            Database.Inst.playData.encyclopedia_WeaponList.Add(new Database.Encyclopedia(num, name, description, imageName, isSuccess));
         }
         reader.Close();
         reader = null;
