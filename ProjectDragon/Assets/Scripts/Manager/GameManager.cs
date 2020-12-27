@@ -804,6 +804,11 @@ public class GameManager : MonoSingleton<GameManager>
     public void InitializePlayData()
     {
         InitialPlayData();
+
+        //TODO: 도감 업적 초기화
+        ResetEncyclopedia();
+        ResetAchievement();
+
         SavePlayerData();
     }
     IEnumerator GameEnd()
@@ -847,9 +852,6 @@ public class GameManager : MonoSingleton<GameManager>
         //ResetInventory();
         //ResetEmblem();
 
-        //TODO: 도감 업적 초기화
-        ResetEncyclopedia();
-        ResetAchievement();
 
         Database.PlayData playData = Database.Inst.playData;
 
@@ -1079,7 +1081,6 @@ public class GameManager : MonoSingleton<GameManager>
     void Save_Inventory_Table()
     {
         //Reset Table
-        Debug.Log("Reset Inventory");
         string sqlQuery = "DELETE FROM Inventory";
         DEB_dbcmd.CommandText = sqlQuery;
         DEB_dbcmd.ExecuteNonQuery();
@@ -1124,7 +1125,7 @@ public class GameManager : MonoSingleton<GameManager>
     //}
 
 
-    private void Save_Achievement_Table()
+    public void Save_Achievement_Table()
     {
         //Reset Table
         string sqlQuery = "DELETE FROM Achievement";
@@ -1149,7 +1150,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    private void Save_Encyclopedia_Monster_Table()
+    public void Save_Encyclopedia_Monster_Table()
     {
         //Reset Table
         string sqlQuery = "DELETE FROM Encyclopedia_Monster";
@@ -1172,7 +1173,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    private void Save_Encyclopedia_Weapon_Table()
+    public void Save_Encyclopedia_Weapon_Table()
     {
         //Reset Table
         string sqlQuery = "DELETE FROM Encyclopedia_Weapon";
@@ -1447,8 +1448,6 @@ public class GameManager : MonoSingleton<GameManager>
             string description = reader.GetString(count++);
             string imageName = reader.GetString(count++);
             int active = reader.GetInt32(count++);
-
-
             Database.Inst.playData.encyclopedia_MonsterList.Add(new Database.Encyclopedia(num, name, description, imageName, active));
         }
         reader.Close();
@@ -1468,10 +1467,10 @@ public class GameManager : MonoSingleton<GameManager>
             string name = reader.GetString(count++);
             string description = reader.GetString(count++);
             string imageName = reader.GetString(count++);
-            int isSuccess = reader.GetInt32(count++);
+            int active = reader.GetInt32(count++);
 
 
-            Database.Inst.playData.encyclopedia_WeaponList.Add(new Database.Encyclopedia(num, name, description, imageName, isSuccess));
+            Database.Inst.playData.encyclopedia_WeaponList.Add(new Database.Encyclopedia(num, name, description, imageName, active));
         }
         reader.Close();
         reader = null;

@@ -27,7 +27,7 @@ public class Encyclopedia_Popup : MonoBehaviour
     private EventDelegate slotEvent;
 
 
-    //도감 및 업적 상세설명 팝업
+    //상세설명 팝업
     [SerializeField] private GameObject information_Popup;
     private UISprite Info_Icon;
     private UILabel Info_titleLabel;
@@ -48,12 +48,12 @@ public class Encyclopedia_Popup : MonoBehaviour
 
         information_Popup.SetActive(false);
         slotEvent = new EventDelegate(this, "Event_InformationPopup");
-        CreateSlot();
 
     }
-
     private void Start()
     {
+        CreateSlot();
+        gameObject.SetActive(false);
     }
 
     public void Event_InformationPopup(Type type, int num)
@@ -68,7 +68,6 @@ public class Encyclopedia_Popup : MonoBehaviour
         List<Database.Encyclopedia> weaponsData = GameManager.Inst.PlayData.encyclopedia_WeaponList;
         List<Encyclopedia_CellData> weaponCells = new List<Encyclopedia_CellData>();
 
-        Debug.Log(weaponsData.Count);
         for (int i = 0; i < weaponsData.Count; i++)
         {
             Encyclopedia_CellData cell = Instantiate(itemCell, weapon_grid.transform).GetComponent<Encyclopedia_CellData>();
@@ -91,6 +90,7 @@ public class Encyclopedia_Popup : MonoBehaviour
         {
             Encyclopedia_CellData cell = Instantiate(itemCell, monsters_grid.transform).GetComponent<Encyclopedia_CellData>();
             cell.Init(monstersData[i]);
+            Debug.Log(i + "  " + monstersData[i].active.ToString());
 
             slotEvent = new EventDelegate(this, "Event_InformationPopup");
             slotEvent.parameters[0].value = Type.Monster;

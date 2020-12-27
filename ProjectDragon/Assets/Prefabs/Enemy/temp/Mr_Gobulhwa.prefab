@@ -180,6 +180,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 3
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -187,6 +188,7 @@ MonoBehaviour:
   m_viewTargetMask:
     serializedVersion: 2
     m_Bits: 0
+  col: {fileID: 0}
   collisionPlayer: 0
   isNuckback: 1
   skillCooltime: 0

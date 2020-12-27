@@ -258,6 +258,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 1
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0

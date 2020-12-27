@@ -59,5 +59,8 @@ public class Box : MapObject
     void DropItem()
     {
         GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().DropItem(true, transform.position);
+
+
+
     }
 }

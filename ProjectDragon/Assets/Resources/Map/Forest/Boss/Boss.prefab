@@ -847,6 +847,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 5
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -16029,6 +16030,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -16961,6 +16963,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -17448,6 +17451,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
@@ -27438,6 +27442,7 @@ MonoBehaviour:
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
+  db_Num: 0
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0

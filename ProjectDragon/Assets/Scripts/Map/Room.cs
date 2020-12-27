@@ -148,6 +148,15 @@ public class Room : MonoBehaviour
             if (obj.GetComponent<Monster>().isDead)
             {
                 //roomManager.DropItem(false, obj.transform.position);
+
+                //몬스터 도감
+                if (!GameManager.Inst.PlayData.encyclopedia_MonsterList[obj.GetComponent<Monster>().db_Num].active)
+                {
+                    //도감 활성화
+                    GameManager.Inst.PlayData.encyclopedia_MonsterList[obj.GetComponent<Monster>().db_Num].active = true;
+                    //도감 데이터 저장
+                    GameManager.Inst.Save_Encyclopedia_Monster_Table();
+                }
                 continue;
             }
             else
