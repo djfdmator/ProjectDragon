@@ -41,8 +41,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Equipment_Item_Attack
-    x: 2511
-    y: 282
+    x: 1613
+    y: 1411
     width: 41
     height: 41
     borderLeft: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Equipment_Item_BackButton_Click
-    x: 1369
+    x: 1155
     y: 1827
     width: 213
     height: 221
@@ -67,7 +67,7 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 1
   - name: Equipment_Item_BackButton_Normal
-    x: 1155
+    x: 1369
     y: 1827
     width: 213
     height: 221
@@ -93,8 +93,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Equipment_Item_CurItem_ArmorTitle
-    x: 1455
-    y: 1435
+    x: 1985
+    y: 1478
     width: 217
     height: 89
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 18
   - name: Equipment_Item_CurItem_SkillTitle
-    x: 2162
-    y: 1709
+    x: 2203
+    y: 1541
     width: 217
     height: 89
     borderLeft: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 5
   - name: Equipment_Item_CurItem_WeaponTitle
-    x: 1676
-    y: 940
+    x: 1985
+    y: 1568
     width: 217
     height: 89
     borderLeft: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 8
   - name: Equipment_Item_EquipButton_Normal
-    x: 1676
-    y: 1126
+    x: 1356
+    y: 1583
     width: 254
     height: 133
     borderLeft: 0
@@ -184,8 +184,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 8
   - name: Equipment_Item_Label
-    x: 1583
-    y: 1950
+    x: 1521
+    y: 1420
     width: 91
     height: 98
     borderLeft: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
     paddingTop: 14
     paddingBottom: 17
   - name: Equipment_Item_Title
-    x: 2408
-    y: 1754
+    x: 1985
+    y: 1658
     width: 203
     height: 126
     borderLeft: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Equipment_ScrollBar_BackGround
-    x: 2698
+    x: 2688
     y: 1446
     width: 15
     height: 602
@@ -301,8 +301,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Equipment_ScrollBar_Bar
-    x: 2380
-    y: 1196
+    x: 1659
+    y: 1446
     width: 15
     height: 602
     borderLeft: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: Hpbar_BackGround
     x: 1155
-    y: 1620
+    y: 1419
     width: 365
     height: 96
     borderLeft: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Hpbar_HP
-    x: 2179
+    x: 1676
     y: 937
     width: 250
     height: 34
@@ -353,8 +353,8 @@ MonoBehaviour:
     paddingTop: 17
     paddingBottom: 16
   - name: Lobby_BattlButton_Normal
-    x: 2531
-    y: 1881
+    x: 2152
+    y: 1785
     width: 166
     height: 167
     borderLeft: 0
@@ -392,8 +392,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lobby_MaintenanceButton_Click
-    x: 1985
-    y: 1727
+    x: 2276
+    y: 1631
     width: 176
     height: 153
     borderLeft: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
     paddingTop: 25
     paddingBottom: 22
   - name: Lobby_MaintenanceButton_Normal
-    x: 2231
+    x: 2319
     y: 1799
     width: 176
     height: 153
@@ -431,110 +431,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lobby_Setting_CreditButton_Click
-    x: 1921
-    y: 32
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_CreditButton_Normal
-    x: 1155
-    y: 1429
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_Exit
-    x: 2408
-    y: 1882
-    width: 70
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_QuitButton_Click
-    x: 2231
-    y: 1953
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_QuitButton_Normal
-    x: 2221
-    y: 32
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_RestartButton_Click
-    x: 1676
-    y: 1030
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_RestartButton_Normal
-    x: 1931
-    y: 1164
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_SettingButton_Click
-    x: 1976
-    y: 1068
-    width: 299
-    height: 95
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: Lobby_Setting_SettingButton_Normal
     x: 1976
     y: 972
     width: 299
@@ -547,9 +443,113 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: Lobby_Setting_CreditButton_Normal
+    x: 1976
+    y: 1068
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_Exit
+    x: 1455
+    y: 259
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_QuitButton_Click
+    x: 1976
+    y: 1164
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_QuitButton_Normal
+    x: 1676
+    y: 972
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_RestartButton_Click
+    x: 1676
+    y: 1068
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_RestartButton_Normal
+    x: 1676
+    y: 1164
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_SettingButton_Click
+    x: 2276
+    y: 1953
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Lobby_Setting_SettingButton_Normal
+    x: 2287
+    y: 32
+    width: 299
+    height: 95
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: Lobby_SkillSlot
-    x: 1521
-    y: 1593
+    x: 2576
+    y: 1925
     width: 111
     height: 123
     borderLeft: 0
@@ -561,8 +561,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lobby_Stats_Attack
-    x: 2521
-    y: 62
+    x: 2189
+    y: 1719
     width: 65
     height: 65
     borderLeft: 0
@@ -574,8 +574,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lobby_Stats_Attackspeed
-    x: 1894
-    y: 973
+    x: 1985
+    y: 1790
     width: 64
     height: 56
     borderLeft: 0
@@ -600,8 +600,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Lobby_Stats_Defense
-    x: 1583
-    y: 1528
+    x: 2203
+    y: 1654
     width: 56
     height: 64
     borderLeft: 0
@@ -613,8 +613,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: Lobby_Stats_Hp
-    x: 1521
-    y: 1530
+    x: 1577
+    y: 1520
     width: 61
     height: 62
     borderLeft: 0
@@ -626,8 +626,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 2
   - name: Lobby_Stats_L
-    x: 1640
-    y: 1545
+    x: 2511
+    y: 271
     width: 35
     height: 52
     borderLeft: 0
@@ -639,8 +639,8 @@ MonoBehaviour:
     paddingTop: 22
     paddingBottom: 26
   - name: Lobby_Stats_R
-    x: 1633
-    y: 1598
+    x: 2050
+    y: 1793
     width: 36
     height: 53
     borderLeft: 0
@@ -665,8 +665,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 28
   - name: Mpbar
-    x: 1155
-    y: 1525
+    x: 1921
+    y: 33
     width: 365
     height: 94
     borderLeft: 0
@@ -678,8 +678,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Backgroundsound_Icon
-    x: 1985
-    y: 1666
+    x: 1284
+    y: 269
     width: 170
     height: 60
     borderLeft: 0
@@ -691,8 +691,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Foreground_Activate
-    x: 1894
-    y: 938
+    x: 2587
+    y: 22
     width: 284
     height: 33
     borderLeft: 0
@@ -717,8 +717,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Phonevibration_Icon
-    x: 880
-    y: 266
+    x: 1356
+    y: 1519
     width: 220
     height: 63
     borderLeft: 0
@@ -730,7 +730,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_RadioButton_Off
-    x: 2553
+    x: 2547
     y: 286
     width: 37
     height: 37
@@ -743,8 +743,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_RadioButton_On
-    x: 1931
-    y: 1126
+    x: 1611
+    y: 1681
     width: 37
     height: 37
     borderLeft: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Screenvibration_Icon
-    x: 1101
+    x: 880
     y: 275
     width: 230
     height: 54
@@ -769,7 +769,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Soundeffect_Icon
-    x: 1332
+    x: 1111
     y: 263
     width: 172
     height: 66
@@ -782,8 +782,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Thumb_Color
-    x: 2479
-    y: 1886
+    x: 1613
+    y: 1453
     width: 32
     height: 66
     borderLeft: 0
@@ -795,8 +795,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Thumb_White
-    x: 1633
-    y: 1652
+    x: 2097
+    y: 1814
     width: 32
     height: 66
     borderLeft: 0
@@ -808,8 +808,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Toggle_Off
-    x: 2231
-    y: 1675
+    x: 2152
+    y: 1981
     width: 111
     height: 33
     borderLeft: 0
@@ -821,8 +821,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Toggle_On
-    x: 2231
-    y: 1607
+    x: 2152
+    y: 2015
     width: 111
     height: 33
     borderLeft: 0
@@ -834,10 +834,23 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Option_Toggle_On2
-    x: 2231
-    y: 1641
+    x: 1985
+    y: 1847
     width: 111
     height: 33
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: "\uB85C\uBE44UI \uB3C4\uAC10"
+    x: 1155
+    y: 1516
+    width: 200
+    height: 200
     borderLeft: 0
     borderRight: 0
     borderTop: 0
