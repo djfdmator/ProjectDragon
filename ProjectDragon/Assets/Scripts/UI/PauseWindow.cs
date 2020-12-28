@@ -63,6 +63,12 @@ public class PauseWindow : MonoBehaviour
         GameManager.Inst.PlayerDeadToInitialData();
         SoundManager.Inst.Ds_EffectPlayerDB(1);
 
+
+        //도감,업적 저장
+        GameManager.Inst.Save_Encyclopedia_Monster_Table();
+        GameManager.Inst.Save_Encyclopedia_Weapon_Table();
+        GameManager.Inst.Save_Achievement_Table();
+
         ButtonManager.GotoLobby();
     }
 }
