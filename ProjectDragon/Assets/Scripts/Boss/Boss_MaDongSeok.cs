@@ -123,7 +123,12 @@ public class Boss_MaDongSeok : Monster
         StopCoroutine(Bossphasechange);
         Explosion();
         base.Dead();
+
+        //[보스 마동석 처치] 업적 달성
+        GameManager.Inst.PlayData.collection.AchievementCollection(6);
+
         GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().OpenResultPop(false);
+        
     }
     /// <summary>
     /// 보스시작시 해야할것

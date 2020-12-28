@@ -425,14 +425,14 @@ public class Database : MonoSingleton<Database>
     [System.Serializable]
     public class Achievement
     {
-        public int num;
-        public string title;
-        public string description;
-        public string imageName;
+        public readonly int num;
+        public readonly string title;
+        public readonly string description;
+        public readonly string imageName;
         public bool active = false;
 
 
-        public int targetValue;
+        public readonly int targetValue;
         public int currentValue;
 
         public Achievement(int _num, string _title, string _desc, string _imageName, int _active, int _targetValue, int _currentValue)
@@ -448,7 +448,7 @@ public class Database : MonoSingleton<Database>
             this.currentValue = _currentValue;
         }
 
-        public void Refresh()
+        public void ChangeCurrentValue()
         {
             this.currentValue += 1;
             if(targetValue == currentValue)
@@ -461,10 +461,10 @@ public class Database : MonoSingleton<Database>
     [System.Serializable]
     public class Encyclopedia
     {
-        public int num;
-        public string name;
-        public string description;
-        public string imageName;
+        public readonly int num;
+        public readonly string name;
+        public readonly string description;
+        public readonly string imageName;
         public bool active;
 
         public Encyclopedia(int _num, string _name, string _desc, string _imageName, int _active)
@@ -476,10 +476,6 @@ public class Database : MonoSingleton<Database>
             //this.active = System.Convert.ToBoolean(_active);
             this.active = _active == 0 ? false:true;
 
-        }
-        public void Refresh(bool _active)
-        {
-            this.active = _active;
         }
     }
 
@@ -504,10 +500,7 @@ public class Database : MonoSingleton<Database>
         public List<Inventory> inventory = new List<Inventory>();
 
         //업적, 도감
-        public List<Achievement> achievementList = new List<Achievement>();
-        public List<Encyclopedia> encyclopedia_MonsterList = new List<Encyclopedia>();
-        public List<Encyclopedia> encyclopedia_WeaponList = new List<Encyclopedia>();
-
+        public Collection collection = new Collection();
 
 
         //public List<Emblem> emblem = new List<Emblem>();

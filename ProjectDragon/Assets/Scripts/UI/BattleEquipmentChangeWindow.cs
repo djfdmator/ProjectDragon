@@ -429,6 +429,20 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
             GameManager.Inst.PlayerEquipWeapon = choiceItem;
         }
 
+        //[강화] 업적 달성
+        switch(choiceItem.enhanceLevel)
+        {
+            case 1:
+                GameManager.Inst.PlayData.collection.AchievementCollection(9);
+                break;
+            case 5:
+                GameManager.Inst.PlayData.collection.AchievementCollection(10);
+                break;
+            case 10:
+                GameManager.Inst.PlayData.collection.AchievementCollection(11);
+                break;
+        }
+
         ItemChoiceEvent(inventory.curChoiceItem);
         inventory.RefreshEnhanceCellData();
 

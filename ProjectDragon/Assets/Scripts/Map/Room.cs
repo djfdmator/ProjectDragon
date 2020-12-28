@@ -149,14 +149,9 @@ public class Room : MonoBehaviour
             {
                 //roomManager.DropItem(false, obj.transform.position);
 
-                //몬스터 도감
-                if (!GameManager.Inst.PlayData.encyclopedia_MonsterList[obj.GetComponent<Monster>().db_Num].active)
-                {
-                    //도감 활성화
-                    GameManager.Inst.PlayData.encyclopedia_MonsterList[obj.GetComponent<Monster>().db_Num].active = true;
-                    //도감 데이터 저장
-                    GameManager.Inst.Save_Encyclopedia_Monster_Table();
-                }
+                //몬스터 수집
+                GameManager.Inst.PlayData.collection.MonsterCollection(obj.GetComponent<Monster>());
+
                 continue;
             }
             else
@@ -234,6 +229,12 @@ public class Room : MonoBehaviour
         if (gridPos == PlayerPos)
         {
             roomState = RoomState.Activate;
+
+            //[비밀의 방 최초 발견] 업적 달성
+            if (roomType.Equals(RoomType.Hidden))
+            {
+                GameManager.Inst.PlayData.collection.AchievementCollection(2);
+            }
 
             //플레이어 배틀 시작
             playerSet.EnemyArray = Enemies;

@@ -60,7 +60,8 @@ public class Box : MapObject
     {
         GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().DropItem(true, transform.position);
 
-
+        //[박스 파괴] 업적 달성
+        GameManager.Inst.PlayData.collection.AchievementCollection(1);
 
     }
 }
