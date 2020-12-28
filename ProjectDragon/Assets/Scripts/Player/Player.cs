@@ -166,7 +166,6 @@ public class Player : Character
         get { return mp; }
         set
         {
-
             if (uiStatus != null)
             {
                 uiStatus.ChangeMpLabel(mp, value);
@@ -375,9 +374,6 @@ public class Player : Character
         LoadPlayerPrefData();
         LoadWeaponData();
 
-        //proj_attackAnimator = Resources.Load<RuntimeAnimatorController>(string.Format(""));
-        //proj_skillAnimator = Resources.Load<RuntimeAnimatorController>(string.Format(""));
-
         Initalize_Player_Link();
 
         temp_Movespeed = moveSpeed;
@@ -385,7 +381,6 @@ public class Player : Character
         invaid = 10.0f;
 
         projectileTargetList.Add("Enemy");
-        //GameManager.Inst.SavePlayerData();
     }
     protected override void Start()
     {
@@ -404,7 +399,6 @@ public class Player : Character
         CurrentState = State.Skill;
         //각 SkillAnim에 이벤트함수로 넣음...
         //CreateProjectile();
-
     }
 
 

@@ -247,9 +247,19 @@ public class RoomManager : MonoBehaviour
         //miniMap.button.GetComponent<BoxCollider>().enabled = true;
     }
 
+    private int rimmotalKillCount = 0;
+
     //TODO : 림모탈에 연결하기
     public void DropItem_Rimmotal(Vector3 _pos)
     {
+        //[한 스테이지에서 림모탈 2마리 처치] 업적 달성
+        rimmotalKillCount++;
+        if (rimmotalKillCount >= 2)
+        {
+            GameManager.Inst.PlayData.collection.AchievementCollection(5);
+        }
+
+
         List<Database.Weapon> weapons = new List<Database.Weapon>();
 
         int Drop_Rand = Random.Range(0, 10);
@@ -390,6 +400,10 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 방 클리어시 결과창화면 띄우기
+    /// </summary>
+    /// <param name="playerIsDead"></param>
     public void OpenResultPop(bool playerIsDead)
     {
         if (!playerIsDead)
@@ -398,17 +412,8 @@ public class RoomManager : MonoBehaviour
             GameManager.Inst.Insert_Inventory_Item(items);
             SoundManager.Inst.Ds_BGMPlayerDB(10);
 
-            //무기 도감
-            foreach(Database.Inventory item in items)
-            {
-                if(!GameManager.Inst.PlayData.encyclopedia_WeaponList[item.DB_Num].active)
-                {
-                    //도감 활성화
-                    GameManager.Inst.PlayData.encyclopedia_WeaponList[item.DB_Num].active = true;
-                }
-            }
-            //도감 데이터 저장
-            GameManager.Inst.Save_Encyclopedia_Weapon_Table();
+            //도감,업적 검사
+            CheckCollection();
         }
         else
         {
@@ -419,6 +424,33 @@ public class RoomManager : MonoBehaviour
 
         resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
         resultPop.SetActive(true);
+    }
+
+    /// <summary>
+    /// 무기 도감과 업적 달성 검사
+    /// </summary>
+    private void CheckCollection()
+    {
+        //무기 수집
+        GameManager.Inst.PlayData.collection.WeaponCollection(items);
+
+        //[모든 장비 아이템 보유] 업적 달성
+        int weaponCount = 0;
+        foreach (Database.Weapon data in Database.Inst.weapons)
+        {
+            foreach (Database.Inventory item in items)
+            {
+                if (data.num.Equals(item.DB_Num))
+                {
+                    weaponCount++;
+                    break;
+                }
+            }
+        }
+        if (weaponCount == Database.Inst.weapons.Count)
+        {
+            GameManager.Inst.PlayData.collection.AchievementCollection(3);
+        }
     }
 
 }
