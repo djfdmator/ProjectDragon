@@ -422,6 +422,11 @@ public class RoomManager : MonoBehaviour
         }
         SoundManager.Inst.Ds_musicSource.loop = false;
 
+        //도감,업적 저장
+        GameManager.Inst.Save_Encyclopedia_Monster_Table();
+        GameManager.Inst.Save_Encyclopedia_Weapon_Table();
+        GameManager.Inst.Save_Achievement_Table();
+
         resultPop.GetComponent<ResultPop>().OnResult(mana, !playerIsDead);
         resultPop.SetActive(true);
     }

@@ -101,9 +101,7 @@ public class Doldori : FSM_NormalEnemy
             if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
                 || collision.gameObject.CompareTag("Cliff") || collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
             {
-#if UNITY_EDITOR
-                Debug.Log("AttackEndCor!");
-#endif
+
                 AttackEndCor = AttackEnd();
                 if (collision.gameObject.CompareTag("Player"))
                 {
@@ -114,17 +112,13 @@ public class Doldori : FSM_NormalEnemy
                     collision.gameObject.GetComponent<MapObject>().HpChanged(50);
                     if( collision.gameObject.GetComponent<Box>() != null)       //박스는 뚫고 가기
                     {
-#if UNITY_EDITOR
-                        Debug.Log("AttackEndCor is null");
-#endif
+
                         AttackEndCor = null;
                         return;
                     }
                 }
                 StartCoroutine(AttackEndCor);
-#if UNITY_EDITOR
-                        Debug.Log("AttackEndCor Start!");
-#endif
+
                 
   
            }

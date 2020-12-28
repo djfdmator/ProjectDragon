@@ -265,7 +265,13 @@ public class BattleEquipmentChangeWindow : MonoBehaviour
 
     public void NextStageButton()
     {
+        //도감,업적 저장
+        GameManager.Inst.Save_Encyclopedia_Monster_Table();
+        GameManager.Inst.Save_Encyclopedia_Weapon_Table();
+        GameManager.Inst.Save_Achievement_Table();
+
         SoundManager.Inst.EffectPlayerDB(1, this.gameObject);
+
         GameManager.Inst.Loading(true);
     }
 

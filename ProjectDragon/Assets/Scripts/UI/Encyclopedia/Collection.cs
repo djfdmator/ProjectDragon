@@ -31,7 +31,7 @@ public class Collection
         //[최초 아이템 획득] 업적 달성
         AchievementCollection(0);
 
-        bool isChange = false;
+        //bool isChange = false;
 
         foreach (Database.Inventory item in items)
         {
@@ -39,15 +39,15 @@ public class Collection
             {
                 //슬롯 활성화
                 encyclopedia_WeaponList[item.DB_Num].active = true;
-                isChange = true;
+                //isChange = true;
             }
         }
 
-        //도감 데이터 저장
-        if (isChange)
-        {
-            GameManager.Inst.Save_Encyclopedia_Weapon_Table();
-        }
+        ////도감 데이터 저장
+        //if (isChange)
+        //{
+        //    GameManager.Inst.Save_Encyclopedia_Weapon_Table();
+        //}
     }
 
     /// <summary>
@@ -65,8 +65,8 @@ public class Collection
         {
             //슬롯 활성화
             encyclopedia_MonsterList[monster.db_Num].active = true;
-            //도감 데이터 저장
-            GameManager.Inst.Save_Encyclopedia_Monster_Table();
+            ////도감 데이터 저장
+            //GameManager.Inst.Save_Encyclopedia_Monster_Table();
         }
     }
 
@@ -83,7 +83,7 @@ public class Collection
             //마지막 업적 도전횟수 올리기
             if (achievementList[db_num].active) achievementList[12].ChangeCurrentValue();
 
-            GameManager.Inst.Save_Achievement_Table();
+            //GameManager.Inst.Save_Achievement_Table();
         }
     }
 
