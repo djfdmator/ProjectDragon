@@ -55,11 +55,8 @@ public class Slime : FSM_NormalEnemy
 
     }
 
-   
-
     protected override IEnumerator Attack()
     {
-        rb2d.isKinematic = true;       //앞으로 달려가는 공격애니메이션으로 플레이어와 콜라이더가 충돌이 나서 버그발생 
         isNuckback = false;
         StartCoroutine(base.Attack());
         yield return null;
@@ -67,7 +64,6 @@ public class Slime : FSM_NormalEnemy
     protected override IEnumerator AttackEnd()
     {
         StartCoroutine(base.AttackEnd());
-        rb2d.isKinematic = false;
         yield return null;
     }
 

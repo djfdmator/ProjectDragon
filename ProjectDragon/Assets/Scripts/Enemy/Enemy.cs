@@ -12,8 +12,7 @@ using UnityEngine;
 
 public class Enemy : Monster
 {
-    [SerializeField]
-    protected bool isIdle = true;
+    [SerializeField] protected bool isIdle = true;
     protected Rigidbody2D rb2d;
     protected SpriteRenderer spriteRenderer;
     [SerializeField] protected LayerMask m_viewTargetMask; // 인식 가능한 타켓의 마스크
@@ -128,10 +127,6 @@ public class Enemy : Monster
     {
         base.Dead();
 
-        //if (objectAnimator.GetBool("objectAnimator"))
-        //{
-        //    objectAnimator.SetBool("IsDead", true);
-        //}
         //Dead Animation parameters
         objectAnimator.SetTrigger("Dead");
 
@@ -178,13 +173,14 @@ public class Enemy : Monster
 
     protected virtual RaycastHit2D[] GetRaycastType()
     {
+        #region 이전버전 raycast
         ////BoxCast
         //return Physics2D.BoxCastAll(startingPosition, boxCol.size, 0, direction, AtkRange - originOffset, m_viewTargetMask);
         ////CircleCast
         //return Physics2D.CircleCastAll(startingPosition, circleCol.radius, direction, AtkRange - originOffset, m_viewTargetMask);
         ////CapsuleCas
         //return Physics2D.CapsuleCastAll(startingPosition, capsuleCol.size, CapsuleDirection2D.Vertical, 0, direction, AtkRange - originOffset, m_viewTargetMask);
-
+        #endregion
         return Physics2D.RaycastAll(startingPosition, direction, AtkRange - originOffset, m_viewTargetMask);
     }
 
@@ -289,7 +285,7 @@ public class Enemy : Monster
 
 
 
-    //Draw!!!! 테스트용
+    //테스트용 - 공격범위 Draw
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
@@ -318,36 +314,8 @@ public class Enemy : Monster
     //+ Vector2.Dot(directionOriginOffset, direction)
 
 
-    #region [이전버전] 밀림 방지용 충돌처리
-    #region [이전버전] Player에게 다가가는 무리들에 대한 이동조정
-    //protected virtual void OnCollisionStay2D(Collision2D collision)
-    //{
-    //    //Player에게 다가가는 무리들에 대한 이동조정.. (walk)
-
-    //    if (collision.gameObject.CompareTag("Player") ||
-    //         (collision.gameObject.CompareTag("Enemy") && (collision.gameObject.GetComponent<Enemy>().collisionPlayer)))
-    //    {
-    //        collisionPlayer = true;
-    //        if (collisionPlayer)
-    //        {
-    //            rb2d.isKinematic = true;
-    //            rb2d.velocity = Vector2.zero;
-    //        }
-    //    }
-
-    //}
-    //protected virtual void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player") ||
-    //        collision.gameObject.CompareTag("Enemy"))
-    //    {
-    //        rb2d.isKinematic = false;
-    //        collisionPlayer = false;
-    //    }
-    //}
-    #endregion
-
-
+    #region  밀림 방지용 충돌처리
+    
     #region Player에게 다가가는 무리들에 대한 이동조정
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
@@ -356,7 +324,7 @@ public class Enemy : Monster
         {
             collisionPlayer = true;
 
-            rb2d.isKinematic = true;
+            //rb2d.isKinematic = true;
             rb2d.velocity = Vector2.zero;
         }
     }
@@ -364,22 +332,13 @@ public class Enemy : Monster
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            rb2d.isKinematic = false;
+            //rb2d.isKinematic = false;
             collisionPlayer = false;
         }
     }
     #endregion
-    //protected virtual void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Enemy"))
-    //    {
-    //        //콜라이더 꺼져있을때 Hit되면 콜라이더 켜기 (혹시모를 검사 한번더하기)
-    //        if (isHit)
-    //        {
-    //            Physics2D.IgnoreCollision(collision, col);
-    //        }
-    //    }
-    //}
+
+    #region A* 이동시 콜라이더 끄기
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Cliff"))
@@ -395,19 +354,6 @@ public class Enemy : Monster
                 Physics2D.IgnoreCollision(collision, col, false);
             }
         }
-
-        //    //Hit중이면 Enemy 충돌무시
-        //    if (collision.gameObject.CompareTag("Enemy"))
-        //    {
-        //        if (isHit)
-        //        {
-        //            Physics2D.IgnoreCollision(collision, col);
-        //        }
-        //        else
-        //        {
-        //            Physics2D.IgnoreCollision(collision, col, false);
-        //        }
-        //    }
     }
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
@@ -415,11 +361,8 @@ public class Enemy : Monster
         {
             Physics2D.IgnoreCollision(collision, col, false);
         }
-        //if (collision.gameObject.CompareTag("Enemy"))
-        //{
-        //    Physics2D.IgnoreCollision(collision, col, false);
-        //}
     }
+    #endregion
     #endregion
 
     protected IEnumerator PushStopCor;
