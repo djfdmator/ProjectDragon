@@ -148,94 +148,97 @@ public class JoyPad : MonoBehaviour
 
     public void OnPress(bool pressed)
     {
-        Pressed = pressed;
-        if (pressed == false && !player.isSkillActive)
+        if (!player.isDead)
         {
-            player.CurrentState = State.Idle;
-
-            StartCoroutine(fadeJoyStick());
-        }
-
-        if (pressed.Equals(true))
-        {
-            target.GetComponent<UISprite>().enabled = true;
-            target2.GetComponent<UISprite>().enabled = true;
-            target2.GetComponent<UISprite>().depth = target.GetComponent<UISprite>().depth + 1;
-            target2.GetComponent<UISprite>().spriteName = "ingameui_40";
-
-            if (Input.touchCount == 1)
+            Pressed = pressed;
+            if (pressed == false && !player.isSkillActive)
             {
-                touch01 = Input.GetTouch(0);
-                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
-                whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
+                player.CurrentState = State.Idle;
 
-                Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-                for (int i = 0; i < Input.touchCount; i++)
-                {
-                    RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
-                    foreach (RaycastHit hit in raycastHits)
-                    {
-                        if (hit.collider.tag.Equals("button"))
-                        {
-                            ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-
-                            if (centerOnPress)
-                            {
-                                target.transform.position = fingerPoint01;
-                                break;
-                            }
-                        }
-
-                        if (!hit.collider.tag.Equals("button"))
-                        {
-                            return;
-                        }
-                    }
-                }
+                StartCoroutine(fadeJoyStick());
             }
 
-            if (Input.touchCount > 1)
+            if (pressed.Equals(true))
             {
-                touch01 = Input.GetTouch(0);
+                target.GetComponent<UISprite>().enabled = true;
+                target2.GetComponent<UISprite>().enabled = true;
+                target2.GetComponent<UISprite>().depth = target.GetComponent<UISprite>().depth + 1;
+                target2.GetComponent<UISprite>().spriteName = "ingameui_40";
 
-                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
-
-                whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
-
-                Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
-
-                for (int i = 0; i < Input.touchCount; i++)
+                if (Input.touchCount == 1)
                 {
-                    RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
+                    touch01 = Input.GetTouch(0);
+                    fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
+                    whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
 
-                    foreach (RaycastHit hit in raycastHits)
+                    Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-                        if (hit.collider.tag.Equals("button"))
+                        RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
+                        foreach (RaycastHit hit in raycastHits)
                         {
-                            ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+                            if (hit.collider.tag.Equals("button"))
+                            {
+                                ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
 
-                            if (centerOnPress)
+                                if (centerOnPress)
+                                {
+                                    target.transform.position = fingerPoint01;
+                                    break;
+                                }
+                            }
+
+                            if (!hit.collider.tag.Equals("button"))
                             {
                                 return;
                             }
                         }
+                    }
+                }
 
-                        if (!hit.collider.tag.Equals("button"))
+                if (Input.touchCount > 1)
+                {
+                    touch01 = Input.GetTouch(0);
+
+                    fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
+
+                    whereIs_Hit = Physics2D.Raycast(fingerPoint01, transform.forward, 1);
+
+                    Ray ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
+
+                    for (int i = 0; i < Input.touchCount; i++)
+                    {
+                        RaycastHit[] raycastHits = Physics.RaycastAll(ray, 10);
+
+                        foreach (RaycastHit hit in raycastHits)
                         {
-                            touch01 = Input.GetTouch(1);
-                            fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
-                            target.transform.position = fingerPoint01;
+                            if (hit.collider.tag.Equals("button"))
+                            {
+                                ray = UICamera.currentCamera.ScreenPointToRay(touch01.position);
 
-                            return;
+                                if (centerOnPress)
+                                {
+                                    return;
+                                }
+                            }
+
+                            if (!hit.collider.tag.Equals("button"))
+                            {
+                                touch01 = Input.GetTouch(1);
+                                fingerPoint01 = UICamera.currentCamera.ScreenToWorldPoint(touch01.position);
+                                target.transform.position = fingerPoint01;
+
+                                return;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        else
-        {
-            ResetJoystick();
+            else
+            {
+                ResetJoystick();
+            }
         }
     }
 
@@ -245,7 +248,7 @@ public class JoyPad : MonoBehaviour
 
         //Ray ray = UICamera.currentCamera.ScreenPointToRay(UICamera.lastTouchPosition);
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !player.isDead)
         {
             Touch touch01 = Input.GetTouch(0);
 
@@ -350,9 +353,7 @@ public class JoyPad : MonoBehaviour
                 player.CurrentState = State.Walk;
                 angle = GetAngle(target2.transform.position, target.transform.position);
             }
-
         }
-
     }
 
     private void Update()

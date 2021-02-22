@@ -245,8 +245,8 @@ public class Player : Character
         {
             isSkillActive = false;
             StopPlayer = false;
+            CurrentState = State.Get;
         }
-        CurrentState = State.Get;
         //Debug.Log("CurrentState " + CurrentState);
     }
 
@@ -361,9 +361,12 @@ public class Player : Character
     }
     public void TempNullSet()
     {
-        TempEnemy = null;
-        CurrentState = State.Idle;
-        AngleisAttack = false;
+        if (!isDead)
+        {
+            TempEnemy = null;
+            CurrentState = State.Idle;
+            AngleisAttack = false;
+        }
     }
 
 
