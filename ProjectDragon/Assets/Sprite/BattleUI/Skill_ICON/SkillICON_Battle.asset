@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+  m_Name: SkillICON_Battle
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: dafe8fa84d203464f9eaddd5175e5e2a, type: 2}
+  mSprites:
+  - name: SkillIcon_AirCutter_Ingame
+    x: 0
+    y: 329
+    width: 183
+    height: 183
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 20
+    paddingRight: 16
+    paddingTop: 18
+    paddingBottom: 18
+  - name: SkillIcon_GoddessWave_Ingame
+    x: 164
+    y: 169
+    width: 159
+    height: 159
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 30
+    paddingRight: 30
+    paddingTop: 30
+    paddingBottom: 30
+  - name: SkillIcon_ManaRelease_Ingame
+    x: 0
+    y: 165
+    width: 163
+    height: 163
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 28
+    paddingRight: 28
+    paddingTop: 28
+    paddingBottom: 28
+  - name: SkillIcon_SavageChain_Ingame
+    x: 0
+    y: 1
+    width: 163
+    height: 163
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 28
+    paddingRight: 28
+    paddingTop: 28
+    paddingBottom: 28
+  - name: SkillIcon_Thunderbolt_Ingame
+    x: 184
+    y: 329
+    width: 183
+    height: 183
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 18
+    paddingRight: 18
+    paddingTop: 18
+    paddingBottom: 18
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
