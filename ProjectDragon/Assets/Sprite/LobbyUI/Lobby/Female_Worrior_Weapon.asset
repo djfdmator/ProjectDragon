@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+  m_Name: Female_Worrior_Weapon
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 119dae22de986834cb28862f4cd87606, type: 2}
+  mSprites:
+  - name: test
+    x: 556
+    y: 514
+    width: 189
+    height: 312
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 707
+    paddingRight: 184
+    paddingTop: 456
+    paddingBottom: 1152
+  - name: sword 2
+    x: 0
+    y: 827
+    width: 577
+    height: 1221
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 301
+    paddingRight: 202
+    paddingTop: 494
+    paddingBottom: 205
+  - name: Rusty_Sword_01
+    x: 0
+    y: 51
+    width: 555
+    height: 775
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 269
+    paddingRight: 256
+    paddingTop: 622
+    paddingBottom: 523
+  mPixelSize: 1
+  mReplacement: {fileID: 0}

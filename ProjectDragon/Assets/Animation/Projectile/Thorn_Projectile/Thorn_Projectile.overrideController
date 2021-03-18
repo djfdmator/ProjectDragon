@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Thorn_Projectile
+  m_Controller: {fileID: 9100000, guid: 481ea9843462def4082143164510e26d, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 048fe698c684b7d4f92f61d51d69c442, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: afece7348b05096468df4349edb98fa8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1704024ff6d7dfa4e8068d872cf0478d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a4f02ea5e6883c24081c3003b80f4c32, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4368225c20a9dc84c8e741a86dd07b73, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a76f942063b2a794a88933e142292723, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3756b713c5f1f4b40bc23659d8ffc487, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 072c93f613601824b9128a60410ed58b, type: 2}

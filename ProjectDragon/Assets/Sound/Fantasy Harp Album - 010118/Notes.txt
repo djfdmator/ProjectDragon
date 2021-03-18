@@ -1,0 +1,18 @@
+	Fantasy Harp Album - 010118
+	Artist: GWriterStudio
+1. The Entrance
+2. Mysterious Fairy
+3. Frost Village
+4. Sorrow
+5. Grass Field
+6. Sacred Tree
+7. Elf Princess
+8. Fairies Swamp
+9. Duet Forest Song
+10. Night Light
+
+Please use .wav for looping sound in Unity without problems.
+Remove .mp3 if not needded
+
+Have Questions contact me via gmail:
+gwriterstudio@gmail.com

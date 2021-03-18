@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125b9f6e6906d6e4897a443b3c12729c, type: 3}
+  m_Name: DustAnimation
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: f3575eb4174e3034983e7bab281ed959, type: 2}
+  mSprites:
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0001"
+    x: 603
+    y: 1520
+    width: 599
+    height: 528
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 184
+    paddingRight: 22
+    paddingTop: 21
+    paddingBottom: 281
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0002"
+    x: 1203
+    y: 1049
+    width: 596
+    height: 558
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 166
+    paddingRight: 43
+    paddingTop: 37
+    paddingBottom: 235
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0003"
+    x: 0
+    y: 1456
+    width: 602
+    height: 592
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 139
+    paddingRight: 64
+    paddingTop: 72
+    paddingBottom: 166
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0004"
+    x: 0
+    y: 732
+    width: 364
+    height: 422
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 356
+    paddingRight: 85
+    paddingTop: 104
+    paddingBottom: 304
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0005"
+    x: 1629
+    y: 1608
+    width: 374
+    height: 440
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 319
+    paddingRight: 112
+    paddingTop: 120
+    paddingBottom: 270
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0006"
+    x: 603
+    y: 1045
+    width: 398
+    height: 474
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 280
+    paddingRight: 127
+    paddingTop: 138
+    paddingBottom: 218
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0007"
+    x: 0
+    y: 1155
+    width: 395
+    height: 300
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 269
+    paddingRight: 141
+    paddingTop: 347
+    paddingBottom: 183
+  - name: "\uBA3C\uC9C0\uC774\uD399\uD2B8_0008"
+    x: 1203
+    y: 1789
+    width: 425
+    height: 259
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 222
+    paddingRight: 158
+    paddingTop: 420
+    paddingBottom: 151
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
