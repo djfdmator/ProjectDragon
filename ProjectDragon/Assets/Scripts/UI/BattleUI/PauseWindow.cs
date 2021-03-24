@@ -1,4 +1,13 @@
-﻿using System.Collections;
+﻿// ==============================================================
+// PauseWindow
+// (배틀화면의 우측 상단의 정지버튼 기능)
+//
+// AUTHOR: Yang SeEun
+// CREATED: 
+// UPDATED: 2019-12-05
+// ==============================================================
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
