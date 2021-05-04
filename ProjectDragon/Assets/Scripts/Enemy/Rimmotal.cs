@@ -11,7 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum RimmotalEnemyState { Idle, Walk, Attack1, Attack2, }
+public enum RimmotalEnemyState { Idle, Walk, Attack1, Attack2, Dead}
 public class Rimmotal : Enemy
 {
     [Header("[Enemy State]")]
@@ -26,16 +26,6 @@ public class Rimmotal : Enemy
     [SerializeField] bool _thorn_attacking = true;
 
 
-    public RimmotalEnemyState REState
-    {
-        get { return rimmotalEnemyState; }
-        set
-        {
-            rimmotalEnemyState = value;
-            SetState(rimmotalEnemyState);
-
-        }
-    }
     protected override void Awake()
     {
         capsuleCol = GetComponents<CapsuleCollider2D>()[0];
@@ -50,33 +40,42 @@ public class Rimmotal : Enemy
         base.Awake();
     }
 
-
-    protected override RaycastHit2D[] GetRaycastType()
-    {
-        //float maxSizeAxis = capsuleCol.size.x < capsuleCol.size.y ? capsuleCol.size.y : capsuleCol.size.x;
-
-        //CapsuleCas
-        return Physics2D.CapsuleCastAll(startingPosition, capsuleCol.size, CapsuleDirection2D.Vertical, 0, direction, AtkRange - originOffset/*- (maxSizeAxis*0.5f)*/, m_viewTargetMask);
-    }
-    public void Update()
-    {
-        DustParticleCheck();
-    }
-
-
     protected override void Start()
     {
         base.Start();
     }
 
+    public void Update()
+    {
+        DustParticleCheck();
+    }
+
+    public override void Dead()
+    {
+        rimmotalEnemyState = RimmotalEnemyState.Dead;
+        base.Dead();
+    }
+
+    protected override RaycastHit2D[] GetRaycastType()
+    {
+        //float maxSizeAxis = capsuleCol.size.x < capsuleCol.size.y ? capsuleCol.size.y : capsuleCol.size.x;
+
+        //CapsuleCast
+        return Physics2D.CapsuleCastAll(startingPosition, capsuleCol.size, CapsuleDirection2D.Vertical, 0, direction, AtkRange - originOffset/*- (maxSizeAxis*0.5f)*/, m_viewTargetMask);
+    }
+
+
     public override IEnumerator Start_On()
     {
         StartCoroutine(base.Start_On());
 
-        //1초후 추적
+        //1초 대기
         yield return new WaitForSeconds(1.0f);
+        
+        //추적
         isIdle = false;
-        REState = RimmotalEnemyState.Walk;
+        rimmotalEnemyState = RimmotalEnemyState.Walk;
+        ChangeState<RimmotalEnemyState>(rimmotalEnemyState);
 
         //공격감지 체크
         StartCoroutine(AttackRangeCheck());
@@ -105,27 +104,40 @@ public class Rimmotal : Enemy
 
 
 
-    IEnumerator Idle()
-    { 
+
+
+    #region State Routine
+
+
+    private IEnumerator IdleState()
+    {
+        //OnEnter
         isIdle = true;
+
+        // Excute
         yield return new WaitForSeconds(1.0f);
         if (inAtkDetectionRange)
         {
-            REState = RimmotalEnemyState.Attack1;
+            rimmotalEnemyState = RimmotalEnemyState.Attack1;
         }
         else
         {
-            REState = RimmotalEnemyState.Walk;
+            rimmotalEnemyState = RimmotalEnemyState.Walk;
         }
-        isIdle = false;
 
+        //OnExit
+        isIdle = false;
+        ChangeState<RimmotalEnemyState>(rimmotalEnemyState);
     }
 
-    IEnumerator Walk()
+    private IEnumerator WalkState()
     {
-        //Walk Animation parameters
+        //OnEnter
         objectAnimator.SetBool("Walk", true);
-        while (REState == RimmotalEnemyState.Walk && !isDead)
+
+
+        // Excute
+        while (rimmotalEnemyState == RimmotalEnemyState.Walk)
         {
             if (isHit)
             {
@@ -133,13 +145,11 @@ public class Rimmotal : Enemy
                 continue;
             }
 
-            //공격감지범위에 들어오면 Attack
+            //공격감지범위에 들어오면 공격
             if (inAtkDetectionRange)
             {
-                isWalk = false;
-                REState = RimmotalEnemyState.Attack1;
-                objectAnimator.SetBool("Walk", false);
-                yield break;
+                rimmotalEnemyState = RimmotalEnemyState.Attack1;
+                break;
             }
 
             if (rb2d.velocity != Vector2.zero)
@@ -152,7 +162,6 @@ public class Rimmotal : Enemy
                 //move
                 if (!collisionPlayer)
                 {
-                    //_thorn_attacking = false;
                     isWalk = true;
                     //AStar
                     GetComponent<Tracking>().FindPathManager(rb2d, MoveSpeed);
@@ -161,44 +170,56 @@ public class Rimmotal : Enemy
             }
             yield return null;
         }
+
+
+        //OnExit
+        isWalk = false;
+        objectAnimator.SetBool("Walk", false);
+        ChangeState<RimmotalEnemyState>(rimmotalEnemyState);
     }
 
-  
-    IEnumerator Attack1()
-    {
-        //Attack Animation parameters
-        objectAnimator.SetBool("Attack1", true);
 
-        while(!objectAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+    private IEnumerator Attack1State()
+    {
+        //OnEnter
+        objectAnimator.SetBool("Attack1", true);
+        while (!objectAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
         {
             yield return null;
         }
-
         isAttacking = true;
 
+
+        //Execute
         AnimatorClipInfo[] clipInfo = objectAnimator.GetCurrentAnimatorClipInfo(0);
         float cliptime = clipInfo[0].clip.length;
         yield return new WaitForSeconds(cliptime / objectAnimator.GetCurrentAnimatorStateInfo(0).speed);
+        rimmotalEnemyState = RimmotalEnemyState.Attack2;
 
-        REState = RimmotalEnemyState.Attack2;
+
+        //OnExit
         objectAnimator.SetBool("Attack1", false);
+        ChangeState<RimmotalEnemyState>(rimmotalEnemyState);
     }
 
-    IEnumerator Attack2()
+    private IEnumerator Attack2State()
     {
-        //Attack Animation parameters
+        //OnEnter
         objectAnimator.SetBool("Attack2", true);
         IsFix = true;
-      
         while (!objectAnimator.GetCurrentAnimatorStateInfo(0).IsName("Rimmotal_Burrow"))
         {
             yield return null;
         }
         SoundManager.Inst.EffectPlayerDB(27, this.gameObject);
 
+
+
+        //Execute
         float cliptime = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(cliptime/ objectAnimator.GetCurrentAnimatorStateInfo(0).speed);
 
+        //가시공격 쿨타임 검사
         StartCoroutine(CoolTimeCheck());
         yield return StartCoroutine(ThornAttack());
         objectAnimator.SetBool("Attack2", false);
@@ -210,16 +231,28 @@ public class Rimmotal : Enemy
 
         float cliptime1 = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(cliptime1 / objectAnimator.GetCurrentAnimatorStateInfo(0).speed);
+        rimmotalEnemyState = RimmotalEnemyState.Idle;
+
+
+
+        //OnExit
         IsFix = false;
         isAttacking = false;
-        REState = RimmotalEnemyState.Idle;
-
+        ChangeState<RimmotalEnemyState>(rimmotalEnemyState);
     }
 
+
+    private IEnumerator DeadState()
+    {
+        GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().DropItem_Rimmotal(transform.position);
+        yield return null;
+    }
+
+
     /// <summary>
-    /// 가시생성
+    /// 가시 공격
     /// </summary>
-    IEnumerator ThornAttack()
+    private IEnumerator ThornAttack()
     {
         _thorn_attacking = true;
 
@@ -229,6 +262,7 @@ public class Rimmotal : Enemy
             {
                 SoundManager.Inst.EffectPlayerDB(28, this.gameObject);
 
+                //가시 생성
                 thornPoint.Create(projectileTargetList, Vector2.zero, new Vector2(0.7f, 0.7f), skillDamage, ThornAnimator, false, other.position - new Vector3(0.0f, 0.5f, 0.0f));
                 //thornTargeting.Create(skillDamage, "ThornTargeting", other.position);
                 yield return new WaitForSeconds(2.5f);
@@ -236,22 +270,18 @@ public class Rimmotal : Enemy
             yield return null;
         }
     }
+
     /// <summary>
     /// 가시공격(공격2) 쿨타임 검사
     /// </summary>
     /// <returns></returns>
-    IEnumerator CoolTimeCheck()
+    private IEnumerator CoolTimeCheck()
     {
         yield return new WaitForSeconds(skillCooltime);
         _thorn_attacking = false;
 
     }
+    #endregion
 
-    public override void Dead()
-    {
-        base.Dead();
-
-        GameObject.FindGameObjectWithTag("RoomManager").GetComponent<RoomManager>().DropItem_Rimmotal(transform.position);
-    }
 
 }
