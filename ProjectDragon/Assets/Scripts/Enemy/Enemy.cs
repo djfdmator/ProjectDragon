@@ -12,9 +12,11 @@ using UnityEngine;
 
 public class Enemy : Monster
 {
+    #region Property
+
     [SerializeField] protected bool isIdle = true;
     protected Rigidbody2D rb2d;
-    protected SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer; //?
     [SerializeField] protected LayerMask m_viewTargetMask; // 인식 가능한 타켓의 마스크
     [SerializeField] protected Collider2D col;
     protected Collider2D triggerCol;
@@ -75,6 +77,10 @@ public class Enemy : Monster
         }
     }
 
+    #endregion
+
+
+
 
     protected override void Awake()
     {
@@ -85,7 +91,6 @@ public class Enemy : Monster
         rb2d = GetComponent<Rigidbody2D>();
         other = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
 
         base.Awake();
     }
@@ -105,20 +110,20 @@ public class Enemy : Monster
         }
     }
 
+
     /// <summary>
     ///개체의 상태가 바뀔때마다 실행
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="newState"></param>
-    protected override void SetState<T>(T newState)
+    protected void ChangeState<T>(T newState)
     {
-        StartCoroutine(newState.ToString());
+        StartCoroutine(newState.ToString()+"State");
     }
-
 
     public override IEnumerator Start_On()
     {
-        //Grid 생성
+        //콜라이더 크기를 계산하며 Grid 생성
         GetComponent<Tracking>().pathFinding.Create(col, transform.GetComponentInParent<t_Grid>());
         yield return null;
     }
@@ -127,39 +132,15 @@ public class Enemy : Monster
     {
         base.Dead();
 
-        //Dead Animation parameters
-        objectAnimator.SetTrigger("Dead");
-
-
         col.enabled = false;
         triggerCol.enabled = false;
+        isAttacking = false;
+        invincible = false;
+        rb2d.velocity = Vector2.zero;
+        objectAnimator.SetTrigger("Dead");
 
         Destroy(gameObject, 5.0f);
-
-        //StartCoroutine(EnemyDead());
     }
-
-    #region 이전버전 Dead
-    //protected virtual IEnumerator EnemyDead()
-    //{
-    //    if(objectAnimator.GetBool("objectAnimator"))
-    //    {
-    //        objectAnimator.SetBool("IsDead", true);
-    //        Debug.Log("IsDead is true");
-    //    }
-    //    //Dead Animation parameters
-    //    objectAnimator.SetTrigger("Dead");
-
-
-    //    col.enabled = false;
-
-    //    Destroy(gameObject, 5.0f);
-
-    //    yield return null;
-    //}
-
-    //raycast
-    #endregion
 
     protected IEnumerator AttackRangeCheck()
     {
@@ -213,7 +194,6 @@ public class Enemy : Monster
             if (_hit.collider != null)
             {
                 HitRay = _hit;
-                //Debug.Log("hit name :" + _hit.collider.gameObject.name);
                 if (_hit.collider.gameObject.CompareTag("Wall") || _hit.collider.gameObject.CompareTag("Cliff"))
                 {
                     isRayHit = true;
@@ -230,6 +210,9 @@ public class Enemy : Monster
         }
         return inAtkDetectionRange;
     }
+
+
+
 
     #region Hit
     public override int HPChanged(int ATK, bool isCritical, float NukBack)
@@ -282,6 +265,9 @@ public class Enemy : Monster
     }
 
     #endregion
+
+
+
 
 
 

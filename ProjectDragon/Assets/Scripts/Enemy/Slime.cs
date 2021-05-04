@@ -55,36 +55,26 @@ public class Slime : FSM_NormalEnemy
 
     }
 
-    protected override IEnumerator Attack()
+    protected override IEnumerator AttackState()
     {
         isNuckback = false;
-        StartCoroutine(base.Attack());
-        yield return null;
-    }
-    protected override IEnumerator AttackEnd()
-    {
-        StartCoroutine(base.AttackEnd());
+        StartCoroutine(base.AttackState());
         yield return null;
     }
 
-    public override void Dead()
+    protected override IEnumerator DeadState()
     {
-        base.Dead();
+        StartCoroutine(base.DeadState());
         DeadParticle();
+        yield return null;
+
     }
 
-    #region 임시 Dead
-    //protected override IEnumerator EnemyDead()
-    //{
-    //    DeadParticle();
-    //    StartCoroutine(base.EnemyDead());
-    //    yield return null;
-    //}
-    #endregion
 
 
 
-    void DeadParticle()
+
+    private void DeadParticle()
     {
         childDeadParticle.SetActive(true);
         childDeadParticle.GetComponent<ParticleSystem>().Play();

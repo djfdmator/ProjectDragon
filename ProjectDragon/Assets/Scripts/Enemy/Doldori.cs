@@ -46,10 +46,13 @@ public class Doldori : FSM_NormalEnemy
         }
     }
 
-    protected override IEnumerator Attack()
+    protected override IEnumerator AttackState()
     {
+        //OnEnter
         AttackStart();
         yield return new WaitForSeconds(1.0f);         //대기
+
+
         if (!isDead)
         {
             invincible = true;                             //무적
@@ -59,10 +62,12 @@ public class Doldori : FSM_NormalEnemy
             objectAnimator.Play("Attacking");
             attackDirection = direction;
 
-            while (isAttacking && !isDead)
+            //Execute
+            while (normalEnemyState == NormalEnemyState.Attack)
             {
                 rb2d.AddForce(attackDirection * ATTACKSPEED, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(Time.deltaTime);
+                yield return null;
             }
         }
     }
@@ -71,23 +76,20 @@ public class Doldori : FSM_NormalEnemy
     //부딪히면 Attack-> Idle로
     protected override IEnumerator AttackEnd()
     {
+        //OnExit
+        normalEnemyState = NormalEnemyState.Idle;
         isAttacking = false;
         invincible = false;
-
-        rb2d.velocity = Vector2.zero;
+        objectAnimator.SetBool("Attack", isAttacking);
 
         //반동
+        rb2d.velocity = Vector2.zero;
         rb2d.AddForce(-attackDirection * 1.5f, ForceMode2D.Impulse);
-        //Attack Animation parameters
-        objectAnimator.SetBool("Attack", isAttacking);
-        NEState = NormalEnemyState.Idle;
 
         yield return null;
 
         AttackEndCor = null;
-#if UNITY_EDITOR
-        Debug.Log("AttackEndCor is nullll");
-#endif
+        ChangeState<NormalEnemyState>(normalEnemyState);
     }
 
 
@@ -96,7 +98,7 @@ public class Doldori : FSM_NormalEnemy
     protected override void OnCollisionStay2D(Collision2D collision)
     {
         //연속으로 될경우 방지 (한번만 돌리게)
-        if (isAttacking && AttackEndCor == null)
+        if (normalEnemyState == NormalEnemyState.Attack && AttackEndCor == null)
         {
             if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Wall")
                 || collision.gameObject.CompareTag("Cliff") || collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Enemy"))
@@ -118,23 +120,11 @@ public class Doldori : FSM_NormalEnemy
                     }
                 }
                 StartCoroutine(AttackEndCor);
-
-                
-  
            }
         }
     }
 
-    public override void Dead()
-    {
-        //돌진하다 죽었을때 예외처리
-        isAttacking = false;
-        invincible = false;
-        rb2d.velocity = Vector2.zero;
-
-        base.Dead();
-    }
-
+    
 
     #region [이전버전] 밀림 방지용 충돌처리
     //몬스터끼리의 충돌이 가능할때 사용한 함수들
