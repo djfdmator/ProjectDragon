@@ -45,10 +45,10 @@ public class Character : MonoBehaviour
 
 
 
-    [SerializeField] public bool isAttacking;
-    [SerializeField] protected bool isWalk;
+    public bool isAttacking;
+    public bool isWalk;
     public bool isDead;
-    protected bool isHit;
+    public bool isHit;
     public bool isSkillActive;
 
     /// <summary>

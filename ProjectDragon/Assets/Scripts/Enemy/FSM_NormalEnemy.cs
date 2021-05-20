@@ -64,7 +64,11 @@ public class FSM_NormalEnemy : Enemy
         Current_readyTime = 0;
         Current_cooltime = 0;
 
-        StartCoroutine(CalcCooltime());
+        yield return StartCoroutine(CalcCooltime());
+
+        //OnExit
+        isIdle = false;
+        ChangeState<NormalEnemyState>(normalEnemyState);
         yield return null;
     }
 
@@ -93,7 +97,6 @@ public class FSM_NormalEnemy : Enemy
                     if (!inAtkDetectionRange)
                     {
                         isAttackActive = false;
-                        isIdle = false;
                         normalEnemyState = NormalEnemyState.Walk;   //Idle->Walk
                         break;
                     }
@@ -106,15 +109,11 @@ public class FSM_NormalEnemy : Enemy
             else                                                      //cooltime 후
             {
                 isAttackActive = true;
-                isIdle = false;
                 normalEnemyState = NormalEnemyState.Attack;          //Idle->Attack
                 break;
             }
             yield return null;
         }
-
-        //OnExit
-        ChangeState<NormalEnemyState>(normalEnemyState);
     }
 
     protected virtual IEnumerator WalkState()

@@ -64,7 +64,6 @@ public class Enemy : Monster
 
     //Effect
     protected GameObject childDustParticle;
-    protected GameObject childDeadParticle;
     bool DustParticle_Actuation = false;
 
     public float Angle
