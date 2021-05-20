@@ -19,8 +19,8 @@ public class Rimmotal : Enemy
     CapsuleCollider2D capsuleCol;
 
     //object
-    Projectile projectile;
-    TargetPoint thornPoint;
+    private Projectile projectile;
+    private TargetPoint thornPoint;
     public RuntimeAnimatorController LeafAnimator;
     public RuntimeAnimatorController ThornAnimator;
     [SerializeField] bool _thorn_attacking = true;
@@ -215,13 +215,15 @@ public class Rimmotal : Enemy
 
 
 
-        //Execute
         float cliptime = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(cliptime/ objectAnimator.GetCurrentAnimatorStateInfo(0).speed);
 
+        //Execute
         //가시공격 쿨타임 검사
         StartCoroutine(CoolTimeCheck());
         yield return StartCoroutine(ThornAttack());
+        
+        //OnExit
         objectAnimator.SetBool("Attack2", false);
 
         while (!objectAnimator.GetCurrentAnimatorStateInfo(0).IsName("Rimmotal_Restore"))
@@ -234,8 +236,6 @@ public class Rimmotal : Enemy
         rimmotalEnemyState = RimmotalEnemyState.Idle;
 
 
-
-        //OnExit
         IsFix = false;
         isAttacking = false;
         ChangeState<RimmotalEnemyState>(rimmotalEnemyState);

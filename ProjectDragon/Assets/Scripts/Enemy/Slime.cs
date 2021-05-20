@@ -10,6 +10,8 @@ using UnityEngine;
 public class Slime : FSM_NormalEnemy
 {
     [SerializeField] CircleCollider2D circleCol;
+    protected GameObject childDeadParticle;
+
     protected override void Awake()
     {
         circleCol = GetComponents<CircleCollider2D>()[0];
