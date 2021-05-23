@@ -212,15 +212,17 @@ public class Rimmotal : Enemy
             yield return null;
         }
         SoundManager.Inst.EffectPlayerDB(27, this.gameObject);
-        AnimationMatching();
 
+
+
+        float cliptime = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(cliptime/ objectAnimator.GetCurrentAnimatorStateInfo(0).speed);
 
         //Execute
         //가시공격 쿨타임 검사
         StartCoroutine(CoolTimeCheck());
         yield return StartCoroutine(ThornAttack());
         
-
         //OnExit
         objectAnimator.SetBool("Attack2", false);
 
@@ -229,21 +231,14 @@ public class Rimmotal : Enemy
             yield return null;
         }
 
-        AnimationMatching();
+        float cliptime1 = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(cliptime1 / objectAnimator.GetCurrentAnimatorStateInfo(0).speed);
         rimmotalEnemyState = RimmotalEnemyState.Idle;
 
 
         IsFix = false;
         isAttacking = false;
         ChangeState<RimmotalEnemyState>(rimmotalEnemyState);
-    }
-
-    //해당 애니메이션이 끝날때까지 대기
-    private IEnumerator AnimationMatching()
-    {
-        float cliptime = objectAnimator.GetCurrentAnimatorStateInfo(0).length;
-        float deleyTime = cliptime / objectAnimator.GetCurrentAnimatorStateInfo(0).speed;
-        yield return new WaitForSeconds(deleyTime);
     }
 
 
