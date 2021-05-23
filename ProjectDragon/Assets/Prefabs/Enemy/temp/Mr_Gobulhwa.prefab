@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 581777204744015363}
   - component: {fileID: 581777204744015362}
   - component: {fileID: 7315797109972166872}
-  - component: {fileID: 581777204744015364}
   - component: {fileID: 7488617802071110909}
   - component: {fileID: 1162135421710078203}
+  - component: {fileID: 4763819759252857554}
   m_Layer: 10
   m_Name: Mr_Gobulhwa
   m_TagString: Enemy
@@ -150,57 +150,6 @@ MonoBehaviour:
   pathFinding: {fileID: 0}
   currentWaypoint: {x: 0, y: 0, z: 0}
   targetPos: {fileID: 0}
---- !u!114 &581777204744015364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581777204744015367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e55381278556b9d45bff9b6c3901aa1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 50
-  hp: 50
-  moveSpeed: 1.5
-  atk: 6
-  atkSpeed: 1
-  atkRange: 3.5
-  nuckBackPower: 0
-  myPos: {x: 0, y: 0, z: 0}
-  myRotat: {x: 0, y: 0, z: 0}
-  current_angle: 0
-  other: {fileID: 0}
-  isAttacking: 0
-  isWalk: 0
-  isDead: 0
-  isSkillActive: 0
-  projectileTargetList: []
-  current_Anim_Frame: 0
-  invincible: 0
-  db_Num: 3
-  distanceOfPlayer: 0
-  angleOfPlayer: 0
-  moveDistance: 0
-  isIdle: 1
-  m_viewTargetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  col: {fileID: 0}
-  collisionPlayer: 0
-  isNuckback: 1
-  skillCooltime: 0
-  skillDamage: 0
-  m_bDebugMode: 1
-  inAtkDetectionRange: 0
-  originOffset: 0
-  readyTime: 1
-  cooltime: 3
-  attackCount: 3
-  normalEnemyState: 0
-  projectileAnimator: {fileID: 22100000, guid: 6eb69141677a6414981b0339384cec3b, type: 2}
 --- !u!58 &7488617802071110909
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -233,6 +182,64 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4763819759252857554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581777204744015367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ab727f4bda6544695f37964506a0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 50
+  hp: 50
+  moveSpeed: 1.5
+  atk: 6
+  atkSpeed: 1
+  atkRange: 3.5
+  nuckBackPower: 0
+  myPos: {x: 0, y: 0, z: 0}
+  myRotat: {x: 0, y: 0, z: 0}
+  current_angle: 0
+  other: {fileID: 0}
+  isAttacking: 0
+  isWalk: 0
+  isDead: 0
+  isHit: 0
+  isSkillActive: 0
+  projectileTargetList: []
+  current_Anim_Frame: 0
+  invincible: 0
+  db_Num: 3
+  objectAnimator: {fileID: 0}
+  distanceOfPlayer: 0
+  angleOfPlayer: 0
+  moveDistance: 0
+  rb2d: {fileID: 0}
+  m_viewTargetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  col: {fileID: 0}
+  triggerCol: {fileID: 0}
+  isIdle: 1
+  collisionPlayer: 0
+  isNuckback: 1
+  m_bDebugMode: 0
+  inAtkDetectionRange: 0
+  direction: {x: 0, y: 0, z: 0}
+  originOffset: 0
+  childDeadParticle: {fileID: 0}
+  curAttackCount: 0
+  tracking: {fileID: 0}
+  readyTime: 1
+  cooltime: 3
+  attackCount: 3
+  isAttackActive: 0
+  currentState: 0
+  projectileAnimator: {fileID: 22100000, guid: 6eb69141677a6414981b0339384cec3b, type: 2}
 --- !u!1 &581777206034813176
 GameObject:
   m_ObjectHideFlags: 0

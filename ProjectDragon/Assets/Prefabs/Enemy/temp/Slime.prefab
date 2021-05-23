@@ -4712,9 +4712,9 @@ GameObject:
   - component: {fileID: 1948673296124083826}
   - component: {fileID: 1948673296124083825}
   - component: {fileID: 3606076364911926114}
-  - component: {fileID: 1948673296124083839}
   - component: {fileID: 2779741969946795077}
   - component: {fileID: 3125240508622170502}
+  - component: {fileID: 8099089744474521745}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
@@ -4850,56 +4850,6 @@ MonoBehaviour:
   pathFinding: {fileID: 0}
   currentWaypoint: {x: 0, y: 0, z: 0}
   targetPos: {fileID: 0}
---- !u!114 &1948673296124083839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948673296124083838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00109878124b3f34c83db8ead3806c11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 40
-  hp: 40
-  moveSpeed: 1
-  atk: 5
-  atkSpeed: 1
-  atkRange: 0.7
-  nuckBackPower: 0
-  myPos: {x: 0, y: 0, z: 0}
-  myRotat: {x: 0, y: 0, z: 0}
-  current_angle: 0
-  other: {fileID: 0}
-  isAttacking: 0
-  isWalk: 0
-  isDead: 0
-  isSkillActive: 0
-  projectileTargetList: []
-  current_Anim_Frame: 0
-  invincible: 0
-  distanceOfPlayer: 0
-  angleOfPlayer: 0
-  moveDistance: 0
-  isIdle: 1
-  m_viewTargetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  col: {fileID: 0}
-  collisionPlayer: 0
-  isNuckback: 1
-  skillCooltime: 0
-  skillDamage: 0
-  m_bDebugMode: 1
-  inAtkDetectionRange: 0
-  originOffset: 0
-  readyTime: 1
-  cooltime: 3
-  attackCount: 1
-  normalEnemyState: 0
-  circleCol: {fileID: 0}
 --- !u!58 &2779741969946795077
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4932,6 +4882,64 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &8099089744474521745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948673296124083838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df440cd368dd32941a0ae778b13e78d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 40
+  hp: 40
+  moveSpeed: 1
+  atk: 5
+  atkSpeed: 1
+  atkRange: 2
+  nuckBackPower: 0
+  myPos: {x: 0, y: 0, z: 0}
+  myRotat: {x: 0, y: 0, z: 0}
+  current_angle: 0
+  other: {fileID: 0}
+  isAttacking: 0
+  isWalk: 0
+  isDead: 0
+  isHit: 0
+  isSkillActive: 0
+  projectileTargetList: []
+  current_Anim_Frame: 0
+  invincible: 0
+  db_Num: 0
+  objectAnimator: {fileID: 0}
+  distanceOfPlayer: 0
+  angleOfPlayer: 0
+  moveDistance: 0
+  rb2d: {fileID: 0}
+  m_viewTargetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  col: {fileID: 0}
+  triggerCol: {fileID: 0}
+  isIdle: 1
+  collisionPlayer: 0
+  isNuckback: 1
+  m_bDebugMode: 1
+  inAtkDetectionRange: 0
+  direction: {x: 0, y: 0, z: 0}
+  originOffset: 0
+  childDeadParticle: {fileID: 0}
+  curAttackCount: 0
+  tracking: {fileID: 0}
+  readyTime: 1
+  cooltime: 3
+  attackCount: 1
+  isAttackActive: 0
+  normalEnemyState: 0
+  circleCol: {fileID: 0}
 --- !u!1 &3501053003413887426
 GameObject:
   m_ObjectHideFlags: 0

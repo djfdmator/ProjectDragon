@@ -11,10 +11,10 @@ using UnityEngine;
 
 public class Monster : Character
 {
-    [SerializeField] protected bool invincible = false;       //무적상태인지
+    [SerializeField] public bool invincible = false;       //무적상태인지
     public int db_Num = 0;
 
-    protected Animator objectAnimator;
+    [HideInInspector] public Animator objectAnimator;
     //Effect
     protected FlashWhite flashWhite;
     IEnumerator StartOnCor;

@@ -4714,7 +4714,7 @@ GameObject:
   - component: {fileID: 3697718247053303643}
   - component: {fileID: 7573522879819982395}
   - component: {fileID: 6154134356186116283}
-  - component: {fileID: 2770981672019125054}
+  - component: {fileID: 8262569421513985385}
   m_Layer: 10
   m_Name: Rimmotal
   m_TagString: Enemy
@@ -4880,7 +4880,7 @@ MonoBehaviour:
   pathFinding: {fileID: 0}
   currentWaypoint: {x: 0, y: 0, z: 0}
   targetPos: {fileID: 0}
---- !u!114 &2770981672019125054
+--- !u!114 &8262569421513985385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4889,7 +4889,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7140570876156358880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54042b84b940eaf4b8512de10d7ac482, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f65a50a32e48c84cac1b1715a573588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 400
@@ -4906,30 +4906,39 @@ MonoBehaviour:
   isAttacking: 0
   isWalk: 0
   isDead: 0
+  isHit: 0
   isSkillActive: 0
   projectileTargetList: []
   current_Anim_Frame: 0
   invincible: 0
   db_Num: 4
+  objectAnimator: {fileID: 0}
   distanceOfPlayer: 0
   angleOfPlayer: 0
   moveDistance: 0
-  isIdle: 1
+  rb2d: {fileID: 0}
   m_viewTargetMask:
     serializedVersion: 2
     m_Bits: 0
   col: {fileID: 0}
+  triggerCol: {fileID: 0}
+  isIdle: 1
   collisionPlayer: 0
   isNuckback: 1
+  m_bDebugMode: 0
+  inAtkDetectionRange: 0
+  direction: {x: 0, y: 0, z: 0}
+  originOffset: 0
+  childDeadParticle: {fileID: 0}
+  curAttackCount: 0
+  tracking: {fileID: 0}
   skillCooltime: 6
   skillDamage: 8
-  m_bDebugMode: 1
-  inAtkDetectionRange: 0
-  originOffset: 0
-  rimmotalEnemyState: 0
+  thornPoint: {fileID: 0}
   LeafAnimator: {fileID: 22100000, guid: c279af507738f40429e7fff384e8e9c3, type: 2}
   ThornAnimator: {fileID: 22100000, guid: ec0238d79a3ac6f4395e245901eaa93b, type: 2}
   _thorn_attacking: 1
+  currentState: 0
 --- !u!1 &7946206750446095646
 GameObject:
   m_ObjectHideFlags: 0

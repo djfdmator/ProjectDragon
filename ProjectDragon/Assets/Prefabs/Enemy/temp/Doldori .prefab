@@ -93,9 +93,9 @@ GameObject:
   - component: {fileID: 6775708866940135157}
   - component: {fileID: 6775708866940135156}
   - component: {fileID: 6806236910962505811}
-  - component: {fileID: 6775708866940135158}
   - component: {fileID: 1888222273183041397}
   - component: {fileID: 3258986304330116704}
+  - component: {fileID: 8827082663553393388}
   m_Layer: 10
   m_Name: 'Doldori '
   m_TagString: Enemy
@@ -228,56 +228,6 @@ MonoBehaviour:
   pathFinding: {fileID: 0}
   currentWaypoint: {x: 0, y: 0, z: 0}
   targetPos: {fileID: 0}
---- !u!114 &6775708866940135158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6775708866940135153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22afc2d9841208a4a8a0a532635ad9db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 20
-  hp: 20
-  moveSpeed: 1
-  atk: 12
-  atkSpeed: 0.4
-  atkRange: 4
-  nuckBackPower: 0
-  myPos: {x: 0, y: 0, z: 0}
-  myRotat: {x: 0, y: 0, z: 0}
-  current_angle: 0
-  other: {fileID: 0}
-  isAttacking: 0
-  isWalk: 0
-  isDead: 0
-  isSkillActive: 0
-  projectileTargetList: []
-  current_Anim_Frame: 0
-  invincible: 0
-  db_Num: 1
-  distanceOfPlayer: 0
-  angleOfPlayer: 0
-  moveDistance: 0
-  isIdle: 1
-  m_viewTargetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  col: {fileID: 0}
-  collisionPlayer: 0
-  isNuckback: 1
-  skillCooltime: 0
-  skillDamage: 0
-  m_bDebugMode: 1
-  inAtkDetectionRange: 0
-  originOffset: 0
-  readyTime: 1
-  cooltime: 3
-  attackCount: 0
-  normalEnemyState: 0
 --- !u!58 &1888222273183041397
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -310,3 +260,60 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8827082663553393388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775708866940135153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc5eb37ce6672c4da64a6c4bed92727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 20
+  hp: 20
+  moveSpeed: 1
+  atk: 12
+  atkSpeed: 0.4
+  atkRange: 4
+  nuckBackPower: 0
+  myPos: {x: 0, y: 0, z: 0}
+  myRotat: {x: 0, y: 0, z: 0}
+  current_angle: 0
+  other: {fileID: 0}
+  isAttacking: 0
+  isWalk: 0
+  isDead: 0
+  isHit: 0
+  isSkillActive: 0
+  projectileTargetList: []
+  current_Anim_Frame: 0
+  invincible: 0
+  db_Num: 1
+  objectAnimator: {fileID: 0}
+  distanceOfPlayer: 0
+  angleOfPlayer: 0
+  moveDistance: 0
+  rb2d: {fileID: 0}
+  m_viewTargetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  col: {fileID: 0}
+  triggerCol: {fileID: 0}
+  isIdle: 1
+  collisionPlayer: 0
+  isNuckback: 1
+  m_bDebugMode: 0
+  inAtkDetectionRange: 0
+  direction: {x: 0, y: 0, z: 0}
+  originOffset: 0
+  childDeadParticle: {fileID: 0}
+  curAttackCount: 0
+  tracking: {fileID: 0}
+  readyTime: 1
+  cooltime: 3
+  attackCount: 0
+  isAttackActive: 0
+  currentState: 0
